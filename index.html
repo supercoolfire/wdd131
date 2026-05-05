@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holy Grail</title>
+    <title>Jayser Pilapil | WDD 131</title>
+    <link rel="stylesheet" href="styles/layout.css">
 </head>
+
 <body>
-    
+    <header> 
+        <h1>Jayser Pilapil | WDD 131</h1>
+    </header>
+    <nav>
+        <ul class="navigation">
+            <li><a href="#" title="Home">Home</a></li>
+            <!-- <li><a href="/week01/basic-layout.html" title="Home">Week 1</a></li> -->
+            <li><a href="#" title="Projects">Projects</a></li>
+            <li><a href="#" title="Services">Services</a></li>
+            <li><a href="#" title="Contact Us">Contact Us</a></li>
+        </ul>
+    </nav>
+    <main>
+    </main>
+    <aside>
+    </aside>
+    <footer>
+        <p>&copy; <span id="currentyear"></span> Jayser Pilapil | Philippines
+         | <span id="lastModified"></span></p>
+        <script>
+            document.getElementById('currentyear').textContent = new Date().getFullYear();
+            document.getElementById('lastModified').textContent = 'Last modified: ' + document.lastModified;
+        </script>
+    </footer>
 </body>
+
 </html>
