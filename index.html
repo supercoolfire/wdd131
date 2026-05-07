@@ -4,34 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jayser Pilapil | WDD 131</title>
-    <link rel="stylesheet" href="styles/layout.css">
+    <title>WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        description="This is a website about Jayser Pilapil in BYU-Idaho, Idaho WDD 131 - Dynamic Web Fundamentals, it contains information about the student, his contry, and web development resources">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="keywords" content="Jayser Pilapil, BYU-Idaho, Idaho, WDD 131, Dynamic Web Fundamentals">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    </style>
 </head>
 
 <body>
-    <header> 
-        <h1>Home | WDD 131</h1>
+    <header>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>
     </header>
     <nav>
         <ul class="navigation">
-            <li><a href="" title="Home">Home</a></li>
-            <li><a href="week01/basic-layout.html" title="Home">Week 1</a></li>
-            <li><a href="#" title="Projects">Projects</a></li>
-            <li><a href="#" title="Services">Services</a></li>
-            <li><a href="#" title="Contact Us">Contact Us</a></li>
+            <li><a class="active" href="../" title="Home">Home</a></li>
+            <li><a href="linkedin/index.html" title="LinkedIn">LinkedIn</a></li>
+            <li><a href="https://byupw.instructure.com/" title="Canvas">Canvas</a></li>
+            <li><a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/3?lang=eng&id=p7#p7"
+                    title="Scripture">Scripture</a></li>
+            <li><a href="final-project/index.html" title="Final Project">Final Project</a></li>
         </ul>
     </nav>
     <main>
+        <h1>Jayser Pilapil</h1>
+        <section class="card">
+            <h2>About Me</h2>
+            <p class="ubuntu-regular">I'm Brother Pilapil, Jayser Pilapil, and my friends call me "J" and I call them back "Huh?", and my not friends call me "Hey", what a good rhyme. I grew up with cats all over the Philippines due to unforeseen events, and I also lived abroad. I was already married when I became a member, so I didn't have time to go on a full-time mission, but I became a Pathway missionary, continuing for almost 6 years now.</p>
+            <p>In my free time, I'm developing useful apps for Androids, Windows, and TV, like <a href="https://supercoolfire.github.io/ImageSmaller-Site/" target="_blank">ImageSmaller</a>. I also spend time as a hobby developing proprietary governance frameworks and AI-driven automation tools (like Machine Empire) to help me code faster and with fewer errors. When I'm stressed, I need a mathematical model fusing the three dimensions of space (space-time) or time and space. I play computer games. I can't go outside because I have a leg injury; my tibia is cracked due to a motorcycle accident that happened two months ago.</p>
+            <p>I used to have an associate's degree in computer programming, but the school was defunct, so my certificate and transcript are just pieces of paper. I'm already a sophomore, but I'm taking this class because of the catalog transition from 2018 to 2024. When I see this course, I notice I already took web fundamentals when I was in the hospital way back in the pandemic, but wait, there's more. The "Dynamic" interests me. Sounds like dynamite dynamically morphing from structured to destructured.</p>
+            <p>To my classmates, I wish we all happy coding and a happy birthday!</p>
+        </section>
+        <section class="card">
+            <h2>My Country</h2>
+            <p>I am from the Philippines, an archipelago of over 7,600 islands in Southeast Asia. With a population exceeding 115 million, it is the 13th-most-populous country in the world and home to a young, fast-growing, English-speaking workforce that is highly active online. The nation’s median age is around 25, and roughly two-thirds of citizens now live in urban centers such as Metro Manila, Cebu, and Davao. This demographic profile—large, young, and digitally engaged—makes the Philippines a major hub for technology outsourcing, e-commerce, and social-media innovation, all sectors that continue to shape my perspective as a web-development student.</p>
+        </section>
     </main>
-    <aside>
+    <aside contenteditable>
+        <p contenteditable>
+            Don't give up
+        </p>
     </aside>
     <footer>
-        <p>&copy; <span id="currentyear"></span> Jayser Pilapil | Philippines
-         | <span id="lastModified"></span></p>
-        <script>
-            document.getElementById('currentyear').textContent = new Date().getFullYear();
-            document.getElementById('lastModified').textContent = 'Last modified: ' + document.lastModified;
-        </script>
+        <p>
+            &copy; <span id="currentyear"></span><span id="footer-name">Jayser Pilapil</span><span
+                id="state-country">State of Calamity</span>
+        </p>
+        <p id="lastModified"></p>
     </footer>
 </body>
 

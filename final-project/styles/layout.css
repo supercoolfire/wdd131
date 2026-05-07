@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    min-height: 100vh;
+}
+
+header,
+nav,
+footer {
+    grid-column: 1 / span 2;
+}
+
+header {
+    background-color: #0027b69e;
+}
+
+h1 {
+    text-align: center;
+    background-color: #0027b69e;
+    padding: 0.5rem;
+    color: #fff;
+}
+
+header p {
+    text-align: center;
+    background-color: #0027b69e;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+nav {
+    background-color: #545365;
+}
+
+.navigation {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.navigation li {
+    flex: 1 1 auto;
+}
+
+.navigation a {
+    font-size: 1.2rem;
+    display: block;
+    color: #eee;
+    padding: .75rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+    text-decoration-color: yellow;
+}
+
+main {
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 300px;
+    min-width: 0;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+#video-container {
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#video-container h2 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#video-container span {
+    display: block;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#video-container a {
+    color: #0a66c2;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#video-container a:hover {
+    text-decoration: underline;
+}
+
+aside {
+    background-color: #d8edcb;
+    padding: 1rem;
+}
+
+footer {
+    background-color: #0027b69e;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}

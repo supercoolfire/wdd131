@@ -23,9 +23,12 @@
     </nav>
     <main>
         Main Content
-        <video controls>
-            <source src="../images/rick-roll.mp4" type="video/mp4">
-        </video>
+        <div id="video-container">
+             <video preload="auto" playsinline id="rick-video" controls>
+                 <source src="../images/rick-roll.mp4" type="video/mp4">
+                 Your browser does not support the video tag.
+             </video>
+         </div>
     </main>
     <aside contenteditable>
         <p contenteditable>

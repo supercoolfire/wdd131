@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Ubuntu", sans-serif;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    min-height: 100vh;
+}
+
+header,
+nav,
+footer {
+    grid-column: 1 / span 2;
+}
+
+header {
+    background-color: #0027b69e;
+}
+
+.course-title {
+    height: 100px;
+    padding: 2rem;
+    color: #fff;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    background-color: #0027b69e;
+    padding: 0.5rem;
+    color: #fff;
+}
+
+header span {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    text-align: center;
+}
+
+/* header span:hover {
+    color: yellow;
+}
+
+header span:active {
+    color: red;
+} */
+
+header p {
+    text-align: center;
+    background-color: #0027b69e;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+nav {
+    background-color: #545365;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav a {
+    font-size: 1.2rem;
+    display: block;
+    color: #eee;
+    padding: .75rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    text-decoration-color: yellow;
+}
+
+.active {
+    color: yellow;
+}
+
+main {
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 300px;
+    min-width: 0;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main video {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    max-width: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+main video:hover {
+    opacity: 1;
+}
+
+aside {
+    background-color: #d8edcb;
+    padding: 1rem;
+}
+
+footer {
+    background-color: #0027b69e;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+
+
+/* larger/wider views **************************/
+@media (min-width: 640px) {
+    nav ul {
+        display: flex;
+    }
+
+    nav ul li {
+        flex: 1 0 auto;
+        /* flex: [flex-grow] [flex-shrink] [flex-basis]; 
+		in this example, the items will not shrink but can grow to fill the space at natural content width*/
+
+    }
+}
