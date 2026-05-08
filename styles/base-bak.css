@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 1px dashed red
+}
+
+body {
+    font-family: "Ubuntu", sans-serif;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    min-height: 100vh;
+}
+
+header,
+main,
+footer {
+    grid-column: 1 / span 3;
+}
+
+header {
+    background-color: #0027b69e;
+}
+
+header span {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+h2 {
+    text-align: center;
+    background-color: blue;
+    color: #fff;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+h3 {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+header span {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    text-align: center;
+}
+
+
+header p {
+    text-align: center;
+    background-color: #0027b69e;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+nav {
+    background-color: #545365;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav a {
+    font-size: 1.2rem;
+    display: block;
+    color: #eee;
+    padding: .75rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    text-decoration-color: yellow;
+}
+
+.active {
+    color: yellow;
+}
+
+main {
+    background-color: #fff;
+    padding: 2rem;
+    min-height: 300px;
+    min-width: 100%;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.card {
+    border: 1px solid #000;
+    border-radius: 1rem;
+    height: 100%;
+    width: 100%;
+    /* CRITICAL: Allows the card to shrink smaller than its content */
+    min-width: 0; 
+    overflow: hidden;
+}
+
+.card h2 {
+    border-radius: 1rem 1rem 0 0;
+
+    padding: 0.5rem;
+}
+
+.content-about-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.content-about-me .profile-pic-wrapper {
+    background-color: #e0dcd7;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+    width: 200px;
+}
+.content-about-me .profile-pic-wrapper img {
+    width: 200px;
+    border-radius: 2rem;
+}
+
+.content-about-me .details {
+    width: 100%;
+}
+
+.country-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.of-speech {
+    padding: 1rem;
+}
+
+.of-speech img {
+    padding-bottom: 1rem;
+}
+p {
+    font-family: "Ubuntu", sans-serif;
+    padding: 1rem;
+}
+
+
+footer {
+    background-color: #0027b69e;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+
+
+/* larger/wider views **************************/
+@media (min-width: 750px) {
+    nav ul {
+        display: flex;
+    }
+
+    nav ul li {
+        flex: 1 0 auto;
+        /* flex: [flex-grow] [flex-shrink] [flex-basis]; 
+		in this example, the items will not shrink but can grow to fill the space at natural content width*/
+
+    }
+
+    .cards {
+        display: grid;
+        /* This forces the 70/30 split and prevents column collapse */
+        grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+        align-items: start;
+        gap: 1rem;
+    }
+
+    .content-about-me {
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: row-reverse;
+        align-content: flex-start;
+    }
+
+    .country-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: row;
+    }
+}

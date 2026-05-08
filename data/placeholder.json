@@ -1,0 +1,28 @@
+{
+  "user-name": { "textContent": "Firstname Lastname" },
+  "me-pic": { 
+    "src": "http://picsum.photos/100/133", 
+    "alt": "Front-end Developer Portrait" 
+  },"about-text": { 
+    "innerHTML": "<p>Metro Manila, the National Capital Region of the Philippines, is a megacity of 16 cities plus the municipality of Paterno...</p><p>More than one in ten Filipinos live here, and the median age is just 26, so the workforce is young and tech-savvy.</p>" 
+  },
+  "place-name": { "textContent": "Metro Manila" },
+  "flag-img": { 
+    "src": "images/phil-flag.jpg", 
+    "alt": "Official flag of the Philippines" 
+  },
+  "flag-caption": { "textContent": "Official flag of the Republic of the Philippines" },
+  "about-place": { 
+    "textContent": "These demographics—dense, connected, and entrepreneurial—directly influence my approach..." 
+  },
+  "resource-list": {
+    "type": "list",
+    "items": [
+      { "text": "MDN Web Docs", "url": "https://developer.mozilla.org/en-US/" },
+      { "text": "W3Schools", "url": "https://www.w3schools.com/" },
+      { "text": "CSS-Tricks", "url": "https://css-tricks.com/" },
+      { "text": "Stack Overflow", "url": "https://stackoverflow.com/" },
+      { "text": "GitHub", "url": "https://github.com/" }
+    ]
+  }
+}

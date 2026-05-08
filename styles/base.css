@@ -1,138 +1,311 @@
+:root {
+    --primary-color: #003366;
+    --secondary-color: #f4f4f4;
+    --accent-color: #0056b3;
+    --text-color: #333;
+    --header-bg: #003366;
+    --header-text: #fff;
+    --footer-bg: #003366;
+    --footer-text: #fff;
+    --card-bg: #fff;
+    --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --font-main: "Ubuntu", sans-serif;
+}
+
+/* Base Styles */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* outline: 1px dashed red; */
+}
+
+p {
+    padding: 1rem;
 }
 
 body {
-    font-family: "Ubuntu", sans-serif;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    min-height: 100vh;
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f9f9f9;
 }
 
-header,
-nav,
-footer {
-    grid-column: 1 / span 2;
-}
-
+/* Header & Navigation */
 header {
-    background-color: #0027b69e;
-}
-
-.course-title {
-    height: 100px;
-    padding: 2rem;
-    color: #fff;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 3rem 0;
     text-align: center;
 }
 
-h1 {
-    text-align: center;
-    background-color: #0027b69e;
-    padding: 0.5rem;
-    color: #fff;
-}
-
-header span {
+#course-title {
     display: block;
-    font-size: 2em;
+    font-size: 1.8rem;
     font-weight: bold;
-    margin: 0.67em 0;
-    text-align: center;
-}
+    color: #ff6d6d;
+    padding-bottom: 2rem;
 
-/* header span:hover {
-    color: yellow;
-}
-
-header span:active {
-    color: red;
-} */
-
-header p {
-    text-align: center;
-    background-color: #0027b69e;
-    color: #fff;
-    padding: 1rem 0;
 }
 
 nav {
-    background-color: #545365;
+    padding: 1rem;
+    background-color: #653b12;
+        border-radius: 11px;
+    background: #653b12;
+    box-shadow:  9px 9px 18px #56320f,
+                -9px -9px 18px #744415;
 }
 
 nav ul {
     list-style: none;
 }
 
-nav a {
+nav ul li a {
     font-size: 1.2rem;
     display: block;
-    color: #eee;
+    color: #464646;
     padding: .75rem;
     text-decoration: none;
-    text-align: center;
+    text-align: center;  
+    /* background-color: #2d22c1; */
+    margin: .5rem;
+
+    border-radius: 1px;
+    background: #e0e0e0;
+    box-shadow:  3px 3px 6px #bebebe,
+                -3px -3px 6px #ffffff;
 }
 
-nav a:hover {
+nav ul li a:hover {
     text-decoration: underline;
     text-decoration-color: yellow;
+    color: #ffd484;
+
+    border-radius: 1px;
+    background: #2d22c1;
+    box-shadow: inset 3px 3px 6px #261da4,
+                inset -3px -3px 6px #3427de;
 }
 
 .active {
     color: yellow;
 }
 
+/* Main Content */
 main {
-    background-color: #fff;
-    padding: 2rem;
-    min-height: 300px;
-    min-width: 0;
-}
-
-p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-main video {
-    width: 100%;
-    height: auto;
-    margin: 1rem 0;
     max-width: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.5s;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-main video:hover {
-    opacity: 1;
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 0.5rem;
 }
 
-aside {
-    background-color: #d8edcb;
-    padding: 1rem;
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
 }
 
-footer {
-    background-color: #0027b69e;
-    color: white;
-    padding: 2rem;
+/* Card Styling */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    width:100%
+
+    border-radius: 11px;
+background: #e0e0e0;
+box-shadow:  9px 9px 18px #bebebe,
+             -9px -9px 18px #ffffff;
+}
+
+.card h2 {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
     text-align: center;
 }
 
+.card1content,
+.card2content {
+    padding: 1.5rem;
+}
+
+/* Card 1 Specific Content (About Me) */
+.card1content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.me-pic {
+    width: 100%;
+    height: 100%; /* Ensures the wrapper is as tall as the text columns */
+}
+
+#me-pic {
+    width: 200px;
+    height: auto;
+    display: block;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 20px; /* The gap from the top of the screen while scrolling */
+    margin: 0 auto;
+    margin-top: 1rem;
+    border: 5px dashed white;
+    border-radius: 1rem;
+}
 
 
-/* larger/wider views **************************/
-@media (min-width: 640px) {
+.about-me p {
+    padding: .5rem ;
+    margin: 0 1rem;
+}
+
+.card1content h3 {
+    margin: 1rem 0 0.5rem 0;
+    color: var(--primary-color);
+    text-align: center;
+    width: 100%;
+    width: 70%;
+    border-bottom: 2px dashed var(--primary-color);
+}
+
+.flag-pic {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-right: 0;
+    height: 100%;
+}
+
+#flag-pic {
+    width: 133px;
+    height: auto;
+    display: block;
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 20px; /* The gap from the top of the screen while scrolling */
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.flag-pic img {
+    width: 133px;
+    height: auto;
+    border: 1px solid #eee;
+}
+
+.flag-pic figcaption {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #474747;
+}
+
+.about-place p {
+    padding: .5rem ;
+    margin: 0 1rem;
+}
+
+.card2content ul {
+    list-style: none;
+}
+
+.card2content ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.card2content ul li::before {
+    content: "•";
+    color: var(--accent-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.card2content ul li a {
+    color: #00458f;
+    text-decoration: none;
+}
+
+.card2content ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+
+@media (min-width: 700px) {
     nav ul {
         display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+    }
+    .cards {
+        display: grid; 
+        /* grid-auto-rows: 1fr;  */
+        grid-template-columns: auto; 
+        grid-template-rows: 1fr 1fr; 
+        width: 100%;
+    }
+    /* grid-area: [row-start] / [column-start] / [row-end] / [column-end]; */
+    .card1 { grid-column: 1 / span 1; }
+    .card2 { grid-column: 1 / span 1; }
+
+    .card1content { 
+    display: grid;
+    grid-template-columns: repeat(6, 1fr) 105px 105px;
+    grid-template-rows: auto auto 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    }
+    .about-me { grid-area: 1 / 1 / 2 / 7; }
+    .me-pic { grid-area: 1 / 7 / 4 / 9; }
+    .place-name { grid-area: 2 / 2 / 3 / 8; }
+    .flag-pic { grid-area: 3 / 1 / 4 / 3; }
+    .about-place { grid-area: 3 / 3 / 4 / 7; }
+
+
+}
+
+@media (min-width: 900px) {
+    .cards {
+        grid-template-rows: 1fr; 
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
     }
 
-    nav ul li {
-        flex: 1 0 auto;
-        /* flex: [flex-grow] [flex-shrink] [flex-basis]; 
-		in this example, the items will not shrink but can grow to fill the space at natural content width*/
+    .card1 { grid-column: 1 / span 3; }
+    .card2 { grid-column: 4 / span 1; }   
 
-    }
+
 }

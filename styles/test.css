@@ -1,0 +1,238 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    /* padding: 5px; */
+}
+h1 {
+    text-align: center;
+    padding: 0.5rem;
+}
+h2 {
+    text-align: center;
+    padding: 0.5rem;
+}
+h3 {
+    text-align: center;
+    padding: 0.5rem;
+}
+p {
+    padding: 1rem;
+}
+
+body {
+    /* background-color: rgb(158, 158, 200); */
+}
+header {
+    /* background-color: #de85ac9e; */
+}
+header > .title{
+    /* background-color: #e922229e; */
+}
+header > nav {
+    /* background-color: #e7cd27; */
+}
+header > nav > ul {
+    /* background-color: aqua; */
+}
+header > nav > ul > li {
+    /* background-color: #e7cd27; */
+}
+header > nav > ul > li > a {
+    /* background-color: #70b2ef; */
+    /* color: #eee; */
+}
+main {
+    background-color: #aee213;
+}
+main h1 {
+    /* background-color: #cd0e93; */
+}
+main .cards {
+    background-color: #e9aa0b;
+}
+main >.cards > .card {
+    background-color: #55afb1;
+}
+main >.cards > .card > h2 {
+    background-color: #1bd18e;
+}
+main >.cards > .card > .card1content, 
+main >.cards > .card > .card2content {
+    background-color: #076140;
+}
+main >.cards > .card > .card1content > .pro-pic--wrapper {
+    background-color: #a755b3;
+    padding: 1rem;
+}
+main >.cards > .card > .card1content > .pro-pic--wrapper > img {
+    width: 200px;
+    border-radius: 2rem;
+}
+main >.cards > .card > .card1content > .content-details {
+    background-color: #692bb9;
+}
+main >.cards > .card > .card1content > .content-details > p {
+    background-color: #dc1d1d;
+}
+main >.cards > .card > .card1content > .content-details > h3 {
+    background-color: #fff;
+}
+main >.cards > .card > .card1content > .content-details > .country-wrapper {
+    background-color: #20c34e;
+}
+main >.cards > .card > .card1content > .content-details > .country-wrapper > figure {
+    background-color: #82c13e;
+}
+main >.cards > .card > .card1content > .content-details > .country-wrapper > figure > figcaption {
+    background-color: #ceca0e;
+}
+main >.cards > .card > .card1content > .content-details > .country-wrapper > p {
+    background-color: #ab3a1e;
+}
+main >.cards >.card > .card2content {
+    background-color: #c87fbc;
+}
+main >.cards >.card > .card2content > ul {
+    background-color: #5eda16;
+}
+main >.cards >.card > .card2content > ul > li {
+    background-color: #dd580b;
+}
+main >.cards >.card >.card2content > ul > li > a {
+    background-color: #fff;
+}
+
+
+
+
+
+
+
+footer {
+    background-color: #0cee579e;
+}
+footer .footer {
+    background-color: #bec01b9e;
+}
+footer .footer p {
+    background-color: #11be879e;
+    color: #fff;
+}
+
+/*  Mobile View First ***************************/
+header .title {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    text-align: center;
+
+}
+
+header > span {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    text-align: center;
+}
+
+nav > ul {
+    list-style: none;
+}
+
+nav > ul > li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+nav > ul > li > a {
+    font-size: 1.2rem;
+    display: block;
+    padding: .75rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav > ul > li > a:hover {
+    text-decoration: underline;
+    text-decoration-color: yellow;
+}
+
+.active {
+    color: yellow;
+}
+
+/* Mobile Layout */
+
+main > .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.cards > .card {
+    border: 1px solid #000;
+    border-radius: 1rem 1rem 0 0;
+    height: 100%;
+    width: 100%;
+    min-width: 0;
+}
+.card > h2 {
+    border-radius: 1rem 1rem 0 0;
+    padding: 0.5rem;
+}
+
+.card > .card1content {
+    display: flex;
+    flex-direction: column; /* Stack image and text */
+    gap: 15px;
+}
+.card > .card1content > .pro-pic-wrapper {
+    /* border-radius: 1rem; */
+    padding: 1rem;
+    margin: 1rem;
+    width: 220px;
+}
+
+.card > .card1content > .pro-pic-wrapper > img {
+    width: 200px;
+    border-radius: 1rem;
+}
+
+/* Larger views **************************/
+@media (min-width: 750px) {
+    /* The 4-column strategy you mentioned */
+    main > .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); 
+        align-items: start;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    /* About Me card spans 3 columns */
+    .cards > .card:first-child {
+        grid-column: 1 / span 3;
+    }
+
+    /* Web Dev card spans 1 column */
+    .cards > .card:last-child {
+        grid-column: 4 / span 1;
+    }
+
+    /* Internal "About Me" Layout */
+    .card > .card1content {
+        flex-direction: row-reverse; /* Puts image on the right like the example */
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .card1content > .content-details {
+        flex: 2; /* Text takes more space */
+    }
+
+    .card1content > .pro-pic {
+        flex: 1; /* Image container takes less space */
+        text-align: right;
+    }
+}

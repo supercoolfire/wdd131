@@ -1,0 +1,135 @@
+
+/* Background colors */
+* {
+    margin: 0;
+    padding: 5px;
+}
+body {
+    background-color: rgb(158, 158, 200);
+}
+header {
+    background-color: #de85ac9e;
+}
+.title{
+    background-color: #e922229e;
+}
+nav {
+    background-color: #e7cd27;
+}
+nav ul {
+    background-color: aqua;
+}
+nav ul li {
+    background-color: #e7cd27;
+}
+nav ul li a {
+    background-color: #70b2ef;
+}
+main {
+    background-color: #aee213;
+}
+main h1 {
+    background-color: #cd0e93;
+}
+main > .cards {
+    background-color: #e9aa0b;
+}
+.cards > .card {
+    background-color: #55afb1;
+}
+.card > h2 {
+    background-color: #1bd18e;
+}
+.card > .card1content, .card > .card2content {
+    background-color: #076140;
+}
+.card > .card1content > .pro-pic-wrapper {
+    background-color: #9719aa;
+}
+.card > .card1content > .content-details {
+    background-color: #692bb9;
+}
+.card > .card1content > .content-details > p {
+    background-color: #dc1d1d;
+}
+.content-details > h3 {
+    background-color: #fff;
+}
+.content-details > .country-wrapper {
+    background-color: #20c34e;
+}
+.country-wrapper > figure {
+    background-color: #82c13e;
+}
+.country-wrapper > figure > figcaption {
+    background-color: #ceca0e;
+}
+.country-wrapper > p {
+    background-color: #ab3a1e;
+}
+.card > .card2content {
+    background-color: #c87fbc;
+}
+.card > .card2content > ul {
+    background-color: #5eda16;
+}
+.card > .card2content > ul > li {
+    background-color: #dd580b;
+}
+.card > .card2content > ul > li > a {
+    background-color: #fff;
+}
+
+
+
+
+
+
+
+footer {
+    background-color: #0cee579e;
+}
+footer .footer {
+    background-color: #bec01b9e;
+}
+footer .footer p {
+    background-color: #11be879e;
+    color: #fff;
+}
+
+
+
+
+
+
+header .title {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    text-align: center;
+
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+
+/* Larger views **************************/
+@media (min-width: 750px) {
+    /* Medium and large screen styles */
+    body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
+        padding: 1rem;
+    }
+    .cards {
+        display: grid
+    }
+}
