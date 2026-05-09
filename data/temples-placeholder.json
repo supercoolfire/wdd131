@@ -9,7 +9,7 @@
       { "tag": "button", "class": "login-button", "textContent": "Login" }
     ]
   },
-  "#course-title": { "tag": "span", "textContent": "Temple album" },
+  "h1": { "tag": "h1", "textContent": "Temple album" },
   "#navigation": {
     "tag": "ul",
     "class": "nav-menu",
@@ -21,7 +21,7 @@
       { "tag": "li", "items": [{ "tag": "a", "textContent": "Small", "href": "#", "target": "_blank", "rel": "noopener" }] }
     ]
   },
-  "#temple-grid": {
+  "#figure-grid": {
     "tag": "div", "class": "grid-container",
     "items": [
       { "tag": "figure", "class": "fig-temple", "items": [{ "tag": "img", "src": "https://picsum.photos/133/100?random=1", "alt": "Aba Nigeria", "loading": "lazy" }, { "tag": "figcaption", "textContent": "Aba Nigeria" }] },
