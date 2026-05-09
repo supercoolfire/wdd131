@@ -78,6 +78,7 @@ nav ul li a:hover {
     text-decoration: underline;
     text-decoration-color: #ffff00;
     color: #ffd484;
+    cursor: pointer;
 
     border-radius: 1px;
     background: #2d22c1;
@@ -164,6 +165,9 @@ h1 {
     align-items: center;
 }
 
+img {
+    cursor: pointer;
+}
 
 /***************************************************/
 /* Click Modaler */
@@ -178,6 +182,7 @@ h1 {
     background: #00000000;
     transition: background 0.5s ease;
     z-index: 9999; /* Ensure it is above the nav (z-index 10) */
+    cursor: pointer;
 }
 
 #img-modal.active {
