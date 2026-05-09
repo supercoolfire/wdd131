@@ -12,6 +12,7 @@
     --card-bg: #fff;
     --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     --font-main: "Ubuntu", sans-serif;
+    --page-width: 1000px;
 }
 
 /* Base Styles */
@@ -35,10 +36,12 @@ body {
 
 /* Header & Navigation */
 header {
+    position: relative;
     background-color: var(--header-bg);
     color: var(--header-text);
     padding: 3rem 0;
     text-align: center;
+        margin-bottom: 5rem;
 }
 
 #course-title {
@@ -98,7 +101,7 @@ nav ul li a:hover {
 
 /* Main Content */
 main {
-    max-width: 840px;
+    max-width: var(--page-width);
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -280,6 +283,16 @@ footer {
 
 
 @media (min-width: 700px) {
+    nav {
+        position: absolute;
+        width: var(--page-width);
+        max-width: 95vw;
+        z-index: 10;
+        left: 50%;
+        bottom: 0rem;
+        transform: translate(-50%,50%);
+    }
+
     nav ul {
         flex-direction: row;
         justify-content: space-around;
