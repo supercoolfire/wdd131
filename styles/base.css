@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 :root {
     --primary-color: #003366;
     --secondary-color: #f4f4f4;
@@ -59,6 +61,8 @@ nav {
 
 nav ul {
     list-style: none;
+    display: flex;
+    flex-direction: column;
 }
 
 nav ul li a {
@@ -94,7 +98,7 @@ nav ul li a:hover {
 
 /* Main Content */
 main {
-    max-width: 100%;
+    max-width: 840px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -110,10 +114,9 @@ h1 {
 }
 
 .cards {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
-
 }
 
 /* Card Styling */
@@ -278,10 +281,9 @@ footer {
 
 @media (min-width: 700px) {
     nav ul {
-        display: flex;
+        flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        flex-direction: row;
         flex-wrap: nowrap;
         align-content: center;
     }

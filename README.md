@@ -1,11 +1,30 @@
 # WDD 131 - Dynamic Web Fundamentals
 
-https://supercoolfire.github.io/wdd131/
+[Live Site URL](https://supercoolfire.github.io/wdd131/)
 
-This course might be focuses on building dynamic web pages using HTML, CSS, and JavaScript. We explore how to make websites interactive, responsive, and data-driven.
+## Welcome to my course landing page!
 
-The "Dynamic" interests me. Sounds like dynamite dynamically morphing from structured to destructured (one day, a lexicologist will discover that word?).
+This project serves as my main entry point for the WDD 131: Dynamic Web Fundamentals course at BYU-Idaho. I've designed it to be more than just a static page—it's a hybrid experience that uses modern web techniques to stay flexible and data-driven.
 
-My definition of **destructured**: *A structure unstructured by destruction.* 
+### How I built this
 
-If a piece of data thinks it can just sit there being part of a boring "Object," we use the power of the Dynamic to blow that structure apart and extract only the juicy bits we need for our interactive experiments.
+I wanted this page to be clean and semantic, so I started with a core **HTML5 shell**. But instead of hardcoding everything, I implemented a **Client-Side Hydration** pattern. This means the page loads a basic layout first, then my custom script fetches a JSON file to populate all the details about me, my country, and my resources. This keeps the structure separate from the content, making it much easier for me to update things on the fly.
+
+### The layout under the hood
+
+I'm using a mix of **CSS Flexbox** and **CSS Grid** to ensure everything looks great on any device:
+- **Mobile First**: Everything starts as a simple, readable stack.
+- **Responsive Menus**: My navigation menu uses Flexbox to switch from a vertical list on your phone to a horizontal bar on your desktop.
+- **Advanced Grid**: Once you view this on a larger screen, a complex CSS Grid kicks in. I've set up a 4-column layout where my "About Me" card takes center stage while my resources act as a handy sidebar.
+
+### Dynamic Behavior
+
+The page is "alive" thanks to two main scripts:
+- **Hydration Logic**: My script asynchronously grabs data and injects it into the page, so you're seeing the most up-to-date information without me needing to rewrite the HTML.
+- **Auto-Tracking**: I've also included a script that automatically handles the copyright year and shows exactly when I last updated the site.
+
+This approach was actually inspired by my previous work in [CIT 230](https://byui-cit230.github.io/), where I first started exploring the power of combining data with structured layouts.
+
+I'm excited to continue building on this foundation as I explore more "Dynamic" web fundamentals!
+
+
