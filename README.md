@@ -19,7 +19,8 @@ I'm using a mix of **CSS Flexbox** and **CSS Grid** to ensure everything looks g
 
 ### Dynamic Behavior
 
-The page is "alive" thanks to two main scripts:
+The page is "alive" and **database-ready** thanks to its modular, data-driven architecture:
+- **JSON-Powered Architecture**: By decoupling the content from the structure and using an external JSON source, this site is prepared to transition to a full database or API backend with minimal code changes.
 - **Hydration Logic**: My script asynchronously grabs data and injects it into the page, so you're seeing the most up-to-date information without me needing to rewrite the HTML.
 - **Auto-Tracking**: I've also included a script that automatically handles the copyright year and shows exactly when I last updated the site.
 

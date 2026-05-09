@@ -177,6 +177,41 @@ h1 {
     align-items: center;
 }
 
+
+/***************************************************/
+/* Click Modaler */
+/* This comes with modalClickOrigin.js */
+#img-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.5s ease;
+    z-index: 9999; /* Ensure it is above the nav (z-index 10) */
+}
+
+#img-modal.active {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+#modal-content {
+    position: fixed;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    object-fit: contain;
+    z-index: 10000;
+}
+
+/* This is what forces the image to 85% of screen when active */
+#img-modal.active #modal-content {
+    top: 7.5vh !important;   /* (100 - 85) / 2 */
+    left: 7.5vw !important;  /* (100 - 85) / 2 */
+    width: 85vw !important;
+    height: 85vh !important;
+}
+/***************************************************/
 .me-pic {
     width: 100%;
     height: 100%; /* Ensures the wrapper is as tall as the text columns */
