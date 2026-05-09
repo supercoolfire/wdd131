@@ -1,0 +1,61 @@
+
+:root {
+    --font-main: "Ubuntu", sans-serif;
+    --page-width: 1000px;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* outline: 1px dashed #ff0000; */
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: #333333;
+    background-color: #f9f9f9;
+}
+
+/* Header & Navigation */
+header {
+    position: relative;
+    background-color: #003366;
+    color: #ffffff;
+    padding: 3rem 0;
+    text-align: center;
+        margin-bottom: 5rem;
+}
+
+#course-title {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6d6d;
+    padding-bottom: 2rem;
+
+}
+
+
+
+
+
+
+
+
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: #ffffff;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}

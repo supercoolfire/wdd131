@@ -1,0 +1,42 @@
+@media (min-width: 500px) {
+
+
+    nav {
+        padding: 1rem;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: nowrap;
+        align-content: center;
+    }
+    
+    nav ul li {
+        border: 1px dashed red;
+    }
+    
+    nav ul li:hover {
+        border: 1px dashed rgb(11, 162, 209);
+    }
+
+    nav ul li a {
+        font-size: 1.2rem;
+        display: block;
+        width: 70px;
+        color: #c2c2c2;
+        padding: .75rem;
+        text-decoration: none;
+        text-align: center;  
+    }
+
+    nav ul li a:hover {
+        text-decoration: underline;
+        text-decoration-color: #ffff00;
+        color: #ffd484;
+        cursor: pointer;
+    }
+}
