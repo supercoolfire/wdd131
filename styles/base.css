@@ -3,13 +3,13 @@
     --primary-color: #003366;
     --secondary-color: #f4f4f4;
     --accent-color: #0056b3;
-    --text-color: #333;
+    --text-color: #333333;
     --header-bg: #003366;
-    --header-text: #fff;
+    --header-text: #ffffff;
     --footer-bg: #003366;
-    --footer-text: #fff;
-    --card-bg: #fff;
-    --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --footer-text: #ffffff;
+    --card-bg: #ffffff;
+    --card-shadow: 0 2px 5px #0000001a;
     --font-main: "Ubuntu", sans-serif;
     --page-width: 1000px;
 }
@@ -19,7 +19,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* outline: 1px dashed red; */
+    /* outline: 1px dashed #ff0000; */
 }
 
 p {
@@ -86,7 +86,7 @@ nav ul li a {
 
 nav ul li a:hover {
     text-decoration: underline;
-    text-decoration-color: yellow;
+    text-decoration-color: #ffff00;
     color: #ffd484;
 
     border-radius: 1px;
@@ -96,7 +96,7 @@ nav ul li a:hover {
 }
 
 .active {
-    color: yellow;
+    color: #ffff00;
 }
 
 /* Main Content */
@@ -153,7 +153,7 @@ h1 {
 
 .card h2 {
     background-color: var(--primary-color);
-    color: #fff;
+    color: #ffffff;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     text-align: center;
@@ -185,13 +185,13 @@ h1 {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0);
+    background: #00000000;
     transition: background 0.5s ease;
     z-index: 9999; /* Ensure it is above the nav (z-index 10) */
 }
 
 #img-modal.active {
-    background: rgba(0, 0, 0, 0.85);
+    background: #000000d9;
 }
 
 #modal-content {
@@ -222,13 +222,13 @@ h1 {
     top: 20px; /* The gap from the top of the screen while scrolling */
     margin: 0 auto;
     margin-top: 1rem;
-    border: 3px dashed white;
+    border: 3px dashed #ffffff;
 }
 
 .me-pic img {
     width: 100%;
     height: auto;
-    background-color: gray;
+    background-color: #808080;
 }
 
 .me-pic figcaption {
@@ -266,13 +266,13 @@ h1 {
     top: 20px; /* The gap from the top of the screen while scrolling */
     margin: 0 auto;
     margin-top: 1.3rem;
-    border: 3px dashed white;
+    border: 3px dashed #ffffff;
 }
 
 .flag-pic img {
     width: 100%;
     height: auto;
-    background-color: gray;
+    background-color: #808080;
 }
 
 .flag-pic figcaption {
@@ -325,7 +325,7 @@ footer {
 
 .footer p {
     margin-bottom: 0.5rem;
-    color: white;
+    color: #ffffff;
 }
 
 
