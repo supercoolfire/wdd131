@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
     <link rel="stylesheet" href="styles/base.css">
-    <meta name="description"
-        content="WDD 131 – Dynamic Web Fundamentals - Jayser Pilapil - home page for learning web fundamentals.">
+    <meta name="description" content="WDD 131 - Dynamic Web Fundamentals - Jayser Pilapil - Course Home Page">
     <meta name="author" content="Jayser Pilapil">
     <meta name="keywords" content="Jayser Pilapil, BYU-Idaho, Idaho, WDD 131, Dynamic Web Fundamentals">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
     </style>
     <script src="scripts/hydrate.js" defer></script>
-    <script src="scripts/getdates.js"></script>
+    <script src="scripts/getdates.js" defer></script>
 </head>
 
 <body>
@@ -37,11 +36,11 @@
             <div class="card card1">
                 <h2>About Me</h2>
                 <div class="card1content"> 
-                    <div class="me-pic"><img id="me-pic" src="#" alt="Loading my face..." loading="lazy"></div>
+                    <div class="me-pic"><figure id="me-pic"><img id="me-img" src="#" alt="Loading my face..." loading="lazy"><figcaption id="me-caption">Loading my face caption...</figcaption></figure></div>
                     <div id="about-text" class="about-me">Interesting...</div>
                     <h3 id="place-name" class="place-name">Loading where I am...</h3>
-                    <div class="flag-pic"> <figure id="flag-pic"><img id="flag-img" src="#" alt="Loading my flag..." loading="lazy"><figcaption id="flag-caption">Loading my flag caption...</figcaption></figure></div>
-                    <p id="about-place" class="about-place">Loading demographics...</p>
+                    <div class="flag-pic"><figure id="flag-pic"><img id="flag-img" src="#" alt="Loading my flag..." loading="lazy"><figcaption id="flag-caption">Loading my flag caption...</figcaption></figure></div>
+                    <p id="about-place">Loading demographics...</p>
                 </div>
             </div>
             <div class="card card2">
@@ -58,7 +57,7 @@
             &copy; <span id="currentyear"></span><span id="footer-name">Jayser Pilapil</span> | <span
                 id="state-country">United State of Calamity</span>
         </p>
-        <p>Last Modified : <span id="lastModified"></span></p>
+        <p><span id="lastModified"></span></p>
     </footer>
 </body>
 

@@ -1,9 +1,11 @@
 {
   "user-name": { "textContent": "Jayser Pilapil" },
-  "me-pic": { 
+  "me-img": { 
     "src": "images/profile-pic.jpg", 
     "alt": "My profile picture" 
-  },"about-text": { 
+  },
+  "me-caption": { "textContent": "My picture with a cat" },
+  "about-text": { 
     "innerHTML": "<p>I'm Brother Pilapil, Jayser Pilapil, and my friends call me \"J\" and I call them back \"Huh?\", and my not friends call me \"Hey\", what a good rhyme. I grew up with cats all over the Philippines due to unforeseen events, and I also lived abroad. I was already married when I became a member, so I didn't have time to go on a full-time mission, but I became a Pathway missionary, continuing for almost 6 years now.</p>                             <p>In my free time, I'm developing useful apps for Androids, Windows, and TV, like <a href=\"https://supercoolfire.github.io/ImageSmaller-Site/\" target=\"_blank\">ImageSmaller</a>. I also build proprietary automation tools, like a safety-focused Git wrapper and a project-standardization engine, to help me code faster and with fewer errors. When I'm stressed, I need a mathematical model fusing the three dimensions of space (space-time) or time and space. I play computer games. I can't go outside because I have a leg injury; my tibia is cracked due to a motorcycle accident that happened.</p>                             <p>I used to have an associate's degree in computer programming, but the school was defunct, so my certificate and transcript are just pieces of paper. I'm already a sophomore, but I'm taking this class because of the catalog transition from 2018 to 2024. When I see this course, I notice I already took web fundamentals when I was in the hospital way back in the pandemic, but wait, there's more. The \"Dynamic\" interests me. Sounds like dynamite dynamically morphing from structured to destructured.</p>"
   },
   "place-name": { "textContent": "Metro Manila, Philippines" },

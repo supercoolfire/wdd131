@@ -1,5 +1,7 @@
 # WDD 131 - Dynamic Web Fundamentals
 
+https://supercoolfire.github.io/wdd131/
+
 This course might be focuses on building dynamic web pages using HTML, CSS, and JavaScript. We explore how to make websites interactive, responsive, and data-driven.
 
 The "Dynamic" interests me. Sounds like dynamite dynamically morphing from structured to destructured (one day, a lexicologist will discover that word?).

@@ -136,6 +136,8 @@ h1 {
     padding: 0.75rem 1rem;
     font-size: 1rem;
     text-align: center;
+    /* top-left | top-right | bottom-right | bottom-left */
+    border-radius: 0 0 3rem 3rem;
 }
 
 .card1content,
@@ -158,17 +160,27 @@ h1 {
 
 #me-pic {
     width: 200px;
-    height: auto;
+    height: 293px;
     display: block;
     position: -webkit-sticky; 
     position: sticky;
     top: 20px; /* The gap from the top of the screen while scrolling */
     margin: 0 auto;
     margin-top: 1rem;
-    border: 5px dashed white;
-    border-radius: 1rem;
+    border: 3px dashed white;
 }
 
+.me-pic img {
+    width: 100%;
+    height: auto;
+    background-color: gray;
+}
+
+.me-pic figcaption {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #474747;
+}
 
 .about-me p {
     padding: .5rem ;
@@ -187,25 +199,27 @@ h1 {
 .flag-pic {
     text-align: center;
     margin-bottom: 1rem;
+    margin-left: 1rem;
     padding-right: 0;
     height: 100%;
 }
 
 #flag-pic {
-    width: 133px;
-    height: auto;
+    width: 134px;
+    height: 145px;
     display: block;
     position: -webkit-sticky; 
     position: sticky;
     top: 20px; /* The gap from the top of the screen while scrolling */
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: 1.3rem;
+    border: 3px dashed white;
 }
 
 .flag-pic img {
-    width: 133px;
+    width: 100%;
     height: auto;
-    border: 1px solid #eee;
+    background-color: gray;
 }
 
 .flag-pic figcaption {
@@ -214,9 +228,10 @@ h1 {
     color: #474747;
 }
 
-.about-place p {
+#about-place {
     padding: .5rem ;
     margin: 0 1rem;
+    padding-left: 1rem;
 }
 
 .card2content ul {
@@ -283,16 +298,16 @@ footer {
 
     .card1content { 
     display: grid;
-    grid-template-columns: repeat(6, 1fr) 105px 105px;
+    grid-template-columns: 70px 70px repeat(4, 1fr) 105px 105px;
     grid-template-rows: auto auto 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     }
     .about-me { grid-area: 1 / 1 / 2 / 7; }
     .me-pic { grid-area: 1 / 7 / 4 / 9; }
-    .place-name { grid-area: 2 / 2 / 3 / 8; }
+    .place-name { grid-area: 2 / 2 / 3 / 7; }
     .flag-pic { grid-area: 3 / 1 / 4 / 3; }
-    .about-place { grid-area: 3 / 3 / 4 / 7; }
+    #about-place { grid-area: 3 / 3 / 4 / 7; }
 
 
 }

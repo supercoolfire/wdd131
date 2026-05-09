@@ -1,6 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
-    const element = document.getElementById("lastModified");
-    if (element) {
-        element.innerHTML = new Date(document.lastModified);
-    }
-});
+let myDate = new Date();
+let myYear = myDate.getFullYear();
+document.getElementById("currentyear").textContent = myYear;
+document.querySelector("#lastModified").textContent = `Last Modified:  ${document.lastModified}`;
