@@ -14,14 +14,7 @@
     <meta name="description" content="WDD 131 – Dynamic Web Fundamentals - Jayser Pilapil - Course Home Page">
     <meta name="author" content="Jayser Pilapil">
     <meta name="keywords" content="Jayser Pilapil, BYU-Idaho, Idaho, WDD 131, Dynamic Web Fundamentals">
-    <script 
-        src="scripts/hydrate-v3.js" 
-        data-production-file="data/temples-production.json" 
-        data-placeholder-file="data/temples-placeholder.json" 
-        data-production="false" 
-        defer>
-    </script>
-    <script src="../scripts/rickster-egg.js" defer></script>
+    <script src="scripts/hydrate-v4.js" data-file="data/temples-production.json" defer> </script>
     <script src="scripts/getdates.js" defer></script>
     <script src="scripts/temples.js" defer></script>
     <script src="scripts/modal-click-origin.js" defer></script>
@@ -29,7 +22,7 @@
 
 <body>
     <header>
-        <h1>Temple Album</h1>
+        <span id="course-title">Temple Album</span>
         <button type="button" id="menu" aria-label="Menu"></button>
         <nav>
             <ul id="navigation">
@@ -43,6 +36,7 @@
     </header>
 
     <main>
+        <h1>Home</h1>
         <div id="figure-grid">
             <figure>
                 <img src="#" alt="Skeleton Temple">

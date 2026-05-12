@@ -3,6 +3,13 @@
     #menu {
         display: none;
     }
+
+    nav {
+        position: absolute;
+        top: 0;
+        right: 1rem;
+    }
+    
     nav ul {
         align-items: center;
         border: unset;
@@ -13,7 +20,6 @@
     
     nav ul li {
         flex: 1 1 100%;
-        border: 1px dashed red;
         display: block; /* deBig Mac */
     }
     
@@ -30,17 +36,18 @@
         text-align: center;  
     }
 
-    nav ul li a:hover {
+    nav ul li a {
         text-decoration: underline;
         text-decoration-color: #ffff00;
-        color: #ffd484;
+        color: #3a301e;
         cursor: pointer;
     }
 
     #figure-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        /* grid-gap: 25px; */
+        max-width: 1000px;
+        /* grid-gap: 1rem; */
         gap: 1rem;
         place-items: start;
         justify-items: center;
@@ -48,17 +55,33 @@
 
     figure {
         position: relative;
-        width: 230px;
+        width: 180px;
+        align-items: center;
     }
 
     figure img {
         position: relative;
-        width: 100%;
+        width: 200px;
         height: auto;
+        background-color: #8a7d7d;
         margin: 0.5rem;
+        /* padding: 1rem 1rem 0 1rem; */
     }
 
     figcaption {
         font-size: smaller;
     }
+
+    /* *************** outlines start *************** */
+    /* main {
+        outline: 1px dashed blue;
+    }
+    #figure-grid {
+        outline: 1px dashed red;
+    }
+    figure {
+        outline: 1px dashed green;
+    } */
+
+    /* **************** outlines end **************** */
 }

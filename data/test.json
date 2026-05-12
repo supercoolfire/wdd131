@@ -1,0 +1,20 @@
+{
+   "main": {
+     "insertion": "prepend",
+     "tag": "div",
+     "class": "sample",
+     "items": [
+       {
+         "tag": "p",
+         "id": "welcome",
+         "textContent": "Hello hydrators"
+       },
+       {
+         "tag": "a",
+         "href": "#",
+         "target": "_blank",
+         "textContent": "nothing here"
+       }
+     ]
+   }
+ }

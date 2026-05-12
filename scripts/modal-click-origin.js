@@ -1,6 +1,7 @@
 /**
  * Click Modaler v1.1 - Plug & Play Image Expansion
- * This script works with the CSS found in base.css or temples.css under /* Click Modaler */
+* CSS Usage: This comes with modal-click-origin.css
+*/
 
 // Handle dynamic cursor styles for zoomable images
 document.addEventListener('mouseover', (e) => {

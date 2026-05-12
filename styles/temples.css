@@ -37,12 +37,16 @@ h2 {
 
 
 /* ====================== big mac start ====================== */
-h1 {
+#course-title {
+    display: block;
 	text-align: left;
-	font-family: times, serif;
-	font-size: 1.5rem;
+	font-family: Ubuntu, serif;
+    font-weight: bold;
+    font-size: 1.8rem;
 	margin-left: 1rem;
     margin-top: .5rem;
+    padding-bottom: 2rem;
+    color: #6b4603;
 }
 
 #menu {
@@ -133,13 +137,12 @@ main {
   margin: 0 auto;
 }
 
-#course-title {
-    display: block;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #ff6d6d;
-    padding-bottom: 2rem;
-
+h1 {
+	text-align: center;
+	font-family: Ubuntu, serif;
+	font-size: 1.5rem;
+	margin-left: 1rem;
+    margin-top: .5rem;
 }
 
 #figure-grid {
@@ -160,9 +163,9 @@ figure {
     width: 60%;
     min-width: 315px;
     /* Gradient Border */
-    background: linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 6px) calc(100% - 6px) no-repeat,
+    /* background: linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 6px) calc(100% - 6px) no-repeat,
             linear-gradient(329deg, transparent 0%, #000000 100%);
-    border-radius: 0px;
+    border-radius: 0px; */
     padding: 3px;
 }
 
@@ -188,6 +191,7 @@ figure img {
 
 #img-modal.active {
     background: #000000d9;
+    color: #e4bd76;
 }
 
 #modal-content {

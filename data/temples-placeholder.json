@@ -14,6 +14,33 @@
       }
     ]
   },
+    "header": {
+        "insertion": "after",
+        "tag": "div",
+        "id": "video-container",
+        "class": "modal",
+        "style": "display:none;",
+        "items": [
+            {
+                "tag": "video",
+                "preload": "auto",
+                "playinline": "true",
+                "id": "rick-video",
+                "controls": "true",
+                "items": [
+                    {
+                        "tag": "source",
+                        "src": "../images/rick-roll.mp4?quality=0.5",
+                        "type": "video/mp4"
+                    },
+                    {
+                        "tag": "p",
+                        "textContent": "Your browser does not support the video tag."
+                    }
+                ]
+            }
+        ]
+    },
   "title": { "tag": "title", "textContent": "Temple Album" },
   "h1": { "tag": "h1", "textContent": "Temple album" },
   "#navigation": {
