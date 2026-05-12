@@ -9,21 +9,22 @@
     ]
   },
   "title": { "tag": "title", "textContent": "Temple Album" },
+  "title-beside-nav" : { "querySelector": "#course-title", "tag": "span", "textContent": "Temple Album", "class": "rickster-egg" },
   "h1": { "tag": "h1", "textContent": "Home", "class": "rickster-egg" },
   "#navigation": {
     "tag": "ul", "class": "nav-menu",
     "items": [
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Home", "title": "Home", "href": "#", "target": "_blank", "rel": "noopener", "class": "active" }] },
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Old", "title": "Old", "href": "#", "target": "_blank", "rel": "noopener" }] },
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "New", "title": "New", "href": "#", "target": "_blank", "rel": "noopener" }] },
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Large", "title": "Large", "href": "#", "target": "_blank", "rel": "noopener" }] },
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Small", "title": "Small", "href": "#", "target": "_blank", "rel": "noopener" }] }
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Home", "title": "Home", "href": "#", "class": "active rickster-egg", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Old", "title": "Old", "href": "#", "class": "rickster-egg", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "New", "title": "New", "href": "#", "class": "rickster-egg", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Large", "title": "Large", "href": "#", "class": "rickster-egg", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Small", "title": "Small", "href": "#", "class": "rickster-egg", "rel": "noopener" }] }
     ]
   },
   "#figure-grid": {
     "tag": "div", "class": "grid-container",
     "items": [
-      {"tag":"figure","class":"fig-temple","items":[{"tag":"img","src":"images/temples-large/alabang-philippines-temple-65306-main.jpg","srcset":"images/temples-small/alabang-philippines-temple-65306-main.jpg 200w, images/temples-large/alabang-philippines-temple-65306-main.jpg 400w","sizes":"(max-width: 600px) 200px, 400px","alt":"Alabang Philippines","loading":"lazy"},{"tag":"figcaption","textContent":"Alabang Philippines"}]},
+      {"tag":"figure","class":"fig-temple rickster-egg","items":[{"tag":"img","src":"images/temples-large/alabang-philippines-temple-65306-main.jpg","srcset":"images/temples-small/alabang-philippines-temple-65306-main.jpg 200w, images/temples-large/alabang-philippines-temple-65306-main.jpg 400w","sizes":"(max-width: 600px) 200px, 400px","alt":"Alabang Philippines","loading":"lazy"},{"tag":"figcaption","textContent":"Alabang Philippines"}]},
       {"tag":"figure","class":"fig-temple","items":[{"tag":"img","src":"images/temples-large/bacolod-philippines-temple-70237-main.jpg","srcset":"images/temples-small/bacolod-philippines-temple-70237-main.jpg 200w, images/temples-large/bacolod-philippines-temple-70237-main.jpg 400w","sizes":"(max-width: 600px) 200px, 400px","alt":"Bacolod Philippines","loading":"lazy"},{"tag":"figcaption","textContent":"Bacolod Philippines"}]},
       {"tag":"figure","class":"fig-temple rickster-egg","items":[{"tag":"img","src":"images/temples-large/029-Manila-Philippines-Temple.jpg","srcset":"images/temples-small/029-Manila-Philippines-Temple.jpg 200w, images/temples-large/029-Manila-Philippines-Temple.jpg 400w","sizes":"(max-width: 600px) 200px, 400px","alt":"Manila Philippines","loading":"lazy"},{"tag":"figcaption","textContent":"Manila Philippines"}]},
       {"tag":"figure","class":"fig-temple","items":[{"tag":"img","src":"images/temples-large/naga-philippines-temple-68737-main.jpg","srcset":"images/temples-small/naga-philippines-temple-68737-main.jpg 200w, images/temples-large/naga-philippines-temple-68737-main.jpg 400w","sizes":"(max-width: 600px) 200px, 400px","alt":"Naga Philippines","loading":"lazy"},{"tag":"figcaption","textContent":"Naga Philippines"}]},

@@ -22,7 +22,7 @@ body {
 /* Header & Navigation */
 header {
     position: relative;
-    background-color: #b2850782;
+    background-color: #b28507; /* Standardized color */
     color: #27545d;
     padding: 1.1rem 0;
     text-align: center;
@@ -30,7 +30,7 @@ header {
 
 h2 {
 	font-size: 1.2rem;
-	color: navy;
+	color: #000080; /* navy standardized to hex */
 	text-align: left;
 	margin: 1rem;
 }
@@ -76,22 +76,12 @@ h2 {
 }
 
 
-nav ul li {
-    /* display: none; */
-    transition: all .5s ease-in-out;
-}
-
-nav ul li a {
-    transition: all .5s ease-in-out;
-}
-
 /* ======================= big mac end ======================= */
 
 nav {
     position: relative;
     top: 0;
     padding: 1rem;
-
 }
 
 nav ul {
@@ -101,15 +91,18 @@ nav ul {
 }
 
 nav ul li {
+    /* display: none; */
+    transition: all .5s ease-in-out;
     border: 1px dashed red;
     display: none;
 }
 
 nav ul li:hover {
-    border: 1px dashed rgb(11, 162, 209);
+    border: 1px dashed #0ba2d1; /* rgb(11, 162, 209) standardized to hex */
 }
 
 nav ul li a {
+    transition: all .5s ease-in-out;
     display: inline-block;
     font-size: 1.2rem;
     width: 100%;
