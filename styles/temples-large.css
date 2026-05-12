@@ -8,6 +8,9 @@
         position: absolute;
         top: 0;
         right: 1rem;
+        display: block; /* Override grid-drawer display */
+        grid-template-rows: unset; /* Disable drawer animation */
+        padding: 1rem;
     }
     
     nav ul {
