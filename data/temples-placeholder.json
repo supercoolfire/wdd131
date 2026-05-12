@@ -1,24 +1,30 @@
-{
-  "title": { "tag": "title", "textContent": "Temple Album" },
-  "#login": {
+{ 
+  "hidration-info": {
     "tag": "div",
-    "class": "login-container",
+    "class": "hidration-info",
     "items": [
-      { "tag": "input", "class": "login-input", "type": "text", "placeholder": "Enter your username" },
-      { "tag": "input", "class": "login-input", "type": "password", "placeholder": "Enter your password" },
-      { "tag": "button", "class": "login-button", "textContent": "Login" }
+      { "tag": "p",
+        "textContent": "This data is for data driven development for rendering using hydrate-v2.js"
+      },
+      { "tag": "p",
+        "textContent": "Developed by Jayser Pilapil During WDD131 Dynamic Web Fundamentals, BYU-Idaho, catalog 2024,"
+      },
+      { "tag": "p",
+        "textContent": "All rights reserved. &copy; 2023 Jayser Pilapil"
+      }
     ]
   },
+  "title": { "tag": "title", "textContent": "Temple Album" },
   "h1": { "tag": "h1", "textContent": "Temple album" },
   "#navigation": {
     "tag": "ul",
     "class": "nav-menu",
     "items": [
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Home", "href": "#", "target": "_blank", "rel": "noopener" }] },
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Old", "href": "#", "target": "_blank", "rel": "noopener" }] },
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "New", "href": "#", "target": "_blank", "rel": "noopener" }] },
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Large", "href": "#", "target": "_blank", "rel": "noopener" }] },
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Small", "href": "#", "target": "_blank", "rel": "noopener" }] }
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Home", "title": "Home", "href": "#", "target": "_blank", "rel": "noopener", "class": "active" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Old", "title": "Old", "href": "#", "target": "_blank", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "New", "title": "New", "href": "#", "target": "_blank", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Large", "title": "Large", "href": "#", "target": "_blank", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Small", "title": "Small", "href": "#", "target": "_blank", "rel": "noopener" }] }
     ]
   },
   "#figure-grid": {
@@ -40,5 +46,21 @@
       { "tag": "figure", "class": "fig-temple", "items": [{ "tag": "img", "src": "https://picsum.photos/133/100?random=14", "alt": "Belem Brazil", "loading": "lazy" }, { "tag": "figcaption", "textContent": "Belem Brazil" }] },
       { "tag": "figure", "class": "fig-temple", "items": [{ "tag": "img", "src": "https://picsum.photos/133/100?random=15", "alt": "Bern Switzerland", "loading": "lazy" }, { "tag": "figcaption", "textContent": "Bern Switzerland" }] }
     ]
+  },
+
+
+  "footer": { 
+    "tag": "footer", 
+    "insertion": "append",
+    "items": [
+      { "tag": "div",
+      "class": "login-container",
+      "items": [
+        { "tag": "label", "for": "username", "textContent": "Login" },
+        { "tag": "input",  "class": "login-input", "type": "text", "placeholder": "Enter your username" },
+        { "tag": "input", "class": "login-input", "type": "password", "placeholder": "Enter your password" },
+        { "tag": "button", "class": "login-button", "textContent": "Login" }
+      ] }
+    ] 
   }
 }

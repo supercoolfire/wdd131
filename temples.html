@@ -10,16 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/temples.css">
     <link rel="stylesheet" href="styles/temples-large.css">
+     <link rel="icon" href="images/favicon.ico">
     <meta name="description" content="WDD 131 – Dynamic Web Fundamentals - Jayser Pilapil - Course Home Page">
     <meta name="author" content="Jayser Pilapil">
     <meta name="keywords" content="Jayser Pilapil, BYU-Idaho, Idaho, WDD 131, Dynamic Web Fundamentals">
     <script 
-        src="scripts/hydrate-v2.js" 
+        src="scripts/hydrate-v3.js" 
         data-production-file="data/temples-production.json" 
         data-placeholder-file="data/temples-placeholder.json" 
         data-production="false" 
         defer>
     </script>
+    <script src="../scripts/rickster-egg.js" defer></script>
+    <script src="scripts/getdates.js" defer></script>
     <script src="scripts/temples.js" defer></script>
     <script src="scripts/modal-click-origin.js" defer></script>
 </head>
@@ -27,6 +30,7 @@
 <body>
     <header>
         <h1>Temple Album</h1>
+        <button type="button" id="menu" aria-label="Menu"></button>
         <nav>
             <ul id="navigation">
                 <li><a href="#">Home</a></li>
@@ -41,46 +45,12 @@
     <main>
         <div id="figure-grid">
             <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
-                <figcaption>Skeleton Temple</figcaption>
-            </figure>
-            <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
-                <figcaption>Skeleton Temple</figcaption>
-            </figure>
-            <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
-                <figcaption>Skeleton Temple</figcaption>
-            </figure>
-            <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
-                <figcaption>Skeleton Temple</figcaption>
-            </figure>
-            <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
-                <figcaption>Skeleton Temple</figcaption>
-            </figure>
-            <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
-                <figcaption>Skeleton Temple</figcaption>
-            </figure>
-            <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
-                <figcaption>Skeleton Temple</figcaption>
-            </figure>
-            <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
-                <figcaption>Skeleton Temple</figcaption>
-            </figure>
-            <figure>
-                <img src="https://picsum.photos/133/100" alt="Skeleton Temple">
+                <img src="#" alt="Skeleton Temple">
                 <figcaption>Skeleton Temple</figcaption>
             </figure>
         </div>
     </main>
-
     <footer>
-        <div id="login">Loading login...</div>
         <p>
             &copy;<span id="currentyear"></span> | Jayser Pilapil | United State of Calamity
         </p>
