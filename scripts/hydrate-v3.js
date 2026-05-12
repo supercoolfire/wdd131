@@ -4,6 +4,8 @@
  * <script src="../scripts/hydrate-v3.js" data-production-file="../data/week02.json"
  *     data-placeholder-file="../data/week02.json" data-production="false" defer>
  * </script>
+ * or
+ * <script src="../scripts/hydrate-v3.js" data-file="../data/week02.json" defer></script>
  * Example JSON structure for hydration: <div class="sample"></div> is injected as first child of <main>
  * {
  *   "main": {
@@ -15,6 +17,8 @@
  *         "tag": "p",
  *         "id": "welcome",
  *         "textContent": "Hello hydrators!"
+ * 
+ * +
  *       },
  *       {
  *         "tag": "a",
@@ -37,7 +41,7 @@ const startJITHydration = async () => {
     }
 
     const config = scriptEl.dataset;
-    const dataFile = config.production === "true" ? config.productionFile : config.placeholderFile;
+    const dataFile = (config.production === "true" ? config.productionFile : config.placeholderFile) || config.file;
 
     if (!dataFile) return;
 
