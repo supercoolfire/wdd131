@@ -7,17 +7,16 @@
     <title>>Temple Album</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-        rel="preload" as="font" crossorigin="anonymous">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="styles/temples.css">
-    <link rel="stylesheet" href="styles/temples-large.css">
+    <link rel="stylesheet" href="styles/temples-large.css" media="(min-width: 640px)">
     <link rel="icon" href="images/favicon.ico">
     <meta name="description" content="Gallery of random LDS Temple Photos">
     <meta name="author" content="Jayser Pilapil">
     <meta name="keywords" content="LDS, Temple, Photos, Gallery">
-    <!-- <link rel="preload" href="data/temples-production.json" as="fetch" crossorigin> -->
-    <!-- <script src="scripts/hydrate-v4.js" data-file="data/temples-production.json" defer> </script> -->
+    <link rel="preload" href="data/temples-production.json" as="fetch" crossorigin>
+    <script src="scripts/hydrate-v4.js" data-file="data/temples-production.json" defer> </script>
     <script src="scripts/getdates.js" defer></script>
     <script src="scripts/temples.js" defer></script>
     <script src="scripts/modal-click-origin.js" defer></script>
@@ -40,83 +39,42 @@
 
     <main>
         <h1>Home</h1>
-        <div id="figure-grid" class="grid-container">
-            <figure class="fig-temple rickster-egg"><img
-                    src="images/temples-small-webp/alabang-philippines-temple-65306-main.webp"
-                    srcset="images/temples-small-webp/alabang-philippines-temple-65306-main.webp 400w, images/temples-medium-webp/alabang-philippines-temple-65306-main.webp 800w, images/temples-large-webp/alabang-philippines-temple-65306-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Alabang Philippines" width="400" height="533"
-                    fetchpriority="high">
-                <figcaption>Alabang Philippines</figcaption>
+        <div id="figure-grid">
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
-            <figure class="fig-temple"><img src="images/temples-small-webp/bacolod-philippines-temple-70237-main.webp"
-                    srcset="images/temples-small-webp/bacolod-philippines-temple-70237-main.webp 400w, images/temples-medium-webp/bacolod-philippines-temple-70237-main.webp 800w, images/temples-large-webp/bacolod-philippines-temple-70237-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Bacolod Philippines" width="400" height="533"
-                    fetchpriority="high">
-                <figcaption>Bacolod Philippines</figcaption>
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
-            <figure class="fig-temple rickster-egg"><img
-                    src="images/temples-small-webp/029-Manila-Philippines-Temple.webp"
-                    srcset="images/temples-small-webp/029-Manila-Philippines-Temple.webp 400w, images/temples-medium-webp/029-Manila-Philippines-Temple.webp 800w, images/temples-large-webp/029-Manila-Philippines-Temple.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Manila Philippines" width="400" height="533"
-                    loading="lazy" style="cursor: zoom-in;">
-                <figcaption>Manila Philippines</figcaption>
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
-            <figure class="fig-temple"><img src="images/temples-small-webp/naga-philippines-temple-68737-main.webp"
-                    srcset="images/temples-small-webp/naga-philippines-temple-68737-main.webp 400w, images/temples-medium-webp/naga-philippines-temple-68737-main.webp 800w, images/temples-large-webp/naga-philippines-temple-68737-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Naga Philippines" width="400" height="533"
-                    loading="lazy">
-                <figcaption>Naga Philippines</figcaption>
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
-            <figure class="fig-temple"><img
-                    src="images/temples-small-webp/cagayan-de-oro-philippines-temple-50369-main.webp"
-                    srcset="images/temples-small-webp/cagayan-de-oro-philippines-temple-50369-main.webp 400w, images/temples-medium-webp/cagayan-de-oro-philippines-temple-50369-main.webp 800w, images/temples-large-webp/cagayan-de-oro-philippines-temple-50369-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Cagayan de Oro Philippines" width="400" height="533"
-                    loading="lazy">
-                <figcaption>Cagayan de Oro Philippines</figcaption>
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
-            <figure class="fig-temple"><img src="images/temples-small-webp/133-Cebu-City-Philippines-Temple.webp"
-                    srcset="images/temples-small-webp/133-Cebu-City-Philippines-Temple.webp 400w, images/temples-medium-webp/133-Cebu-City-Philippines-Temple.webp 800w, images/temples-large-webp/133-Cebu-City-Philippines-Temple.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Cebu City Philippines" width="400" height="533"
-                    loading="lazy" style="cursor: zoom-in;">
-                <figcaption>Cebu City Philippines</figcaption>
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
-            <figure class="fig-temple"><img src="images/temples-small-webp/davao-philippines-temple-69513-main.webp"
-                    srcset="images/temples-small-webp/davao-philippines-temple-69513-main.webp 400w, images/temples-medium-webp/davao-philippines-temple-69513-main.webp 800w, images/temples-large-webp/davao-philippines-temple-69513-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Davao Philippines" width="400" height="533"
-                    loading="lazy">
-                <figcaption>Davao Philippines</figcaption>
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
-            <figure class="fig-temple"><img src="images/temples-small-webp/santiago-philippines-temple-68738-main.webp"
-                    srcset="images/temples-small-webp/santiago-philippines-temple-68738-main.webp 400w, images/temples-medium-webp/santiago-philippines-temple-68738-main.webp 800w, images/temples-large-webp/santiago-philippines-temple-68738-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Santiago Philippines" width="400" height="533"
-                    loading="lazy">
-                <figcaption>Santiago Philippines</figcaption>
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
-            <figure class="fig-temple"><img src="images/temples-small-webp/iloilo-philippines-temple-68739-main.webp"
-                    srcset="images/temples-small-webp/iloilo-philippines-temple-68739-main.webp 400w, images/temples-medium-webp/iloilo-philippines-temple-68739-main.webp 800w, images/temples-large-webp/iloilo-philippines-temple-68739-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Iloilo Philippines" width="400" height="533"
-                    loading="lazy">
-                <figcaption>Iloilo Philippines</figcaption>
-            </figure>
-            <figure class="fig-temple"><img
-                    src="images/temples-small-webp/tacloban-city-philippines-temple-55808-main.webp"
-                    srcset="images/temples-small-webp/tacloban-city-philippines-temple-55808-main.webp 400w, images/temples-medium-webp/tacloban-city-philippines-temple-55808-main.webp 800w, images/temples-large-webp/tacloban-city-philippines-temple-55808-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Tacloban City Philippines" width="400" height="533"
-                    loading="lazy">
-                <figcaption>Tacloban City Philippines</figcaption>
-            </figure>
-            <figure class="fig-temple"><img
-                    src="images/temples-small-webp/tuguegarao-city-philippines-temple-57610-main.webp"
-                    srcset="images/temples-small-webp/tuguegarao-city-philippines-temple-57610-main.webp 400w, images/temples-medium-webp/tuguegarao-city-philippines-temple-57610-main.webp 800w, images/temples-large-webp/tuguegarao-city-philippines-temple-57610-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Tuguegarao City Philippines" width="400" height="533"
-                    loading="lazy">
-                <figcaption>Tuguegarao City Philippines</figcaption>
-            </figure>
-            <figure class="fig-temple"><img src="images/temples-small-webp/urdaneta-philippines-temple-45874-main.webp"
-                    srcset="images/temples-small-webp/urdaneta-philippines-temple-45874-main.webp 400w, images/temples-medium-webp/urdaneta-philippines-temple-45874-main.webp 800w, images/temples-large-webp/urdaneta-philippines-temple-45874-main.webp 1200w"
-                    sizes="(max-width: 600px) 400px, 800px" alt="Urdaneta Philippines" width="400" height="533"
-                    loading="lazy">
-                <figcaption>Urdaneta Philippines</figcaption>
+            <figure>
+                <img src="#" alt="Skeleton Temple">
+                <figcaption>Skeleton Temple</figcaption>
             </figure>
         </div>
     </main>
