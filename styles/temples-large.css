@@ -58,7 +58,8 @@
 
     figure {
         position: relative;
-        width: 180px;
+        width: 100%;
+        height: auto;
         align-items: center;
     }
 
