@@ -27,7 +27,7 @@
     }
     
     nav ul li:hover {
-        border: 1px dashed rgb(11, 162, 209);
+        border: 1px dashed #0ba2d1;
     }
 
     nav ul li a {

@@ -22,31 +22,31 @@ body {
 /* Header & Navigation */
 header {
     position: relative;
-    background-color: #b2850769; /* Standardized color */
-    color: #27545d;
+    background-color: #f3e5ab; 
+    color: #21444b; 
     padding: 1.1rem 0;
     text-align: center;
 }
 
 h2 {
-	font-size: 1.2rem;
-	color: #000080; /* navy standardized to hex */
-	text-align: left;
-	margin: 1rem;
+    font-size: 1.2rem;
+    color: #000080; 
+    text-align: left;
+    margin: 1rem;
 }
 
 
 /* ====================== big mac start ====================== */
 #course-title {
     display: block;
-	text-align: left;
-	font-family: "Ubuntu", Arial, sans-serif;
+    text-align: left;
+    font-family: "Ubuntu", Arial, sans-serif;
     font-weight: bold;
     font-size: 1.8rem;
-	margin-left: 1rem;
+    margin-left: 1rem;
     margin-top: .5rem;
     padding-bottom: 2rem;
-    color: #6b4603;
+    color: #4a3102; 
 }
 
 #menu {
@@ -55,8 +55,8 @@ h2 {
     font-weight: 700;
     text-decoration: none;
     padding: .5rem .75rem;
-    background-color: #eee;
-    color: #000;
+    background-color: #eeeeee;
+    color: #000000;
     
     cursor: pointer;
 	position: absolute;
@@ -107,11 +107,11 @@ nav ul li {
 }
 
 nav ul li:hover {
-    border: 1px dashed #0ba2d1; /* rgb(11, 162, 209) standardized to hex */
+    border: 1px dashed #0ba2d1; 
 }
 
 nav ul li a {    
-    background-color: #1bd44a1f;
+    background-color: #d1f7db; 
     transition: all .5s ease-in-out;
     display: inline-block;
     font-size: 1.2rem;
