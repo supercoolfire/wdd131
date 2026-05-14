@@ -1,11 +1,12 @@
 /**
- * Rickster Egg - v2.0
+ * Rickster Egg - v2.1
  * Triggered by the class ".rickster-egg"
  * Handles modal toggle and video playback.
  * 
  * Usage:
- * 1. Add class="rickster-egg" to any element you want as a trigger.
- * 2. The script automatically injects the necessary modal HTML if it's not present.
+ * 1. Put the mp4 video at root /images/rick-roll.mp4 or update the source in the script.
+ * 2. Add class="rickster-egg" to any element you want as a trigger.
+ * 3. The script automatically injects the necessary modal HTML if it's not present.
  */
 
 (function injectRicksterStyles() {
@@ -41,7 +42,7 @@ const initRicksterEggV2 = () => {
         document.body.insertAdjacentHTML('beforeend', `
             <div id="video-container" class="modal-rickster-egg" style="display: none;">
                 <video preload="none" playinline="true" id="rick-video" controls="true">
-                    <source src="images/rick-roll.mp4?quality=0.5" type="video/mp4">
+                    <source src="/images/rick-roll.mp4?quality=0.5" type="video/mp4">
                     <p>Your browser does not support the video tag.</p>
                 </video>
             </div>

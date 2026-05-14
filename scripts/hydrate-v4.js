@@ -8,9 +8,9 @@
  * - Support for 'insertion' attribute (replace, append, prepend, before, after)
  * 
  * Usage: 
- * <script src="hydrate-v4.js" data-production="true" data-production-file="production.json" data-placeholder-file="placeholder.json"></script>
+ * <script src="/scripts/hydrate-v4.js" data-production="true" data-production-file="/data/production.json" data-placeholder-file="/data/placeholder.json"></script>
  * or
- * <script src="hydrate-v4.js" data-file="production.json"></script>
+ * <script src="/scripts/hydrate-v4.js" data-file="/data/production.json"></script>
  * 
  * JSON Format: production.json
  {
@@ -38,7 +38,7 @@
         "tag": "title",
         "insertion": "after",
         "items": [
-            { "tag": "script", "src": "scripts/rickster-egg-v2.js", "defer": "true"  }
+            { "tag": "script", "src": "/scripts/rickster-egg-v2.js", "defer": "true"  }
         ]
     }
 }
@@ -49,14 +49,14 @@
    "tag": "title", 
    "insertion": "after",
    "items": [
-      { "tag": "script", "src": "scripts/rickster-egg-v2.js", "defer": "true" }
+      { "tag": "script", "src": "/scripts/rickster-egg-v2.js", "defer": "true" }
    ]
 }
  */
 
 const startJITHydration = async () => {
     // Falls back to finding the script by its filename if currentScript is null
-    const scriptEl = document.currentScript || document.querySelector('script[src*="hydrate-v4.js"]');
+    const scriptEl = document.currentScript || document.querySelector('script[src*="/scripts/hydrate-v4.js"]');
     
     if (!scriptEl) {
         console.error("Hydration script element not found.");
