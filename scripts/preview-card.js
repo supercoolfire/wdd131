@@ -1,5 +1,5 @@
 /**
- * preview-card.js v1.0
+ * preview-card.js v1.1 (Optimized)
  * (C) Jayser Pilapil 2026
  * Automatically loads content from href into .preview elements with "preview-" id prefix.
  * 
@@ -7,6 +7,8 @@
  * - 200px width, 3:4 aspect ratio.
  * - Replaces initial innerHTML (loading state) with fetched content.
  * - Handles hydration sync (waits for hydrationComplete if necessary).
+ * - Defer: SEO content loads only when scrolled into view (IntersectionObserver).
+ * - Bandwidth: SEO loads first; full visual preview loads only on hover.
  * 
  * Requirements:
  * - Preview cards must have a unique id starting with "preview-".
@@ -178,7 +180,18 @@
 
     const initAll = () => {
         const targets = document.querySelectorAll('.preview[id^="preview-"]');
-        targets.forEach(loadSEO);
+        
+        // v4.3: Defer SEO loading using IntersectionObserver to save bandwidth
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadSEO(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        targets.forEach(target => observer.observe(target));
     };
 
     if (document.readyState === 'loading') {
