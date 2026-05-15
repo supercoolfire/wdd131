@@ -1,11 +1,12 @@
 /**
- * Just-In-Time Universal Hydrator v4.0
+ * Just-In-Time Universal Hydrator v4.1
  * Features:
  * - Support for unique identifiers as keys
  * - Optional 'querySelector' property for explicit targeting
  * - Backward compatible: defaults to key-as-selector if querySelector is missing
  * - Precise selector logic (IDs, Classes, Tags)
  * - Support for 'insertion' attribute (replace, append, prepend, before, after)
+ * - Support for 'innerHTML' attribute for raw HTML injection (v4.1)
  * 
  * Usage: 
  * <script src="/scripts/hydrate-v4.js" data-production="true" data-production-file="/data/production.json" data-placeholder-file="/data/placeholder.json"></script>
@@ -21,6 +22,7 @@
         "id": "optional-id",
         "class": "optional-class",
         "textContent": "optional-text",
+        "innerHTML": "optional-raw-html",
         "items": [
             {
                 "tag": "child-tag",
@@ -135,6 +137,8 @@ function appendChildrenAndAttributes(element, data) {
             });
         } else if (key === 'textContent') {
             element.textContent = value;
+        } else if (key === 'innerHTML') {
+            element.innerHTML = value;
         } else {
             element.setAttribute(key, value);
         }
