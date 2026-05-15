@@ -4,9 +4,11 @@
  * Handles modal toggle and video playback.
  * 
  * Usage:
- * 1. Put the mp4 video at root /images/rick-roll.mp4 or update the source in the script.
- * 2. Add class="rickster-egg" to any element you want as a trigger.
- * 3. The script automatically injects the necessary modal HTML if it's not present.
+ * 1. Add <script src="/cripts/rickster-egg-v2.js" defer></script> to your HTML head.
+ * 2. Put the mp4 video at root /images/rick-roll.mp4 or update the source in the script.
+ * 3. Add class="rickster-egg" to any element you want as a trigger (e.g., <span class="rickster-egg">Title</span>).
+ * 4. Ensure the triggering element is visible and reachable in the DOM.
+ * 5. The script automatically injects the necessary modal HTML if it's not present.
  */
 
 (function injectRicksterStyles() {
