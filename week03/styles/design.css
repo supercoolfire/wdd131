@@ -10,8 +10,35 @@ footer {
 }
 
 .banner {
+	width: 100vw;
 	padding: 1rem;
 	background-color: #eee;
+	overflow: hidden;
+  	white-space: nowrap;
+}
+.scroll-text {
+  display: inline-block;
+  padding: 0 20px;
+  /* 
+     'alternate' makes it go back and forth. 
+     'ease-in-out' makes the bounce look more natural.
+  */
+  animation: bounce-back 8s ease-in-out infinite alternate;
+}
+
+@keyframes bounce-back {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Adjust this percentage based on text length vs container width */
+    transform: translateX(calc(100vw - 100%));
+  }
+}
+
+/* Optional: Pause on hover so people can read the details */
+.banner:hover .scroll-text {
+  animation-play-state: paused;
 }
 
 h1 {
