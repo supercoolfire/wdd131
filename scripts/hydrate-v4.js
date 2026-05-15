@@ -1,5 +1,5 @@
 /**
- * Just-In-Time Universal Hydrator v4.1
+ * Just-In-Time Universal Hydrator v4.2
  * Features:
  * - Support for unique identifiers as keys
  * - Optional 'querySelector' property for explicit targeting
@@ -7,6 +7,7 @@
  * - Precise selector logic (IDs, Classes, Tags)
  * - Support for 'insertion' attribute (replace, append, prepend, before, after)
  * - Support for 'innerHTML' attribute for raw HTML injection (v4.1)
+ * - Support for text-only nodes in 'items' (removes <undefined> tag) (v4.2)
  * 
  * Usage: 
  * <script src="/scripts/hydrate-v4.js" data-production="true" data-production-file="/data/production.json" data-placeholder-file="/data/placeholder.json"></script>
@@ -28,6 +29,9 @@
                 "tag": "child-tag",
                 "src": "attribute-value",
                 "textContent": "child-text"
+            },
+            {
+                "textContent": "raw-text-node-no-tag"
             }
         ]
     }
@@ -118,7 +122,11 @@ const startJITHydration = async () => {
  * Creates a DOM node and recursively builds its structure
  */
 function renderNode(nodeData) {
-    const el = document.createElement(nodeData.tag);
+    // v4.2: Support for raw text nodes if 'tag' is missing
+    if (!nodeData.tag && nodeData.textContent) {
+        return document.createTextNode(nodeData.textContent);
+    }
+    const el = document.createElement(nodeData.tag || 'span'); // Default to span if tag is missing and no text
     appendChildrenAndAttributes(el, nodeData);
     return el;
 }
