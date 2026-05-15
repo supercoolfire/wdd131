@@ -28,4 +28,24 @@ This approach was actually inspired by my previous work in [CIT 230](https://byu
 
 I'm excited to continue building on this foundation as I explore more "Dynamic" web fundamentals!
 
+## How to use schema for hydrate validation in .vscode/settings.json
+
+1. Open the `.vscode/settings.json` file in your project.
+2. Add the following lines to the file:
+
+```json
+{
+    "json.schemas": [
+        {
+            "fileMatch": ["*v4.json", "data/*v4.json"],
+            "url": "https://supercoolfire.github.io/wdd131/schemas/hydrator-v4.schema.json"
+        },
+        {
+            "fileMatch": ["*v5.json", "data/*v5.json", "*portfolio.json"],
+            "url": "https://supercoolfire.github.io/wdd131/schemas/hydrator-v5.schema.json"
+        }
+    ]
+}
+```
+
 
