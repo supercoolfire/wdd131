@@ -1,0 +1,103 @@
+:root {
+	--hover-color: purple;
+    --link-active-visited: navy;
+    --table-border: 1px solid #777;
+    --table-border-top: 1px solid #e92f2f;
+    --table-border-left: 1px solid #aadd3c;
+    --col-border-bottom: 1px solid #d078b4;
+    --col-border-right: 1px solid #27ccde;
+    --neon-red: #e92f2f;
+    --neon-blue: #27ccde;
+    --neon-green: #aadd3c;
+    --footer-bg: #ccc;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Acme', sans-serif;
+}
+
+h1 {
+	margin: 0.75rem;
+}
+
+main {
+	margin: 0.5rem;
+	border: 1px solid rgb(0 0 0 / 0.1);
+	padding: 0.5rem;
+	background-color: #eee;
+}
+
+p {
+	margin: 1rem;
+}
+
+.datatable {
+	width: 200px;
+	margin-top: 2rem;
+    border-top: var(--table-border-top);
+	border-left: var(--table-border-left);
+    transition: all 0.3s ease;
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 100px 100px;
+	align-items: center;
+	text-align: center;
+}
+
+.col {
+	padding: 0.5rem;
+    border-bottom: var(--col-border-bottom);
+	border-right: var(--col-border-right);
+}
+
+a:hover {
+	color: var(--hover-color);
+}
+a:active, 
+a:visited {
+	color: var(--link-active-visited);
+}
+.row:last-child {
+	background-color: var(--footer-bg);
+}
+p:has(.involvement-trigger:hover) ~ .datatable {
+  box-shadow: 0 0 10px var(--hover-color), 
+              0 0 20px var(--hover-color), 
+              inset 0 0 10px var(--hover-color);
+  
+  outline: 4px solid var(--hover-color); 
+}
+p:has(.involvement-trigger:hover) ~ .datatable .row:last-child .col {
+  box-shadow: 0 0 10px var(--neon-red), 
+              0 0 20px var(--neon-red), 
+              inset 0 0 10px var(--neon-red);
+  
+  outline: 1px solid var(--neon-red); 
+}
+p:has(.involvement-trigger:hover) ~ .datatable .row:first-child {
+  box-shadow: 0 0 10px var(--neon-blue), 
+              0 0 20px var(--neon-blue), 
+              inset 0 0 10px var(--neon-blue);
+  
+  outline: 1px solid var(--neon-blue); 
+}
+p:has(.involvement-trigger:hover) ~ .example {
+  box-shadow: 0 0 10px var(--neon-green), 
+              0 0 20px var(--neon-green), 
+              inset 0 0 10px var(--neon-green);
+  
+  outline: 1px solid var(--neon-green); 
+}
