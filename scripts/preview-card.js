@@ -1,5 +1,5 @@
 /**
- * preview-card.js v1.1 (Optimized)
+ * preview-card.js v1.2 (Path-Corrected)
  * (C) Jayser Pilapil 2026
  * Automatically loads content from href into .preview elements with "preview-" id prefix.
  * 
@@ -9,6 +9,7 @@
  * - Handles hydration sync (waits for hydrationComplete if necessary).
  * - Defer: SEO content loads only when scrolled into view (IntersectionObserver).
  * - Bandwidth: SEO loads first; full visual preview loads only on hover.
+ * - Compatibility: Uses <base> tag in iframes to fix relative paths for sub-directory pages.
  * 
  * Requirements:
  * - Preview cards must have a unique id starting with "preview-".
@@ -171,7 +172,15 @@
 
         card.classList.add('active');
         const iframe = document.createElement('iframe');
-        iframe.srcdoc = data.fullHtml;
+        
+        // v1.2: Fix CSS/Asset paths for sub-directory pages using <base>
+        const baseUrl = new URL(url, window.location.origin).href;
+        const baseTag = `<base href="${baseUrl}">`;
+        
+        // Inject <base> tag at the start of the head
+        const finalHtml = data.fullHtml.replace('<head>', `<head>${baseTag}`);
+        
+        iframe.srcdoc = finalHtml;
         container.appendChild(iframe);
         
         const indicator = card.querySelector('.loading-indicator');
