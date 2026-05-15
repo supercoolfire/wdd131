@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supercoolfire.github.io/wdd131/schemas/hydrator-v5.schema.json",
+  "title": "JIT Universal Hydrator Configuration v5.0",
+  "description": "Schema configuration to validate JSON template schemas mapped by hydrate-v5.js",
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "#/$defs/hydratorNode"
+  },
+  "$defs": {
+    "hydratorNode": {
+      "type": "object",
+      "properties": {
+        "querySelector": {
+          "type": "string",
+          "description": "The CSS Selector to target. If omitted at the root level, defaults back to the unique object key name."
+        },
+        "insertion": {
+          "type": "string",
+          "enum": ["replace", "append", "prepend", "before", "after"],
+          "description": "Method of rendering positioning relative to the target element. Defaults to 'replace'."
+        },
+        "tag": {
+          "type": "string",
+          "description": "The HTML tag name of the element (e.g., 'div', 'img', 'ul', 'a'). If omitted and textContent exists, a raw text node is made."
+        },
+        "textContent": {
+          "type": "string",
+          "description": "Text value to be added inside the element."
+        },
+        "innerHTML": {
+          "type": "string",
+          "description": "Raw HTML string markup to inject directly into the target node element."
+        },
+        "items": {
+          "type": "array",
+          "description": "An ordered list containing recursive child nodes to render and append.",
+          "items": {
+            "$ref": "#/$defs/hydratorNode"
+          }
+        }
+      },
+      "additionalProperties": {
+        "type": ["string", "boolean", "number", "array"],
+        "items": {
+          "type": "string"
+        },
+        "description": "Allows any standard or complex HTML attributes (including arrays like srcset or sizes) to be bound directly via setAttribute."
+      }
+    }
+  }
+}
