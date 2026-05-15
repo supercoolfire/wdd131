@@ -33,12 +33,12 @@
 * 
 * Plug-and-Play Example
 {
-    "rickster-egg-v2": { 
+    "sample-file": { 
         "querySelector": "title",
         "tag": "title",
         "insertion": "after",
         "items": [
-            { "tag": "script", "src": "/scripts/rickster-egg-v2.js", "defer": "true"  }
+            { "tag": "script", "src": "/scripts/sample-file.js", "defer": "true"  }
         ]
     }
 }
@@ -49,7 +49,7 @@
    "tag": "title", 
    "insertion": "after",
    "items": [
-      { "tag": "script", "src": "/scripts/rickster-egg-v2.js", "defer": "true" }
+      { "tag": "script", "src": "/scripts/sample-file.js", "defer": "true" }
    ]
 }
  */
