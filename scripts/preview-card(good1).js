@@ -1,32 +1,7 @@
 /**
- * preview-card.js v1.5 (GitHub-Ready)
+ * preview-card.js v1.4 (Deferred Mobile Anchor Fix)
  * (C) Jayser Pilapil 2026
  * Automatically loads content from href into .preview elements with "preview-" id prefix.
- * 
- * Features:
- * - 200px width, 3:4 aspect ratio.
- * - Replaces initial innerHTML (loading state) with fetched content.
- * - Handles hydration sync (waits for hydrationComplete if necessary).
- * - Defer: SEO content loads only when scrolled into view (IntersectionObserver).
- * - Bandwidth: SEO loads first; full visual preview loads only on hover.
- * - Compatibility: Uses <base> tag in iframes to fix relative paths for sub-directory pages.
- * - GitHub-Ready: Correctly handles project subdirectories (e.g. /wdd131/) in URLs.
- * - Conditional Nav: Navigation (href) only triggers if the visual preview is active.
- * - Transformation: Dynamically transforms div.anchor into real <a> tag upon activation.
- * 
- * Requirements:
- * - Preview cards must have a unique id starting with "preview-".
- * - Preview cards must have a href attribute pointing to the page to preview. 
- * - Preview cards must have a loading-dots element as the initial innerHTML.
- * 
- * Usage:
-<div class="card">
-    <div class="anchor" href="sampple.com" target="_blank">
-        <div id="preview-sample" class="preview" href="sampple.com">
-            <p class="loading-dots">Loading sample preview</p>
-        </div>sample.com
-    </div>
-</div>
  */
 (function initPreviewCards() {
     console.log("Preview Card script v4.4 loaded - Click Bubbling Fixed");
@@ -212,21 +187,9 @@
         if (!data) return;
 
         const iframe = document.createElement('iframe');
-        
-        // v1.6: Fix CSS/Asset paths for GitHub Pages subdirectories
-        const absoluteUrl = new URL(url, window.location.href).href;
-        const baseUrl = absoluteUrl.substring(0, absoluteUrl.lastIndexOf('/') + 1);
+        const baseUrl = new URL(url, window.location.origin).href;
         const baseTag = `<base href="${baseUrl}">`;
-        
-        let finalHtml = data.fullHtml.replace('<head>', `<head>${baseTag}`);
-
-        // If on GitHub Pages (subdirectory), rewrite root-relative paths in the iframe content
-        const pathSegments = window.location.pathname.split('/').filter(Boolean);
-        if (window.location.hostname.includes('github.io') && pathSegments.length > 0) {
-            const repoName = pathSegments[0];
-            // Regex to find src="/..." or href="/..." and prefix with repoName
-            finalHtml = finalHtml.replace(/(src|href)="\/([^"]*)"/g, `$1="/${repoName}/$2"`);
-        }
+        const finalHtml = data.fullHtml.replace('<head>', `<head>${baseTag}`);
         
         iframe.srcdoc = finalHtml;
         container.appendChild(iframe);

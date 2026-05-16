@@ -1,0 +1,109 @@
+{
+    "preview-script": {
+        "querySelector": "head",
+        "tag": "script",
+        "src": "scripts/preview-cardv1.1.js",
+        "defer": "true",
+        "insertion": "append"
+    },
+    "portfolio-nav": {
+        "querySelector": "#navigation",
+        "tag": "ul",
+        "insertion": "replace",
+        "items": [
+            { "tag": "li", "items": [{ "tag": "a", "href": "index.html", "textContent": "Home" }] },
+            { "tag": "li", "items": [{ "tag": "a", "class": "active", "href": "portfolio.html", "textContent": "portfolio" }] }
+        ]
+    },
+    "main-content": {
+        "querySelector": "main",
+        "tag": "main",
+        "insertion": "replace",
+        "items": [
+            { "tag": "h1", "textContent": "Portfolio" },
+            { "tag": "div", "class": "weeks", "items": [
+                { "tag": "div", "class": "week", "items": [
+                    { "tag": "h2", "textContent": "Week 1" },
+                    { "tag": "div", "class": "cards", "items": [
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week01/basic-layout.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w1a1", "class": "preview", "href": "week01/basic-layout.html" , "innerHTML": "<p class='loading-dots'>Loading basic layout preview</p>"}, 
+                                {"textContent": "W01 Learning Activity: HTML and CSS Review" }
+                            ]}
+                        ] },
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "index.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-home", "class": "preview", "href": "index.html" , "innerHTML": "<p class='loading-dots'>Loading home preview</p>"}, 
+                                {"textContent": "W01 Assignment: Home Page" }
+                            ]}
+                        ] }
+                    ] }
+                ] },
+                { "tag": "div", "class": "week", "items": [
+                    { "tag": "h2", "textContent": "Week 2" },
+                    { "tag": "div", "class": "cards", "items": [
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week02/media-query.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w2a1", "class": "preview", "href": "week02/media-query.html" , "innerHTML": "<p class='loading-dots'>Loading media query preview</p>"}, 
+                                {"textContent": "W02 Learning Activities: CSS Media Queries" }
+                            ]}
+                        ] },
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "temples.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w2a2", "class": "preview", "href": "temples.html" , "innerHTML": "<p class='loading-dots'>Loading picture album preview</p>"}, 
+                                {"textContent": "W02 Assignment: Picture Album" }
+                            ]}
+                        ] }
+                        
+                    ] }
+                ] },
+                { "tag": "div", "class": "week", "items": [
+                    { "tag": "h2", "textContent": "Week 3" },
+                    { "tag": "div", "class": "cards", "items": [
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week03/design.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w3a1", "class": "preview", "href": "week03/design.html" , "innerHTML": "<p class='loading-dots'>Loading design principles preview</p>"}, 
+                                {"textContent": "W03 Learning Activity: Design Principles" }
+                            ]}
+                        ]},
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week03/pseudo.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w3a2", "class": "preview", "href": "week03/pseudo.html" , "innerHTML": "<p class='loading-dots'>Loading pseudo-selectors preview</p>"}, 
+                                {"textContent": "W03 Learning Activity: CSS Pseudo-Selectors" }
+                            ]}
+                        ]},
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week03/image-file-formats.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w3a3", "class": "preview", "href": "week03/image-file-formats.html" , "innerHTML": "<p class='loading-dots'>Loading image file formats preview</p>"}, 
+                                {"textContent": "W03 Learning Activity: Image File Formats" }
+                            ]}
+                        ]}
+                        
+                    ] }
+                ] },
+                { "tag": "div", "class": "week", "items": [
+                    { "tag": "h2", "textContent": "Week 4" },
+                    { "tag": "div", "class": "cards", "items": [
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week04/index.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w4a1", "class": "preview", "href": "week04/index.html" , "innerHTML": "<p class='loading-dots'>Loading Week 4 preview</p>"}, 
+                                {"textContent": "W04 Assignment: Placeholder" }
+                            ]}
+                        ]}
+                    ] }
+                ] },
+                { "tag": "div", "class": "week", "items": [
+                    { "tag": "h2", "textContent": "Week 5" },
+                    { "tag": "div", "class": "cards", "items": [
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week05/index.html", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a1", "class": "preview", "href": "week05/index.html" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
+                                {"textContent": "W05 Assignment: Placeholder" }
+                            ]}
+                        ]}
+                    ] }
+                ] }
+            ] } 
+        ]
+    }
+}
