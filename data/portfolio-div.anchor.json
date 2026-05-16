@@ -84,9 +84,9 @@
                 { "tag": "div", "class": "week", "items": [
                     { "tag": "h2", "textContent": "Week 4" },
                     { "tag": "div", "class": "cards", "items": [
-                        { "tag": "div", "class": "card", "items": [
-                            { "tag": "div", "class": "anchor", "href": "week04/index.html", "target": "_blank", "items":[
-                                { "tag": "div", "insertion":"prepend", "id": "preview-w4a1", "class": "preview", "href": "week04/index.html" , "innerHTML": "<p class='loading-dots'>Loading Week 4 preview</p>"}, 
+                        { "tag": "div", "class": "card rickster-egg", "items": [
+                            { "tag": "div", "class": "anchor", "href": "#", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w4a1", "class": "preview", "href": "#" , "innerHTML": "<p class='loading-dots'>Loading Week 4 preview</p>"}, 
                                 {"textContent": "W04 Assignment: Placeholder" }
                             ]}
                         ]}
@@ -95,9 +95,9 @@
                 { "tag": "div", "class": "week", "items": [
                     { "tag": "h2", "textContent": "Week 5" },
                     { "tag": "div", "class": "cards", "items": [
-                        { "tag": "div", "class": "card", "items": [
-                            { "tag": "div", "class": "anchor", "href": "week05/index.html", "target": "_blank", "items":[
-                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a1", "class": "preview", "href": "week05/index.html" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
+                        { "tag": "div", "class": "card rickster-egg", "items": [
+                            { "tag": "div", "class": "anchor", "href": "#", "target": "_blank", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a1", "class": "preview", "href": "#" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
                                 {"textContent": "W05 Assignment: Placeholder" }
                             ]}
                         ]}
