@@ -14,7 +14,7 @@
   "#navigation": {
     "tag": "ul", "class": "nav-menu",
     "items": [
-      { "tag": "li", "items": [{ "tag": "a", "textContent": "Home", "title": "Home", "href": "#", "class": "active rickster-egg", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "textContent": "Home", "title": "Home", "href": "index.html", "rel": "noopener" }] },
       { "tag": "li", "items": [{ "tag": "a", "textContent": "Old", "title": "Old", "href": "#", "class": "rickster-egg", "rel": "noopener" }] },
       { "tag": "li", "items": [{ "tag": "a", "textContent": "New", "title": "New", "href": "#", "class": "rickster-egg", "rel": "noopener" }] },
       { "tag": "li", "items": [{ "tag": "a", "textContent": "Large", "title": "Large", "href": "#", "class": "rickster-egg", "rel": "noopener" }] },
