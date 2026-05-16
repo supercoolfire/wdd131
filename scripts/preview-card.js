@@ -1,15 +1,16 @@
 /**
- * preview-card.js v1.2 (Path-Corrected)
+ * preview-card.js v1.4 (Deferred Mobile Anchor Fix)
  * (C) Jayser Pilapil 2026
  * Automatically loads content from href into .preview elements with "preview-" id prefix.
  * 
- * Features:
+ *  * Features:
  * - 200px width, 3:4 aspect ratio.
  * - Replaces initial innerHTML (loading state) with fetched content.
  * - Handles hydration sync (waits for hydrationComplete if necessary).
  * - Defer: SEO content loads only when scrolled into view (IntersectionObserver).
  * - Bandwidth: SEO loads first; full visual preview loads only on hover.
  * - Compatibility: Uses <base> tag in iframes to fix relative paths for sub-directory pages.
+ * - Click Handling: First click on mobile loads preview, second click (or hover on desktop) activates the link.
  * 
  * Requirements:
  * - Preview cards must have a unique id starting with "preview-".
@@ -17,33 +18,33 @@
  * - Preview cards must have a loading-dots element as the initial innerHTML.
  * 
  * Usage:
- * <div class="preview" id="preview-home" href="/">
- *     <p class="loading-dots">Loading home preview</p>
- * </div>
+<div class="card">
+    <div class="anchor" href="sampple.com" target="_blank">
+        <div id="preview-sample" class="preview" href="sampple.com">
+            <p class="loading-dots">Loading sample preview</p>
+        </div>sample.com
+    </div>
+</div>
  */
 (function initPreviewCards() {
-    console.log("Preview Card script v4.2 loaded - Bandwidth Optimized");
+    console.log("Preview Card script v4.4 loaded - Click Bubbling Fixed");
 
     // 1. Inject Styles
     const style = document.createElement('style');
     style.textContent = `
-        
         .loading-dots {
-                font-weight: bold;
-            }
-            /* Create the dots dynamically */
+            font-weight: bold;
+        }
         .loading-dots::after {
             content: '';
             animation: dots 1.5s infinite steps(4);
         }
-
         @keyframes dots {
             0%   { content: ''; }
             25%  { content: '.'; }
             50%  { content: '..'; }
             75%  { content: '...'; }
         }
-
         .preview[id^="preview-"] {
             width: 200px;
             aspect-ratio: 3 / 4;
@@ -119,6 +120,11 @@
             color: #999;
             font-style: italic;
         }
+        div.card > a {
+            text-decoration: none;
+            color: inherit;
+            display: inline-block;
+        }
     `;
     document.head.appendChild(style);
 
@@ -152,32 +158,60 @@
                     <p>${seoData.description}</p>
                 </div>
                 <div class="preview-iframe-container"></div>
-                <div class="loading-indicator">Hover to load</div>
+                <div class="loading-indicator">Tap / Hover to preview</div>
             `;
             card.dataset.seoLoaded = "true";
             
-            // Attach hover to load full preview
-            card.addEventListener('mouseenter', () => loadFullPreview(card, url));
+            // Mouseenter logic for desktop
+            card.addEventListener('mouseenter', () => {
+                if (!card.classList.contains('active') && !card.dataset.transforming) {
+                    transformToAnchorAndLoad(card, url);
+                }
+            });
+            
+            // Click interceptor for mobile / fallback desktop click
+            card.addEventListener('click', (e) => handleClick(e, card, url));
+
         } catch (err) {
             card.innerHTML = '<p style="padding:10px; font-size:11px;">Meta preview unavailable</p>';
         }
     };
 
+    // Swaps wrapper dynamically AFTER the current click event finishes executing
+    const transformToAnchorAndLoad = (card, url) => {
+        card.dataset.transforming = "true";
+        card.classList.add('active');
+
+        // First, append the visual iframe layout immediately
+        loadFullPreview(card, url);
+
+        // Defer the DOM structural change to the NEXT event cycle.
+        // This prevents the ongoing click event from triggering the new <a> tag.
+        setTimeout(() => {
+            // Check if it hasn't been transformed already by a racing event
+            if (card.parentNode && card.parentNode.tagName !== 'A') {
+                const linkWrapper = document.createElement('a');
+                linkWrapper.href = url;
+                
+                card.classList.remove('anchor');
+                
+                card.parentNode.insertBefore(linkWrapper, card);
+                linkWrapper.appendChild(card);
+            }
+            delete card.dataset.transforming;
+        }, 50); 
+    };
+
     const loadFullPreview = (card, url) => {
         const container = card.querySelector('.preview-iframe-container');
-        if (!container || card.classList.contains('active')) return;
+        if (!container) return;
 
         const data = cache.get(url);
         if (!data) return;
 
-        card.classList.add('active');
         const iframe = document.createElement('iframe');
-        
-        // v1.2: Fix CSS/Asset paths for sub-directory pages using <base>
         const baseUrl = new URL(url, window.location.origin).href;
         const baseTag = `<base href="${baseUrl}">`;
-        
-        // Inject <base> tag at the start of the head
         const finalHtml = data.fullHtml.replace('<head>', `<head>${baseTag}`);
         
         iframe.srcdoc = finalHtml;
@@ -187,10 +221,25 @@
         if (indicator) indicator.style.display = 'none';
     };
 
+    const handleClick = (e, card, url) => {
+        // If it isn't active yet, this is the 1st click (Mobile Layout)
+        if (!card.classList.contains('active')) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            transformToAnchorAndLoad(card, url);
+        }
+        // If it IS active, but the anchor wrapping process is still inside the setTimeout timeout window:
+        else if (card.dataset.transforming === "true") {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        // 2nd Click onwards: It is an active <a>, native browsing redirection proceeds automatically.
+    };
+
     const initAll = () => {
         const targets = document.querySelectorAll('.preview[id^="preview-"]');
         
-        // v4.3: Defer SEO loading using IntersectionObserver to save bandwidth
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
