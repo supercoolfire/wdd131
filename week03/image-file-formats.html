@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="90s retro theme notes on image file formats, including SVG and WebP, for web development.">
+    <meta name="keywords" content="Image File Formats, SVG, WebP, Responsive Design">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image File Format Notes | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/image-file-formats.css">
+    <link rel="preload" href="../data/por-nav.json" as="fetch" crossorigin>
+    <script src="../scripts/hydrate-v5.js" data-file="../data/por-nav.json" defer> </script>
+    <script src="../scripts/getdates.js" defer></script>
+    <script src="../scripts/nav-burger.js" defer></script>
+    <script src="../scripts/modal-click-origin.js" defer></script>
+    <script src="../scripts/rickster-egg-v2.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>&nbsp;<span class="theme blink">(90's theme)</span>
+        <h1></h1>
+        <nav>
+            <ul id="navigation"></ul>
+        </nav>
+    </header>
+    <main>
+        <span class="head-span"><span class="h-left">W03 Learning Activity:&nbsp;</span>
+        <h1>Image File Formats</h1></span>
+        <section class="overview">
+            <h2>Notes <span>Overview</span></h2>
+            <p>I have worked with various image formats, some of which are better suited for the web. Responsive image design aims to reduce page weight and deliver optimized images for different screen sizes. This activity explores the SVG (Scalable Vector Graphics) and WebP formats, which offer better compression for faster page loads.</p>
+        </section>
+        <section class="prepare">
+            <h2>Prepare</h2>
+            <ul>
+                <li>Review: Video ▶️ <a href="https://www.loom.com/share/5ed5f9d351844d4f818fb398dbde5728" target="blank">Image File Types for the Web</a> – [ 1:54 minutes ]
+                    <ul>
+                    <li><strong>jpeg</strong>: compression good for photographs</li>
+                    <li><strong>gif</strong>: limited color palette, good for simple animations</li>
+                    <li><strong>png</strong>: lossless compression, good for graphics with transparency</li>
+                    <li><strong>webp</strong>: modern format with better compression, supports transparency and animation, supports animation, vectors, shapes, text, logo</li>
+                    <li><strong>heic</strong>: modern format for iPhone photos, offers better compression than JPEG. Not supported on the web</li>
+                    </ul>
+                </li>
+                <li>
+                    Reference: 📑<a href="https://developers.google.com/speed/webp" target="_blank">WebP image format</a> – developers.google.com
+                    <ul>
+                        <li><strong>Lossless Compression</strong>: using sophisticated algorithms that replace redundancy. 26% smaller to PNG</li>
+                        <li><strong>Lossy Compression</strong>: using approximations and parital data to represent the original media source. 25-34% smaller to JPEG</li>
+                        <li><strong>Transparency Support</strong>: property representing how much of the background color is visible through the image. 22% additional bytes</li>
+                    </ul>
+                </li>
+                <li>
+                    Reference: 📑 <a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types">Image file type and format guide</a> – MDN
+                    <ul>
+                        <li><strong>SVG</strong>: Vector image ideal for ui, icons, diagrams etc.Support: Chrome, Edge, Firefox, IE, Opera, Safari</li>
+                        <li><strong>WebP</strong>: Excellent choice better than PNG or JPEG, supoprt: Chrome, Edge, Firefox, Opera, Safary .</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section class="activity-instructions">
+            <h2>Activity Ins</h2>
+            <span class="head-span"><h3>Step 1: </h3><span class="h3-span">&nbsp; WebP</span></span>
+            <ol>
+                <li>image: <a href="https://www.pexels.com/photo/brown-grey-wooden-house-near-lake-at-daytime-158316/">Landscape (pexels.com)</a>  (~3900 X 2633)</li>
+                <li>Saved to <strong>landscape.jpg</strong> File size 1.73 MB 1.814 kB</li>
+                <li><a href="https://cloudconvert.com/jpg-to-webp">cloudconvert.com</a>. Sign in is needed</li>
+                <li>select the landscape.jpg. error:  upload the file to your Google Drive, Dropbox or OneDrive account. To many process. I used my own app <a href="https://supercoolfire.github.io/ImageSmaller-Site/">ImageSmaller</a>.</li>
+                </li>
+                <li>
+                    <table>
+                        <tr>
+                            <td><strong>Quality</strong></td>
+                            <td><strong>File Size</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Lossless Dynamic quality</td>
+                            <td>11.24 MB</td>
+                        </tr>
+                        <tr>
+                            <td>Lossy</td>
+                            <td>495.14 kB</td>
+                        </tr>
+                        <tr>
+                            <td>Resized to 1024x680 lossy</td>
+                            <td>76.61 kB</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                </li>
+                <li>Apply the optimization techniques <a href="https://video.byui.edu/media/t/1_78w5ieoo"> Converting a large jpg file into a webp file format</a> – [ 3:09 minutes ]</li>
+            </ol>
+            <span class="head-span"><h3>Step 2: </h3><span class="h3-span">&nbsp; SVG</span></span>
+            <ol>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ol>
+        </section>
+    </main>
+    
+</body>
+</html>
