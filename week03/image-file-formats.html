@@ -16,14 +16,15 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../styles/prism.css">
     <link rel="stylesheet" href="styles/image-file-formats.css">
     <link rel="preload" href="../data/por-nav.json" as="fetch" crossorigin>
+    <script src="../scripts/prism.js"></script>
     <script src="../scripts/hydrate-v5.js" data-file="../data/por-nav.json" defer> </script>
     <script src="../scripts/getdates.js" defer></script>
     <script src="../scripts/nav-burger.js" defer></script>
     <script src="../scripts/modal-click-origin.js" defer></script>
     <script src="../scripts/rickster-egg-v2.js" defer></script>
-
 </head>
 <body>
     <header>
@@ -70,13 +71,13 @@
             </ul>
         </section>
         <section class="activity-instructions">
-            <h2>Activity Ins</h2>
+            <h2>Activity Instructions</h2>
             <span class="head-span"><h3>Step 1: </h3><span class="h3-span">&nbsp; WebP</span></span>
             <ol>
                 <li>image: <a href="https://www.pexels.com/photo/brown-grey-wooden-house-near-lake-at-daytime-158316/">Landscape (pexels.com)</a>  (~3900 X 2633)</li>
                 <li>Saved to <strong>landscape.jpg</strong> File size 1.73 MB 1.814 kB</li>
                 <li><a href="https://cloudconvert.com/jpg-to-webp">cloudconvert.com</a>. Sign in is needed</li>
-                <li>select the landscape.jpg. error:  upload the file to your Google Drive, Dropbox or OneDrive account. To many process. I used my own app <a href="https://supercoolfire.github.io/ImageSmaller-Site/">ImageSmaller</a>.</li>
+                <li>I selected the landscape.jpg. error:  upload the file to your Google Drive, Dropbox or OneDrive account. To many process. I used my own app <a href="https://supercoolfire.github.io/ImageSmaller-Site/">ImageSmaller</a>.</li>
                 </li>
                 <li>
                     <table>
@@ -105,16 +106,111 @@
                 </li>
                 <li>Apply the optimization techniques <a href="https://video.byui.edu/media/t/1_78w5ieoo"> Converting a large jpg file into a webp file format</a> – [ 3:09 minutes ]</li>
             </ol>
+
             <span class="head-span"><h3>Step 2: </h3><span class="h3-span">&nbsp; SVG</span></span>
             <ol>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>Download <a href="../images/arrow.svg" download="">this SVG file</a> to your computer.
+                    <details>
+                    <summary>What is the file size of this SVG?</summary>
+                    <p><img src="images/arrow.svg" alt="" style="display:inline-block; width: 30px;"> About 0.433 kB, so it is very small (under 1 kB).</p>
+                    </details>
+                </li>
+                <li><a href="../images/svg-browser.webp" target="_blank">look like this</a>.image remains sharp and clear because it is a vector image and not a bitmap image.</li>
+                <li>Now open the arrow.svg file in your text editor (VS Code).
+                    <details open="">
+                        <summary>What does an SVG file look like when opened in a text editor?</summary>
+                        <p>My VSC rendered the image</p>
+                    </details>
+                </li>
+                <li>I looked at the code.
+                    <details>
+                    <summary>What three shapes are referenced to create this icon?</summary>
+                    <p><code>circle</code>, <code>polyline</code>, and <code>line</code></p>
+                    </details>
+                    <details>
+                    <summary>What is the purpose of the <strong>viewBox</strong> attribute?</summary>
+                    <p>It defines the coordinate system for the SVG view box. The first two values are the x and y coordinates of the top-left corner of the view box. The last two values are the width and height of the view box.</p>
+                    <p>The native width and height of this graphic is 24 pixels by 24 pixels. <code>viewBox="0 0 24 24"</code></p>
+                    </details>
+                    <details>
+                    <summary>What is the purpose of the <strong>fill</strong> attribute?</summary>
+                    <p>It defines the color used to fill the shape. The value <code>fill="none"</code>means that the shape is not filled.</p>
+                    </details>
+                    <details>
+                    <summary>What is the purpose of the <strong>stroke</strong> attribute?</summary>
+                    <p>It defines the color used for the lines of the shape. The value <code>stroke="#555"</code>is a gray color. </p>
+                    </details>
+                    <details>
+                    <summary>What is the purpose of the <strong>stroke-width</strong> attribute?</summary>
+                    <p>It defines the thickness of the lines used to draw the shape. The value <code>stroke-width="2"</code>is 2 pixels.</p>
+                    </details>
+                    <details>
+                    <summary>What is the purpose of the <strong>stroke-linecap</strong> attribute?</summary>
+                    <p>It defines the shape of the line ends. The value <code>stroke-linecap="round"</code>means that the ends of the lines are rounded.</p>
+                    </details>
+                </li>
+                <li>Try changing the color of the line to the hex value for red.<br> Save the file and open it again in a web browser, did you see the color change?
+                
+                    <p><img src="images/arrow-red.svg" alt="" style="display:inline-block; width: 30px;"> This is red</p>
+                </li>
+            </ol>
+
+            <span class="head-span"><h3>Step 3: </h3><span class="h3-span">&nbsp; Icon Libraries</span></span>
+
+            <p>Free and open-source CSS Frameworks like <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap</a>and icon libraries like <a href="https://fontawesome.com/icons" target="_blank">Font Awesome</a>and <a href="https://www.iconfinder.com/" target="_blank">iconfinder.com</a>make it easy to use SVG icons in your projects.</p>
+
+            <ol>
+                <li>Open the <a href="https://icons.getbootstrap.com/?q=facebook" target="_blank">Bootstrap icon library</a>and search for the Facebook icon.
+                    <div class="callout info">
+                    <p>These are just examples of the same search for free SVGs using:<br>
+                        — <a href="https://www.iconfinder.com/search?q=facebook&amp;price=free&amp;license=gte__2" target="_blank">IconFinder</a><br>
+                        — <a href="https://fontawesome.com/search?q=facebook&amp;o=r&amp;ic=free" target="_blank">Font Awesome</a></p>
+
+                    </div>
+                </li>
+                <li>Select the facebook icon and choose <strong>Download SVG</strong><div class="br"></div>
+                    <span><img src="images/facebook.svg" alt="Facebook Icon" style="background-color: white; border-radius: 50%; padding: 10px; width: 2rem;"></span>
+                </li>
+                <li>This lightweight SVG, under 500 bytes (0.5 kB), can be used directly with an <code>img</code> tag's
+                    <code>src</code>-
+                    attribute, allowing for scalable vector graphics at any desired width.
+                    <pre><code class="html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"images/facebook.svg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Facebook Icon"</span>&gt;</span></code></pre>
+                </li>
+
+
             </ol>
         </section>
+
+        <div style="border: 1px solid white; padding: 0 1rem; margin: 1rem 0;">
+        <p>Video Demonstration: ▶️ <a href="https://video.byui.edu/media/t/1_1h5alpz5" target="_blank" rel="noopener"> SVG
+            Icons</a> – <span class="smaller">[ 9:23 minutes ]</span></p>
+        </div>
+
+        <div class="callout reference">
+            <h4>Optional Resources</h4>
+            <ul>
+                <li>
+                    <a title="Image Optimization" href="../resources/image-optimization.html">Image Optimization:</a> Review
+                general principles on using web images.
+
+                <ol>
+                    <li><strong>Crop</strong> focus on the most important elements, removing any unnecessary background or distractions<div class="callout info"><p>The <strong>rule of thirds</strong>states that an image is most pleasing and impactful when its subjects are placed along imaginary lines that divide the image into thirds, both horizontally and vertically. This technique helps create balance and interest in the composition by avoiding placing the subject directly in the center of the frame. </p></div></li>
+                    <li><strong>Resize</strong> Create the maximum required size for the primary layout, then export smaller, optimized variations tailored to fit the specific layouts of smartphones and tablets.</li>
+                    <li><strong>Adjust the quality</strong> to strike a balance between visual quality and file size, ensuring fast loading speeds without noticeable blurring or pixelation.</li>
+                </ol>
+                <p>Additional image handling techniques include:</p>
+                <ul>
+                    <li>Resizing images during the build process using script</li>
+                    <li>Creating multiple image sizes and use srcset to let the browser or user agent decide which image to load</li>
+                    <li>Use an image CDN (Content Delivery Network) source for optimized image delivery</li>
+                </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="loading-dots">つづく</div>
     </main>
-    
+    <footer>
+    </footer>
 </body>
 </html>

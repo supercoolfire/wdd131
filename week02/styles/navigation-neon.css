@@ -1,0 +1,60 @@
+
+/* ***************** 90's Neon Navigation Bar start ***************** */
+:root {
+	/* 90's Neon Color Palette */
+	--neon-cyan: #00ffff;
+	--neon-blue: #1e90ff;
+	--neon-magenta: #ff00ff;
+	--sunflower-yellow: #ffff33;
+	--retro-purple: #702963;
+	--classic-white: #ffffff;
+	--jet-black: #000000;
+	--deep-forest: #064b3c;
+}
+nav {
+    /* 90's Neon Navigation Bar */
+    padding: 0 20px;
+    margin-bottom: 20px;
+    border: 3px solid var(--neon-blue);
+    box-shadow: 0 0 10px rgba(6, 195, 104, 0.5);
+}
+
+nav.show {
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    gap: 15px;
+}
+
+
+nav ul li {
+    /* Neon Button Style for Navigation Links */
+    background-color: var(--neon-cyan);
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 5px rgba(91, 50, 229, 0.5);
+    margin: 5px 0;
+}
+
+nav ul li:hover {
+    background-color: var(--neon-cyan);
+    color: var(--classic-white);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(10, 55, 218, 0.8);
+}
+
+nav ul li a {
+    color: var(--jet-black);
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: var(--deep-forest);
+    text-shadow: 0 0 5px rgba(255, 255, 51, 0.8);
+}
+/* ***************** 90's Neon Navigation Bar end ***************** */

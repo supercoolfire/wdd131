@@ -3,39 +3,42 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <title>Portfolio | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="icon" href="images/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/temples.css">
-    <link rel="stylesheet" href="styles/temples-large.css">
-    <meta name="description" content="WDD 131 – Dynamic Web Fundamentals - Jayser Pilapil - Course Home Page">
-    <meta name="author" content="Jayser Pilapil">
-    <meta name="keywords" content="Jayser Pilapil, BYU-Idaho, Idaho, WDD 131, Dynamic Web Fundamentals">
-    <script 
-        src="scripts/hydrate-v2.js" 
-        data-production-file="data/temples-production.json" 
-        data-placeholder-file="data/temples-placeholder.json" 
-        data-production="false" 
-        defer>
-    </script>
-    <script src="scripts/temples.js" defer></script>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/[filename].css">
+    <link rel="stylesheet" href="styles/[filename]-large.css" media="(min-width: 640px)">
+    <link rel="preload" href="data/[filename].json" as="fetch" crossorigin>
+    <script src="scripts/hydrate-v5.js" data-file="data/[filename].json" defer> </script>
+    <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/nav-burger.js" defer></script>
     <script src="scripts/modal-click-origin.js" defer></script>
+    <script src="scripts/rickster-egg-v2.js" defer></script>
 </head>
 
 <body>
     <header>
-        <span id="course-title">Loading title...</span>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>
+        <button type="button" id="menu" aria-label="Menu"></button>
         <nav>
             <ul id="navigation">
-                <li><a>Loading navigation...</li>
+                <li class="loading-dots">Loading navigation</li>
             </ul>
         </nav>
     </header>
 
     <main>
-      <div id="temple-grid">Loading temple grid...</div>
+        <div class="loading-dots">Loading main</div>
     </main>
 
     <footer>

@@ -1,0 +1,11 @@
+{
+    "portfolio-nav": {
+    "querySelector": "#navigation",
+    "tag": "ul",
+    "insertion": "replace",
+    "items": [
+        { "tag": "li", "items": [{ "tag": "a", "href": "../index.html", "textContent": "Home" }] },
+        { "tag": "li", "items": [{ "tag": "a", "class": "active", "href": "../portfolio.html", "textContent": "portfolio" }] }
+    ]
+    }
+}

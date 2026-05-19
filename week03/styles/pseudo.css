@@ -27,9 +27,82 @@ body {
 	font-family: 'Acme', sans-serif;
 }
 
+#course-title {
+    display: block;
+    text-align: left;
+    font-family: "Ubuntu", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-left: 1rem;
+    margin-top: .5rem;
+    padding-bottom: 2rem;
+    color: #4a3102; 
+}
+
 h1 {
 	margin: 0.75rem;
+	font-size: 1.2rem;
 }
+
+/* ***************** 90's Neon Navigation Bar start ***************** */
+:root {
+	/* 90's Neon Color Palette */
+	--neon-cyan: #00ffff;
+	--neon-blue: #1e90ff;
+	--neon-magenta: #ff00ff;
+	--sunflower-yellow: #ffff33;
+	--retro-purple: #702963;
+	--classic-white: #ffffff;
+	--jet-black: #000000;
+	--deep-forest: #064b3c;
+}
+nav {
+    /* 90's Neon Navigation Bar */
+    /* padding: 10px; */
+    margin-bottom: 20px;
+    border: 3px solid var(--neon-blue);
+    box-shadow: 0 0 10px rgba(6, 195, 104, 0.5);
+}
+
+nav.show {
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    gap: 15px;
+}
+
+
+nav ul li {
+    /* Neon Button Style for Navigation Links */
+    background-color: var(--neon-cyan);
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 5px rgba(91, 50, 229, 0.5);
+    margin: 5px 0;
+}
+
+nav ul li:hover {
+    background-color: var(--neon-cyan);
+    color: var(--classic-white);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(10, 55, 218, 0.8);
+}
+
+nav ul li a {
+    color: var(--jet-black);
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: var(--deep-forest);
+    text-shadow: 0 0 5px rgba(255, 255, 51, 0.8);
+}
+/* ***************** 90's Neon Navigation Bar end ***************** */
 
 main {
 	margin: 0.5rem;
@@ -101,3 +174,4 @@ p:has(.involvement-trigger:hover) ~ .example {
   
   outline: 1px solid var(--neon-green); 
 }
+

@@ -29,7 +29,7 @@ body {
     font-family: 'Comic Sans MS', 'Impact', sans-serif;
     color: var(--sunflower-yellow);
     text-shadow: 2px 2px 0 var(--retro-purple);
-    font-size: 1.8rem;
+    font-size: 1.1rem;
     margin-bottom: 20px;
 }
 
@@ -114,7 +114,7 @@ h1, .h-left {
     /* Bold 90's Header Styling */
     color: var(--sunflower-yellow);
     font-family: 'Comic Sans MS', 'Impact', sans-serif;
-    font-size: 1.3rem;
+	font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 3px 3px 0 var(--retro-purple);
@@ -126,7 +126,7 @@ h2 {
     /* Bold 90's Subheader Styling */
     color: var(--sunflower-yellow);
     font-family: 'Comic Sans MS', 'Impact', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     text-shadow: 2px 2px 0 var(--retro-purple);
@@ -138,7 +138,7 @@ h3, .h3-span {
     /* Bold 90's Header Styling */
     color: var(--sunflower-yellow);
     font-family: 'Comic Sans MS', 'Impact', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     text-transform: uppercase;
     letter-spacing: 1.2px;
     text-shadow: 2px 2px 0 var(--retro-purple);
@@ -218,3 +218,20 @@ strong {
     to { visibility: hidden; }
 }
  
+
+.loading-dots {
+        font-weight: bold;
+    }
+    /* Create the dots dynamically */
+.loading-dots::after {
+    content: '';
+    animation: dots 1.5s infinite steps(4);
+}
+
+@keyframes dots {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+}
+

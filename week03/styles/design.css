@@ -9,42 +9,116 @@ footer {
 	margin: 0 auto;
 }
 
+#course-title {
+    display: block;
+    text-align: left;
+    font-family: "Ubuntu", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-left: 1rem;
+    margin-top: .5rem;
+    padding-bottom: 2rem;
+    color: #4a3102; 
+}
+
 .banner {
-	width: 100vw;
+	width: 760px;
 	padding: 1rem;
 	background-color: #eee;
 	overflow: hidden;
   	white-space: nowrap;
 }
+/* Handles the horizontal scrolling */
 .scroll-text {
   display: inline-block;
   padding: 0 20px;
-  /* 
-     'alternate' makes it go back and forth. 
-     'ease-in-out' makes the bounce look more natural.
-  */
-  animation: bounce-back 8s ease-in-out infinite alternate;
+  animation: bounce-back 1s ease-in-out infinite alternate;
 }
 
 @keyframes bounce-back {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    /* Adjust this percentage based on text length vs container width */
-    transform: translateX(calc(100vw - 100%));
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(760px - 100%)); }
 }
 
-/* Optional: Pause on hover so people can read the details */
+/* Pauses the horizontal scroll on hover */
 .banner:hover .scroll-text {
   animation-play-state: paused;
 }
 
-h1 {
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+/* Trigger the vertical bounce on the WRAPPER instead */
+.banner:hover .hover-bounce-wrapper {
+  animation: bounce-up 1s ease-in-out infinite alternate;
 }
 
+@keyframes bounce-up {
+  from { transform: translateY(-15px); }
+  to { transform: translateY(20px); }
+}
+
+h1 {
+	border-bottom: 1px solid rgba(132, 159, 52, 0.1);
+	font-size: 1.2rem;
+}
+
+/* ***************** 90's Neon Navigation Bar start ***************** */
+:root {
+	/* 90's Neon Color Palette */
+	--neon-cyan: #00ffff;
+	--neon-blue: #1e90ff;
+	--neon-magenta: #ff00ff;
+	--sunflower-yellow: #ffff33;
+	--retro-purple: #702963;
+	--classic-white: #ffffff;
+	--jet-black: #000000;
+	--deep-forest: #064b3c;
+}
+nav {
+    /* 90's Neon Navigation Bar */
+    /* padding: 10px; */
+    margin-bottom: 20px;
+    border: 3px solid var(--neon-blue);
+    box-shadow: 0 0 10px rgba(6, 195, 104, 0.5);
+}
+
+nav.show {
+    display: block;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    gap: 15px;
+}
+
+
+nav ul li {
+    /* Neon Button Style for Navigation Links */
+    background-color: var(--neon-cyan);
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 5px rgba(91, 50, 229, 0.5);
+    margin: 5px 0;
+}
+
+nav ul li:hover {
+    background-color: var(--neon-cyan);
+    color: var(--classic-white);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(10, 55, 218, 0.8);
+}
+
+nav ul li a {
+    color: var(--jet-black);
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: var(--deep-forest);
+    text-shadow: 0 0 5px rgba(255, 255, 51, 0.8);
+}
+/* ***************** 90's Neon Navigation Bar end ***************** */
 main {
 	display: grid;
 	grid-template-columns: 1fr auto; 
@@ -53,6 +127,7 @@ main {
 }
 
 h2 {
+  font-size: 1.1rem;
 	color: navy;
 	text-align: left;
 	grid-row: 1 / 2;

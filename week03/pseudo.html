@@ -13,21 +13,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/pseudo.css">
+    <link rel="preload" href="../data/por-nav.json" as="fetch" crossorigin>
+    <script src="../scripts/hydrate-v5.1.js" data-file="../data/por-nav.json" defer> </script>
     <script src="../scripts/rickster-egg-v2.js" defer></script>
 </head>
 
 <body>
-    <h1>CSS Pseudo Class Activity</h1>
-    <main>
-        <p>Anchor Tag: <a class="involvement-trigger" href="https://churchofjesuschrist.org" target="_blank">The Church of Jesus Christ of
-                Latter-day Saints</a></p>
+    <header>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>
+        <nav>
+            <ul id="navigation">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../portfolio.html">portfolio</a></li>
+            </ul>
+        </nav>
+        <h1>CSS Pseudo Class Activity</h1>
+    </header>
+        <main>
+            <p>Anchor Tag: <a class="involvement-trigger" href="https://churchofjesuschrist.org" target="_blank">The Church of Jesus Christ of Latter-day Saints</a></p>
 
-        <div class="datatable">
-            <div class="row">
-                <div class="col">1-1</div>
-                <div class="col">1-2</div>
-            </div>
-            <div class="row">
+            <div class="datatable">
+                <div class="row">
+                    <div class="col">1-1</div>
+                    <div class="col">1-2</div>
+                </div>
+                <div class="row">
                 <div class="col">2-1</div>
                 <div class="col">2-2</div>
             </div>

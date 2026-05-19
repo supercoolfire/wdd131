@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A tool to preview the Google search results for a given query.">
+    <title>SEO Search Result Previewer</title>
+    <style>
+        :root {
+            --google-blue: #1a0dab;
+            --google-green: #006621;
+            --google-gray: #4d5156;
+            --google-visited: #609;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: var(--google-gray);
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            padding-left: 20px;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #3c4043;
+        }
+
+        button:hover {
+            border: 1px solid #dadce0;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+
+        .preview-section {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .preview-label {
+            font-weight: bold;
+            color: var(--google-gray);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Google Result Mockup */
+        .google-result {
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .result-url {
+            color: #202124;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .result-url cite {
+            font-style: normal;
+            color: #202124;
+        }
+
+        .result-title {
+            color: var(--google-blue);
+            font-size: 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .result-title:hover {
+            text-decoration: underline;
+        }
+
+        .result-description {
+            color: var(--google-gray);
+            font-size: 14px;
+            line-height: 1.58;
+            word-wrap: break-word;
+        }
+
+        .rich-snippet {
+            font-size: 13px;
+            color: #70757a;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap; /* Allow items to wrap if too long */
+        }
+
+        .rich-snippet span {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .json-ld-section {
+            margin-top: 30px;
+            padding: 15px;
+            background: #f1f3f4;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .json-ld-section h3 {
+            font-size: 16px;
+            margin-top: 0;
+            color: var(--google-gray);
+        }
+
+        .json-ld-content {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .error-message {
+            color: #d93025;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .info {
+            font-size: 12px;
+            color: #70757a;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SEO Search Result Previewer</h1>
+        
+        <div class="input-group">
+            <input type="text" id="urlInput" placeholder="Enter full URL or file path (e.g., https://example.com or index.html)" value="index.html">
+            <button id="loadBtn">Preview Result</button>
+        </div>
+
+        <div id="error" class="error-message"></div>
+
+        <div class="preview-section">
+            <span class="preview-label">Search Result Preview:</span>
+            
+            <div class="google-result">
+                <div class="result-url">
+                    <cite id="previewUrl">Enter a URL to preview</cite>
+                </div>
+                <a href="#" class="result-title" id="previewTitle">Loading title...</a>
+                <div class="result-description" id="previewDescription">
+                    Loading description...
+                </div>
+                <div id="richSnippet" class="rich-snippet"></div>
+            </div>
+        </div>
+
+        <div id="jsonLdSection" class="json-ld-section">
+            <h3>Structured Data (JSON-LD) Detected</h3>
+            <div id="jsonLdContent" class="json-ld-content"></div>
+        </div>
+
+        <div class="info">
+            Note: This tool works with any valid URL. Local files require a server to avoid CORS restrictions. Public URLs may require a CORS proxy if accessed cross-domain.
+        </div>
+    </div>
+
+    <script>
+        const loadBtn = document.getElementById('loadBtn');
+        const urlInput = document.getElementById('urlInput');
+        const previewTitle = document.getElementById('previewTitle');
+        const previewDescription = document.getElementById('previewDescription');
+        const previewUrl = document.getElementById('previewUrl');
+        const richSnippet = document.getElementById('richSnippet');
+        const jsonLdSection = document.getElementById('jsonLdSection');
+        const jsonLdContent = document.getElementById('jsonLdContent');
+        const errorDiv = document.getElementById('error');
+
+        async function updatePreview() {
+            const inputUrl = urlInput.value.trim();
+            if (!inputUrl) return;
+
+            errorDiv.style.display = 'none';
+            jsonLdSection.style.display = 'none';
+            richSnippet.innerHTML = '';
+            
+            try {
+                let fetchUrl = inputUrl;
+                // Handle relative local paths
+                if (!inputUrl.startsWith('http://') && !inputUrl.startsWith('https://')) {
+                    if (inputUrl.startsWith('/')) {
+                        fetchUrl = window.location.origin + inputUrl;
+                    } else {
+                        const currentPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+                        fetchUrl = window.location.origin + currentPath + '/' + inputUrl;
+                    }
+                }
+
+                const response = await fetch(fetchUrl);
+                if (!response.ok) throw new Error(`Could not load content. Status: ${response.status} ${response.statusText}. Check the URL and ensure CORS allows access.`);
+                
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                const title = doc.querySelector('title')?.innerText || 'No Title Found';
+                const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') || 'No description found. Add a <meta name="description"> tag to improve SEO.';
+
+                previewTitle.innerText = title;
+                previewDescription.innerText = description;
+                // Use the actual input URL for preview
+                previewUrl.innerText = fetchUrl;
+
+                // --- JSON-LD Parsing ---
+                const jsonLdScripts = doc.querySelectorAll('script[type="application/ld+json"]');
+                let foundJsonLd = [];
+
+                jsonLdScripts.forEach(script => {
+                    try {
+                        const data = JSON.parse(script.textContent);
+                        foundJsonLd.push(data);
+                    } catch (e) {
+                        console.error("Error parsing JSON-LD script", e);
+                    }
+                });
+
+                // Check for dynamic meta-modified.js script
+                const hasMetaModified = doc.querySelector('script[src*="meta-modified.js"]');
+                if (hasMetaModified && foundJsonLd.length === 0) {
+                    // Simulate what meta-modified.js does
+                    const mockDate = new Date().toISOString();
+                    const simulatedData = {
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
+                        "dateModified": mockDate,
+                        "description": "Updated recently (Simulated from meta-modified.js)"
+                    };
+                    foundJsonLd.push(simulatedData);
+                    
+                    richSnippet.innerHTML = `<span>📅 Last modified: Just now</span>`;
+                }
+
+                if (foundJsonLd.length > 0) {
+                    jsonLdSection.style.display = 'block';
+                    jsonLdContent.textContent = JSON.stringify(foundJsonLd, null, 2);
+                    
+                    // Try to extract rich snippet info
+                    const firstData = foundJsonLd[0];
+                    let richSnippetHtml = '';
+
+                    if (firstData.dateModified) {
+                        const date = new Date(firstData.dateModified);
+                        richSnippetHtml += `<span>📅 ${date.toLocaleDateString()}</span>`;
+                    }
+                    if (firstData.aggregateRating && firstData.aggregateRating.ratingValue) {
+                        richSnippetHtml += `<span>⭐ ${firstData.aggregateRating.ratingValue} (${firstData.aggregateRating.ratingCount} reviews)</span>`;
+                    }
+                    if (firstData.interactionStatistic && firstData.interactionStatistic.userInteractionCount) {
+                        richSnippetHtml += `<span>💬 ${firstData.interactionStatistic.userInteractionCount} comments</span>`;
+                    }
+                    // Add more rich snippet types as needed
+
+                    richSnippet.innerHTML = richSnippetHtml;
+                }
+
+            } catch (err) {
+                errorDiv.innerText = err.message;
+                errorDiv.style.display = 'block';
+                
+                // Fallback if fetch fails
+                previewTitle.innerText = "Error Loading Data";
+                previewDescription.innerText = "Please verify the URL is correct. Public URLs may require a CORS proxy, and local files need to be accessed through a web server (like Live Server).";
+            }
+        }
+
+        loadBtn.addEventListener('click', updatePreview);
+        
+        // Initial load
+        window.addEventListener('DOMContentLoaded', updatePreview);
+
+        // Allow Enter key to trigger search
+        urlInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') updatePreview();
+        });
+    </script>
+</body>
+</html>
