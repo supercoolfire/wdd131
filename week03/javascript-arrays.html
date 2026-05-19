@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description"
+        content="90s retro theme notes on An array is a data structure that stores multiple values in a single variable instead of declaring separate variables for each value..">
+    <meta name="keywords" content="JavaScript Arrays, Data Structures">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Arrays Notes | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="icon" href="../images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../styles/prism.css">
+    <link rel="stylesheet" href="styles/javascript-arrays.css">
+    <link rel="preload" href="../data/por-nav.json" as="fetch" crossorigin>
+    <script src="../scripts/prism.js"></script>
+    <script src="../scripts/hydrate-v5.js" data-file="../data/por-nav.json" defer> </script>
+    <script src="../scripts/getdates.js" defer></script>
+    <script src="../scripts/nav-burger.js" defer></script>
+    <script src="../scripts/modal-click-origin.js" defer></script>
+    <script src="../scripts/rickster-egg-v2.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>&nbsp;<span class="theme blink">(80's
+            theme)</span>
+        <nav>
+            <ul id="navigation"></ul>
+        </nav>
+    </header>
+    <main>
+        <div class="head-span">
+        <span class="h-left">W03 Learning Activity:&nbsp;</span>
+        <h1>Responsive Images & JavaScript Arrays</h1></div>
+        <section class="overview">
+            <h2>Notes <span>(Responsive Images) Overview</span></h2>
+            <p>The work of <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">responsive image design</a>is to support smaller page weights and deliver content based on screen size. You have already worked on basic image optimization (format, sizing, and quality). You also need to consider how images appear on different screen sizes. This activity's objective is to reduce page weight while maintaining clarity and functionality across screen sizes and viewports (the visible area of a web page). </p>
+        </section>
+        <section class="prepare">
+            <h3>Resources</h3>
+            <ul>
+                <li><p>This activity focuses on applying the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#Using_the_srcset_and_sizes_attributes" target="_blank" rel="noopener">srcset</a>attribute with the picture and source elements. The browser parses the responsive image syntax and decides which image is the best match.</p></li>
+                <li>The <a href="https://byui-cse.github.io/cse-ww-program/student/dev-standards.html" target="_blank" rel="noopener"><strong>viewport meta element</strong></a>has been properly applied to the document.</li>
+                <li><div class="callout info"><p><strong>Art direction</strong>involves cropping and resizing images to focus the user's attention on a specific part of the image, ensuring that design objectives are met across different viewport sizes. </p><p>Read: 📄 <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/responsive_images#Art_direction" target="_blank" rel="noopener">Art Direction</a>– MDN </p></div></li>
+                <li>Navigate to <a href="https://www.churchofjesuschrist.org/temples/list?lang=eng" target="_blank" rel="noopener">Temple List</a>and click on a temple link of your choice to gain access to that temple's <strong>Media Gallery</strong>. </li>
+                <li>Using an image editor, like <a href="https://pixlr.com/e/" target="_blank" rel="noopener">Pixlr E</a>, load the downloaded image file and create three (3) different images</li>
+                <li><div class="callout info">Emmet Shorthand (enter syntax + tab): <pre><code class="cli hljs language-less"><span class="hljs-selector-tag">main</span>&gt;<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.hero</span>&gt;<span class="hljs-selector-tag">picture</span>&gt;<span class="hljs-selector-tag">source</span>:<span class="hljs-selector-tag">media</span>*<span class="hljs-number">2</span>+<span class="hljs-selector-tag">img</span></code></pre></div></li>
+                <li><a href="https://web.dev/optimize-cls/">Optimize Cumulative Layout Shift</a>– Osmani and Pollard, web.dev </li>
+                <li>
+                    <div style="display: flex; gap: 20px;">
+                        <div style="display: flex; flex-direction: column;">
+
+                        <div class="img-auto">This is the easiest way to maintain aspect ratio </div>
+                        <div class="img-auto-css">
+                            <pre><code class="css hljs language-css">
+.hero img {
+  width: 100%;
+  height: auto;
+}                                
+                            </code></pre></div>
+                        </div>
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="img-fit">Be mindful of art direction with responsive results</div>
+                            <div class="img-fit-css">
+                                <pre><code class="css hljs language-css">
+.hero img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}                               
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><p>Here is an example of this error along with a solution using CSS object-fit on CodePen ☼ <a href="https://codepen.io/BYU-Idaho/pen/gbYmqoy" target="_blank" rel="noopener">object-fit</a></p></li>
+                <li>Another solution is to use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio" target="_blank" rel="noopener">aspect-ratio</a>property. </li>
+                <li></li>
+            </ul>
+        </section>
+
+
+<div class="callout reference">
+      <h3>Optional Resources</h3>
+      <ul>
+        <li><a href="https://www.youtube-nocookie.com/embed/ojZRjhcR3yw?rel=0&amp;showinfo=0" data-preview-alt="Working with Responsive Images" target="_blank" rel="noopener">Working with
+            Responsive Images</a> | <span class="smaller"><em>(6:49 mins, <a href="https://docs.google.com/document/d/e/2PACX-1vTh9y1ppiDLWmG4JJj9B27k5WKvQXBOKJpxVa69hOC7NadANyr2OSUNLlBLjewXmkM_KAi_rn7ZD3cB/pub">Responsive
+                Images Transcript</a>)</em></span></li>
+        <li><a href="https://web.dev/serve-responsive-images/?utm_source=lighthouse&amp;utm_medium=devtools" target="_blank" rel="noopener">Serve Responsive Images</a> – Katie Hempenius -
+          dev.to</li>
+
+        <li><a href="https://web.dev/aspect-ratio/" target="_blank" rel="noopener">Aspect-Ratio CSS Property</a>
+          – Una Kravets – web.dev</li>
+      </ul>
+    </div>
+
+
+
+
+        <section class="overview">
+            <h2>Notes <span>(JavaScript Arrays) Overview</span></h2>
+            <p>An array is a data structure that stores multiple values in a single variable instead of declaring separate variables for each value.</p>
+        </section>
+        <section class="prepare">
+            <h3>Optional Resources</h3>
+            <p>Reference <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">JavaScript Arrays Reference</a>– MDN</p>
+            <div class="callout info">
+                <p>This reference provides a complete list of array methods; several are used extensively in this course.</p>
+            </div>
+            <p><a href="https://dev.to/webdev-mohdamir/master-javascript-array-methods-like-a-pro-part-1-1f3j">Master JavaScript Array Methods Like a Pro</a></p>
+
+            <ol>
+                <li>
+                    <strong>push():</strong><span>Adds one or more elements to the end of an array and returns the new length.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const planets = ['Mercury', 'Venus', 'Earth'];
+planets.push('Mars');
+console.log(planets); // Output: ["Mercury", "Venus", "Earth", "Mars"]
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>pop():</strong><span>Removes the last element from an array and returns it.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const fruits = ['apple', 'banana', 'cherry'];
+const removedFruit = fruits.pop();
+console.log(removedFruit); // Output: "cherry"
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>shift():</strong><span>Removes the first element from an array and returns it.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const cars = ['BMW', 'Mercedes', 'Audi'];
+const shiftedCar = cars.shift();
+console.log(shiftedCar); // Output: "BMW"
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>unshift():</strong><span>Adds one or more elements to the beginning of an array and returns the new length.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const animals = ['lion', 'tiger', 'leopard'];
+const newLength = animals.unshift('cheetah', 'panther');
+console.log(newLength); // Output: 5
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>concat():</strong><span>Merges two or more arrays and returns the new array.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const fruits1 = ['apple', 'banana'];
+const fruits2 = ['cherry', 'orange'];
+const allFruits = fruits1.concat(fruits2);
+console.log(allFruits); // Output: ["apple", "banana", "cherry", "orange"]
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>slice():</strong><span>Extracts a section of an array and returns a new array.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const pizzaToppings = ['pepperoni', 'mushrooms', 'onions', 'sausage', 'green peppers'];
+const vegetarianSlice = pizzaToppings.slice(1, 4);
+console.log(vegetarianSlice); // Output: ["mushrooms", "onions", "sausage"]
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>splice():</strong><span>Removes or adds elements from an array and returns the removed elements.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const fish = ['trout', 'salmon', 'bass', 'pike'];
+const removedFish = fish.splice(2, 1, 'catfish', 'perch');
+console.log(removedFish); // Output: ["bass"]
+console.log(fish); // Output: ["trout", "salmon", "catfish", "perch", "pike"]
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>lastIndexOf():</strong><span>Returns the last index at which a given element can be found in the array.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const fruits = ['apple', 'banana', 'cherry', 'banana'];
+const lastBananaIndex = fruits.lastIndexOf('banana');
+console.log(lastBananaIndex); // Output: 3
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>join():</strong><span>Joins all elements of an array into a string.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const colors = ['red', 'green', 'blue'];
+const colorString = colors.join(',');
+console.log(colorString); // Output: "red,green,blue"
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>indexOf():</strong><span>Returns the first index at which a given element can be found in the array.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const fruits = ['apple', 'banana', 'cherry', 'banana'];
+const bananaIndex = fruits.indexOf('banana');
+console.log(bananaIndex); // Output: 1
+                    </code></pre>
+                </li>
+                <li>
+                    <strong>reverse():</strong><span>Reverses the order of the elements in an array.</span>
+                    <pre><code class="javascript hljs language-javascript">
+const ingredients = ['flour', 'sugar', 'eggs', 'butter'];
+const recipe = ingredients.join(', ');
+console.log(recipe); // Output: "flour, sugar, eggs, butter"
+                    </code></pre>
+                </li>
+            </ol>
+        </section>
+
+            <div class="loading-dots">つづく</div>
+    </main>
+    <footer>
+    </footer>
+</body>
+
+</html>

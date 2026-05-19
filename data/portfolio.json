@@ -83,6 +83,12 @@
                                 { "tag": "div", "insertion":"prepend", "id": "preview-w3a4", "class": "preview", "href": "week03/responsive-images.html" , "innerHTML": "<p class='loading-dots'>Loading image file formats preview</p>"}, 
                                 {"textContent": "W03 Learning Activity: Responsive Images" }
                             ]}
+                        ]},
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week03/javascript-arrays.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w3a5", "class": "preview", "href": "week03/javascript-arrays.html" , "innerHTML": "<p class='loading-dots'>Loading image file formats preview</p>"}, 
+                                {"textContent": "W03 Learning Activity: JavaScript Arrays" }
+                            ]}
                         ]}
                         
                     ] }
