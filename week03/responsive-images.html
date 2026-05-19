@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description"
+        content="Demonstrates responsive image design to reduce page weight and deliver optimized images that maintain clarity across all screen sizes and viewports.">
+    <meta name="keywords" content="responsive images, image optimization, performance, accessibility">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Images | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/responsive-images.css">
+    <link rel="stylesheet" href="styles/responsive-images-large.css" media="(min-width: 640px)">
+    <link rel="preload" href="../data/responsive-images.json" as="fetch" crossorigin>
+    <script src="../scripts/hydrate-v5.js" data-file="../data/responsive-images.json" defer> </script>
+    <script src="../scripts/getdates.js" defer></script>
+    <script src="../scripts/nav-burger.js" defer></script>
+    <script src="../scripts/modal-click-origin.js" defer></script>
+    <script src="../scripts/rickster-egg-v2.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li class="loading-dots">Loading navigation</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero">
+            <picture>
+                <source media="(min-width: 1000px)" srcset="images/responsive-images/hero-large.webp">
+                <source media="(min-width: 500px)" srcset="images/responsive-images/hero-medium.webp">
+                <img src="images/responsive-images/hero-small.webp" alt="Responsive Images" fetchpriority="high">
+            </picture>
+        </div>
+        <div class="loading-dots">Loading main</div>
+    </main>
+
+    <footer>
+        <p>
+            &copy;<span id="currentyear"></span> | Jayser Pilapil | United State of Calamity
+        </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>

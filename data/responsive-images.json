@@ -1,0 +1,29 @@
+{
+"dont-get-lost":{
+    "querySelector": "nav",
+    "tag": "ul",
+    "id": "navigation",
+    "insertion": "replace",
+    "items": [
+        {"tag":"li","items":[{"tag":"a","href":"../index.html","textContent":"Home"}]},
+        {"tag":"li","items":[{"tag":"a","href":"../portfolio.html","textContent":"Portfolio"}]}
+    ]
+},
+"superman": {
+    "querySelector": "main",
+    "tag": "div",
+    "class": "hero",
+    "insertion": "replace",
+    "items": [
+        {
+            "tag": "picture",
+            "items": [
+               {"tag":"source","srcset":"images/responsive-images/hero-large.webp","media":"(min-width:1000px)"},
+                {"tag":"source","srcset":"images/responsive-images/hero-medium.webp","media":"(min-width:500px)"},
+                {"tag":"img","src":"images/responsive-images/hero-small.webp","alt":"Manila Philippines Temple","width":"500","height":"250","fetchpriority":"high"}
+            ]
+        }
+    ]
+}
+        
+}
