@@ -1,91 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="Demonstrates responsive image design to reduce page weight and deliver optimized images that maintain clarity across all screen sizes and viewports.">
+    <meta name="keywords" content="responsive images, image optimization, performance, accessibility">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles/testting.css">
-    <script src="/scripts/hydrate-v5.js" data-file="/data/test.json"></script>
-</head>
-<body>
+    <title>Responsive Images | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&amp;display=swap" media="all" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/responsive-images.css">
+    <link rel="stylesheet" href="styles/responsive-images-large.css" media="(min-width: 640px)">
+    <link rel="preload" href="../data/responsive-images.json" as="fetch" crossorigin="">
+    <script src="../scripts/hydrate-v5.js" data-file="../data/responsive-images.json" defer=""> </script>
+    <script src="../scripts/getdates.js" defer=""></script>
+    <script src="../scripts/nav-burger.js" defer=""></script>
+    <script src="../scripts/modal-click-origin.js" defer=""></script>
+    <script src="../scripts/rickster-egg-v2.js" defer=""></script>
+<style>
+        .modal-rickster-egg {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        video#rick-video {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .rickster-egg { cursor: pointer; }
+    </style><script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+
+<body data-new-gr-c-s-check-loaded="14.1292.0" data-gr-ext-installed="">
     <header>
-        <span class="title">
-            WDD 131: Dynamic Web Fundamentals
-        </span>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>
+        <button type="button" id="menu" aria-label="Menu"></button>
         <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Projects</a></li>
+            <ul id="navigation">
+                <li class="loading-dots">Loading navigation</li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>
-            Firstname Lastname
-        </h1>
-        <div class="cards">
-            <div class="card">
-                <h2>
-                    About Me
-                </h2>
-                <div class="card1content">
-                    
-                    <div class="pro-pic-wrapper">
-                        <img class="me-pic" src="http://picsum.photos/100/200" alt="" loading="lazy">
-                    </div>
-                    
-                    <div class="content-details">
-                        <p> my name is Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto!</p>
-                        <h3>
-                            Place Name
-                        </h3>
-                        <div class="country-wrapper">
-                            <figure>
-                                <img src="http://picsum.photos/200/100" alt="" loading="lazy">
-                                <figcaption>Lorem ipsum dolor sit amet.</figcaption>
-                            </figure>
-                            <p>My location is Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, provident!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <h2>
-                    Web Dev Resources
-                </h2>
-                <div class="card2content">
-                    <ul>
-                        <li><a href="https://developer.mozilla.org/en-US/">MDN Web Docs</a></li>
-                        <li><a href="https://www.w3schools.com/">W3Schools</a></li>
-                        <li><a href="https://css-tricks.com/">CSS-Tricks</a></li>
-                        <li><a href="https://stackoverflow.com/">Stack Overflow</a></li>
-                        <li><a href="https://github.com/">GitHub</a></li>
-                        <li><a href="https://codepen.io/">CodePen</a></li>
-                        <li><a href="https://www.freecodecamp.org/">freeCodeCamp</a></li>
-                        <li><a href="https://javascript.info/">JavaScript.info</a></li>
-                        <li><a href="https://web.dev/">web.dev</a></li>
-                        <li><a href="https://www.codecademy.com/">Codecademy</a></li>
-                        <li><a href="https://frontendmasters.com/">Frontend Masters</a></li>
-                        <li><a href="https://scrimba.com/">Scrimba</a></li>
-                        <li><a href="https://dribbble.com/">Dribbble</a></li>
-                        <li><a href="https://www.figma.com/">Figma</a></li>
-                        <li><a href="https://fonts.google.com/">Google Fonts</a></li>
-                        <li><a href="https://unsplash.com/">Unsplash</a></li>
-                        <li><a href="https://www.canva.com/">Canva</a></li>
-                        <li><a href="https://colorhunt.co/">Color Hunt</a></li>
-                        <li><a href="https://html5up.net/">HTML5 UP</a></li>
-                        <li><a href="https://www.coursera.org/">Coursera</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </main>
+
+    <main><div class="hero"><picture><source srcset="images/responsive-images/hero-large.webp" media="(min-width: 1000px)"><source media="(min-width:500px)" srcset="images/responsive-images/hero-medium.webp"><img alt="Manila Philippines Temple" src="images/responsive-images/hero-small.webp" width="500" height="250"></picture></div></main>
+
     <footer>
-        <div class="footer">
-            <p> 2023 WDD 131: Dynamic Web Fundamentals </p>
-        </div>
+        <p>
+            ©<span id="currentyear">2026</span> | Jayser Pilapil | United State of Calamity
+        </p>
+        <p id="lastModified">Last Modified: 05/20/2026 00:09:59</p>
     </footer>
-</body>
-</html>
+
+
+
+            <div id="video-container" class="modal-rickster-egg" style="display: none;">
+                <video preload="none" playinline="true" id="rick-video" controls="true">
+                    <source src="/images/rick-roll.mp4?quality=0.5" type="video/mp4">
+                    <p>Your browser does not support the video tag.</p>
+                </video>
+            </div>

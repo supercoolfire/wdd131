@@ -57,6 +57,9 @@ h2 {
     padding: .5rem .75rem;
     background-color: #eeeeee;
     color: #000000;
+
+    width: 3em;
+    text-align: center;
     
     cursor: pointer;
 	position: absolute;
