@@ -1,0 +1,112 @@
+{
+    "head": {
+        "querySelector": "header",
+        "insertion": "replace",
+        "items": [
+            {"tag": "div", "class": "theme-toggle", "items": [
+                {"tag": "label", "class": "toggle-switch", "items": [
+                    {"tag": "input", "type": "checkbox", "id": "theme-slider", "aria-label": "Toggle dark/light theme"},
+                    {"tag": "span", "class": "slider", "items": [
+                        {"tag": "span", "class": "slider-icon light", "textContent": "☀️"},
+                        {"tag": "span", "class": "slider-icon dark", "textContent": "🌙"}
+                    ]}
+                ]}
+            ]}
+        ]
+    },
+    "shoulder": {
+        "querySelector": "main",
+        "tag":"main",
+        "insertion": "replace",
+        "items": [
+            {"tag": "h1", "textContent": "Easter Island" },
+            {"tag": "div", "class": "rapper", "items": [
+                {"tag": "div", "class": "hero", "items": [
+                    {"tag":"figure", "items": [
+                        {"tag": "picture", "class": "hero-day", "directories": {"small": "images/place", "medium": "images/place", "large": "images/place"}, "filename": "hero-day.webp", "breakpoints": {"w1": 500, "w2": 1000, "w3": 1500}, "dimensions": {"width": 1500, "height": 750, "aspectRatio": "2.00"}, "items": [
+                            {"tag": "source", "media": "(max-width: 500px)", "srcset": "images/place/hero-day-small.webp"},
+                            {"tag": "source", "media": "(max-width: 1000px)", "srcset": "images/place/hero-day-medium.webp"},
+                            {"tag": "img", "src": "images/place/hero-day-large.webp", "alt": "hero-day", "width": "500", "height": "250", "loading": "lazy"}
+                        ]},
+                        {"tag": "figcaption", "class": "light", "innerHTML": "\"Moai statues, Easter Island\" via <a href=\"https://www.piqsels.com/en/public-domain-photo-svtvg\">Piqsels</a> (Public Domain)."}
+                    ]},
+                    {"tag":"figure", "items": [
+                        {"tag": "picture" , "class": "hero-night", "directories": {"small": "images/place", "medium": "images/place", "large": "images/place"}, "filename": "hero-night.webp", "breakpoints": {"w1": 500, "w2": 1000, "w3": 1500}, "dimensions": {"width": 1500, "height": 750, "aspectRatio": "2.00"}, "items": [
+                            {"tag": "source", "media": "(max-width: 500px)", "srcset": "images/place/hero-night-small.webp"},
+                            {"tag": "source", "media": "(max-width: 1000px)", "srcset": "images/place/hero-night-medium.webp"},
+                            {"tag": "img", "src": "images/place/hero-night-large.webp", "alt": "hero-night", "width": "500", "height": "250", "loading": "lazy"}
+                        ]},
+                        {"tag": "figcaption", "class": "dark", "innerHTML": "\"Moais at Ahu Tongariki (Easter island, Chile). night shining moon and stars\" by <a href=\"https://www.istockphoto.com/portfolio/Lindrik?mediatype=photography\">Lindrik</a> is licensed under the <a href=\"https://www.istockphoto.com/help/licenses\">iStock Standard License</a>."}
+                    ]}
+                ]},
+                {"tag": "section", "id": "data", "class": "card", "items": [
+                    {"tag": "div", "class": "card__header", "items": [
+                        {"tag": "h2", "class": "card__title", "textContent": "Easter Island"}
+                    ]},
+                    {"tag": "div", "class": "card__body", "items": [
+                        {"tag": "dl", "class": "card__data-list", "items": [
+                            {"tag": "div", "class": "card__row", "items": [
+                                {"tag": "dt", "class": "card__label", "textContent": "Province:"},
+                                {"tag": "dd", "class": "card__value", "textContent": "Isla de Pascua"}
+                            ]},
+                            {"tag": "div", "class": "card__row", "items": [
+                                {"tag": "dt", "class": "card__label", "textContent": "Country:"},
+                                {"tag": "dd", "class": "card__value", "textContent": "Chile"}
+                            ]},
+                            {"tag": "div", "class": "card__row", "items": [
+                                {"tag": "dt", "class": "card__label", "textContent": "Area:"},
+                                {"tag": "dd", "class": "card__value", "textContent": "163.6 sq km"}
+                            ]},
+                            {"tag": "div", "class": "card__row", "items": [
+                                {"tag": "dt", "class": "card__label", "textContent": "Population:"},
+                                {"tag": "dd", "class": "card__value", "textContent": "7,750"}
+                            ]},
+                            {"tag": "div", "class": "card__row", "items": [
+                                {"tag": "dt", "class": "card__label", "textContent": "Famous For:"},
+                                {"tag": "dd", "class": "card__value", "textContent": "Moai Statues"}
+                            ]}
+                        ]}
+                    ]}
+                ]},
+                {"tag": "section", "id": "weather", "class": "card", "items": [
+                        {"tag": "div", "class": "card__header", "style": "background-color: #2b5b84;", "items": [
+                            {"tag": "h2", "class": "card__title", "items": [
+                                {"tag": "span", "id":"weatherUlikeit",  "textContent": "Weather"},
+                                {"tag": "span", "id":"iconNot", "textContent": "icon"}
+                            ]}
+                        ]},
+                        {"tag": "div", "class": "card__body", "items": [
+                            {"tag": "dl", "class": "card__data-list", "items": [
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Condition:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "Cloudy"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Temperature:"},
+                                    {"tag": "dd", "class": "card__value", "items": [
+                                        {"tag": "span", "id": "temp", "textContent": "18"},
+                                        {"tag": "span", "textContent": "°C"}
+                                    ]}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Wind:"},
+                                    {"tag": "dd", "class": "card__value", "items": [
+                                        {"tag": "span", "id": "windSpeed", "textContent": "12"},
+                                        {"tag": "span", "class": "wind-speed-unit", "textContent": " km/h"}
+                                    ]}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "id": "windChill", "class": "card__label", "textContent": "Wind Chill:"},
+                                    {"tag": "dd", "class": "card__value", "items": [
+                                        {"tag": "span", "id":"hotChile", "class": "loading-dots", "textContent": "Loading"}
+                                    ]}
+                                ]}
+                            ]}
+                        ]}
+
+                ] }
+
+            ]}
+        ]
+    }
+}

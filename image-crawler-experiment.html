@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="Boredom product is a tool to crawl images from specified local directories and generate a JSON database.">
+    <meta name="keywords" content="image crawler, image database, image optimization, image conversion">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Crawler Experiment | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/image-crawler-experiment.css">
+    <link rel="stylesheet" href="styles/image-crawler-experiment-large.css" media="(min-width: 640px)">
+    <link rel="preload" href="data/image-crawler-experiment.json" as="fetch" crossorigin>
+    <script src="scripts/hydrate-v5.js" data-file="data/image-crawler-experiment.json" defer> </script>
+    <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/nav-burger.js" defer></script>
+    <script src="scripts/rickster-egg-v2.js" defer></script>
+    <script src="scripts/modal-click-origin.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li class="loading-dots">Loading navigation</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>Image Crawler Experiment</h1>
+        
+        <div id="howto" class="loading-dots">Loading howto</div>
+
+        
+        <!-- Removed input UI and crawl button since JSON is pre-generated -->
+         
+        <details>
+            <summary>Output HTML</summary>
+            <section id="output-html-ui"></section>
+        </details>
+        <details>
+            <summary>Output JSON</summary>
+            <section id="output-json-ui"></section>
+        </details>
+        <section id="output-image-ui"></section>
+
+        <pre style="display: none;"><code>
+            output:
+            <picture class="debug-dynamic-picture" style="--w1: [W_1]px; --w2: [W_2]px; --wN: [W_N]px; --fallback-w: [W_Fallback]px;">
+            <!-- Dynamic Media Sources (Sorted ascending by width: W_1 < W_2 < W_N) -->
+            <source srcset="[FILE_PATH_1]" media="(max-width: [W_1]px)">
+            <source srcset="[FILE_PATH_2]" media="(max-width: [W_2]px)">
+            <source srcset="[FILE_PATH_N]" media="(max-width: [W_N]px)">
+            <!-- Fallback Asset (Rendered when viewport width is strictly greater than W_N) -->
+            <img src="[FILE_PATH_FALLBACK]" alt="[DYNAMIC_ALT_TEXT]" width="[DISPLAY_WIDTH]" height="[DISPLAY_HEIGHT]">
+            </picture>
+        </code></pre>
+
+        <script>
+            // Load pre-generated JSON on page load and render immediately
+            async function loadPreGeneratedJson() {
+                try {
+                    const response = await fetch('data/images-place.json');
+                    if (!response.ok) throw new Error('Failed to load pre-generated image JSON');
+                    
+                    const resultJson = await response.json();
+                    outputJson(resultJson);
+                    renderPictures(resultJson);
+                } catch (error) {
+                    console.error('Load error:', error);
+                    alert(`Error loading pre-generated JSON: ${error.message}`);
+                }
+            }
+
+            /**
+             * STEP 3: Function to output JSON to UI
+             */
+            function outputJson(json) {
+                const container = document.getElementById('output-json-ui');
+                if (!container) return;
+                container.innerHTML = '<h2>Generated JSON</h2>';
+                const pre = document.createElement('pre');
+                pre.textContent = JSON.stringify(json, null, 4);
+                container.appendChild(pre);
+            }
+
+            /**
+             * STEP 4: Function to output <picture> HTML matching the template blueprint
+             */
+function createResizableBox(nodeData, resizeObserver) {
+    // 1. Build the wrapper component frame used to intercept resize gestures
+    const resizeBox = document.createElement('div');
+    resizeBox.className = 'resizable-image-box';
+    resizeBox.style.width = "600px"; 
+    resizeBox.style.height = ""; 
+
+    // 2. Build the structural dynamic picture frame layout
+    const picture = document.createElement('picture');
+    picture.className = 'debug-dynamic-picture';
+    
+    if (nodeData.breakpoints) {
+        picture.style.setProperty('--w1', `${nodeData.breakpoints.w1}px`);
+        picture.style.setProperty('--w2', `${nodeData.breakpoints.w2}px`);
+        picture.style.setProperty('--fallback-w', `${nodeData.breakpoints.w3}px`);
+    }
+    
+    // Create dedicated badge element to prevent CSS content pseudo-clashes
+    const badge = document.createElement('div');
+    badge.className = 'debug-badge';
+    picture.appendChild(badge);
+    
+    // 3. Mount child components
+    nodeData.items.forEach(item => {
+        const el = document.createElement(item.tag);
+        Object.entries(item).forEach(([attr, val]) => {
+            if (attr !== 'tag') el.setAttribute(attr, val);
+        });
+        picture.appendChild(el);
+    });
+    
+    // Add bottom row-resize handle element 
+    const bottomHandle = document.createElement('div');
+    bottomHandle.className = 'resizable-bottom-handle';
+    resizeBox.appendChild(bottomHandle);
+    resizeBox.appendChild(picture);
+    
+    // Multi-edge mouse manipulation handling
+    resizeBox.addEventListener('mousedown', function(e) {
+        const rect = resizeBox.getBoundingClientRect();
+        
+        const closeToLeft = e.clientX <= rect.left + 8;
+        const closeToRight = e.clientX >= rect.right - 8;
+        const closeToBottom = e.clientY >= rect.bottom - 8;
+        
+        if (!closeToLeft && !closeToRight && !closeToBottom) return;
+        
+        e.preventDefault();
+        
+        const containerCenterX = rect.left + (rect.width / 2);
+        const startTop = rect.top;
+
+        // Get the structural image instance to preserve exact aspect ratio dimensions
+        const img = resizeBox.querySelector('img');
+        let aspect = 1; 
+        if (img && img.naturalWidth) {
+            aspect = img.naturalHeight / img.naturalWidth;
+        }
+
+        // Measure layout constraints from the parent container framework
+        const parentMaxWidth = resizeBox.parentElement ? resizeBox.parentElement.clientWidth : window.innerWidth;
+
+        function onMouseMove(moveEvent) {
+            let targetWidth = 0;
+            let targetHeight = 0;
+            let isOverLimit = false;
+
+            if (closeToLeft || closeToRight) {
+                // Determine target width from mouse X offset relative to container center
+                targetWidth = Math.max(200, Math.abs(moveEvent.clientX - containerCenterX) * 2);
+                
+                if (targetWidth >= parentMaxWidth) {
+                    targetWidth = parentMaxWidth;
+                    isOverLimit = true;
+                }
+                targetHeight = targetWidth * aspect;
+            }
+            
+            if (closeToBottom) {
+                // Determine target height from mouse Y offset relative to container top bounding box
+                targetHeight = Math.max(100, moveEvent.clientY - startTop);
+                targetWidth = targetHeight / aspect;
+                
+                if (targetWidth >= parentMaxWidth) {
+                    targetWidth = parentMaxWidth;
+                    targetHeight = targetWidth * aspect;
+                    isOverLimit = true;
+                }
+            }
+
+            // Apply calculated safe structural values straight to style targets
+            resizeBox.style.width = targetWidth + 'px';
+            resizeBox.style.height = targetHeight + 'px';
+
+            // Visual boundary confirmation alerts
+            if (isOverLimit) {
+                resizeBox.style.borderColor = '#ef4444';
+                resizeBox.style.borderStyle = 'solid';
+            } else {
+                // Reset style to match original hover styles configuration defaults
+                resizeBox.style.borderColor = '';
+                resizeBox.style.borderStyle = '';
+            }
+        }
+
+        function onMouseUp() {
+            window.removeEventListener('mousemove', onMouseMove);
+            window.removeEventListener('mouseup', onMouseUp);
+        }
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+    });
+    
+    resizeObserver.observe(resizeBox);
+    return resizeBox;
+}
+
+
+
+            function renderPictures(json) {
+                // Generate and output picture HTML to output-html-ui
+                const htmlContainer = document.getElementById('output-html-ui');
+                if (htmlContainer) {
+                    htmlContainer.innerHTML = '<h2>Generated HTML</h2>';
+                    const pre = document.createElement('pre');
+                    const code = document.createElement('code');
+                    let allHtml = '';
+                    Object.keys(json).forEach(key => {
+                        const nodeData = json[key];
+                        let picHtml = '<picture class="debug-dynamic-picture"';
+                        if (nodeData.breakpoints) {
+                            picHtml += ` style="--w1: ${nodeData.breakpoints.w1}px; --w2: ${nodeData.breakpoints.w2}px; --fallback-w: ${nodeData.breakpoints.w3}px;"`;
+                        }
+                        picHtml += '>\n';
+                        nodeData.items.forEach(item => {
+                            picHtml += `  <${item.tag}`;
+                            Object.entries(item).forEach(([attr, val]) => {
+                                if (attr !== 'tag') picHtml += ` ${attr}="${val}"`;
+                            });
+                            picHtml += '>\n';
+                        });
+                        picHtml += '</picture>\n\n';
+                        allHtml += picHtml;
+                    });
+                    code.textContent = allHtml;
+                    pre.appendChild(code);
+                    htmlContainer.appendChild(pre);
+                }
+
+                const container = document.getElementById('output-image-ui');
+                if (!container) return;
+                container.innerHTML = '<h2>Rendered Output (Drag corners horizontally to test breakpoints)</h2>';
+                
+                const grid = document.createElement('div');
+                grid.className = 'image-grid';
+
+                // Set up a modern ResizeObserver loop engine to handle live component measurements
+const resizeObserver = new ResizeObserver(entries => {
+    for (let entry of entries) {
+        const picture = entry.target.querySelector('picture');
+        if (!picture) continue;
+        
+        const componentWidth = Math.round(entry.contentRect.width);
+        
+        const w1 = parseInt(picture.style.getPropertyValue('--w1')) || 0;
+        const w2 = parseInt(picture.style.getPropertyValue('--w2')) || 0;
+        
+        let badgeText = "";
+        
+        if (w1 && componentWidth <= w1) {
+            badgeText = `🔴 Small Mode | Box: ${componentWidth}px (≤ ${w1}px)`;
+            picture.style.setProperty('--border-color', '#ef4444');
+        } else if (w2 && componentWidth <= w2) {
+            badgeText = `🟡 Medium Mode | Box: ${componentWidth}px (≤ ${w2}px)`;
+            picture.style.setProperty('--border-color', '#f59e0b');
+        } else {
+            badgeText = `🟢 Large Fallback | Box: ${componentWidth}px (> ${w2}px)`;
+            picture.style.setProperty('--border-color', '#10b981');
+        }
+        
+        // Target dedicated badge element explicitly to handle dynamic sizing smoothly
+        const badgeNode = picture.querySelector('.debug-badge');
+        if (badgeNode) badgeNode.textContent = badgeText;
+    }
+});
+
+                Object.keys(json).forEach(key => {
+                    const nodeData = json[key];
+                    const resizeBox = createResizableBox(nodeData, resizeObserver);
+                    grid.appendChild(resizeBox);
+                });
+
+                container.appendChild(grid);
+            }
+
+            // Initialize page load sequence
+            document.addEventListener('DOMContentLoaded', loadPreGeneratedJson);
+            
+        </script>
+
+    </main>
+
+    <footer>
+        <p>
+            &copy;<span id="currentyear"></span> | Jayser Pilapil | United State of Calamity
+        </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+{
+    "hero-day": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/place",
+            "medium": "images/place",
+            "large": "images/place"
+        },
+        "filename": "hero-day.webp",
+        "breakpoints": {
+            "w1": 500,
+            "w2": 1000,
+            "w3": 1500
+        },
+        "dimensions": {
+            "width": 1500,
+            "height": 750,
+            "aspectRatio": "2.00"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 500px)",
+                "srcset": "images/place/hero-day-small.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 1000px)",
+                "srcset": "images/place/hero-day-medium.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/place/hero-day-large.webp",
+                "alt": "hero-day",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "hero-night": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/place",
+            "medium": "images/place",
+            "large": "images/place"
+        },
+        "filename": "hero-night.webp",
+        "breakpoints": {
+            "w1": 500,
+            "w2": 1000,
+            "w3": 1500
+        },
+        "dimensions": {
+            "width": 1500,
+            "height": 750,
+            "aspectRatio": "2.00"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 500px)",
+                "srcset": "images/place/hero-night-small.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 1000px)",
+                "srcset": "images/place/hero-night-medium.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/place/hero-night-large.webp",
+                "alt": "hero-night",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    }
+}

@@ -36,17 +36,25 @@
                 <li class="loading-dots">Loading navigation</li>
             </ul>
         </nav>
+        <h1>Responsive Images</h1>
     </header>
 
     <main>
         <div class="hero">
             <picture>
-                <source media="(min-width: 1000px)" srcset="images/responsive-images/hero-large.webp">
-                <source media="(min-width: 500px)" srcset="images/responsive-images/hero-medium.webp">
-                <img src="images/responsive-images/hero-small.webp" alt="Responsive Images" fetchpriority="high">
-            </picture>
+                <source srcset="images/responsive-images/hero-large.webp" media="(min-width:1000px)">
+                <source srcset="images/responsive-images/hero-medium.webp" media="(min-width:500px)">
+                <img src="images/responsive-images/hero-small.webp" alt="Manila Philippines Temple" width="500" height="250" fetchpriority="high">
+                </picture>
+                </div>
+                <div class="loading-dots">Loading main</div>
+                <div class="hero">
+                    <picture>
+                        <source srcset="images/responsive-images/hero-small.webp" media="(max-width: 500px)">
+                        <source srcset="images/responsive-images/hero-medium.webp" media="(max-width: 1000px)">
+                        <img srcset="images/responsive-images/hero-large.webp" alt="Hero Photo" width="500" height="250">
+                    </picture>
         </div>
-        <div class="loading-dots">Loading main</div>
     </main>
 
     <footer>

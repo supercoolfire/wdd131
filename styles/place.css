@@ -1,0 +1,406 @@
+/* Define CSS color variables for light (default) and dark themes */
+:root {
+  /* Base page colors */
+  --page-bg: #f3f4f6;
+  --page-text-color: #1a202c;
+
+  /* Toggle switch colors */
+  --toggle-slider-bg: #ccc;
+  --toggle-thumb-bg: #ffffff;
+  --toggle-active-bg: #2b5b84;
+  --toggle-focus-shadow: #2b5b84;
+
+  /* Card base colors */
+  --card-bg: rgba(255, 255, 255, 0.3); /* transparency */
+  --card-border: rgba(0, 0, 0, 0.05);
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --card-body-bg: rgba(250, 251, 252, 0.3); /* transparency */
+  --card-row-border: rgba(0, 0, 0, 0.04);
+
+  /* Card text colors */
+  --card-label-color: #000000;
+  --card-value-color: #000000;
+
+  /* Figcaption colors for light theme */
+  --figcaption-text-color: #4a5568;
+  --figcaption-link-color: #050561;
+
+  /* Header background colors (remained consistent across themes) */
+  --header-data-bg: #1e7145;
+  --header-weather-bg: #2b5b84;
+  --card-title-color: #ffffff;
+}
+
+/* Override variables for dark theme (applied via .dark-theme class) */
+html.dark-theme {
+  /* Base page colors */
+  --page-bg: #0f131a;
+  --page-text-color: #e2e8f0;
+
+  --card-bg: rgba(26, 32, 44, 0.3); /* transparency */
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --card-body-bg: rgba(45, 55, 72, 0.3); /* transparency */
+  --card-row-border: rgba(255, 255, 255, 0.1);
+  --card-label-color: #ffffff;
+  --card-value-color: #ffffff;
+
+  /* Figcaption colors for dark theme */
+  --figcaption-text-color: #cbd5e0;
+  --figcaption-link-color: #63b3ed;
+}
+
+/* 1. LIGHT MODE SPECIFIC CONTRAST ADJUSTMENT */
+html:not(.dark-theme) .hero figcaption a,
+html:not(.dark-theme) .figure-link {
+  /* High contrast dark blue against #1a202c body text to exceed 3:1 contrast */
+  color: #034285; 
+}
+
+html:not(.dark-theme) .hero figcaption a:hover,
+html:not(.dark-theme) .hero figcaption a:focus,
+html:not(.dark-theme) .figure-link:hover,
+html:not(.dark-theme) .figure-link:focus {
+  color: #1e7145; /* Clean focus color shift matching main accent layout green */
+}
+
+/* 2. DARK MODE SPECIFIC CONTRAST ADJUSTMENT */
+html.dark-theme .hero figcaption a,
+html.dark-theme .figure-link {
+  /* Bright accessible green or highly vibrant light cyan/teal for dark themes */
+  color: #58b683; 
+}
+
+html.dark-theme .hero figcaption a:hover,
+html.dark-theme .hero figcaption a:focus,
+html.dark-theme .figure-link:hover,
+html.dark-theme .figure-link:focus {
+  color: #ffffff;
+}
+
+
+/* Apply base page styles to body */
+body {
+  background-color: var(--page-bg);
+  color: var(--page-text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+header {
+	position: relative;
+}
+header > span {
+	position: absolute;
+	top: -8px;
+	right: 0;
+}
+
+/* Page title */
+h1 {
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 340px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--page-text-color);
+}
+
+/* Theme Toggle Switch Styles */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  gap: 0.75rem;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--toggle-slider-bg);
+  border-radius: 30px;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--toggle-thumb-bg);
+  transition: 0.4s;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+input:checked + .slider {
+  background-color: var(--toggle-active-bg);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 2px var(--toggle-focus-shadow);
+}
+
+input:checked + .slider::before {
+  transform: translateX(30px);
+}
+
+.slider-icon {
+  font-size: 14px;
+  z-index: 0;display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.45));
+}
+
+.slider-icon.light {
+  margin-left: 2px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 50%;
+}
+
+.slider-icon.dark {
+  margin-right: 2px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+.rapper {
+	justify-items: center;
+}
+
+/* Hero section background for dark mode */
+.hero {
+  position: relative;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.hero figure {
+    margin: 0;
+}
+
+.dark-theme .hero {
+  background-color: #0f131a;
+}
+
+/* Hero picture and figcaption toggle - day/night */
+.hero .hero-night {
+  display: none;
+}
+
+.hero figure .dark {
+  display: none;
+}
+
+.dark-theme .hero .hero-day {
+  display: none;
+}
+
+.dark-theme .hero .hero-night {
+  display: block;
+}
+
+.dark-theme .hero figure .light {
+  display: none;
+}
+
+.dark-theme .hero figure .dark {
+  display: block;
+}
+
+.hero picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 3s ease;
+}
+
+/* Figcaption styles for image credits */
+.hero figcaption {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  padding: 0.75rem 1rem;
+  transition: color 0.3s ease;
+  text-align: right;
+}
+
+.hero figcaption a {
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.hero figcaption a:hover {
+  text-decoration: underline;
+}
+
+/* Card Container */
+.card {
+	position: unset; 
+  width: 100%;
+  max-width: 340px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: all 0.3s ease;
+  border: 2px solid var(--card-border);
+  margin: 1.5rem auto;
+}
+
+/* Header Banner */
+.card__header {
+  padding: 10px 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card__header::before {
+  content: '';
+  position: realtive;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.dark-theme .card__header::before {
+  opacity: 0.8;
+}
+
+/* Lock initial starting positions explicitly so offsetMath evaluates cleanly */
+#weather.card {
+	top: unset;
+	left: unset;
+}
+
+#data.card {
+	top: unset;
+	left: auto;
+	right: unset; /* Aligns neatly to the top-right corner of the hero */
+}
+
+/* Specific header backgrounds for different cards */
+#data.card .card__header {
+  background-color: var(--header-data-bg); /* Green for location card */
+}
+
+#weather.card .card__header {
+  background-color: var(--header-weather-bg); /* Blue for weather card */
+}
+
+.card__title {
+  color: var(--card-title-color);
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.3px;
+}
+
+/* Data Layout Padding */
+.card__body {
+  padding: 10px 10px;
+  background-color: var(--card-body-bg);
+  transition: background-color 0.3s ease;
+	opacity: 0.9;
+}
+
+.card__data-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Spacing between rows */
+}
+
+/* The Row Engine (Flexbox aligns keys right, values left) */
+.card__row {
+  display: flex;
+  align-items: baseline;
+  line-height: 1.5;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--card-row-border);
+  transition: border-color 0.3s ease;
+}
+
+.card__row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Data Key Label (Right Aligned) */
+.card__label {
+  flex: 1;
+  text-align: right;
+  font-weight: 600;
+  color: var(--card-label-color);
+  padding-right: 12px;
+  margin: 0;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+/* Data Main Value (Left Aligned) */
+.card__value {
+  flex: 1.2; /* Slightly wider to accommodate longer text string values */
+  text-align: left;
+  color: var(--card-value-color);
+  margin: 0;
+  padding-left: 12px;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: var(--page-text-color);
+}
+
+.loading-dots::after {
+    content: '';
+    animation: dots 1.5s infinite steps(4);
+}
+@keyframes dots {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: '....'; }
+}

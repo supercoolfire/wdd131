@@ -1,0 +1,79 @@
+@media (min-width: 800px) {
+  /* Ensure the parent wraps tightly around the hero layout bounds */
+  main {
+    position: relative;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .hero {
+    position: relative;
+    width: 100%;
+  }
+
+  .rapper {
+    position: relative; /* CRITICAL: Ties absolute card coordinates to this box */
+    width: 100%;
+    /* Ensure it encapsulates the full height of your hero child element */
+    min-height: max-content; 
+  }
+
+  /* Compacting card size, scaling down padding, and implementing contrast insurance */
+  .card {
+    position: absolute;
+    margin: 0;
+    max-width: 280px; /* Reduced width from 340px to make them sleeker */
+    cursor: grab; /* Visual hint for drag-and-drop capability */
+    overflow: visible; 
+  }
+
+  /* Compact the header bar padding size */
+  .card__header {
+    /* 1. Absolute position it relative to the .card container */
+    position: absolute;
+    top: 15px; /* Adjust vertical placement to your liking */
+    
+    /* 2. Anchor it to the right edge and push it completely outside */
+    right: 0;
+    transform: translateX(15%); /* Adjust percentage to control how far it shifts out */
+    
+    /* 3. Visual formatting to mimic the screenshot styling */
+    padding: 6px 16px;
+    z-index: 10; /* Ensures it layers above everything else */
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15); /* Adds separation depth */
+  }
+
+  .card__title {
+    font-size: 1.25rem; /* Slightly smaller typography to match the narrow wrapper */
+  }
+
+  /* Shrink the inner rows padding structures */
+  .card__body {
+    padding: 50px 12px 8px 12px; 
+  }
+
+  .card__data-list {
+    gap: 8px; /* Reduced gap size from 16px to 8px */
+  }
+
+  .card__row {
+    padding-bottom: 6px;
+  }
+
+  .card__label, 
+  .card__value {
+    font-size: 0.88rem; /* Scaled down layout readability footprint */
+  }
+
+  /* Lock initial starting positions explicitly so offsetMath evaluates cleanly */
+  #weather.card {
+    top: 20px;
+    left: 20px;
+  }
+
+  #data.card {
+    top: 20px;
+    left: auto;
+    right: 20px; /* Aligns neatly to the top-right corner of the hero */
+  }
+}

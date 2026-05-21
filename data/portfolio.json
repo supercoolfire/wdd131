@@ -89,6 +89,12 @@
                                 { "tag": "div", "insertion":"prepend", "id": "preview-w3a5", "class": "preview", "href": "week03/javascript-arrays.html" , "innerHTML": "<p class='loading-dots'>Loading image file formats preview</p>"}, 
                                 {"textContent": "W03 Learning Activity: JavaScript Arrays" }
                             ]}
+                        ]},
+                        {"tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "place.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w3a6", "class": "preview", "href": "place.html" , "innerHTML": "<p class='loading-dots'>Loading country page preview</p>"}, 
+                                {"textContent": "W03 Assignment: Country Page" }
+                            ]}
                         ]}
                         
                     ] }
@@ -130,7 +136,15 @@
                             { "tag": "div", "insertion":"prepend", "id": "preview-exp2", "class": "preview", "href": "seo-test.html" , "innerHTML": "<p class='loading-dots'>Loading experiment preview</p>"}, 
                             {"textContent": "Experiment Placeholder" }
                         ]}
-                    ] }
+                    ] },
+                    {
+                        "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "class": "anchor", "href": "image-crawler-experiment.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-exp3", "class": "preview", "href": "image-crawler-experiment.html" , "innerHTML": "<p class='loading-dots'>Loading experiment preview</p>"}, 
+                                {"textContent": "Image Crawler Experiment" }
+                            ]}
+                        ]
+                    }
                 ] }
             ]}
                 

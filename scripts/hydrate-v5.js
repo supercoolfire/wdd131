@@ -1,5 +1,5 @@
 /**
- * Just-In-Time Universal Hydrator v5.0
+ * Just-In-Time Universal Hydrator v5.0 (Modified)
  * Features:
  * - Support for unique identifiers as keys
  * - Optional 'querySelector' property for explicit targeting
@@ -9,6 +9,12 @@
  * - Support for 'innerHTML' attribute for raw HTML injection (v4.1)
  * - Support for text-only nodes in 'items' (removes <undefined> tag) (v4.2)
  * - v5.0 Upgrade: Support for complex, multi-type array properties (e.g., srcset/sizes arrays)
+ * Event Usage:
+ * - Triggered by 'hydrationFinished' event
+ * - Example: 
+ document.addEventListener("hydrationFinished", function() {
+     [function-name]();
+ * });
  * * Usage: 
  * <script src="/scripts/hydrate-v5.js" data-production="true" data-production-file="/data/production.json" data-placeholder-file="/data/placeholder.json"></script>
  * or
@@ -133,8 +139,10 @@ const startJITHydration = async () => {
             }
         });
 
-        // Notify other scripts that hydration is complete
-        document.dispatchEvent(new CustomEvent('hydrationComplete'));
+        // MODIFIED: Notify other scripts with the new event and log it to the console
+        const finishEvent = new CustomEvent('hydrationFinished');
+        document.dispatchEvent(finishEvent);
+        console.log('Hydration complete: "hydrationFinished" event dispatched.');
 
     } catch (err) {
         console.error("Hydration failure:", err);

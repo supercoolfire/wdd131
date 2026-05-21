@@ -1,0 +1,1055 @@
+{
+    "029-Manila-Philippines-Temple": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "029-Manila-Philippines-Temple.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/029-Manila-Philippines-Temple.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/029-Manila-Philippines-Temple.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/029-Manila-Philippines-Temple.webp",
+                "alt": "029-Manila-Philippines-Temple.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "133-Cebu-City-Philippines-Temple": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "133-Cebu-City-Philippines-Temple.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/133-Cebu-City-Philippines-Temple.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/133-Cebu-City-Philippines-Temple.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/133-Cebu-City-Philippines-Temple.webp",
+                "alt": "133-Cebu-City-Philippines-Temple.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "aba-nigeria-temple-5087-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "aba-nigeria-temple-5087-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/aba-nigeria-temple-5087-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/aba-nigeria-temple-5087-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/aba-nigeria-temple-5087-main.webp",
+                "alt": "aba-nigeria-temple-5087-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "accra-ghana-temple-13760-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "accra-ghana-temple-13760-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/accra-ghana-temple-13760-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/accra-ghana-temple-13760-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/accra-ghana-temple-13760-main.webp",
+                "alt": "accra-ghana-temple-13760-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "adelaide-australia-temple-4359-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "adelaide-australia-temple-4359-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/adelaide-australia-temple-4359-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/adelaide-australia-temple-4359-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/adelaide-australia-temple-4359-main.webp",
+                "alt": "adelaide-australia-temple-4359-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "alabang-philippines-temple-65306-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "alabang-philippines-temple-65306-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/alabang-philippines-temple-65306-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/alabang-philippines-temple-65306-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/alabang-philippines-temple-65306-main.webp",
+                "alt": "alabang-philippines-temple-65306-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "albuquerque-new-mexico-temple-56335-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "albuquerque-new-mexico-temple-56335-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/albuquerque-new-mexico-temple-56335-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/albuquerque-new-mexico-temple-56335-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/albuquerque-new-mexico-temple-56335-main.webp",
+                "alt": "albuquerque-new-mexico-temple-56335-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "anchorage-alaska-temple-57454-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "anchorage-alaska-temple-57454-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/anchorage-alaska-temple-57454-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/anchorage-alaska-temple-57454-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/anchorage-alaska-temple-57454-main.webp",
+                "alt": "anchorage-alaska-temple-57454-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "apia-samoa-temple-13905-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "apia-samoa-temple-13905-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/apia-samoa-temple-13905-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/apia-samoa-temple-13905-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/apia-samoa-temple-13905-main.webp",
+                "alt": "apia-samoa-temple-13905-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "arequipa-peru-temple-7186-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "arequipa-peru-temple-7186-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/arequipa-peru-temple-7186-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/arequipa-peru-temple-7186-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/arequipa-peru-temple-7186-main.webp",
+                "alt": "arequipa-peru-temple-7186-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "asuncion-paraguay-temple-6969-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "asuncion-paraguay-temple-6969-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/asuncion-paraguay-temple-6969-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/asuncion-paraguay-temple-6969-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/asuncion-paraguay-temple-6969-main.webp",
+                "alt": "asuncion-paraguay-temple-6969-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "atlanta-georgia-temple-13940-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "atlanta-georgia-temple-13940-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/atlanta-georgia-temple-13940-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/atlanta-georgia-temple-13940-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/atlanta-georgia-temple-13940-main.webp",
+                "alt": "atlanta-georgia-temple-13940-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "bacolod-philippines-temple-70237-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "bacolod-philippines-temple-70237-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/bacolod-philippines-temple-70237-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/bacolod-philippines-temple-70237-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/bacolod-philippines-temple-70237-main.webp",
+                "alt": "bacolod-philippines-temple-70237-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "bangkok-thailand-temple-40037-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "bangkok-thailand-temple-40037-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/bangkok-thailand-temple-40037-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/bangkok-thailand-temple-40037-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/bangkok-thailand-temple-40037-main.webp",
+                "alt": "bangkok-thailand-temple-40037-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "barcelona-spain-temple-43015-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "barcelona-spain-temple-43015-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/barcelona-spain-temple-43015-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/barcelona-spain-temple-43015-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/barcelona-spain-temple-43015-main.webp",
+                "alt": "barcelona-spain-temple-43015-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "barranquilla-colombia-temple-1846-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "barranquilla-colombia-temple-1846-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/barranquilla-colombia-temple-1846-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/barranquilla-colombia-temple-1846-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/barranquilla-colombia-temple-1846-main.webp",
+                "alt": "barranquilla-colombia-temple-1846-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "baton-rouge-louisiana-temple-7146-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "baton-rouge-louisiana-temple-7146-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/baton-rouge-louisiana-temple-7146-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/baton-rouge-louisiana-temple-7146-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/baton-rouge-louisiana-temple-7146-main.webp",
+                "alt": "baton-rouge-louisiana-temple-7146-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "belem-brazil-temple-31310-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "belem-brazil-temple-31310-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/belem-brazil-temple-31310-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/belem-brazil-temple-31310-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/belem-brazil-temple-31310-main.webp",
+                "alt": "belem-brazil-temple-31310-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "bern-switzerland-temple-54641-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "bern-switzerland-temple-54641-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/bern-switzerland-temple-54641-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/bern-switzerland-temple-54641-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/bern-switzerland-temple-54641-main.webp",
+                "alt": "bern-switzerland-temple-54641-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "cagayan-de-oro-philippines-temple-50369-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "cagayan-de-oro-philippines-temple-50369-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/cagayan-de-oro-philippines-temple-50369-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/cagayan-de-oro-philippines-temple-50369-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/cagayan-de-oro-philippines-temple-50369-main.webp",
+                "alt": "cagayan-de-oro-philippines-temple-50369-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "davao-philippines-temple-69513-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "davao-philippines-temple-69513-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/davao-philippines-temple-69513-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/davao-philippines-temple-69513-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/davao-philippines-temple-69513-main.webp",
+                "alt": "davao-philippines-temple-69513-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "iloilo-philippines-temple-68739-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "iloilo-philippines-temple-68739-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/iloilo-philippines-temple-68739-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/iloilo-philippines-temple-68739-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/iloilo-philippines-temple-68739-main.webp",
+                "alt": "iloilo-philippines-temple-68739-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "naga-philippines-temple-68737-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "naga-philippines-temple-68737-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/naga-philippines-temple-68737-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/naga-philippines-temple-68737-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/naga-philippines-temple-68737-main.webp",
+                "alt": "naga-philippines-temple-68737-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "santiago-philippines-temple-68738-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "santiago-philippines-temple-68738-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/santiago-philippines-temple-68738-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/santiago-philippines-temple-68738-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/santiago-philippines-temple-68738-main.webp",
+                "alt": "santiago-philippines-temple-68738-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "tacloban-city-philippines-temple-55808-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "tacloban-city-philippines-temple-55808-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/tacloban-city-philippines-temple-55808-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/tacloban-city-philippines-temple-55808-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/tacloban-city-philippines-temple-55808-main.webp",
+                "alt": "tacloban-city-philippines-temple-55808-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "tuguegarao-city-philippines-temple-57610-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "tuguegarao-city-philippines-temple-57610-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/tuguegarao-city-philippines-temple-57610-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/tuguegarao-city-philippines-temple-57610-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/tuguegarao-city-philippines-temple-57610-main.webp",
+                "alt": "tuguegarao-city-philippines-temple-57610-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    },
+    "urdaneta-philippines-temple-45874-main": {
+        "tag": "picture",
+        "directories": {
+            "small": "images/temples-small-webp",
+            "medium": "images/temples-medium-webp",
+            "large": "images/temples-large-webp"
+        },
+        "filename": "urdaneta-philippines-temple-45874-main.webp",
+        "breakpoints": {
+            "w1": 200,
+            "w2": 400,
+            "w3": 800
+        },
+        "dimensions": {
+            "width": 800,
+            "height": 600,
+            "aspectRatio": "1.33"
+        },
+        "items": [
+            {
+                "tag": "source",
+                "media": "(max-width: 200px)",
+                "srcset": "images/temples-small-webp/urdaneta-philippines-temple-45874-main.webp"
+            },
+            {
+                "tag": "source",
+                "media": "(max-width: 400px)",
+                "srcset": "images/temples-medium-webp/urdaneta-philippines-temple-45874-main.webp"
+            },
+            {
+                "tag": "img",
+                "src": "images/temples-large-webp/urdaneta-philippines-temple-45874-main.webp",
+                "alt": "urdaneta-philippines-temple-45874-main.webp",
+                "width": "500",
+                "height": "250",
+                "loading": "lazy"
+            }
+        ]
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "dont-get-lost":{
+        "querySelector": "nav",
+        "tag": "ul",
+        "id": "navigation",
+        "insertion": "replace",
+        "items": [
+            {"tag":"li","items":[{"tag":"a","href":"index.html","textContent":"Home"}]},
+            {"tag":"li","items":[{"tag":"a","href":"portfolio.html","textContent":"Portfolio"}]}
+        ]
+    },
+    "image-crawler-experiment":{
+        "querySelector": "#howto",
+        "id": "howto",
+        "insertion": "replace",
+        "items": [ 
+            {
+                "tag":"details", "items":[
+                    {"tag":"summary","textContent":"How to Use the Image Converter Experiment"},
+                    {"tag":"ol", "items": [
+                        {"tag":"li", "textContent":"Prerequisites: Node.js >= 16.0.0 installed and \"type\": \"module\" in root package.json"},
+                        {"tag":"li", "textContent":"Run the installation command: npm install sharp"},
+                        {"tag":"li", "items":[
+                            {"tag":"ol","items":[
+                                {"tag":"span", "id":"ol-text", "textContent":"Convert and optimize images to WebP format"},
+                                {"tag":"li","textContent":"Modify the CONFIG block in scripts/image-converter-experiment.js"},
+                                {"tag":"li","textContent":"Update source images folder path"},
+                                {"tag":"li","textContent":"Update output directory for WebP files"}
+                            ]}
+                        ]},
+                        {"tag":"li", "textContent":"Execute the script: node scripts/image-converter-experiment.js"}
+                    ]}
+                ]
+            },
+            {"tag":"details", "items":[
+                {"tag":"summary","textContent":"How to Use the Image Crawler Experiment"},
+                {"tag":"ol", "items": [
+                    {"tag":"li", "textContent":"run: npm insstall image-size"},
+                    {"tag":"li", "items":[
+                        {"tag":"ol","items":[
+                            {"tag":"span", "id":"ol-text", "textContent":"Crawl and generate JSON file"},
+                            {"tag":"li","textContent":"Modify config; scrips/image-crawler-experiment.js"},
+                            {"tag":"li","textContent":"Update images folder path"},
+                            {"tag":"li","textContent":"Update json file name"}
+                        ]}
+                    ]},
+                    {"tag":"li", "textContent":"run: node scrips/image-crawler-experiment.js"}
+                    ]
+                }
+            ]}
+        ]
+        
+    }
+}
