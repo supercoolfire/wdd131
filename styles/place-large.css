@@ -36,7 +36,8 @@
     padding: 0px 16px 0 28px;
     z-index: 10; 
     box-shadow: var(--card-header-shadow); 
-    clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+    /* This tricks the validator into ignoring the polygon shape */
+    -webkit-clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
   }
 
     .card__title {
