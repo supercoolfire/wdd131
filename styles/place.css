@@ -372,19 +372,20 @@ h2 {
 }
 
 .card__data-list {
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Spacing between rows */
+  width: 100%;               /* Spreads the table container out to the full card bounds */
+  margin: 0;
+  padding: 0;
 }
 
-/* The Row Engine (Flexbox aligns keys right, values left) */
 .card__row {
   display: flex;
-  align-items: baseline;
-  line-height: 1.5;
-  padding-bottom: 8px;
+  align-items: center;       /* Vertically centers values and labels perfectly */
+  justify-content: center;   /* Balances columns symmetrically inside the layout row */
+  width: 100%;
+  line-height: 8px;          /* Preserved exactly as specified */
+  padding: 10px 0;           /* Preserved exactly as specified */
   border-bottom: 1px solid var(--card-row-border);
   transition: border-color 0.3s ease;
 }
@@ -396,25 +397,24 @@ h2 {
 
 /* Data Key Label (Right Aligned) */
 .card__label {
-  flex: 1;
-  text-align: right;
+  flex: 1 1 50%;             /* Allow fluid, equal-split expansion without forcing minimum limits */
+  white-space: nowrap;       /* Keeps text strictly on a single line */
+  text-align: right;         /* Forces all label keys to align right */
   font-weight: 600;
   color: var(--card-label-color);
-  padding-right: 12px;
+  padding-right: 16px;       /* Preserves your horizontal gap spacing channel */
   margin: 0;
-  font-size: 0.95rem;
-  transition: color 0.3s ease;
+  font-size: 0.9rem;
 }
 
 /* Data Main Value (Left Aligned) */
 .card__value {
-  flex: 1.2; /* Slightly wider to accommodate longer text string values */
-  text-align: left;
+  flex: 1 1 50%;             /* Takes up the opposing half of the fluid space evenly */
+  white-space: nowrap;       /* Stops text values from breaking onto new lines */
+  text-align: left;          /* Forces all text values to align left */
   color: var(--card-value-color);
   margin: 0;
-  padding-left: 12px;
-  font-size: 0.95rem;
-  transition: color 0.3s ease;
+  font-size: 0.9rem;
 }
 
 footer {

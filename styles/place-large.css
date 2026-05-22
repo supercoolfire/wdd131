@@ -22,8 +22,9 @@
   .card {
     position: absolute;
     margin: 0;
-    max-width: 280px; /* Reduced width from 340px to make them sleeker */
-    cursor: grab; /* Visual hint for drag-and-drop capability */
+    width: max-content;      /* Forces each card width to scale autonomously around its content */
+    max-width: 90vw;         
+    cursor: grab;
     overflow: visible; 
   }
 
@@ -82,10 +83,13 @@
 
   /* Lock initial starting positions explicitly so offsetMath evaluates cleanly */
   #weather.card {
-    left: 59%;
-    top: 31%;
-    bottom: auto;
-    right: auto;
+    left: auto;
+    top: auto;
+    bottom: 14%;
+    right: 4%;
+  }
+  #weather.card .card__body {
+    padding-top: 65px;
   }
 
   #data.card {
@@ -94,4 +98,11 @@
     bottom: auto;
     right: auto; /* Aligns neatly to the top-right corner of the hero */
   }
+#data.card .card__body {
+  padding-top: 65px;
+}
+
+
+
+
 }

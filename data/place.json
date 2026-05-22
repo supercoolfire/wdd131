@@ -43,30 +43,46 @@
                     {"tag": "div", "class": "card__header", "items": [
                         {"tag": "h2", "class": "card__title", "textContent": "Easter Island"}
                     ]},
-                    {"tag": "div", "class": "card__body", "items": [
-                        {"tag": "dl", "class": "card__data-list", "items": [
-                            {"tag": "div", "class": "card__row", "items": [
-                                {"tag": "dt", "class": "card__label", "textContent": "Province:"},
-                                {"tag": "dd", "class": "card__value", "textContent": "Isla de Pascua"}
-                            ]},
-                            {"tag": "div", "class": "card__row", "items": [
-                                {"tag": "dt", "class": "card__label", "textContent": "Country:"},
-                                {"tag": "dd", "class": "card__value", "textContent": "Chile"}
-                            ]},
-                            {"tag": "div", "class": "card__row", "items": [
-                                {"tag": "dt", "class": "card__label", "textContent": "Area:"},
-                                {"tag": "dd", "class": "card__value", "textContent": "163.6 sq km"}
-                            ]},
-                            {"tag": "div", "class": "card__row", "items": [
-                                {"tag": "dt", "class": "card__label", "textContent": "Population:"},
-                                {"tag": "dd", "class": "card__value", "textContent": "7,750"}
-                            ]},
-                            {"tag": "div", "class": "card__row", "items": [
-                                {"tag": "dt", "class": "card__label", "textContent": "Famous For:"},
-                                {"tag": "dd", "class": "card__value", "textContent": "Moai Statues"}
+                        {"tag": "div", "class": "card__body", "items": [
+                            {"tag": "dl", "class": "card__data-list", "items": [
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Province:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "Isla de Pascua"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Country:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "Chile"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Area:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "163.6 sq km"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Population:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "7,750"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Famous For:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "Moai Statues"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Currency:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "Chilean Peso (CLP)"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Best Commodity:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "Fresh Seafood & Tuna"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "Primary Economy:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "Tourism & Hospitality"}
+                                ]},
+                                {"tag": "div", "class": "card__row", "items": [
+                                    {"tag": "dt", "class": "card__label", "textContent": "10-Yr Pop. Trend:"},
+                                    {"tag": "dd", "class": "card__value", "textContent": "Increasing (+34%)"}
+                                ]}
                             ]}
                         ]}
-                    ]}
                 ]},
                 {"tag": "section", "id": "weather", "class": "card", "items": [
                     {"tag": "div", "class": "card__header", "items": [

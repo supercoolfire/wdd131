@@ -41,10 +41,8 @@ function applyTheme(shouldBeDark) {
         localStorage.setItem('theme-preference', 'light');
         if (themeCheckbox) themeCheckbox.checked = false;
         
-        // Restore from our clean memory bank, otherwise leave whatever the JSON engine naturally put there
-        if (tempElement && globalTemperature !== null) tempElement.textContent = globalTemperature;
-        if (speedElement && globalSpeed !== null) speedElement.textContent = globalSpeed;
-        displayWindChill();
+        // Proactively fetch fresh production data on switch instead of relying on a background interval
+        syncWeatherData();
     }
 }
 
@@ -107,34 +105,25 @@ async function getWindSpeedOnly() {
 // Function to live-sync data from the JSON file on the fly
 function syncWeatherData() {
     Promise.all([getTemperatureOnly(), getWindSpeedOnly()]).then(([temperature, windSpeed]) => {
-        let valuesChanged = false;
+        const tempElement = document.getElementById('temp');
+        const speedElement = document.getElementById('windSpeed');
         const isDark = htmlElement.classList.contains('dark-theme');
 
-        if (temperature && temperature !== globalTemperature) {
-            globalTemperature = temperature;
-            valuesChanged = true;
-        }
-        if (windSpeed && windSpeed !== globalSpeed) {
-            globalSpeed = windSpeed;
-            valuesChanged = true;
-        }
+        // Update memory references if the backend values changed
+        if (temperature) globalTemperature = temperature;
+        if (windSpeed) globalSpeed = windSpeed;
 
-        // Only update UI if values changed, and we aren't currently overwriting them in dark mode
-        if (valuesChanged && !isDark) {
-            const savedUserPreference = localStorage.getItem('theme-preference');
-            applyTheme(savedUserPreference === 'dark');
-        } else if (valuesChanged && isDark) {
-            // If in dark mode, just recalculate windchill in case data changed in the background
+        // ONLY apply data updates to the actual UI layout elements if the user is in light mode
+        if (!isDark) {
+            if (tempElement && globalTemperature !== null) tempElement.textContent = globalTemperature;
+            if (speedElement && globalSpeed !== null) speedElement.textContent = globalSpeed;
             displayWindChill();
         }
     });
 }
 
-// Initial pull on execution boot
+// Initial pull on execution boot (Initial state setup)
 syncWeatherData();
-
-// Check for live simulated API changes every 2000ms (2 seconds)
-setInterval(syncWeatherData, 5000);
 
 
 // 1. EVALUATE PREFERENCE IMMEDIATELY ON CORE INITIALIZATION
@@ -168,7 +157,7 @@ observer.observe(document.body || htmlElement, { childList: true, subtree: true 
 
 
 // =========================================================================
-// 4. BOUNDED DRAG & DROP ENGINE (Percentage-Based Constraint Tracker)
+// 4. BOUNDED DRAG & DROP ENGINE (Proximity Anchor Tracker with Sticky Boundaries)
 // =========================================================================
 let highestZIndex = 10;
 
@@ -209,6 +198,12 @@ function initializeCardDragging() {
             highestZIndex++;
             card.style.zIndex = highestZIndex;
 
+            // FIX: Clear any old sticky borders only when starting a fresh drag sequence
+            card.style.borderTop = '';
+            card.style.borderRight = '';
+            card.style.borderBottom = '';
+            card.style.borderLeft = '';
+
             window.addEventListener('mousemove', dragging);
             window.addEventListener('touchmove', dragging, { passive: false });
             window.addEventListener('mouseup', dragEnd);
@@ -238,13 +233,13 @@ function initializeCardDragging() {
             const maxLeftPercent = ((heroRect.width - cardRect.width) / heroRect.width) * 100;
             const maxTopPercent = ((heroRect.height - cardRect.height) / heroRect.height) * 100;
 
-            // Reset dynamic collision indicator configurations
+            // Reset dynamic collision indicator configurations per frame calculation
             card.style.borderTop = '';
             card.style.borderRight = '';
             card.style.borderBottom = '';
             card.style.borderLeft = '';
 
-            // Apply strict fluid clamping boundary checks
+            // Apply strict fluid clamping boundary checks and apply persistent style rules
             if (targetLeftPercent <= 0) {
                 targetLeftPercent = 0;
                 card.style.borderLeft = '2px solid red';
@@ -275,10 +270,38 @@ function initializeCardDragging() {
             isDragging = false;
             card.style.cursor = 'grab';
 
-            card.style.borderTop = '';
-            card.style.borderRight = '';
-            card.style.borderBottom = '';
-            card.style.borderLeft = '';
+            // FIX: Removed the quick-wiping of borders from this block completely
+
+            // --- PROXIMITY ANCHOR SENSOR LAYER ---
+            const heroRect = hero.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
+
+            // Calculate structural offsets relative to all four sides in raw pixels
+            const distanceToLeft = cardRect.left - heroRect.left;
+            const distanceToTop = cardRect.top - heroRect.top;
+            const distanceToRight = heroRect.right - cardRect.right;
+            const distanceToBottom = heroRect.bottom - cardRect.bottom;
+
+            // Proximity threshold logic (determine which side handles layout anchor duties)
+            if (distanceToLeft <= distanceToRight) {
+                const leftPercent = (distanceToLeft / heroRect.width) * 100;
+                card.style.left = `${leftPercent}%`;
+                card.style.right = 'auto';
+            } else {
+                const rightPercent = (distanceToRight / heroRect.width) * 100;
+                card.style.right = `${rightPercent}%`;
+                card.style.left = 'auto';
+            }
+
+            if (distanceToTop <= distanceToBottom) {
+                const topPercent = (distanceToTop / heroRect.height) * 100;
+                card.style.top = `${topPercent}%`;
+                card.style.bottom = 'auto';
+            } else {
+                const bottomPercent = (distanceToBottom / heroRect.height) * 100;
+                card.style.bottom = `${bottomPercent}%`;
+                card.style.top = 'auto';
+            }
 
             window.removeEventListener('mousemove', dragging);
             window.removeEventListener('touchmove', dragging);
@@ -287,6 +310,8 @@ function initializeCardDragging() {
         }
     });
 }
+
+
 
 // 5. EXTEND OBSERVATION ENGINE: Trigger drag initialization once cards populate
 const dragInitObserver = new MutationObserver(() => {
@@ -309,7 +334,6 @@ document.getElementById('lastModified').textContent = `Last Modified: ${document
 // 6. WEATHER ENGINE: WIND CHILL CALCULATOR LAYER
 // =========================================================================
 
-
 function displayWindChill() {
     // Get DOM elements first and validate they exist
     const tempElement = document.querySelector("#temp");
@@ -321,7 +345,6 @@ function displayWindChill() {
 
     // Guard clause to exit if any required element is missing
     if (!tempElement || !windSpeedElement || !hotChileElement) {
-        // console.error("Missing required DOM elements for wind chill calculation");
         return;
     }
 
@@ -357,7 +380,8 @@ function displayWindChill() {
     }
 }
 
-displayWindChill(); // just in case hydrationFinished event is not triggered, most of the time.
+displayWindChill(); // fallback check
+
 // Run calculation after DOM is fully loaded
 document.addEventListener("hydrationFinished", function() {
     // Attempt dynamic state capture when hydration settles safely
