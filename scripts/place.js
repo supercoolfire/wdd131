@@ -79,7 +79,7 @@ async function getTemperatureOnly() {
             throw new Error("Could not find element with id 'temp' in the JSON file.");
         }
     } catch (error) {
-        console.error("Error:", error);
+        // console.error("Error:", error);
     }
 }
 
@@ -100,7 +100,7 @@ async function getWindSpeedOnly() {
             throw new Error("Could not find element with id 'windSpeed' in the JSON file.");
         }
     } catch (error) {
-        console.error("Error:", error);
+        // console.error("Error:", error);
     }
 }
 
@@ -167,12 +167,13 @@ const observer = new MutationObserver(() => {
 observer.observe(document.body || htmlElement, { childList: true, subtree: true });
 
 
-// 4. BOUNDED DRAG & DROP ENGINE (Absolute Bounds Constraint Tracker)
+// =========================================================================
+// 4. BOUNDED DRAG & DROP ENGINE (Percentage-Based Constraint Tracker)
+// =========================================================================
 let highestZIndex = 10;
 
 function initializeCardDragging() {
     const cards = document.querySelectorAll('.card');
-    // Track against the container parent wrapper element
     const rapper = document.querySelector('.rapper');
     const hero = document.querySelector('.hero');
     
@@ -181,9 +182,9 @@ function initializeCardDragging() {
     cards.forEach(card => {
         let isDragging = false;
         
-        // Accurate coordinate distance between mouse tip and card top-left corner
-        let grabX = 0;
-        let grabY = 0;
+        // Track the offset grab position in percentages relative to the card itself
+        let grabPercentX = 0;
+        let grabPercentY = 0;
 
         card.addEventListener('mousedown', dragStart);
         card.addEventListener('touchstart', dragStart, { passive: false });
@@ -196,20 +197,11 @@ function initializeCardDragging() {
             const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
             const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
 
-            // Get the bounding rect of the wrapper parent container
-            const rapperRect = rapper.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
 
-            // offsetLeft/Top are measured relative to .rapper container
-            const currentCardLeft = card.offsetLeft;
-            const currentCardTop = card.offsetTop;
-
-            // Pinpoint cursor placement coordinates inside the wrapper context box
-            const mouseXInRapper = clientX - rapperRect.left;
-            const mouseYInRapper = clientY - rapperRect.top;
-
-            // Capture precise layout offsets
-            grabX = mouseXInRapper - currentCardLeft;
-            grabY = mouseYInRapper - currentCardTop;
+            // Calculate precisely where the user clicked inside the card layout as a factor (0 to 1)
+            grabPercentX = (clientX - cardRect.left) / cardRect.width;
+            grabPercentY = (clientY - cardRect.top) / cardRect.height;
 
             isDragging = true;
             card.style.cursor = 'grabbing';
@@ -231,16 +223,20 @@ function initializeCardDragging() {
             const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
             const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
 
-            const rapperRect = rapper.getBoundingClientRect();
+            const heroRect = hero.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
 
-            // Track target movement relative to the wrapper boundaries context
-            let targetLeft = (clientX - rapperRect.left) - grabX;
-            let targetTop = (clientY - rapperRect.top) - grabY;
+            // Find the target top-left position of the card relative to the hero container bounds
+            const targetLeftPx = (clientX - heroRect.left) - (grabPercentX * cardRect.width);
+            const targetTopPx = (clientY - heroRect.top) - (grabPercentY * cardRect.height);
 
-            // Bound constraint rules checking limits inside the hero canvas layout boundaries
-            // Note: If hero matches rapper width/height, these values remain accurate
-            const maxLeft = hero.clientWidth - card.offsetWidth;
-            const maxTop = hero.clientHeight - card.offsetHeight;
+            // Convert pixel coordinates to pure percentage ratios of the hero's space
+            let targetLeftPercent = (targetLeftPx / heroRect.width) * 100;
+            let targetTopPercent = (targetTopPx / heroRect.height) * 100;
+
+            // Calculate maximum allowed percentages based on the card's relative size
+            const maxLeftPercent = ((heroRect.width - cardRect.width) / heroRect.width) * 100;
+            const maxTopPercent = ((heroRect.height - cardRect.height) / heroRect.height) * 100;
 
             // Reset dynamic collision indicator configurations
             card.style.borderTop = '';
@@ -248,28 +244,29 @@ function initializeCardDragging() {
             card.style.borderBottom = '';
             card.style.borderLeft = '';
 
-            // Apply clamping checks
-            if (targetLeft <= 0) {
-                targetLeft = 0;
+            // Apply strict fluid clamping boundary checks
+            if (targetLeftPercent <= 0) {
+                targetLeftPercent = 0;
                 card.style.borderLeft = '2px solid red';
             }
-            if (targetLeft >= maxLeft) {
-                targetLeft = maxLeft;
+            if (targetLeftPercent >= maxLeftPercent) {
+                targetLeftPercent = maxLeftPercent;
                 card.style.borderRight = '2px solid red';
             }
-            if (targetTop <= 0) {
-                targetTop = 0;
+            if (targetTopPercent <= 0) {
+                targetTopPercent = 0;
                 card.style.borderTop = '2px solid red';
             }
-            if (targetTop >= maxTop) {
-                targetTop = maxTop;
+            if (targetTopPercent >= maxTopPercent) {
+                targetTopPercent = maxTopPercent;
                 card.style.borderBottom = '2px solid red';
             }
 
-            // Write updates to inline elements
-            card.style.left = `${targetLeft}px`;
-            card.style.top = `${targetTop}px`;
-            card.style.right = 'auto'; // Break CSS media alignment engines
+            // Write updates to inline properties using % units
+            card.style.left = `${targetLeftPercent}%`;
+            card.style.top = `${targetTopPercent}%`;
+            card.style.right = 'auto'; 
+            card.style.bottom = 'auto'; 
             card.style.margin = '0'; 
         }
 
@@ -324,7 +321,7 @@ function displayWindChill() {
 
     // Guard clause to exit if any required element is missing
     if (!tempElement || !windSpeedElement || !hotChileElement) {
-        console.error("Missing required DOM elements for wind chill calculation");
+        // console.error("Missing required DOM elements for wind chill calculation");
         return;
     }
 

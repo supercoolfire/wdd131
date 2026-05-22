@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Jayser Pilapil">
-    <meta name="description" content="This is about country or place where I live, have visited, or wish to visit">
-    <meta name="keywords" content="country, place, live, visit, wish">
+    <meta name="description" content="Explore dynamic weather conditions, regional statistics, and modern layouts dedicated to the iconic Moai statues of Easter Island, Chile.">
+    <meta name="keywords" content="Easter Island, Chile, live, visit, wish">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <title>W03 Country Page - Easter Island - Jayser Pilapil</title>
     <link rel="icon" href="images/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,12 +31,22 @@
     </header>
 
     <main>
+        <h1 class="loading-dots">Easter Island</h1>
         <div class="loading-dots">Loading main</div>
+        <figure>
+            <picture class="hero-day">
+                <source media="(max-width: 500px)" srcset="images/place/hero-day-small.webp">
+                <source media="(max-width: 1000px)" srcset="images/place/hero-day-medium.webp">
+                <img src="images/place/hero-day-large.webp" alt="Mystical Moai stone statues standing tall under a bright clear sky on Easter Island" width="500" height="250" loading="lazy">
+            </picture>
+            <figcaption class="light">"Moai statues, Easter Island" via <a href="https://www.piqsels.com/en/public-domain-photo-svtvg" target="_blank">Piqsels</a> (Public Domain).</figcaption>
+        </figure>
+        <img src="images/place/weather-icon.svg" alt="Sun peering through a rain cloud with gentle downpour droplets" width="32" height="32">
     </main>
 
     <footer>
         <p>
-            &copy;<span id="currentyear"></span> | Jayser Pilapil | <a href="portfolio.html" class="figure-link">Portfolio</a> | United State of Calamity
+            &copy;<span id="currentyear"></span> | Jayser Pilapil | <a href="portfolio.html" class="figure-link" target="_blank">Portfolio</a> | United State of Calamity
         </p>
         <p id="lastModified"></p>
     </footer>
