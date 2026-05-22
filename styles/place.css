@@ -5,7 +5,7 @@
   --page-text-color: #1a202c;
 
   /* Toggle switch colors */
-  --toggle-slider-bg: #ccc;
+  --toggle-slider-bg: #cccccc;
   --toggle-thumb-bg: #ffffff;
   --toggle-active-bg: #2b5b84;
   --toggle-focus-shadow: #2b5b84;
@@ -14,6 +14,7 @@
   --card-bg: rgba(255, 255, 255, 0.3); /* transparency */
   --card-border: rgba(0, 0, 0, 0.05);
   --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --card-header-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
   --card-body-bg: rgba(250, 251, 252, 0.3); /* transparency */
   --card-row-border: rgba(0, 0, 0, 0.04);
 
@@ -21,14 +22,25 @@
   --card-label-color: #000000;
   --card-value-color: #000000;
 
-  /* Figcaption colors for light theme */
+  /* Figcaption and Link colors */
   --figcaption-text-color: #4a5568;
-  --figcaption-link-color: #050561;
+  --figcaption-link-color: #034285;
+  --figcaption-link-hover-color: #1e7145;
 
-  /* Header background colors (remained consistent across themes) */
+  /* Header background colors */
   --header-data-bg: #1e7145;
   --header-weather-bg: #2b5b84;
   --card-title-color: #ffffff;
+
+  /* Hero section */
+  --hero-bg: #ffffff;
+
+  /* Slider icons */
+  --slider-icon-light-bg: #ffffff;
+  --slider-icon-light-text: #000000;
+  --slider-icon-dark-bg: #000000;
+  --slider-icon-dark-text: #ffffff;
+  --slider-icon-shadow: rgba(0, 0, 0, 0.45);
 }
 
 /* Override variables for dark theme (applied via .dark-theme class) */
@@ -45,37 +57,39 @@ html.dark-theme {
   --card-label-color: #ffffff;
   --card-value-color: #ffffff;
 
-  /* Figcaption colors for dark theme */
+  /* Figcaption and Link colors */
   --figcaption-text-color: #cbd5e0;
-  --figcaption-link-color: #63b3ed;
+  --figcaption-link-color: #58b683;
+  --figcaption-link-hover-color: #ffffff;
+
+  /* Hero section */
+  --hero-bg: #0f131a;
 }
 
 /* 1. LIGHT MODE SPECIFIC CONTRAST ADJUSTMENT */
 html:not(.dark-theme) .hero figcaption a,
 html:not(.dark-theme) .figure-link {
-  /* High contrast dark blue against #1a202c body text to exceed 3:1 contrast */
-  color: #034285; 
+  color: var(--figcaption-link-color); 
 }
 
 html:not(.dark-theme) .hero figcaption a:hover,
 html:not(.dark-theme) .hero figcaption a:focus,
 html:not(.dark-theme) .figure-link:hover,
 html:not(.dark-theme) .figure-link:focus {
-  color: #1e7145; /* Clean focus color shift matching main accent layout green */
+  color: var(--figcaption-link-hover-color);
 }
 
 /* 2. DARK MODE SPECIFIC CONTRAST ADJUSTMENT */
 html.dark-theme .hero figcaption a,
 html.dark-theme .figure-link {
-  /* Bright accessible green or highly vibrant light cyan/teal for dark themes */
-  color: #58b683; 
+  color: var(--figcaption-link-color); 
 }
 
 html.dark-theme .hero figcaption a:hover,
 html.dark-theme .hero figcaption a:focus,
 html.dark-theme .figure-link:hover,
 html.dark-theme .figure-link:focus {
-  color: #ffffff;
+  color: var(--figcaption-link-hover-color);
 }
 
 
@@ -177,20 +191,20 @@ input:checked + .slider::before {
   z-index: 0;display: inline-flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0px 1px 1px var(--slider-icon-shadow));
 }
 
 .slider-icon.light {
   margin-left: 2px;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--slider-icon-light-bg);
+  color: var(--slider-icon-light-text);
   border-radius: 50%;
 }
 
 .slider-icon.dark {
   margin-right: 2px;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--slider-icon-dark-bg);
+  color: var(--slider-icon-dark-text);
   border-radius: 50%;
 }
 
@@ -201,7 +215,7 @@ input:checked + .slider::before {
 /* Hero section background for dark mode */
 .hero {
   position: relative;
-  background-color: #ffffff;
+  background-color: var(--hero-bg);
   transition: background-color 0.3s ease;
 }
 
@@ -210,7 +224,7 @@ input:checked + .slider::before {
 }
 
 .dark-theme .hero {
-  background-color: #0f131a;
+  background-color: var(--hero-bg);
 }
 
 /* Hero picture and figcaption toggle - day/night */
@@ -283,12 +297,11 @@ input:checked + .slider::before {
 .card__header {
   padding: 10px 10px;
   position: relative;
-  overflow: hidden;
 }
 
 .card__header::before {
   content: '';
-  position: realtive;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -322,7 +335,16 @@ input:checked + .slider::before {
   background-color: var(--header-weather-bg); /* Blue for weather card */
 }
 
+h2 {
+    text-align: center;
+}
+
+#weather.card .card__body {
+  padding-top: 91px;
+}
+
 .card__title {
+  z-index: 1;
   color: var(--card-title-color);
   margin: 0;
   font-size: 1.5rem;
@@ -331,6 +353,15 @@ input:checked + .slider::before {
   z-index: 1;
   letter-spacing: 0.3px;
 }
+.card__title > img {
+  position: absolute;
+  right: 118px;
+  top: 44px;
+  z-index: 1;
+  width: 96px;
+  height: 96px;
+}
+
 
 /* Data Layout Padding */
 .card__body {

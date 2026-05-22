@@ -40,12 +40,27 @@
     /* 3. Visual formatting to mimic the screenshot styling */
     padding: 6px 16px;
     z-index: 10; /* Ensures it layers above everything else */
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15); /* Adds separation depth */
+    box-shadow: var(--card-header-shadow); /* Adds separation depth */
   }
 
   .card__title {
+  position: relative;
     font-size: 1.25rem; /* Slightly smaller typography to match the narrow wrapper */
   }
+
+.card__title > #weatherUlikeit {
+  position: relative;
+  padding-right: 2rem;
+  z-index: 1;
+}
+.card__title > img {
+  position: absolute;
+  right: -19px;
+  top: -10px;
+  width: 48px;
+  height: 48px;
+  z-index: 1;
+}
 
   /* Shrink the inner rows padding structures */
   .card__body {
@@ -67,13 +82,16 @@
 
   /* Lock initial starting positions explicitly so offsetMath evaluates cleanly */
   #weather.card {
-    top: 20px;
-    left: 20px;
+    left: 59%;
+    top: 43%;
+    bottom: auto;
+    right: auto;
   }
 
   #data.card {
-    top: 20px;
-    left: auto;
-    right: 20px; /* Aligns neatly to the top-right corner of the hero */
+    left: 5%;
+    top: 6%;
+    bottom: auto;
+    right: auto; /* Aligns neatly to the top-right corner of the hero */
   }
 }

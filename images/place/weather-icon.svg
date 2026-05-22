@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD000" />
+      <stop offset="100%" stop-color="#FF7B00" />
+    </linearGradient>
+    
+    <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="70%" stop-color="#DCE5EF" />
+      <stop offset="100%" stop-color="#B0C4DE" />
+    </linearGradient>
+
+    <linearGradient id="rainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A90E2" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+
+    <filter id="softShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="1" dy="3" stdDeviation="2" flood-color="#1E293B" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <g transform="translate(32, 32)" filter="url(#softShadow)">
+    <circle cx="0" cy="0" r="15" fill="url(#sunGradient)" />
+    
+    <g id="sunRays" stroke="url(#sunGradient)" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="-20" x2="0" y2="-26" />
+      <line x1="0" y1="20" x2="0" y2="26" />
+      <line x1="-20" y1="0" x2="-26" y2="0" />
+      <line x1="20" y1="0" x2="26" y2="0" />
+      <line x1="-14" y1="-14" x2="-18" y2="-18" />
+      <line x1="14" y1="14" x2="18" y2="18" />
+      <line x1="14" y1="-14" x2="18" y2="-18" />
+      <line x1="-14" y1="14" x2="-18" y2="18" />
+    </g>
+  </g>
+
+  <g stroke="url(#rainGradient)" stroke-width="3" stroke-linecap="round" opacity="0.85">
+    <line x1="42" y1="64" x2="38" y2="76" />
+    <line x1="56" y1="66" x2="52" y2="78" />
+    <line x1="70" y1="64" x2="66" y2="76" />
+  </g>
+
+  <path d="M 32,60 
+           A 12,12 0 0,1 36,36 
+           A 15,15 0 0,1 64,30 
+           A 13,13 0 0,1 80,44 
+           A 11,11 0 0,1 76,60 
+           Z" 
+        fill="url(#cloudGradient)" 
+        filter="url(#softShadow)" />
+</svg>

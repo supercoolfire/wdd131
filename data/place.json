@@ -70,9 +70,9 @@
                 ]},
                 {"tag": "section", "id": "weather", "class": "card", "items": [
                         {"tag": "div", "class": "card__header", "style": "background-color: #2b5b84;", "items": [
-                            {"tag": "h2", "class": "card__title", "items": [
+                            {"tag": "h2", "id":"weatherTitle", "class": "card__title", "items": [
                                 {"tag": "span", "id":"weatherUlikeit",  "textContent": "Weather"},
-                                {"tag": "span", "id":"iconNot", "textContent": "icon"}
+                                {"tag": "img", "src": "images/place/weather-icon.svg", "alt": "weather-icon", "width": "32", "height": "32"}
                             ]}
                         ]},
                         {"tag": "div", "class": "card__body", "items": [
