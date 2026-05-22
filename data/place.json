@@ -95,7 +95,7 @@
                         {"tag": "dl", "class": "card__data-list", "items": [
                             {"tag": "div", "class": "card__row", "items": [
                                 {"tag": "dt", "class": "card__label", "textContent": "Condition:"},
-                                {"tag": "dd", "class": "card__value", "textContent": "Cloudy"}
+                                {"tag": "dd", "id": "weatherCondition", "class": "card__value", "textContent": "Cloudy"}
                             ]},
                             {"tag": "div", "class": "card__row", "items": [
                                 {"tag": "dt", "class": "card__label", "textContent": "Temperature:"},
@@ -112,7 +112,7 @@
                                 ]}
                             ]},
                             {"tag": "div", "class": "card__row", "items": [
-                                {"tag": "dt", "id": "windChill", "class": "card__label", "textContent": "Wind Chill:"},
+                                {"tag": "dt", "id": "windChillLabel", "class": "card__label", "textContent": "Wind Chill:"},
                                 {"tag": "dd", "class": "card__value", "items": [
                                     {"tag": "span", "id": "hotChile", "class": "loading-dots", "textContent": "Loading"}
                                 ]}

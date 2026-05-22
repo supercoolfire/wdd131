@@ -1,9 +1,17 @@
+/* ==========================================================================
+   9. LARGE RESOLUTION BREAKPOINT MEDIA QUERY (min-width: 800px)
+   ========================================================================== */
 @media (min-width: 800px) {
-  /* Ensure the parent wraps tightly around the hero layout bounds */
   main {
     position: relative;
     max-width: 1500px;
     margin: 0 auto;
+  }
+
+  .rapper {
+    position: relative; 
+    width: 100%;
+    min-height: max-content; 
   }
 
   .hero {
@@ -11,98 +19,80 @@
     width: 100%;
   }
 
-  .rapper {
-    position: relative; /* CRITICAL: Ties absolute card coordinates to this box */
-    width: 100%;
-    /* Ensure it encapsulates the full height of your hero child element */
-    min-height: max-content; 
-  }
-
-  /* Compacting card size, scaling down padding, and implementing contrast insurance */
-  .card {
+    .card {
     position: absolute;
     margin: 0;
-    width: max-content;      /* Forces each card width to scale autonomously around its content */
+    width: max-content;  
     max-width: 90vw;         
     cursor: grab;
     overflow: visible; 
   }
 
-  /* Compact the header bar padding size */
-  .card__header {
-    /* 1. Absolute position it relative to the .card container */
+    .card__header {
     position: absolute;
-    top: 15px; /* Adjust vertical placement to your liking */
-    
-    /* 2. Anchor it to the right edge and push it completely outside */
+    top: 15px; 
     right: 0;
-    transform: translateX(15%); /* Adjust percentage to control how far it shifts out */
+    transform: translateX(15%); 
+    padding: 0px 16px 0 28px;
+    z-index: 10; 
+    box-shadow: var(--card-header-shadow); 
+    clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+  }
+
+    .card__title {
+        flex-direction: row;
+        position: relative;
+        font-size: 1.25rem;
+        text-align: left;
+    }
+
+    .card__title > #weatherUlikeit {
+      position: relative;
+      padding-right: 2rem;
+      z-index: 1;
+    }
+
+    .card__title > img {
+        position: unset;
+        top: unset;
+        right: unset;
+        width: 48px;
+        height: 48px;
+    }
+
+    #data.card > .card__header {
+    padding: 10px 16px 10px 28px;
+    }
+    #weather.card > .card__header {
+    padding: 0px 16px 0 28px;
+    }
     
-    /* 3. Visual formatting to mimic the screenshot styling */
-    padding: 6px 16px;
-    z-index: 10; /* Ensures it layers above everything else */
-    box-shadow: var(--card-header-shadow); /* Adds separation depth */
-  }
+    
+    #weather.card > .card__body {
+        padding-top: 10px;
+    }
 
-  .card__title {
-  position: relative;
-    font-size: 1.25rem; /* Slightly smaller typography to match the narrow wrapper */
-  }
-
-.card__title > #weatherUlikeit {
-  position: relative;
-  padding-right: 2rem;
-  z-index: 1;
-}
-.card__title > img {
-  position: absolute;
-  right: -19px;
-  top: -10px;
-  width: 48px;
-  height: 48px;
-  z-index: 1;
-}
-
-  /* Shrink the inner rows padding structures */
-  .card__body {
-    padding: 50px 12px 8px 12px; 
-  }
-
-  .card__data-list {
-    gap: 8px; /* Reduced gap size from 16px to 8px */
-  }
-
-  .card__row {
-    padding-bottom: 6px;
-  }
-
-  .card__label, 
-  .card__value {
-    font-size: 0.88rem; /* Scaled down layout readability footprint */
-  }
-
-  /* Lock initial starting positions explicitly so offsetMath evaluates cleanly */
-  #weather.card {
-    left: auto;
-    top: auto;
-    bottom: 14%;
-    right: 4%;
-  }
-  #weather.card .card__body {
-    padding-top: 65px;
-  }
-
+      /* Specific card placement overrides within responsive boundary */
   #data.card {
     left: 5%;
     top: 6%;
     bottom: auto;
-    right: auto; /* Aligns neatly to the top-right corner of the hero */
+    right: auto; 
   }
-#data.card .card__body {
-  padding-top: 65px;
-}
 
+  #data.card .card__body {
+    padding-top: 55px;
+  }
 
+  #weather.card {
+    left: auto;
+    top: auto;
+    bottom: 14%;
+    right: 6%;
+  }
 
-
+  #weather.card .card__body {
+    padding-top: 65px;
+  }
+  
 }

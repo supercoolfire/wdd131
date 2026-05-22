@@ -16,7 +16,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="styles/[filename].css">
+    <link rel="stylesheet" href="styles/test.css">
     <link rel="stylesheet" href="styles/[filename]-large.css" media="(min-width: 640px)">
     <link rel="preload" href="data/[filename].json" as="fetch" crossorigin>
     <script src="scripts/hydrate-v5.js" data-file="data/[filename].json" defer> </script>
@@ -28,43 +28,78 @@
 
 <body>
 
-    </header>
+    <section id="data" class="card">
+        <div class="card__header">
+            <h2 class="card__title">Easter Island</h2>
+        </div>
+        <div class="card__body">
+            <dl class="card__data-list">
+                <div class="card__row">
+                    <dt class="card__label">Province:</dt>
+                    <dd class="card__value">Isla de Pascua</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Country:</dt>
+                    <dd class="card__value">Chile</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Area:</dt>
+                    <dd class="card__value">163.6 sq km</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Population:</dt>
+                    <dd class="card__value">7,750</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Famous For:</dt>
+                    <dd class="card__value">Moai Statues</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Currency:</dt>
+                    <dd class="card__value">Chilean Peso (CLP)</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Best Commodity:</dt>
+                    <dd class="card__value">Fresh Seafood &amp; Tuna</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Primary Economy:</dt>
+                    <dd class="card__value">Tourism &amp; Hospitality</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">10-Yr Pop. Trend:</dt>
+                    <dd class="card__value">Increasing (+34%)</dd>
+                </div>
+            </dl>
+        </div>
+    </section>
+    <section id="weather" class="card">
+        <div class="card__header">
+            <h2 class="card__title"><span id="weatherUlikeit">Weather</span>
+                <img src="images/place/weather-icon.svg" alt="weather-icon" width="32" height="32"></h2>
+        </div>
+        <div class="card__body">
+            <dl class="card__data-list">
+                <div class="card__row">
+                    <dt class="card__label">Condition:</dt>
+                    <dd class="card__value">Cloudy</dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Temperature:</dt>
+                    <dd class="card__value"><span id="temp">18</span><span>°C</span></dd>
+                </div>
+                <div class="card__row">
+                    <dt class="card__label">Wind:</dt>
+                    <dd class="card__value"><span id="windSpeed">12</span><span class="wind-speed-unit"> km/h</span></dd>
+                </div>
+                <div class="card__row">
+                    <dt id="windChill" class="card__label">Wind Chill:</dt>
+                    <dd class="card__value"><span id="hotChile" class="">N/A</span></dd>
+                </div>
+            </dl>
+        </div>
+    </section>
 
-    <main>
-<div class="hero">
-    <figure>
-        <picture class="hero-day" directories="[object Object]" filename="hero-day.webp" breakpoints="[object Object]"
-            dimensions="[object Object]">
-            <source media="(max-width: 500px)" srcset="images/place/hero-day-small.webp">
-            <source media="(max-width: 1000px)" srcset="images/place/hero-day-medium.webp"><img
-                src="images/place/hero-day-large.webp" alt="hero-day" width="500" height="250" loading="lazy"
-                style="cursor: zoom-in;">
-        </picture>
-        <figcaption>"Moai statues, Easter Island" via <a
-                href="https://www.piqsels.com/en/public-domain-photo-svtvg">Piqsels</a> (Public Domain).</figcaption>
-    </figure>
-    <figure>
-        <picture class="hero-night" directories="[object Object]" filename="hero-night.webp"
-            breakpoints="[object Object]" dimensions="[object Object]">
-            <source media="(max-width: 500px)" srcset="images/place/hero-night-small.webp">
-            <source media="(max-width: 1000px)" srcset="images/place/hero-night-medium.webp"><img
-                src="images/place/hero-night-large.webp" alt="hero-night" width="500" height="250" loading="lazy">
-        </picture>
-        <figcaption>"Moais at Ahu Tongariki (Easter island, Chile). night shining moon and stars" by <a
-                href="https://www.istockphoto.com/portfolio/Lindrik?mediatype=photography">Lindrik</a> is licensed under
-            the <a href="https://www.istockphoto.com/help/licenses">iStock Standard License</a>.</figcaption>
-    </figure>
-</div>
-
-        
-    </main>
-
-    <footer>
-        <p>
-            &copy;<span id="currentyear"></span> | Jayser Pilapil | United State of Calamity
-        </p>
-        <p id="lastModified"></p>
-    </footer>
 </body>
 
 </html>

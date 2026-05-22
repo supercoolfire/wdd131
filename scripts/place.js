@@ -4,7 +4,11 @@ const htmlElement = document.documentElement;
 // State tracking variables (initialized without hardcoded fallbacks)
 let globalTemperature = null;
 let globalSpeed = null;
+let globalWindChill = null;
 let valuesInitialized = false;
+let shouldBeDark = null;
+localStorage.setItem('tempDark', '5');
+localStorage.setItem('windSpeedDark', '10');
 
 /**
  * Updates the application theme state cleanly
@@ -15,6 +19,8 @@ function applyTheme(shouldBeDark) {
     const themeCheckbox = document.getElementById('theme-slider');
     const tempElement = document.getElementById('temp');
     const speedElement = document.getElementById('windSpeed');
+    const weatherConditionElement = document.getElementById('weatherCondition');
+    const windChillElement = document.getElementById('windChill');
 
     // SAFE SEEDING: If our global memory is empty, capture the live numbers directly from the DOM 
     if (!valuesInitialized && tempElement && speedElement) {
@@ -29,20 +35,32 @@ function applyTheme(shouldBeDark) {
         }
     }
 
-    if (shouldBeDark) {
+    if (shouldBeDark == true) {
         htmlElement.classList.add('dark-theme');
         localStorage.setItem('theme-preference', 'dark');
         if (themeCheckbox) themeCheckbox.checked = true;
-        if (tempElement) tempElement.textContent = "5";
-        if (speedElement) speedElement.textContent = "10";
-        displayWindChill();
+
+        if (weatherConditionElement) weatherConditionElement.innerHTML = "<a href=\"https://www.youtube.com/watch?v=27VXAOjpCnA\" class=\"figure-link\" target=\"_blank\"> Money Money</a>";
+        
+        tempDark = localStorage.getItem('tempDark');
+        if (tempElement) tempElement.textContent = tempDark;
+
+        speedy = localStorage.getItem('windSpeedDark');
+        if (speedElement) speedElement.textContent = speedy;
+
+        // alert(`applyTheme shouldBeDark true|t|s |${tempDark}|${speedy}`)
+        calculateWindChill( tempDark, speedy);
     } else {
         htmlElement.classList.remove('dark-theme');
         localStorage.setItem('theme-preference', 'light');
         if (themeCheckbox) themeCheckbox.checked = false;
+
+        if (weatherConditionElement) weatherConditionElement.innerHTML = "<a href=\"https://www.youtube.com/watch?v=jfQSp92L88I\" class=\"figure-link\" target=\"_blank\"> Sunny Day</a>";
+        if (tempElement) tempElement.textContent = localStorage.getItem('tempDOM');
+        if (speedElement) speedElement.textContent = localStorage.getItem('windSpeedDOM');
+        calculateWindChill( localStorage.getItem('tempDOM'), localStorage.getItem('windSpeedDOM'));
         
-        // Proactively fetch fresh production data on switch instead of relying on a background interval
-        syncWeatherData();
+        // alert(`applyTheme shouldBeDark false|t|s: ${shouldBeDark}|${tempElement.textContent}|${speedElement.textContent}`)
     }
 }
 
@@ -117,7 +135,6 @@ function syncWeatherData() {
         if (!isDark) {
             if (tempElement && globalTemperature !== null) tempElement.textContent = globalTemperature;
             if (speedElement && globalSpeed !== null) speedElement.textContent = globalSpeed;
-            displayWindChill();
         }
     });
 }
@@ -130,7 +147,7 @@ syncWeatherData();
 const savedUserPreference = localStorage.getItem('theme-preference');
 if (savedUserPreference === 'dark') {
     applyTheme(true);
-} else {
+} else {   
     applyTheme(false); // Default light theme fallback
 }
 
@@ -161,44 +178,47 @@ observer.observe(document.body || htmlElement, { childList: true, subtree: true 
 // =========================================================================
 let highestZIndex = 10;
 
-function initializeCardDragging() {
-    const cards = document.querySelectorAll('.card');
-    const rapper = document.querySelector('.rapper');
-    const hero = document.querySelector('.hero');
+/**
+ * Standalone Card Dragging Engine
+ * @param {string} cardSelector - The CSS selector for the draggable targets (e.g., '.card')
+ * @param {string} containerSelector - The CSS selector for the boundary parent (e.g., '.hero')
+ * @param {MediaQueryList} mediaQuery - A window.matchMedia() instance that dictates when dragging is allowed
+ */
+function initializeCardDragging(cardSelector, containerSelector, mediaQuery) {
+    const cards = document.querySelectorAll(cardSelector);
+    const hero = document.querySelector(containerSelector);
     
-    if (!rapper || !hero || cards.length === 0) return;
+    if (!hero || cards.length === 0) return;
 
     cards.forEach(card => {
         let isDragging = false;
-        
-        // Track the offset grab position in percentages relative to the card itself
         let grabPercentX = 0;
         let grabPercentY = 0;
 
-        card.addEventListener('mousedown', dragStart);
-        card.addEventListener('touchstart', dragStart, { passive: false });
+        // Named event handlers bound to the instance
+        const onMouseDown = (e) => handleDragStart(e, 'mouse');
+        const onTouchStart = (e) => handleDragStart(e, 'touch');
 
-        function dragStart(e) {
+        function handleDragStart(e, type) {
+            // Guard clause: Reject execution if the provided media query doesn't match
+            if (mediaQuery && !mediaQuery.matches) return;
+
             if (e.target.closest('input') || e.target.closest('button') || e.target.closest('label') || e.target.closest('a')) {
                 return; 
             }
 
-            const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-            const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
-
+            const clientX = type === 'touch' ? e.touches[0].clientX : e.clientX;
+            const clientY = type === 'touch' ? e.touches[0].clientY : e.clientY;
             const cardRect = card.getBoundingClientRect();
 
-            // Calculate precisely where the user clicked inside the card layout as a factor (0 to 1)
             grabPercentX = (clientX - cardRect.left) / cardRect.width;
             grabPercentY = (clientY - cardRect.top) / cardRect.height;
 
             isDragging = true;
             card.style.cursor = 'grabbing';
-
             highestZIndex++;
             card.style.zIndex = highestZIndex;
 
-            // FIX: Clear any old sticky borders only when starting a fresh drag sequence
             card.style.borderTop = '';
             card.style.borderRight = '';
             card.style.borderBottom = '';
@@ -214,6 +234,12 @@ function initializeCardDragging() {
 
         function dragging(e) {
             if (!isDragging) return;
+            
+            // Runtime protection if screen resizes or flips mid-drag
+            if (mediaQuery && !mediaQuery.matches) {
+                dragEnd();
+                return;
+            }
 
             const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
             const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
@@ -221,25 +247,20 @@ function initializeCardDragging() {
             const heroRect = hero.getBoundingClientRect();
             const cardRect = card.getBoundingClientRect();
 
-            // Find the target top-left position of the card relative to the hero container bounds
-            const targetLeftPx = (clientX - heroRect.left) - (grabPercentX * cardRect.width);
-            const targetTopPx = (clientY - heroRect.top) - (grabPercentY * cardRect.height);
+            let targetLeftPx = (clientX - heroRect.left) - (grabPercentX * cardRect.width);
+            let targetTopPx = (clientY - heroRect.top) - (grabPercentY * cardRect.height);
 
-            // Convert pixel coordinates to pure percentage ratios of the hero's space
             let targetLeftPercent = (targetLeftPx / heroRect.width) * 100;
             let targetTopPercent = (targetTopPx / heroRect.height) * 100;
 
-            // Calculate maximum allowed percentages based on the card's relative size
             const maxLeftPercent = ((heroRect.width - cardRect.width) / heroRect.width) * 100;
             const maxTopPercent = ((heroRect.height - cardRect.height) / heroRect.height) * 100;
 
-            // Reset dynamic collision indicator configurations per frame calculation
             card.style.borderTop = '';
             card.style.borderRight = '';
             card.style.borderBottom = '';
             card.style.borderLeft = '';
 
-            // Apply strict fluid clamping boundary checks and apply persistent style rules
             if (targetLeftPercent <= 0) {
                 targetLeftPercent = 0;
                 card.style.borderLeft = '2px solid red';
@@ -257,7 +278,6 @@ function initializeCardDragging() {
                 card.style.borderBottom = '2px solid red';
             }
 
-            // Write updates to inline properties using % units
             card.style.left = `${targetLeftPercent}%`;
             card.style.top = `${targetTopPercent}%`;
             card.style.right = 'auto'; 
@@ -268,38 +288,29 @@ function initializeCardDragging() {
         function dragEnd() {
             if (!isDragging) return;
             isDragging = false;
-            card.style.cursor = 'grab';
+            card.style.cursor = (mediaQuery && mediaQuery.matches) ? 'grab' : 'unset';
 
-            // FIX: Removed the quick-wiping of borders from this block completely
-
-            // --- PROXIMITY ANCHOR SENSOR LAYER ---
             const heroRect = hero.getBoundingClientRect();
             const cardRect = card.getBoundingClientRect();
 
-            // Calculate structural offsets relative to all four sides in raw pixels
             const distanceToLeft = cardRect.left - heroRect.left;
             const distanceToTop = cardRect.top - heroRect.top;
             const distanceToRight = heroRect.right - cardRect.right;
             const distanceToBottom = heroRect.bottom - cardRect.bottom;
 
-            // Proximity threshold logic (determine which side handles layout anchor duties)
             if (distanceToLeft <= distanceToRight) {
-                const leftPercent = (distanceToLeft / heroRect.width) * 100;
-                card.style.left = `${leftPercent}%`;
+                card.style.left = `${(distanceToLeft / heroRect.width) * 100}%`;
                 card.style.right = 'auto';
             } else {
-                const rightPercent = (distanceToRight / heroRect.width) * 100;
-                card.style.right = `${rightPercent}%`;
+                card.style.right = `${(distanceToRight / heroRect.width) * 100}%`;
                 card.style.left = 'auto';
             }
 
             if (distanceToTop <= distanceToBottom) {
-                const topPercent = (distanceToTop / heroRect.height) * 100;
-                card.style.top = `${topPercent}%`;
+                card.style.top = `${(distanceToTop / heroRect.height) * 100}%`;
                 card.style.bottom = 'auto';
             } else {
-                const bottomPercent = (distanceToBottom / heroRect.height) * 100;
-                card.style.bottom = `${bottomPercent}%`;
+                card.style.bottom = `${(distanceToBottom / heroRect.height) * 100}%`;
                 card.style.top = 'auto';
             }
 
@@ -307,6 +318,34 @@ function initializeCardDragging() {
             window.removeEventListener('touchmove', dragging);
             window.removeEventListener('mouseup', dragEnd);
             window.removeEventListener('touchend', dragEnd);
+        }
+
+        // Handles cleanup and binding states toggled by changes in viewport size
+        function evaluateListeners() {
+            if (!mediaQuery || mediaQuery.matches) {
+                card.addEventListener('mousedown', onMouseDown);
+                card.addEventListener('touchstart', onTouchStart, { passive: false });
+                card.style.cursor = 'grab';
+            } else {
+                card.removeEventListener('mousedown', onMouseDown);
+                card.removeEventListener('touchstart', onTouchStart);
+                
+                // Reset styling properties so default responsive styles rule mobile layout
+                card.style.cursor = 'unset';
+                card.style.left = '';
+                card.style.top = '';
+                card.style.right = '';
+                card.style.bottom = '';
+                card.style.margin = '';
+                card.style.zIndex = '';
+                card.style.border = '';
+            }
+        }
+
+        evaluateListeners();
+
+        if (mediaQuery) {
+            mediaQuery.addEventListener('change', evaluateListeners);
         }
     });
 }
@@ -319,8 +358,13 @@ const dragInitObserver = new MutationObserver(() => {
     const hero = document.querySelector('.hero');
     
     if (cards.length > 0 && hero) {
-        initializeCardDragging();
-        dragInitObserver.disconnect(); // Unbind tracking once setup completes safely
+        // Create the media query parameter context here
+        const desktopBreakpoint = window.matchMedia('(min-width: 800px)');
+        
+        // Pass the query along to the standalone engine initialization
+        initializeCardDragging('.card', '.hero', desktopBreakpoint);
+        
+        dragInitObserver.disconnect();
     }
 });
 
@@ -337,60 +381,78 @@ document.getElementById('lastModified').textContent = `Last Modified: ${document
 function displayWindChill() {
     // Get DOM elements first and validate they exist
     const tempElement = document.querySelector("#temp");
-    console.log(`tempElement ${tempElement ? tempElement.textContent.trim() : 'missing'}`);
     const windSpeedElement = document.querySelector("#windSpeed");
-    console.log(`windSpeedElement ${windSpeedElement ? windSpeedElement.textContent.trim() : 'missing'}`);
-    const hotChileElement = document.querySelector("#hotChile");
-    console.log(`hotChileElement ${hotChileElement ? hotChileElement.textContent.trim() : 'missing'}`);
 
+    
+    // alert(`displayWindChill tempElement | windSpeedElement | hotChileElement ${tempElement.textContent} ${windSpeedElement.textContent} ${hotChileElement.textContent}`)
     // Guard clause to exit if any required element is missing
-    if (!tempElement || !windSpeedElement || !hotChileElement) {
+    if (!tempElement || !windSpeedElement) {
+        // alert(`displayWindChill missing required elements`)
         return;
     }
 
     // Parse text content to numbers (critical for mathematical operations)
-    const currentTempC = parseFloat(tempElement.textContent);
+    const temp = parseFloat(tempElement.textContent);
     const speed = parseFloat(windSpeedElement.textContent);
     
-    console.log(`currentTempC ${currentTempC}`);
-    console.log(`speed ${speed}`);
-
     // Validate parsed numbers before calculations
-    if (isNaN(currentTempC) || isNaN(speed)) {
-        console.error("Invalid temperature or wind speed values");
+    if (isNaN(temp) || isNaN(speed)) {
         hotChileElement.textContent = "N/A";
         hotChileElement.classList.remove("loading-dots");
         return;
     }
 
     // Wind chill formula requirements (per US/Canada meteorological standards: temp <=10°C, wind speed >4.8km/h)
-    if (currentTempC <= 10 && speed > 4.8) {
-        console.log("Calculating wind chill");
-        // Official wind chill formula for Celsius (°C) and km/h
-        const calculatedChill = 13.12 + (0.6215 * currentTempC) - (11.37 * Math.pow(speed, 0.16)) + (0.3965 * currentTempC * Math.pow(speed, 0.16));
-        const displayValue = `${Math.round(calculatedChill)}°C`;
-        console.log(`displayValue ${displayValue}`);
-        
-        hotChileElement.classList.remove("loading-dots");
-        hotChileElement.textContent = displayValue;
-    } else {
-        console.log("Conditions not met for wind chill calculation");
-        hotChileElement.classList.remove("loading-dots");
-        hotChileElement.textContent = "N/A";
-    }
+     calculateWindChill(temp, speed);
 }
 
-displayWindChill(); // fallback check
+function calculateWindChill(temp, speed) {
+    // alert(`calculateWindChill temp|speed: ${temp}|${speed}`)
+    const hotChileElement = document.getElementById("hotChile");
+    if (temp <= 10 && speed > 4.8) {
+     let calculatedChill = 13.12 + (0.6215 * temp) - (11.37 * Math.pow(speed, 0.16)) + (0.3965 * temp * Math.pow(speed, 0.16));
+     let chills = `${Math.round(calculatedChill)}°C`;
+        if (hotChileElement) {
+            hotChileElement.classList.remove("loading-dots");
+            hotChileElement.textContent = chills;
+        }
+    } else {
+        if (hotChileElement) {
+            hotChileElement.classList.remove("loading-dots");
+            hotChileElement.textContent = "N/A";
+        }
+    }
+
+    return
+}
 
 // Run calculation after DOM is fully loaded
 document.addEventListener("hydrationFinished", function() {
     // Attempt dynamic state capture when hydration settles safely
     const tempElement = document.getElementById('temp');
     const speedElement = document.getElementById('windSpeed');
+    const windChill = null;
+
     if (!valuesInitialized && tempElement && speedElement) {
         globalTemperature = tempElement.textContent.trim();
         globalSpeed = speedElement.textContent.trim();
+        globalWindChill = windChill;
         valuesInitialized = true;
     }
+    
+    temp = tempElement.textContent.trim();
+    speed = speedElement.textContent.trim();
+
+    if (tempElement) localStorage.setItem('tempDOM', temp);
+    if (speedElement) localStorage.setItem('windSpeedDOM', speed);
+
+    if (temp && speed) {
+        // alert(`hydrationFinished temp|speed: ${temp}|${speed}`)
+        calculateWindChill( temp, speed);
+        localStorage.setItem('windChill', windChill);
+    }
+
+    // alert(`addEventListener hydrationFinished t|s|w: ${tempElement.textContent}|${speedElement.textContent}|${windChill}`)
     displayWindChill(); 
 });
+
