@@ -1,23 +1,11 @@
-/* ==========================================================================
-   9. LARGE RESOLUTION BREAKPOINT MEDIA QUERY (min-width: 800px)
-   ========================================================================== */
 @media (min-width: 800px) {
-  main {
-    position: relative;
-    max-width: 1500px;
-    margin: 0 auto;
-  }
 
-  .rapper {
-    position: relative; 
-    width: 100%;
-    min-height: max-content; 
-  }
 
-  .hero {
-    position: relative;
-    width: 100%;
-  }
+.rapper {
+    display:flex;
+    flex-direction: row;
+    
+}
 /*-----------------------------\
 |     global trade industry    |
 \-----------------------------*/
@@ -41,14 +29,11 @@
     -webkit-clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
   }
 
-
-
     .card__title {
         flex-direction: row;
         position: relative;
         font-size: 1.25rem;
         text-align: left;
-        height: 27px;
     }
 
 /*-----------------------------\
@@ -78,62 +63,6 @@
     margin: 0;
   }
 
-
-/*-----------------------------\
-|   just wild beat animation  */
- #data.card::after {
-    content: '';
-    position: absolute;
-    left: -30px;
-    right: 0;
-    top: 15px;
-    bottom: 0;
-    width: 235px;
-    height: 27px;
-    padding: 10px;
-    background-color: #39b975;
-    -webkit-clip-path: polygon(93% 0%, 100% 50%, 93% 100%, 10% 100%, 5% 50%, 10% 0%);
-
-  transform: scaleX(0);
-  transform-origin: right center;
-  transition: transform 0.4s ease-in-out;
-    /* transform: scaleX(1);    */
-    z-index: 99;
-  }
-
-   #data.card:hover::after {
-    transform: scaleX(1);
-  }
-/*-----------------------------*/
-
-/*-----------------------------\
-|   just wild beat animation  */
- #weather.card::after {
-    content: '';
-    position: absolute;
-    left: -28px;
-    right: 0;
-    top: 15px;
-    bottom: 0;
-    width: 131px;
-    height: 27px;
-    padding: 10px;
-    background-color: #13ee3b;
-    -webkit-clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 10% 100%, 3% 50%, 10% 0%);
-
-  transform: scaleX(0);
-  transform-origin: right center;
-  transition: transform 0.4s ease-in-out;
-    /* transform: scaleX(1);    */
-    z-index: 1;
-  }
-
-   #weather.card:hover::after {
-    transform: scaleX(1);
-  }
-/*-----------------------------*/
-  
-
   #data.card .card__title {
     padding-right: 10px;
   }
@@ -158,13 +87,12 @@
     position:absolute;
     /* background-color: blue; */
     /* content: ""; */
-  content: "🌦️";
+  content: url(../images/place/weather-icon.svg);
   height: 32px;
   width: 32px;
   transform: unset;
   top: 0;
-  left: 84px;
-  z-index: 10;
+  right: 0;
 
 }
 }

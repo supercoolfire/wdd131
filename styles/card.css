@@ -1,0 +1,228 @@
+
+/*-------------------------------------\
+|      everything revoles on earth     | 
+\-------------------------------------*/
+:root {
+  /* Base page colors */
+  --page-bg: #f3f4f6;
+  --page-text-color: #1a202c;
+
+  /* Toggle switch colors */
+  --toggle-slider-bg: #cccccc;
+  --toggle-thumb-bg: #ffffff;
+  --toggle-active-bg: #2b5b84;
+  --toggle-focus-shadow: #2b5b84;
+
+  /* Card base colors */
+  --card-bg: #ffffff4d;               /* 30% opacity white */
+  --card-border: #0000000d;           /* 5% opacity black */
+  --card-shadow: 0 8px 30px #00000014; /* 8% opacity black */
+  --card-header-shadow: 2px 4px 10px #00000026; /* 15% opacity black */
+  --card-body-bg: #fafbfc4d;          /* 30% opacity off-white */
+  --card-row-border: #0000000a;       /* 4% opacity black */
+
+  /* Card text colors */
+  --card-label-color: #000000;
+  --card-value-color: #000000;
+
+  /* Figcaption and Link colors */
+  --figcaption-text-color: #4a5568;
+  --figcaption-link-color: #034285;
+  --figcaption-link-hover-color: #1e7145;
+
+  /* Header background colors */
+  --header-data-bg: #39b975;
+  --header-card__title-color: #393939;;
+  --header-weather-bg: #13ee3b;
+  --card-title-color: #ffffff;
+
+  /* Hero section */
+  --hero-bg: #ffffff;
+
+  /* Slider icons */
+  --slider-icon-light-bg: #ffffff;
+  --slider-icon-light-text: #000000;
+  --slider-icon-dark-bg: #000000;
+  --slider-icon-dark-text: #ffffff;
+  --slider-icon-shadow: #00000073;       /* 45% opacity */
+}
+
+html.dark-theme {
+  /* Base page colors */
+  --page-bg: #0f131a;
+  --page-text-color: #e2e8f0;
+
+  /* Dark theme card base colors */
+  --card-bg: #1a202c4d;                 /* 30% opacity */
+  --card-border: #ffffff1a;             /* 10% opacity */
+  --card-shadow: 0 8px 30px #00000080;   /* 50% opacity */
+  --card-body-bg: #2d37484d;            /* 30% opacity */
+  --card-row-border: #ffffff1a;         /* 10% opacity */
+  --card-label-color: #ffffff;
+  --card-value-color: #ffffff;
+
+  /* Figcaption and Link colors */
+  --figcaption-text-color: #cbd5e0;
+  --figcaption-link-color: #58b683;
+  --figcaption-link-hover-color: #ffffff;
+
+  /* Hero section */
+  --hero-bg: #0f131a;
+}
+
+body {
+    background-color: #808080c6;
+}
+
+/*-----------------------------\
+|     global trade industry    |
+\-----------------------------*/
+.card {
+    position: relative;
+    max-width: max-content;
+    margin: 20px;
+  
+    border: 2px solid var(--card-border);
+  border-radius: 12px;
+
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  transition: all 0.3s ease;
+  cursor: grab;
+}
+
+.card__header {
+  padding: 10px 10px;
+  position: relative;
+}
+
+.card__header::before {
+  position: relative;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  content: '';
+
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.dark-theme .card__header::before {
+  opacity: 0.8;
+}
+
+.card__title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+  flex-direction: column; /* Unset on large screens */
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  color: var(--card-title-color);
+
+  font-weight: 600;
+  font-size: 1.5rem;
+
+  letter-spacing: 0.3px;
+  margin: 0;
+  z-index: 1;
+}
+
+h2 {
+  text-align: center;
+}
+
+
+
+.card__body {
+  background-color: var(--card-body-bg);
+  opacity: 0.9;
+  transition: background-color 0.3s ease;
+}
+
+.card__data-list {
+    padding: 10px; /* test */
+}
+
+.card__row {
+    display: grid;
+    grid-template-columns: minmax(50%, 1fr) minmax(50%, 1fr);
+    align-items: center;
+
+  border-bottom: 1px solid var(--card-row-border);
+  padding: 5px 0;                 
+  transition: border-color 0.3s ease;
+}
+
+.card__row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.card__label {
+  font-weight: 600;
+  text-align: right;         
+
+  color: var(--card-label-color);
+
+  margin: 0;
+  white-space: nowrap;  
+}
+
+.card__value {
+    text-align: left;
+    margin: 0 0 0 10px;
+    
+}
+      
+
+
+/*-----------------------------\
+|     local amusement park     |
+\-----------------------------*/
+#data.card .card__body {
+  padding-top: 0;
+}
+#weather.card .card__body {
+  padding-top: 50px;
+}
+
+#data.card .card__header {
+  background-color: var(--header-data-bg); 
+}
+#data.card .card__title {
+  color: var(--header-card__title-color)
+}
+
+#weather.card .card__header {
+  background-color: var(--header-weather-bg); 
+}
+   
+
+/*-----------------------------\
+|   great value only $99.99    |
+\-----------------------------*/
+#weatherUlikeit {
+    position: relative;
+    color: #575757;
+}
+#weatherUlikeit::before {
+    position:absolute;
+    /* background-color: #0000ff3b; */
+    content: "";
+  content: url(weather-icon.svg);
+  height: 94px;
+  width: 94px;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+}
+
