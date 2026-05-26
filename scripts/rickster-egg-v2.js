@@ -44,7 +44,7 @@ const initRicksterEggV2 = () => {
         document.body.insertAdjacentHTML('beforeend', `
             <div id="video-container" class="modal-rickster-egg" style="display: none;">
                 <video preload="none" playinline="true" id="rick-video" controls="true">
-                    <source src="/images/rick-roll.mp4?quality=0.5" type="video/mp4">
+                    <source src="images/rick-roll.mp4?quality=0.5" type="video/mp4">
                     <p>Your browser does not support the video tag.</p>
                 </video>
             </div>
