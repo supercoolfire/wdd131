@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Theme Variables & Global Styles
+   ========================================================================== */
+:root {
+    /* Light Theme Variables */
+    --bg-color: #cd9d9d26;
+    --text-color: #1a1a1a;
+    --toggle-btn-bg: #2a2a2a;
+    --toggle-text-color: #f0f0f0;
+}
+
+[data-theme="dark"] {
+    /* Dark Theme Variables */
+    --bg-color: #121212d9;
+    --text-color: #f5f5f5;
+    --toggle-btn-bg: #f0f0f0;
+    --toggle-text-color: #2a2a2a;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: system-ui, -apple-system, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Button Styling
+   ========================================================================== */
+.theme-toggle {
+    padding: 8px 8px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--toggle-btn-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 1s ease;
+}
+.theme-icon, .theme-toggle,
+.theme-text {
+    color: var(--toggle-text-color);
+}
+/* ==========================================================================
+   Element Swapping Logic
+   ========================================================================== */
+/* Default state: Hide dark elements, show light elements */
+html[data-theme="light"] .dark {
+    display: none;
+}
+html[data-theme="light"] .light {
+    display: block;
+}
+
+/* Dark state: Show dark elements, hide light elements */
+html[data-theme="dark"] .light {
+    display: none;
+}
+html[data-theme="dark"] .dark {
+    display: block;
+}
+
+/* Styling for the sample elements */
+.foo {
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px dashed var(--text-color);
+    border-radius: 8px;
+}
+
+
+
+
+
+
+
+
+/*-------------------------------------\
+|          Dots Entertainment         */
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s infinite steps(4);
+}
+
+@keyframes dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: '....'; }
+}
+/*          Dots Entertainment          |
+\-------------------------------------*/

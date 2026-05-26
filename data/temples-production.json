@@ -1,5 +1,5 @@
 {
-  "body": { "tag": "title", "insertion": "after", "items": [{ "tag": "script", "src": "scripts/rickster-egg-v2.js", "defer": "true" }] },
+  "rickster-egg": { "tag": "title", "insertion": "after", "items": [{ "tag": "script", "src": "scripts/rickster-egg-v2.js", "defer": "true" }] },
   "hydration-info-hide": {
     "tag": "div", "class": "hidration-info",
     "items": [
