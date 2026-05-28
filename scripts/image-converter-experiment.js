@@ -47,7 +47,7 @@ const __dirname = path.dirname(__filename);
 const CONFIG = {
     // Comma-separated paths to source folders or individual explicit files
     // Example: './raw-assets/temples, ./backups/old-photo.jpg'
-    sources: ['./images/place/hero-day.jpg','./images/place/hero-night.jpg'],
+    sources: ['./images/test'],
     
     // Base maximum quality ceiling (used as the highest bound for dynamicQuality scaling)
     // When dynamicQualityScaling is true, this value is the maximum quality for the largest crops
@@ -71,7 +71,7 @@ const CONFIG = {
     // If 'false', the files with suffix will created in the output folder
     // Example: './images/place/hero.jpg' -> './images/place/hero-webp-[fileSuffix].jpg'
     folderSuffix: 'false',
-    outputFolder: './images/place'
+    outputFolder: './images/filtered-temples/webp'
 };
 // ==========================================
 

@@ -1,18 +1,21 @@
 /**
- * HOW TO DOWNLOAD AND INSTALL NODE.JS:
- * 1. Go to https://nodejs.org and download the LTS installer for your OS.
- * 2. Run the installer using default settings.
- * 3. Verify installation in terminal/command prompt by running: node -v && npm -v
+ * * Image Downloader Experiment
+* (C) 2026 Jayser Pilapil
+ *
+ * Requirements:
+ * 1. Node.js installed on your system (version >= 16.0.0).
+ * 2. "type": "module" added to your root package.json file.
  * 
- * SETUP AND USAGE:
- * 1. Place this code into a file named `image-downloader-experiment.js` inside your project folder.
- * 2. Create your target data JSON file (e.g., `temples.json`) in the same folder.
- * 3. Open your terminal in this folder and install dependencies: npm install axios cli-progress
- * 4. Adjust the CONFIG block directly below to match your dataset keys and paths.
- * 5. Execute the script by running: node image-downloader-experiment.js
+ * Installation:
+ * 1. Run the command in your project root: npm install axios cli-progress
  * 
- * FEATURES:
- * - Reads external configuration JSON array dynamically.
+ * Usage:
+ * 1. Prepare your destination folder (e.g., `images/downloads`) where you want to store the downloaded images.
+ * 2. modify the CONFIG block directly below to match your dataset keys and paths.
+ * 3. execute the script from your project root: node scripts/image-downloader-experiment.js
+ * 
+ * * FEATURES:
+ * - Reads external configuration JSON/JSOL array dynamically.
  * - Auto-sanitizes target filename strings (converts spaces to dashes, strips illegal symbols).
  * - Self-extracts original extension markers (.jpg, .jpeg, .png) from dynamic assets.
  * - Auto-creates nested path directory systems if they don't exist.
@@ -28,10 +31,10 @@ const cliProgress = require('cli-progress');
 // CONFIGURATION REQUIREMENTS
 // ==========================================
 const CONFIG = {
-    jsonFile: '../data/sample-imageDownlaoder.json',  // Path to target JSON file /* https://github.com/Bryan-Singer/wdd131/blob/main/scripts/temples.js */
-    nameKey: 'templeName',                            // Key used to rename file (spaces become dashes)
-    urlKey: 'imageUrl',                               // Key containing the image url link id
-    destDirectory: '../images/temple_images'                  // Relative or absolute destination directory path
+    jsonFile: 'data/test.jsol',  // Path to target JSON or JSOL file
+    nameKey: 'templeName',       // Key used to rename file (spaces become dashes)
+    urlKey: 'imageUrl',          // Key containing the image url link id
+    destDirectory: 'images/test' // Relative or absolute destination directory path
 };
 
 function sanitizeFilename(name) {
@@ -87,8 +90,23 @@ async function startBatchDownload() {
         if (!fs.existsSync(CONFIG.jsonFile)) {
             throw new Error(`Target file metadata missing at path: ${CONFIG.jsonFile}`);
         }
-        const rawData = fs.readFileSync(CONFIG.jsonFile, 'utf8');
-        items = JSON.parse(rawData);
+        const rawData = fs.readFileSync(CONFIG.jsonFile, 'utf8').trim();
+        
+        // --- COMPATIBILITY FALLBACK HANDLER ---
+        try {
+            // 1. Attempt standard strict JSON compilation
+            items = JSON.parse(rawData);
+        } catch (jsonErr) {
+            // 2. If it fails, compile it safely as a JavaScript Object Literal (JSOL)
+            // Wrapping it in parentheses ensures the runtime treats it as an expression
+            try {
+                items = Function(`"use strict"; return (${rawData})`)();
+            } catch (jsolErr) {
+                throw new Error(`Failed parsing data structure as JSON or JSOL. Error details: ${jsolErr.message}`);
+            }
+        }
+        // --------------------------------------
+
         if (!Array.isArray(items)) {
             throw new Error("Target root format structure must parse as an Array.");
         }
