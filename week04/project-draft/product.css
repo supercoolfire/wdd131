@@ -1,0 +1,348 @@
+:root {
+    --bg-primary: #0b0f17;
+    --bg-secondary: #121824;
+    --bg-tertiary: #1c2537;
+    --accent-color: #ff3333; /* Crimson Hydra Brand Theme */
+    --accent-blue: #38bdf8;
+    --accent-success: #10b981;
+    --text-main: #e2e8f0;
+    --text-muted: #64748b;
+    --border-color: #243147;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Fira Code', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Marketing App Navigation Header */
+.app-header {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 3px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-icon {
+    color: var(--accent-color);
+    filter: drop-shadow(0 0 6px rgba(255, 51, 51, 0.6));
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    color: #fff;
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+}
+
+.system-status {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-success);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-success);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-success);
+}
+
+/* Page Routing Views Configuration */
+.content-wrapper {
+    flex: 1;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.page-view {
+    display: none;
+}
+
+.page-view.active {
+    display: block;
+    animation: contentReveal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes contentReveal {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Page 1: Features & Origin Layout */
+.hero-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 4rem auto;
+}
+
+.badge {
+    background-color: rgba(255, 51, 51, 0.1);
+    color: var(--accent-color);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    border: 1px solid rgba(255, 51, 51, 0.2);
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+}
+
+.story-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-color);
+    padding: 2.5rem;
+    border-radius: 8px;
+    text-align: left;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.story-card p {
+    margin-bottom: 1.25rem;
+    color: #cbd5e1;
+    font-size: 1.05rem;
+}
+
+.story-card p:last-child {
+    margin-bottom: 0;
+    color: #fff;
+    font-weight: 600;
+}
+
+.hero-cta-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.cta-primary-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cta-primary-btn:hover { background-color: #dd1111; }
+
+.cta-secondary-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cta-secondary-link:hover { text-decoration: underline; }
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: var(--accent-blue);
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+}
+
+.feature-card h3 { color: #fff; margin-bottom: 0.5rem; }
+.feature-card p { color: #94a3b8; font-size: 0.95rem; }
+
+/* Page 2: Dedicated Monaco IDE Split Layout Container */
+.demo-header { text-align: center; margin-bottom: 2rem; }
+.demo-header h2 { color: #fff; font-size: 1.75rem; }
+.demo-header p { color: #94a3b8; }
+
+/* Update your main grid definition to 3 equal-width columns */
+.split-editor-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Changed from 1fr 1fr */
+    gap: 1.25rem;
+    background-color: #080c12;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    height: 550px;
+}
+
+/* Styling rules for protected lines inside Monaco Code Editors */
+.static-template-locked-bg {
+    background-color: rgba(30, 41, 59, 0.4) !important; /* Darker shaded slate overlay */
+    border-left: 3px solid #64748b; /* Slate border identifying locked source code */
+    opacity: 0.85;
+}
+
+.static-lock-glyph {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>') no-repeat center;
+}
+
+
+.editor-pane {
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e; /* Standard Monaco dark theme background default alignment */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.pane-header {
+    background-color: var(--bg-secondary);
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.pane-badge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+.pane-badge.data { background-color: rgba(56, 189, 248, 0.15); color: var(--accent-blue); }
+.pane-badge.dom { background-color: rgba(16, 185, 129, 0.15); color: var(--accent-success); }
+
+.pane-body {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Explicit targeting coordinates to support your Monaco editor mount framework directly */
+.monaco-target-instance {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Page 3: Blueprint & Systems Constraints Layout */
+.specs-container { display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem; }
+.specs-sidebar {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: fit-content;
+}
+.specs-sidebar h3 { color: #fff; font-size: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+.meta-list { list-style: none; }
+.meta-list li { font-size: 0.85rem; margin-bottom: 0.75rem; color: #94a3b8; }
+.meta-list li strong { color: var(--text-main); display: block; margin-bottom: 0.1rem; }
+
+.specs-main h2 { color: #fff; font-size: 1.75rem; margin-bottom: 0.5rem; }
+.specs-intro { color: #64748b; margin-bottom: 2rem; }
+.constraint-block { background-color: var(--bg-secondary); border-left: 4px solid var(--accent-blue); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; }
+.constraint-block h4 { color: #fff; margin-bottom: 0.75rem; }
+.ledger-list { list-style: none; font-size: 0.95rem; color: #cbd5e1; }
+.ledger-list li { margin-bottom: 0.5rem; }
+
+/* Dev Audit Terminal Graphic */
+.audit-terminal { background-color: #04060a; border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; font-family: var(--font-mono); font-size: 0.8rem; }
+.terminal-header { background-color: #0d121c; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+.terminal-dot.red { background-color: #ef4444; }
+.terminal-dot.yellow { background-color: #f59e0b; }
+.terminal-dot.green { background-color: #10b981; }
+.terminal-title { color: #64748b; font-size: 0.75rem; margin-left: 0.5rem; }
+.terminal-body { padding: 1.25rem; min-height: 140px; }
+.log-entry { margin-bottom: 0.4rem; line-height: 1.5; }
+.log-entry.info { color: #38bdf8; }
+.log-entry.success { color: #4ade80; }
+.log-entry.warning { color: #fbbf24; }
+.log-entry.text-green { color: #a6e22e; }
+
+/* Sticky Global Footer Layout */
+.app-footer { background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); text-align: center; padding: 1.25rem; font-size: 0.85rem; color: var(--text-muted); margin-top: auto; }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .split-editor-container { grid-template-columns: 1fr; height: 750px; }
+    .specs-container { grid-template-columns: 1fr; }
+    .hero-section h1 { font-size: 2rem; }
+    .app-header { flex-direction: column; gap: 0.75rem; }
+
+    .split-editor-container { 
+        grid-template-columns: 1fr; 
+        height: 1100px; /* Tall enough to comfortably stack all three workspaces */
+    }
+}

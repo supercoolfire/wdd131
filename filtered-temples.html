@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="A curated gallery of LDS temple photographs and historical details, showcasing sacred architecture from diverse locations around the globe.">
+    <meta name="keywords" content="LDS, Temple, Photos, Gallery">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Album</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/filtered-temples.css">
+    <link rel="stylesheet" href="styles/filtered-temples-large.css" media="(min-width: 640px)">
+    <!-- <link rel="preload" href="data/temples-production.json" as="fetch" crossorigin> -->
+    <!-- <script src="scripts/hydrate-v4.js" data-file="data/temples-production.json" defer> </script> -->
+    <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/filtered-temples.js" defer></script>
+    <script src="scripts/modal-click-origin.js" defer></script>
+    <script src="scripts/boilerplate.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <span id="course-title">Temple Album</span>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li><a href="filtered-temples.html" id="home">Home</a></li>
+                <li><a href="#" id="old">Old</a></li>
+                <li><a href="#" id="new">New</a></li>
+                <li><a href="#" id="large">Large</a></li>
+                <li><a href="#" id="small">Small</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" aria-label="Toggle dark mode" title="Switch to dark mode">🌙</button>
+    </header>
+
+    <main>
+        <h1>Home</h1>
+        <div id="search">
+            <label for="search-input" class="search-label">Search:</label>
+            <input type="text" placeholder="Multiple search terms supported" id="search-input" autocomplete="off" aria-label="Search for a temple or location" required>
+            <button id="clearSearch">😵</button>
+        </div>
+        <div id="figure-grid">
+        </div>
+    </main>
+    <footer>
+        <p>
+            &copy;<span id="currentyear"></span> | Jayser Pilapil | <a id="portfolio" href="portfolio.html" target="_blank">Portfolio</a> | United State of Calamity
+        </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>

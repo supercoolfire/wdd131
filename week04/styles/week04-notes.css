@@ -1,0 +1,525 @@
+/*-------------------------------------\
+|        Day <- toggle -> night       */
+:root {
+	--toggle-btn-bg: #2a2a2a;
+	--toggle-text-color: #f0f0f0;
+	--body-bg-color: #12121226;
+	--body-text-color: #1a1a1a;
+	--header-bg-color: #94cbff;
+	--header-color: #000000;
+	--main-bg-color: #ffffff;
+	--main-color: #000000;
+	--footer-bg-color: #94cbff;
+	--footer-color: #000000;
+	--a-color: blue;
+	--a-hover-bg-color: #ffff005b;
+	--a-hover-color: blue;
+	--generic-bg-element: #a9c1bc;
+	--generic-bg-content: #b8c3c1;
+	--generic-box-shaddow: 0 10px 15px -3px #0000008d;
+	--t-caption-bg-color: #000000;
+	--t-caption-color: #ffffff;
+	--tbody-th-bg-color: #d1d1c9;
+	--tbody-th-odd-bg-color: #a8a8a1;
+	--tbody-tr-odd-bg-color: #413f2649;
+	--th-bg-color: #9999fc;
+	--td-bg-color: #393922;
+	--white: #ffffff;
+}
+
+[data-theme="dark"] {
+	--toggle-btn-bg: #f0f0f0;
+	--toggle-text-color: #2a2a2a;
+	--body-bg-color: #121212d9;
+	--body-text-color: #f5f5f5;
+	--header-bg-color: #021629;
+	--header-color: #ebd531;
+	--main-bg-color: #00000050;
+	--main-color: #ffffff;
+	--footer-bg-color: #021629;
+	--footer-color: #ffffff;
+	--a-color: rgb(153, 192, 255);
+	--a-hover-bg-color: #ffff005b;
+	--a-hover-color: blue;
+	--generic-bg-element: #343c3a;
+	--generic-bg-content: #191d1c;
+	--generic-box-shaddow: 0 10px 15px -3px #ffffff4d;
+	--t-caption-bg-color: #51423c;
+	--t-caption-color: rgb(238, 238, 89);
+	--tbody-th-bg-color: #78781f;
+	--tbody-th-odd-bg-color: #545427;
+	--tbody-tr-odd-bg-color: #a6a02649;
+	--th-bg-color: #0000ff;
+	--td-bg-color: #393922;
+	--white: #ffffff;
+}
+
+/* ==========================================================================
+   Button Styling
+   ========================================================================== */
+.theme-toggle {
+	position: fixed;
+	top: 20px;
+	right: 15px;
+	z-index: 100;
+
+	padding: 8px 8px;
+	border: none;
+	border-radius: 30px;
+	background-color: var(--toggle-btn-bg);
+	color: var(--body-text-color);
+	cursor: pointer;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	transition: background-color 1s ease;
+}
+
+.theme-icon,
+.theme-toggle,
+.theme-text {
+	color: var(--toggle-text-color);
+}
+
+/* ==========================================================================
+   Element Swapping Logic
+   ========================================================================== */
+/* Default state: Hide dark elements, show light elements */
+html[data-theme="light"] .dark {
+	display: none;
+}
+
+html[data-theme="light"] .light {
+	display: block;
+}
+
+/* Dark state: Show dark elements, hide light elements */
+html[data-theme="dark"] .light {
+	display: none;
+}
+
+html[data-theme="dark"] .dark {
+	display: block;
+}
+
+a {
+	position: relative;
+	color: var(--a-color);
+	text-decoration: none;
+}
+
+a::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+a:hover::after {
+	background-color: var(--a-hover-bg-color);
+	/* color: var(--a-hover-color); */
+	padding: 5px;
+	margin: -8px;
+	border-radius: 5px;
+}
+
+a:active {
+	color: var(--a-hover-color);
+}
+
+/*        Day <- toggle -> night        |
+\-------------------------------------*/
+body {
+	font-family: "Ubuntu", Arial, sans-serif;
+	line-height: 1.6;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--body-bg-color);
+	color: var(--body-text-color);
+	font-family: "Ubuntu", Arial, sans-serif;
+	transition: background-color 0.3s ease, color 0.3s ease;
+	align-items: center;
+	min-height: 97vh;
+}
+
+header {
+	position: relative;
+	background-color: var(--header-bg-color);
+	color: var(--header-color);
+	width: 97%;
+	padding: 1rem;
+}
+
+#course-title {
+	text-align: center;
+	margin-right: 95px;
+}
+
+/*-------------------------------------\
+|           Poor man's steak          */
+
+#menu {
+	display: block;
+	position: relative;
+	font-size: 1rem;
+	font-weight: 700;
+	text-decoration: none;
+	padding: .5rem .75rem;
+	background-color: #eeeeee;
+	color: #000000;
+	border-radius: 50%;
+
+	width: 36px;
+	height: 36px;
+	text-align: center;
+
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	right: 57px;
+}
+
+#menu::before {
+	position: absolute;
+	content: "☰";
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.show li {
+	display: block;
+}
+
+#menu.show::before {
+	content: "❌";
+}
+
+
+nav {
+	position: relative;
+	top: 0;
+	padding: 0 1rem;
+	/* Kept horizontal padding consistent */
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.5s ease-out, padding 0.5s ease-out;
+}
+
+nav.show {
+	grid-template-rows: 1fr;
+	padding: 1rem;
+	/* Animates vertical padding back in */
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	/* width: 100%; */
+	overflow: hidden;
+}
+
+nav ul li {
+	/* display: none; */
+	transition: all .5s ease-in-out;
+	border: 1px dashed red;
+}
+
+nav ul li:hover {
+	border: 1px dashed #0ba2d1;
+}
+
+nav ul li a {
+	background-color: #d1f7db;
+	transition: all .5s ease-in-out;
+	display: inline-block;
+	font-size: 1.2rem;
+	width: 100%;
+	color: #5a0959;
+	padding: .75rem;
+	text-decoration: none;
+	text-align: center;
+}
+
+nav ul li a:hover {
+	text-decoration: underline;
+	text-decoration-color: #ffff00;
+	color: #412c07;
+	cursor: pointer;
+}
+
+nav ul li a.active {
+	background-color: #003366;
+	color: #ffd484;
+	text-decoration: overline;
+}
+
+/*           Poor man's steak          |
+\-------------------------------------*/
+
+span#course-title {
+	margin-right: 32px;
+}
+
+main {
+	flex: 1;
+	background-color: var(--main-bg-color);
+	color: var(--main-color);
+	padding: 1rem;
+	width: 800px;
+	max-width: 1000px;
+}
+
+details {
+	width: 100%;
+	max-width: 720px;
+	margin: 0 auto 2rem;
+	background: var(--generic-bg-element);
+	backdrop-filter: blur(12px);
+	border-radius: 12px;
+	/* border: 1px solid rgba(148, 163, 184, 0.1); */
+	/* overflow: hidden; */
+	box-shadow: var(--generic-box-shaddow);
+}
+
+
+
+details summary {
+	padding: 1rem 1.5rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	/* color: #cbd5e1; */
+	cursor: pointer;
+	transition: background 0.3s ease;
+	list-style: none;
+	position: relative;
+}
+
+details summary:hover {
+	background: rgba(15, 23, 42, 0.4);
+}
+
+/* Custom interactive summary caret styling arrow indicator */
+details summary::after {
+	content: '▼';
+	position: absolute;
+	right: 1.5rem;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 0.9rem;
+	/* color: #94a3b8; */
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+details[open] summary::after {
+	transform: translateY(-50%) rotate(180deg);
+}
+
+/* Target internal instruction listing spacing grids */
+details ol {
+	padding: 1.5rem 2.5rem;
+	margin: 0;
+	color: #cbd5e1;
+	line-height: 1.8;
+	border-top: 1px solid rgba(148, 163, 184, 0.1);
+	background: rgba(15, 23, 42, 0.2);
+}
+
+span#ol-text {
+	margin-left: -26px;
+}
+
+details li {
+	margin-bottom: 0.75rem;
+	font-size: 0.95rem;
+}
+
+/* Formats nested execution blocks natively */
+details ol ol {
+	padding: 0.5rem 0 0.5rem 1.5rem;
+	border-top: none;
+	background: transparent;
+	/* list-style-type: circle; */
+}
+
+details ol ol li {
+	margin-bottom: 0.25rem;
+	color: #94a3b8;
+}
+
+details li:last-child {
+	margin-bottom: 0;
+}
+
+.markdown-body {
+	width: 80%;
+	height: 5rem;
+	overflow: scroll;
+	resize: both;
+	padding: 0 1rem;
+	border: 1px solid black;
+	background-color: var(--generic-bg-content);
+}
+
+
+/*-------------------------------------\
+|          HTML Tables Practice       */
+#practice-table {
+	box-shadow: var(--generic-box-shaddow);
+	border-spacing: 0;
+	border-radius: 10px;
+
+	caption {
+		background-color: var(--t-caption-bg-color);
+		color: var(--t-caption-color);
+		font-weight: bold;
+		font-size: 1.5rem;
+		padding: 1rem;
+	}
+
+	thead tr th {
+		background-color: var(--th-bg-color);
+		text-align: center;
+		padding: 1rem;
+		font-weight: bold;
+		font-size: 1.5rem;
+	}
+
+	thead tr th:first-child {
+		background-color: var(--t-caption-bg-color);
+	}
+
+	th {
+		/* background-color: var(--td-bg-color); */
+		text-align: center;
+		padding: .5rem 1rem;
+	}
+
+	tbody>tr>th {
+		background-color: var(--tbody-th-bg-color);
+		text-align: center;
+		padding: .5rem 1rem;
+	}
+
+	tbody>tr>td {
+		text-align: center;
+	}
+
+	tbody tr:nth-child(even) th {
+		background-color: var(--tbody-th-odd-bg-color);
+	}
+
+	tbody tr:nth-child(even) td {
+		background-color: var(--tbody-tr-odd-bg-color);
+	}
+}
+
+/*          HTML Tables Practice       |
+\-------------------------------------*/
+
+
+/*-------------------------------------\
+|    HTML Tables Example Solution     */
+#example-table {
+	background-color: var(--white);
+	color: #000;
+	width: 400px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-collapse: collapse;
+
+	caption {
+		background-color: var(--white);
+		caption-side: bottom;
+		font-size: smaller;
+		padding: 0.2rem;
+	}
+
+	th,
+	td {
+		padding: 0.5em 1rem;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		white-space: pre;
+	}
+
+	thead th,
+	tbody td {
+		text-align: center;
+	}
+
+	thead {
+		color: #fff;
+		background: #000;
+
+		th {
+			padding: 1rem;
+			font-size: larger;
+		}
+
+		tr:nth-last-child(1) {
+			background-color: #333;
+		}
+	}
+
+	tbody tr:nth-child(even) {
+		background-color: #eee;
+	}
+
+	.blank {
+		background-color: #000;
+	}
+}
+
+/*    HTML Tables Example Solution     |
+\-------------------------------------*/
+
+
+footer {
+	background-color: var(--footer-bg-color);
+	color: var(--footer-color);
+	text-align: center;
+	padding: 2rem 1rem;
+	width: 97%;
+}
+
+
+/*-------------------------------------\
+|          Dots Entertainment         */
+.loading-dots::after {
+	content: '';
+	animation: dots 1.5s infinite steps(4);
+}
+
+@keyframes dots {
+	0% {
+		content: '';
+	}
+
+	25% {
+		content: '.';
+	}
+
+	50% {
+		content: '..';
+	}
+
+	75% {
+		content: '...';
+	}
+
+	100% {
+		content: '....';
+	}
+}
+
+/*          Dots Entertainment          |
+\-------------------------------------*/

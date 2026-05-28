@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydra Workspace — Sandbox Container</title>
+    <link rel="stylesheet" href="product.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script src="https://unpkg.com/emmet-monaco-es/dist/emmet-monaco.min.js"></script>
+</head>
+<body data-active-page="interactive-demo">
+
+<header class="app-header">
+        <div class="logo">
+            <span class="logo-icon">🐙</span> HYDRA
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-btn">Features & Benefits</a>
+            <a href="product.html" class="nav-btn active">Sandbox Workspace</a>
+            <a href="pricing.html" class="nav-btn">Pricing</a>
+            <a href="about.html" class="nav-btn">About Us</a>
+        </nav>
+        <div class="system-status">
+            <span class="status-indicator"></span> ENGINE: LIVE
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <section id="page-interactive-demo" class="page-view active">
+            <div class="demo-header">
+                <h2>Interactive Sandbox Environment</h2>
+                <p>An interactive environment like VSC where users can practice writing the JSON configurations and see the live HTML render instantly with EMMET support.</p>
+            </div>
+
+            <div class="split-editor-container">
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Workspace: static-monaco</span>
+                        <span class="pane-badge data" style="background-color: rgba(251, 191, 36, 0.15); color: #fbbf24;">HARDCODED SCHEMA</span>
+                    </div>
+                    <div class="pane-body">
+                        <div id="static-monaco" class="monaco-target-instance"></div>
+                    </div>
+                </div>
+
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Workspace: json-monaco</span>
+                        <span class="pane-badge data">JSON CONFIGURATION</span>
+                    </div>
+                    <div class="pane-body">
+                        <div id="json-monaco" class="monaco-target-instance"></div>
+                    </div>
+                </div>
+
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Workspace: html-monaco</span>
+                        <span class="pane-badge dom">LIVE HTML RENDER</span>
+                    </div>
+                    <div class="pane-body">
+                        <div id="html-monaco" class="monaco-target-instance"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    
+<section class="documentation-container" style="margin-top: 2rem; padding: 1.5rem; background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+    <h2 style="margin-bottom: 0.5rem;">Asset Integration</h2>
+    <p style="margin-bottom: 1rem; color: var(--text-main);">
+        You can fetch and initialize the hydration pipeline locally. Download the core library script module from the production registry link below:
+    </p>
+    <p style="margin-bottom: 1.5rem;">
+        <a href="../../scripts/hydrate-v5.js" class="nav-btn active" style="padding: 0.5rem 1rem; background-color: var(--accent-color); color: #fff; text-decoration: none; border-radius: 4px;" download>
+            📥 Download hydrate-v5.js Source
+        </a>
+    </p>
+
+    <h3 style="margin-bottom: 0.5rem;">HTML Implementation Framework</h3>
+    <p style="margin-bottom: 1rem; color: var(--text-muted);">
+        Review the implementation layout syntax below. Real-time workspace linting is active:
+    </p>
+
+    <div class="editor-pane" style="border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden;">
+        <div class="pane-header" style="background-color: var(--bg-tertiary); padding: 0.5rem 1rem; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <span>Implementation Preview: index.html</span>
+            <span class="pane-badge" style="float: right; background-color: rgba(56, 189, 248, 0.15); color: var(--accent-blue); padding: 2px 6px; border-radius: 3px; font-size: 0.7rem;">READ ONLY SPEC</span>
+        </div>
+        <div class="pane-body">
+            <div id="usage-monaco" style="height: 320px; font-family: var(--font-mono);"></div>
+        </div>
+    </div>
+
+    <script>
+        require(['vs/editor/editor.main'], function () {
+            const usageContainer = document.getElementById('usage-monaco');
+            if (usageContainer) {
+                monaco.editor.create(usageContainer, {
+                    value: [
+                        '<!DOCTYPE html>',
+                        '<html lang="en">',
+                        '<head>',
+                        '  <script src="hydrate-v5.js" data-file="data/your-dehydrated.json" defer>' + '</' + 'script>',
+                        '</head>',
+                        '<body>',
+                        '',
+                        '  <header class="app-header">',
+                        '    <nav>loading navigation...</nav>',
+                        '  </header>',
+                        '',
+                        '  <main>',
+                        '    <p>Loading contents...</p>',
+                        '  </main>',
+                        '  ',
+                        '</' + 'body>', // Hidden safely from live-server injection scanning
+                        '</html>'
+                    ].join('\n'),
+                    language: 'html',
+                    theme: 'vs-dark',
+                    tabSize: 2,
+                    readOnly: true,
+                    domReadOnly: true,
+                    automaticLayout: true,
+                    minimap: { enabled: false }
+                });
+            }
+        });
+    </script>
+</section>
+
+        
+    </main>
+
+    <footer class="app-footer">
+        <p>Hydra — Practical, high-efficiency bidirectional development environments.</p>
+    </footer>
+
+    <script src="product.js"></script>
+    <script src="hydraphonics.js"></script>
+</body>
+</html>
+

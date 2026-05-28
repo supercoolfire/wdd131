@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>w4 Notes | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/week04-notes.css">
+    <!-- <link rel="stylesheet" href="styles/week04-notes-large.css" media="(min-width: 640px)"> -->
+    <link rel="preload" href="data/week04-notes.json" as="fetch" crossorigin>
+    <script src="../scripts/hydrate-v5.js" data-file="data/week04-notes.json" defer> </script>
+    <script src="../scripts/getdates.js" defer></script>
+    <script src="../scripts/nav-burger.js" defer></script>
+    <script src="../scripts/modal-click-origin.js" defer></script>
+    <script src="../scripts/rickster-egg-v2.js" defer></script>
+    <script src="scripts/week04-notes.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div id="course-title">WDD 131 – Dynamic Web Fundamentals</div>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li class="loading-dots rickster-egg">Loading navigation</li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+    <main>
+        <div class="loading-dots light">Loading main</div>
+        <div class="loading-dots dark">Loading dark main</div>
+
+        <h2>W04 Project: Website Subject</h2>
+        <details>
+            <summary>Website Subject</summary>
+            <div id="website-subject" class="markdown-body">Loading website-subject...</div>
+        </details>
+        <h2>W04 Learning Activities</h2>
+
+        <h3>HTML Tables</h3>
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Advanced#tables_for_visually_impaired_users">HTML Advanced Features and Accessibility</a></li>
+            <li><a href="https://codepen.io/BYU-Idaho/pen/JoPqzqQ">Practice: Example CodePen ☼ Table Structure and Formatting</a></li>
+            <p>Practice:</p>
+            <table id="practice-table">
+                <caption>
+                    ACME Wildest Services
+                </caption>
+                    <colgroup>
+                        <col span="1" >
+                        <col class="" >
+                        <col>
+                    </colgroup>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Basic</th>
+                        <th>Premium</th>
+                        <th>Deluxe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Feature 1</th>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <th>Feature 2</th>
+                        <td>✗</td>
+                        <td>√</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <th>Feature 3</th>
+                        <td>✗</td>
+                        <td>✗</td>
+                        <td>√</td>
+                    </tr>
+                    <tr>
+                        <th>Feature 4</th>
+                        <td>✗</td>
+                        <td>✗</td>
+                        <td>✗</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Example Solution:</p>
+            <table id="example-table">
+                <thead>
+                    <tr>
+                    <th colspan="4">ACME Wildwest Services</th>
+                    </tr>
+                    <tr>
+                    <td class="blank"></td>
+                    <th>Basic</th>
+                    <th>Premium</th>
+                    <th>Deluxe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th>Feature 1</th>
+                    <td>✔️</td>
+                    <td>✔️</td>
+                    <td>✔️</td>
+                    </tr>
+                    <tr>
+                    <th>Feature 2</th>
+                    <td>❌</td>
+                    <td>✔️</td>
+                    <td>✔️</td>
+
+                    </tr>
+                    <tr>
+                    <th>Feature 3</th>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td>✔️</td>
+                    </tr>
+                </tbody>
+
+                <caption>Table 1: Account Feature Comparison</caption>
+                </table>
+        </ul>
+        <h3>Lazyloading Images</h3>
+        <h3>JavaScript Objects</h3>
+        <h3>JavaScript Array Functions</h3>
+        <h2>W04 Assignment: Picture Album Enhancement</h2>
+        <ul>
+            <li><a href="project-draft/index.html" target="_blank">Picture Album Enhancement (draft)</a></li>
+        </ul>
+        
+        
+    </main>
+
+
+    
+    <script type="module">
+        import { renderMarkdown } from '../scripts/markdownViewer.js';
+        renderMarkdown('website-subject.md', 'website-subject');
+    </script>
+
+    <footer>
+        <p>
+            &copy;<span id="currentyear"></span> | Jayser Pilapil | United State of Calamity
+        </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>

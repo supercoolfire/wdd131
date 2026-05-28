@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydra — Pricing Matrix</title>
+    <link rel="stylesheet" href="product.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Contextual styles to ensure the matrix table matches your existing layout */
+        .pricing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-family: 'Inter', sans-serif;
+            background-color: rgba(30, 30, 35, 0.4);
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .pricing-table th, .pricing-table td {
+            padding: 1rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #2d2d30;
+            border-right: 1px solid #2d2d30;
+        }
+        .pricing-table th {
+            background-color: #1e1e1e;
+            font-weight: 600;
+            color: #fff;
+        }
+        /* Style for the first column (Row Headings) */
+        .pricing-table th:first-child, .pricing-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+            background-color: rgba(25, 25, 30, 0.6);
+            min-width: 220px;
+        }
+        .pricing-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        .price-tag {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.25rem;
+            color: #4fc1ff;
+            display: block;
+            margin-top: 0.25rem;
+        }
+        .check-icon { color: #4ec9b0; }
+        .cross-icon { color: #f44747; }
+    </style>
+</head>
+<body data-active-page="pricing">
+
+<header class="app-header">
+        <div class="logo">
+            <span class="logo-icon">🐙</span> HYDRA
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-btn">Features & Benefits</a>
+            <a href="product.html" class="nav-btn">Sandbox Workspace</a>
+            <a href="pricing.html" class="nav-btn active">Pricing</a>
+            <a href="about.html" class="nav-btn">About Us</a>
+        </nav>
+        <div class="system-status">
+            <span class="status-indicator"></span> ENGINE: LIVE
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="pricing-container">
+            <div class="demo-header" style="text-align: center; margin-bottom: 3rem;">
+                <span class="badge">Deployment Tiers</span>
+                <h2>Flexible Workspace Plans</h2>
+                <p>Choose the operational scale that matches your development pipeline velocity.</p>
+            </div>
+
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Engine Features</th>
+                        <th>
+                            Community
+                            <span class="price-tag">$0 / permanent</span>
+                        </th>
+                        <th>
+                            Professional
+                            <span class="price-tag">$19 / mo</span>
+                        </th>
+                        <th>
+                            Enterprise
+                            <span class="price-tag">Custom</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bidirectional Sync Engine</td>
+                        <td><span class="check-icon">✔ Standard</span></td>
+                        <td><span class="check-icon">✔ Real-time High Priority</span></td>
+                        <td><span class="check-icon">✔ Dedicated Cluster Instance</span></td>
+                    </tr>
+                    <tr>
+                        <td>Monaco Sandbox Workspace</td>
+                        <td><span class="check-icon">✔ Included</span></td>
+                        <td><span class="check-icon">✔ Included</span></td>
+                        <td><span class="check-icon">✔ Custom Branded Container</span></td>
+                    </tr>
+                    <tr>
+                        <td>Emmet Extension Bridge</td>
+                        <td><span class="check-icon">✔ Basic Syntax</span></td>
+                        <td><span class="check-icon">✔ Advanced Macros</span></td>
+                        <td><span class="check-icon">✔ Enterprise Snippet Repositories</span></td>
+                    </tr>
+                    <tr>
+                        <td>HTML Error Validation</td>
+                        <td>Zero Errors First Try</td>
+                        <td>Zero Errors First Try</td>
+                        <td>Zero Errors First Try + Custom Linters</td>
+                    </tr>
+                    <tr>
+                        <td>Support Tier</td>
+                        <td>Community Forums</td>
+                        <td>24/7 Email Diagnostics</td>
+                        <td>Dedicated Solutions Engineer</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 0.9rem; color: #858585;">All subscriptions include core updates to the local runtime framework layers.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>Hydra — Practical, high-efficiency bidirectional development environments.</p>
+    </footer>
+
+</body>
+</html>

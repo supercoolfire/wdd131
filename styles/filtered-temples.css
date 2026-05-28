@@ -12,6 +12,16 @@
     --main-color: #000000;
     --footer-bg-color: #94cbff;
     --footer-color: #000000;
+    --card-bg-color: #94a1d54d;
+    --card-text-color: #000000;
+    --card-p-bg-color: #94a1d54d;
+    --card-p-text-color: #000000;
+    --link-bg-color: #94cbff;
+    --link-color: #0019ab;
+    --link-color-hover: #0052ff;
+	--generic-box-shaddow: 0 10px 15px -3px #0000008d;
+    --search-input-border-color: #0066cc;
+    --section-bg-color: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -25,6 +35,23 @@
     --main-color: #ffffff;
     --footer-bg-color: #021629;
     --footer-color: #ffffff;
+    --card-bg-color: #212a1d;
+    --card-text-color: #dbe2ff;
+    --card-p-bg-color: #94a1d54d;
+    --card-p-text-color: #ffffff;
+    --link-bg-color: #021629;
+    --link-color: #899aff;
+    --link-color-hover: #0052fe;
+	--generic-box-shaddow: 0 10px 15px -3px #ffffff4d;
+    --search-input-border-color: #0066cc;
+    --section-bg-color: #161631;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* outline: 1px dashed #ff0000; */
 }
 
 /* ==========================================================================
@@ -72,14 +99,16 @@ html[data-theme="dark"] .dark {
 
 /*        Day <- toggle -> night        |
 \-------------------------------------*/
-body {
-    font-family: "Ubuntu", Arial, sans-serif;
-    line-height: 1.6;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
 
+a {
+    background-color: var(--link-bg-color);
+    color: var(--link-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--link-color-hover);
+    text-decoration: underline;
+}
 
 body {
     display: flex;
@@ -170,7 +199,7 @@ nav ul {
 nav ul li {
     /* display: none; */
     transition: all .5s ease-in-out;
-    border: 1px dashed red;
+    border: 1px dashed #ff0000;
 }
 
 nav ul li:hover {
@@ -206,16 +235,202 @@ nav ul li a.active {
 
 span#course-title {
     margin-right: 32px;
+    text-align: left;
+    /* font-family: "Ubuntu", Arial, sans-serif; */
+    font-weight: bold;
+    font-size: 1.8rem;
 }
 
 main {
+    position: relative;
     flex: 1;
     background-color: var(--main-bg-color);
     color: var(--main-color);
-    padding: 1rem;
-    max-width: 1000px;
+    width: 100%;
 }
 
+h1 {
+	text-align: center;
+	/* font-family: "Ubuntu", Arial, sans-serif; */
+	font-size: 1.5rem;
+	margin-left: 1rem;
+    margin-top: .5rem;
+}
+
+#search {
+    position: relative;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.search-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#search-input {
+    position: relative;
+    width: 315px;
+    font-size: .9rem;
+    padding: .5rem .75rem;
+    /* border: 1px solid #8a7d7d; */
+    border-radius: 8px;
+    padding-right: 2rem;
+    padding-left: .5rem;
+
+    border: 2px solid #ccc;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+#search-input:focus {
+  border-color: var(--search-input-border-color);
+  box-shadow: var(--generic-box-shaddow); /* Adds a clean, subtle glow */
+}
+
+
+#clearSearch {
+    /* background-color: #000000; */
+    font-size: 1.3rem;
+    border: none;
+    position: absolute;
+    /* padding: .3rem .5rem; */
+    border-radius: 20px;
+    top: 50%;
+    right: .5rem;
+    transform: translateY(-50%);
+}
+
+
+
+#figure-grid {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-flow: column; 
+    height: 100%;
+    padding: 15px;
+    gap: .5rem;
+    margin: 1rem;
+
+}
+section {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--section-bg-color);
+    flex-direction: column;
+    min-width: 300px;
+    max-width: 300px;
+    box-shadow: var(--generic-box-shaddow);
+    padding: 5px;
+}
+
+section h2, section p, section figure {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+section p {
+    font-size: .9rem;
+}
+
+figure {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+    /* min-width: 315px; */
+    /* Gradient Border */
+    /* background: linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 6px) calc(100% - 6px) no-repeat,
+            linear-gradient(329deg, transparent 0%, #000000 100%);
+    border-radius: 0px; */
+    padding: 3px;
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 2; 
+    object-fit: cover;
+}
+
+
+.card h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    /* background-color: var(--card-bg-color); */
+    /* color: var(--card-text-color); */
+}
+
+.label {
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.card p {
+    overflow-wrap: normal;
+    word-break: break-word;
+    margin: 0;
+    padding: 5px;
+    border-bottom: 1px solid #8a7d7d;
+    background-color: var(--card-p-bg-color);
+    color: var(--card-p-text-color);
+    font-size: .9rem;
+}
+
+.card p:last-child {
+    border-bottom: none;
+}
+
+/* ***************** Click Modaler start ***************** */
+/* This comes with modal-click-origin.js */
+#img-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #00000000;
+    transition: background 0.5s ease;
+    z-index: 9999; /* Ensure it is above the nav (z-index 10) */
+    cursor: pointer;
+}
+
+#img-modal.active {
+    background: #000000d9;
+    color: #e4bd76;
+}
+
+#modal-content {
+    position: fixed;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    object-fit: contain;
+    z-index: 10000;
+}
+
+/* This is what forces the image to 85% of screen when active */
+#img-modal.active #modal-content {
+    top: 2.5vh !important;   /* (100 - 85) / 2 */
+    left: 2.5vw !important;  /* (100 - 85) / 2 */
+    width: 95vw !important;
+    height: 95vh !important;
+}
+/* ****************** Click Modaler end ****************** */
+
+
+
+
+
+
+/* Footer */
 footer {
     background-color: var(--footer-bg-color);
     color: var(--footer-color);
@@ -223,6 +438,10 @@ footer {
     padding: 2rem 1rem;
     width: 97%;
 }
+#portfolio {
+    color: var(--footer-color);
+}
+
 
 
 /*-------------------------------------\

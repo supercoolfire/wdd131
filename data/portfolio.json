@@ -103,11 +103,17 @@
                     { "tag": "h2", "textContent": "Week 4" },
                     { "tag": "div", "class": "cards", "items": [
                         { "tag": "div", "class": "card", "items": [
-                            { "tag": "a", "class": "anchor rickster-egg", "href": "#", "items":[
-                                { "tag": "div", "insertion":"prepend", "id": "preview-w4a1", "class": "preview", "href": "#" , "innerHTML": "<p class='loading-dots'>Loading Week 4 preview</p>"}, 
-                                {"textContent": "W04 Assignment: Placeholder" }
+                            { "tag": "a", "href": "week04/week04-notes.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w4a1", "class": "preview", "href": "week04/week04-notes.html" , "innerHTML": "<p class='loading-dots'>Loading basic layout preview</p>"}, 
+                                {"textContent": "W04 Learning Activitis Notes" }
                             ]}
-                        ]}
+                        ] },
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "filtered-temples.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w4a2", "class": "preview", "href": "filtered-temples.html" , "innerHTML": "<p class='loading-dots'>Loading basic layout preview</p>"}, 
+                                {"textContent": "W04 Assignment: Picture Album Enhancement" }
+                            ]}
+                        ] }
                     ] }
                 ] },
                 { "tag": "div", "class": "week", "items": [
@@ -142,6 +148,14 @@
                             { "tag": "a", "class": "anchor", "href": "image-crawler-experiment.html", "items":[
                                 { "tag": "div", "insertion":"prepend", "id": "preview-exp3", "class": "preview", "href": "image-crawler-experiment.html" , "innerHTML": "<p class='loading-dots'>Loading experiment preview</p>"}, 
                                 {"textContent": "Image Crawler Experiment" }
+                            ]}
+                        ]
+                    },
+                    {
+                        "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "class": "anchor", "href": "week04/project-draft/index.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-exp3", "class": "preview", "href": "week04/project-draft/index.html" , "innerHTML": "<p class='loading-dots'>Loading experiment preview</p>"}, 
+                                {"textContent": "Hail Hydra" }
                             ]}
                         ]
                     }
