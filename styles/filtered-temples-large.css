@@ -1,6 +1,6 @@
 @media (min-width: 640px) {
     body {
-        font-family:Arial, Helvetica, sans-serif
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     header {
@@ -49,7 +49,7 @@
     nav ul li a {
         text-decoration: underline;
         text-decoration-color: #ffff00;
-        color: #3a301e;
+        color: #3a301e; /* Cleaned up duplicate selector block and kept active override */
         cursor: pointer;
     }
 
@@ -68,14 +68,6 @@
         align-items: stretch;
     }
 
-    /* .card {
-        position: relative;
-        width: 200px;
-        height: auto;
-        margin-left: 1rem;
-        margin-right: 1rem;
-    } */
-
     section {
         position: relative;
         min-width: 260px;
@@ -83,7 +75,6 @@
         height: auto;
         align-items: center;
         margin: 10px;
-        /* padding: 1rem; */
     }
 
     section h2, section p, section figure {
