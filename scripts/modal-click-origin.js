@@ -50,6 +50,9 @@ document.addEventListener('click', (e) => {
             modalImg.src = img.src;
             modalImg.style.top = `${rect.top}px`;
             modalImg.style.left = `${rect.left}px`;
+            // Use high-resolution image if available by replacing size suffixes
+            const highResSrc = img.src.replace(/-(small|medium)(\.\w+)$/, '-large$2');
+            modalImg.src = highResSrc;
             modalImg.style.width = `${rect.width}px`;
             modalImg.style.height = `${rect.height}px`;
             modalImg.style.display = 'block';
