@@ -8,34 +8,19 @@
 * 2. "type": "module" added to your root package.json file.
 *
 * Installation:
-* 1. Run the command in your project root: npm install sharp
+* 1. Run the command in your project root: npm install sharp cli-progress
 *
 * Usage: 
 * 1. Modify the CONFIG block below to match your targets.
 * 2. Execute the script from your project root: node scripts/image-converter-experiment.js
 *
-* DETAILED ARCHITECTURE & PROCESSING EXPLANATION:
-*
-* 1. The Sharp Processing Core:
-* This script uses `sharp`, a high-performance Node.js imaging library. Instead of 
-* loading massive pixel buffers into Javascript V8 memory, it utilizes libvips natively 
-* to decode, crop, resize, and re-encode images via streaming operations.
-*
-* 2. Path Handling & Robust Input Parsing:
-* - 'sources': Accepts absolute/relative paths to whole folders OR individual specific files. 
-* It strips string configurations down, resolves empty inputs, and parses comma-separated keys cleanly.
-* - 'crop': When a dimensions width and height are provided, sharp switches to a center-weighted 
-* cropping cover layout strategy (`sharp.strategy.attention`), slicing away raw edges cleanly.
-*
-* 3. Dynamic Quality Scaling (Critical Rules):
-* When `dynamicQualityScaling: true` is enabled in CONFIG, the static `baseQuality` value is the highest quality ceiling.
-* This dynamic calculation prioritizes minimal file sizes to compete with leading industry optimizers, automatically tuning quality for multi-resolution asset pipelines.
 */
 
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp'; // High-performance image processing engine
+import cliProgress from 'cli-progress'; // Multi-bar CLI feedback engine
 
 // Anchor absolute path lookups to this script location
 const __filename = fileURLToPath(import.meta.url);
@@ -66,7 +51,7 @@ const CONFIG = {
     // Example landscape: 16:9, 1:1, 4:3, 3:4
     // Example portrait: 9:16, 3:4, 4:3, 1:1
     // Default is 16:9
-    aspectRatio: 9/16,
+    aspectRatio: 16/9,
 
     crop: [
         {fileSuffix: "-small", width: 500},
@@ -173,149 +158,179 @@ async function runImageConverter() {
         return;
     }
 
-    try {
-        for (const inputItem of sourceInputs) {
-            const absoluteInputPath = path.resolve(__dirname, '..', inputItem);
-            
-            // Verify input path exists before processing
-            try {
-                await fs.access(absoluteInputPath, fs.constants.R_OK);
-            } catch (err) {
-                console.error(`❌ Input path ${absoluteInputPath} is not accessible or readable:`, err.message);
-                totalFailed++;
-                continue;
+    // --- PHASE 1: PRE-DISCOVERY (Gather total tasks for accurate overall progress tracking) ---
+    const discoveryTasks = [];
+    for (const inputItem of sourceInputs) {
+        const absoluteInputPath = path.resolve(__dirname, '..', inputItem);
+        try {
+            await fs.access(absoluteInputPath, fs.constants.R_OK);
+            const stats = await fs.stat(absoluteInputPath);
+            let filesToProcess = [];
+            let currentSourceDir = '';
+
+            if (stats.isDirectory()) {
+                currentSourceDir = absoluteInputPath;
+                const dirEntries = await fs.readdir(absoluteInputPath);
+                filesToProcess = dirEntries.map(f => path.join(absoluteInputPath, f));
+            } else if (stats.isFile()) {
+                currentSourceDir = path.dirname(absoluteInputPath);
+                filesToProcess = [absoluteInputPath];
             }
 
-            try {
-                const stats = await fs.stat(absoluteInputPath);
-                let filesToProcess = [];
-                let currentSourceDir = '';
+            const targetImages = filesToProcess.filter(f => 
+                /\.(jpg|jpeg|png|webp|tiff|gif|avif)$/i.test(f)
+            );
 
-                if (stats.isDirectory()) {
-                    currentSourceDir = absoluteInputPath;
-                    const dirEntries = await fs.readdir(absoluteInputPath);
-                    filesToProcess = dirEntries.map(f => path.join(absoluteInputPath, f));
-                } else if (stats.isFile()) {
-                    currentSourceDir = path.dirname(absoluteInputPath);
-                    filesToProcess = [absoluteInputPath];
+            if (targetImages.length > 0) {
+                discoveryTasks.push({ absoluteInputPath, currentSourceDir, targetImages });
+            } else {
+                console.warn(`⚠️ No compatible image files found inside: "${inputItem}"`);
+            }
+        } catch (err) {
+            console.error(`❌ Input path ${absoluteInputPath} is not accessible or readable:`, err.message);
+            totalFailed++;
+        }
+    }
+
+    // Multiply discovered images by the number of crop variations to get total operations
+    const totalImageTasks = discoveryTasks.reduce((sum, t) => sum + t.targetImages.length, 0);
+    const totalOperationsCount = totalImageTasks * preparedCrops.length;
+
+    if (totalOperationsCount === 0) {
+        console.log('⚠️ No images found to convert.');
+        return;
+    }
+
+    // --- PHASE 2: INITIALIZE CLI-PROGRESS ENGINE ---
+    const multibar = new cliProgress.MultiBar({
+        clearOnComplete: false,
+        hideCursor: true,
+        format: ' {bar} | {percentage}% | {status} | {info}'
+    }, cliProgress.Presets.shades_grey);
+
+    // Global overall batch progress bar
+    const globalBar = multibar.create(totalOperationsCount, 0, {
+        status: 'Overall Progress',
+        info: `0/${totalOperationsCount} variations completed`
+    });
+
+    // Sub-bar tracking individual pipeline steps for the current file
+    const fileBar = multibar.create(100, 0, {
+        status: 'Current File',
+        info: 'Initializing...'
+    });
+
+    // --- PHASE 3: PROCESS LOOP ---
+    try {
+        for (const task of discoveryTasks) {
+            const { currentSourceDir, targetImages } = task;
+
+            // Process each crop configuration individually (using the mapped crops containing calculated heights)
+            for (const cropConfig of preparedCrops) {
+                // Determine final destination path based on folderSuffix setting
+                let destinationFolderPath;
+                if (useFolderSuffix) {
+                    // Create subfolder with crop suffix if folderSuffix is true
+                    const folderNameBase = path.basename(currentSourceDir);
+                    const finalTargetDirName = `${folderNameBase}${cropConfig.fileSuffix}`;
+                    destinationFolderPath = path.join(baseOutputDir, finalTargetDirName);
+                } else {
+                    // Use base output folder if folderSuffix is false
+                    destinationFolderPath = baseOutputDir;
                 }
 
-                // Isolate common valid image file patterns
-                const targetImages = filesToProcess.filter(f => 
-                    /\.(jpg|jpeg|png|webp|tiff|gif|avif)$/i.test(f)
-                );
+                // Ensure the output folder structure tree exists safely
+                await fs.mkdir(destinationFolderPath, { recursive: true });
 
-                if (targetImages.length === 0) {
-                    console.warn(`⚠️ No compatible image files found inside: "${inputItem}"`);
-                    continue;
+                // Calculate dynamic quality for current crop size if enabled - ENFORCED COMPETITIVE SIZE RULES APPLIED
+                let currentQuality = CONFIG.baseQuality;
+                const minQuality = 30; // Minimum quality floor to maintain acceptable visual fidelity while minimizing file sizes
+                if (CONFIG.dynamicQualityScaling) {
+                    // Strict competitive dynamic quality calculation rules (never override these):
+                    // 1. Calculate pixel area of current crop to use as scaling factor
+                    const cropArea = cropConfig.area;
+                    // 2. Scale current crop's area against the largest crop's area to get 0-1 ratio
+                    const qualityScale = cropArea / maxCropArea;
+                    // 3. Never allow quality to exceed baseQuality (largest crop = baseQuality, maximum allowed quality)
+                    // 4. Never allow quality to drop below minQuality (smallest crop = minQuality, smallest possible file size with acceptable quality)
+                    currentQuality = Math.round(minQuality + (CONFIG.baseQuality - minQuality) * qualityScale);
+                    // 5. Clamp value to 1-100 range as an additional safety guard
+                    currentQuality = Math.min(Math.max(currentQuality, 1), 100);
                 }
 
-                // Process each crop configuration individually (using the mapped crops containing calculated heights)
-                for (const cropConfig of preparedCrops) {
-                    // Determine final destination path based on folderSuffix setting
-                    let destinationFolderPath;
-                    if (useFolderSuffix) {
-                        // Create subfolder with crop suffix if folderSuffix is true
-                        const folderNameBase = path.basename(currentSourceDir);
-                        const finalTargetDirName = `${folderNameBase}${cropConfig.fileSuffix}`;
-                        destinationFolderPath = path.join(baseOutputDir, finalTargetDirName);
-                    } else {
-                        // Use base output folder if folderSuffix is false
-                        destinationFolderPath = baseOutputDir;
-                    }
+                // Process each image for current crop configuration
+                for (const fileAbsolutePath of targetImages) {
+                    const fileParsed = path.parse(fileAbsolutePath);
+                    
+                    // Build target file name with crop suffix
+                    const finalFileName = `${fileParsed.name}${cropConfig.fileSuffix}.webp`;
+                    const destinationFilePath = path.join(destinationFolderPath, finalFileName);
 
-                    // Ensure the output folder structure tree exists safely
-                    await fs.mkdir(destinationFolderPath, { recursive: true });
-                    console.log(`\n📁 Preparing ${cropConfig.fileSuffix.slice(1)} size assets (${cropConfig.width}x${cropConfig.height}) -> Dest: ${destinationFolderPath}`);
+                    // Update UI to show active target
+                    fileBar.update(0, {
+                        status: 'Processing File',
+                        info: `${fileParsed.base} -> ${finalFileName} (Q: ${currentQuality})`
+                    });
 
-                    // Calculate dynamic quality for current crop size if enabled - ENFORCED COMPETITIVE SIZE RULES APPLIED
-                    let currentQuality = CONFIG.baseQuality;
-                    const minQuality = 30; // Minimum quality floor to maintain acceptable visual fidelity while minimizing file sizes
-                    if (CONFIG.dynamicQualityScaling) {
-                        // Strict competitive dynamic quality calculation rules (never override these):
-                        // 1. Calculate pixel area of current crop to use as scaling factor
-                        const cropArea = cropConfig.area;
-                        // 2. Scale current crop's area against the largest crop's area to get 0-1 ratio
-                        const qualityScale = cropArea / maxCropArea;
-                        // 3. Never allow quality to exceed baseQuality (largest crop = baseQuality, maximum allowed quality)
-                        // 4. Never allow quality to drop below minQuality (smallest crop = minQuality, smallest possible file size with acceptable quality)
-                        currentQuality = Math.round(minQuality + (CONFIG.baseQuality - minQuality) * qualityScale);
-                        // 5. Clamp value to 1-100 range as an additional safety guard
-                        currentQuality = Math.min(Math.max(currentQuality, 1), 100);
-                        // Log full calculation breakdown for transparency
-                        console.log(`  📊 Dynamic quality calculation for ${cropConfig.fileSuffix.slice(1)} (size-optimized):`);
-                        console.log(`    • Crop area: ${cropArea}px | Max crop area: ${maxCropArea}px`);
-                        console.log(`    • Quality scale: ${qualityScale.toFixed(2)} | Min quality: ${minQuality}, Max quality: ${CONFIG.baseQuality}`);
-                        console.log(`    • Final output quality: ${currentQuality}`);
-                    } else {
-                        // Static quality mode: use baseQuality as fixed value for all crops, per config
-                        console.log(`  📊 Static quality mode enabled: using fixed baseQuality ${CONFIG.baseQuality} for all assets`);
-                    }
+                    try {
+                        // Initialize the sharp image processing pipeline stream
+                        let pipeline = sharp(fileAbsolutePath);
+                        fileBar.update(20);
 
-                    // Process each image for current crop configuration
-                    for (const fileAbsolutePath of targetImages) {
-                        const fileParsed = path.parse(fileAbsolutePath);
-                        
-                        // Build target file name with crop suffix
-                        const finalFileName = `${fileParsed.name}${cropConfig.fileSuffix}.webp`;
-                        const destinationFilePath = path.join(destinationFolderPath, finalFileName);
-
-                        console.log(`  ⚡ Converting: ${fileParsed.base} -> ${finalFileName}`);
-
-                        try {
-                            // Initialize the sharp image processing pipeline stream
-                            let pipeline = sharp(fileAbsolutePath);
-
-                            // Validate source image metadata before processing
-                            const metadata = await pipeline.metadata();
-                            if (!metadata.width || !metadata.height) {
-                                throw new Error("Invalid image file: could not read dimensions");
-                            }
-
-                            // Execute crop resizing rules for current crop config (using dynamic height calculated via aspect ratio)
-                            if (cropConfig.width > 0 && cropConfig.height > 0) {
-                                pipeline = pipeline.resize({
-                                    width: cropConfig.width,
-                                    height: cropConfig.height,
-                                    fit: 'cover', // Crops edges away automatically to maintain aspect ratio bounds
-                                    position: sharp.strategy.attention, // Focuses dynamically on the crispest details
-                                    kernel: sharp.kernel.lanczos3 // High-quality downsampling to preserve details while enabling lower quality settings
-                                });
-                            }
-
-                            // Configure WebP encoding with maximum compression to compete with leading optimization tools
-                            const webpOptions = {
-                                quality: currentQuality,
-                                lossless: !CONFIG.lossy, // Invert lossy flag for sharp's lossless parameter
-                                nearLossless: false, // Disable near-lossless for maximum compression when using lossy
-                                smartSubsample: true, // Force chroma subsampling for all lossy encodes to minimize file sizes
-                                effort: 6, // Maximum compression effort (slowest processing, smallest possible file size to outperform competitors)
-                                mixed: false // Disable mixed mode to ensure consistent aggressive compression
-                            };
-
-                            // Force encode pipeline output to WebP with target settings parameters
-                            await pipeline
-                                .webp(webpOptions)
-                                .toFile(destinationFilePath);
-                            
-                            totalProcessed++;
-                            console.log(`  ✅ Completed: ${fileParsed.base} -> ${finalFileName} (quality: ${currentQuality}, lossy: ${CONFIG.lossy})`);
-                        } catch (processErr) {
-                            totalFailed++;
-                            console.error(`  ❌ Failed to process ${fileParsed.base}:`, processErr.message);
+                        // Validate source image metadata before processing
+                        const metadata = await pipeline.metadata();
+                        if (!metadata.width || !metadata.height) {
+                            throw new Error("Invalid image file: could not read dimensions");
                         }
-                    }
-                }
+                        fileBar.update(40);
 
-            } catch (err) {
-                console.error(`❌ Failed to process path resource target "${inputItem}":`, err.message);
-                totalFailed++;
+                        // Execute crop resizing rules for current crop config (using dynamic height calculated via aspect ratio)
+                        if (cropConfig.width > 0 && cropConfig.height > 0) {
+                            pipeline = pipeline.resize({
+                                width: cropConfig.width,
+                                height: cropConfig.height,
+                                fit: 'cover', // Crops edges away automatically to maintain aspect ratio bounds
+                                position: sharp.strategy.attention, // Focuses dynamically on the crispest details
+                                kernel: sharp.kernel.lanczos3 // High-quality downsampling to preserve details while enabling lower quality settings
+                            });
+                        }
+                        fileBar.update(60);
+
+                        // Configure WebP encoding with maximum compression to compete with leading optimization tools
+                        const webpOptions = {
+                            quality: currentQuality,
+                            lossless: !CONFIG.lossy, // Invert lossy flag for sharp's lossless parameter
+                            nearLossless: false, // Disable near-lossless for maximum compression when using lossy
+                            smartSubsample: true, // Force chroma subsampling for all lossy encodes to minimize file sizes
+                            effort: 6, // Maximum compression effort (slowest processing, smallest possible file size to outperform competitors)
+                            mixed: false // Disable mixed mode to ensure consistent aggressive compression
+                        };
+                        fileBar.update(80);
+
+                        // Force encode pipeline output to WebP with target settings parameters
+                        await pipeline
+                            .webp(webpOptions)
+                            .toFile(destinationFilePath);
+                        
+                        totalProcessed++;
+                        fileBar.update(100);
+                    } catch (processErr) {
+                        totalFailed++;
+                    }
+
+                    // Update global progress bar values
+                    globalBar.update(totalProcessed + totalFailed, {
+                        info: `Processed: ${totalProcessed} | Errors: ${totalFailed}`
+                    });
+                }
             }
         }
         
+        multibar.stop();
         console.log(`\n✨ Batch processing completed! Total processed: ${totalProcessed}, Total failed: ${totalFailed}`);
 
     } catch (globalErr) {
+        multibar.stop();
         console.error('\n❌ Critical converter engine drop-out encountered:', globalErr.message);
     }
 }
