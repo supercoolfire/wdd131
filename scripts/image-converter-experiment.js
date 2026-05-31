@@ -47,7 +47,7 @@ const __dirname = path.dirname(__filename);
 const CONFIG = {
     // Comma-separated paths to source folders or individual explicit files
     // Example: './raw-assets/temples, ./backups/old-photo.jpg'
-    sources: ['./images/test'],
+    sources: ['./images/stalkyard'],
     
     // Base maximum quality ceiling (used as the highest bound for dynamicQuality scaling)
     // When dynamicQualityScaling is true, this value is the maximum quality for the largest crops
@@ -61,17 +61,24 @@ const CONFIG = {
     
     // Suffix added to the image file name if cropped (Leave empty "" to ignore cropping)
     // If width and height are active, setting "-small" converts "pic.jpg" to "pic-small.webp"
+    
+    // Choose aspect ratio, width, orientation
+    // Example landscape: 16:9, 1:1, 4:3, 3:4
+    // Example portrait: 9:16, 3:4, 4:3, 1:1
+    // Default is 16:9
+    aspectRatio: 9/16,
+
     crop: [
-        {fileSuffix: "-small", width: 500, height: 250},
-        {fileSuffix: "-medium", width: 1000, height: 500},
-        {fileSuffix: "-large", width: 1500, height: 750}
+        {fileSuffix: "-small", width: 500},
+        {fileSuffix: "-medium", width: 1000},
+        {fileSuffix: "-large", width: 1500}
     ],
     // If 'true', the folders with suffix will created in the output folder
     // Example: './images/place' -> './images/place-[fileSuffix].jpg'
     // If 'false', the files with suffix will created in the output folder
     // Example: './images/place/hero.jpg' -> './images/place/hero-webp-[fileSuffix].jpg'
     folderSuffix: 'false',
-    outputFolder: './images/filtered-temples/webp'
+    outputFolder: './images/test'
 };
 // ==========================================
 
@@ -92,6 +99,9 @@ async function runImageConverter() {
     if (typeof CONFIG.lossy !== 'boolean') {
         configErrors.push("CONFIG.lossy must be a boolean value (true/false)");
     }
+    if (typeof CONFIG.aspectRatio !== 'number' || CONFIG.aspectRatio <= 0) {
+        configErrors.push("CONFIG.aspectRatio must be a positive number (e.g., 16/9)");
+    }
     if (!Array.isArray(CONFIG.crop) || CONFIG.crop.length === 0) {
         configErrors.push("CONFIG.crop must be a non-empty array of crop configurations");
     } else {
@@ -99,8 +109,9 @@ async function runImageConverter() {
             if (typeof crop.fileSuffix !== 'string' || crop.fileSuffix.trim().length === 0) {
                 configErrors.push(`Crop config at index ${index} has invalid fileSuffix (must be non-empty string)`);
             }
-            if (typeof crop.width !== 'number' || crop.width < 1 || typeof crop.height !== 'number' || crop.height < 1) {
-                configErrors.push(`Crop config for ${crop.fileSuffix} has invalid width/height (must be positive numbers)`);
+            // MODIFIED: Only validate width here since height is now dynamically driven by aspectRatio
+            if (typeof crop.width !== 'number' || crop.width < 1) {
+                configErrors.push(`Crop config for ${crop.fileSuffix} has invalid width (must be a positive number)`);
             }
         });
     }
@@ -144,8 +155,18 @@ async function runImageConverter() {
     let totalProcessed = 0;
     let totalFailed = 0;
 
+    // MODIFIED: Calculate dynamic heights and pixel areas based on aspect ratio mapping before running sizing calculations
+    const preparedCrops = CONFIG.crop.map(c => {
+        const calculatedHeight = Math.round(c.width / CONFIG.aspectRatio);
+        return {
+            ...c,
+            height: calculatedHeight,
+            area: c.width * calculatedHeight
+        };
+    });
+
     // Calculate maximum possible area from crop configs to use for dynamic quality scaling
-    const maxCropArea = Math.max(...CONFIG.crop.map(c => c.width * c.height));
+    const maxCropArea = Math.max(...preparedCrops.map(c => c.area));
     // Enforce non-zero max area to prevent division by zero in dynamic quality calculations
     if (maxCropArea === 0) {
         console.error('❌ Critical error: All crop configurations have zero area, cannot calculate dynamic quality');
@@ -189,8 +210,8 @@ async function runImageConverter() {
                     continue;
                 }
 
-                // Process each crop configuration individually
-                for (const cropConfig of CONFIG.crop) {
+                // Process each crop configuration individually (using the mapped crops containing calculated heights)
+                for (const cropConfig of preparedCrops) {
                     // Determine final destination path based on folderSuffix setting
                     let destinationFolderPath;
                     if (useFolderSuffix) {
@@ -205,7 +226,7 @@ async function runImageConverter() {
 
                     // Ensure the output folder structure tree exists safely
                     await fs.mkdir(destinationFolderPath, { recursive: true });
-                    console.log(`\n📁 Preparing ${cropConfig.fileSuffix.slice(1)} size assets -> Dest: ${destinationFolderPath}`);
+                    console.log(`\n📁 Preparing ${cropConfig.fileSuffix.slice(1)} size assets (${cropConfig.width}x${cropConfig.height}) -> Dest: ${destinationFolderPath}`);
 
                     // Calculate dynamic quality for current crop size if enabled - ENFORCED COMPETITIVE SIZE RULES APPLIED
                     let currentQuality = CONFIG.baseQuality;
@@ -213,7 +234,7 @@ async function runImageConverter() {
                     if (CONFIG.dynamicQualityScaling) {
                         // Strict competitive dynamic quality calculation rules (never override these):
                         // 1. Calculate pixel area of current crop to use as scaling factor
-                        const cropArea = cropConfig.width * cropConfig.height;
+                        const cropArea = cropConfig.area;
                         // 2. Scale current crop's area against the largest crop's area to get 0-1 ratio
                         const qualityScale = cropArea / maxCropArea;
                         // 3. Never allow quality to exceed baseQuality (largest crop = baseQuality, maximum allowed quality)
@@ -251,7 +272,7 @@ async function runImageConverter() {
                                 throw new Error("Invalid image file: could not read dimensions");
                             }
 
-                            // Execute crop resizing rules for current crop config
+                            // Execute crop resizing rules for current crop config (using dynamic height calculated via aspect ratio)
                             if (cropConfig.width > 0 && cropConfig.height > 0) {
                                 pipeline = pipeline.resize({
                                     width: cropConfig.width,
