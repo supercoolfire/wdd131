@@ -63,8 +63,17 @@
 
 */
 
-const mainnav = document.querySelector('nav')
-const hambutton = document.querySelector('#menu')
+const mainnav = document.querySelector('nav');
+const hambutton = document.querySelector('#menu');
+const a = document.querySelectorAll('nav ul li a');
+
+// Retract after click
+a.forEach(item => {
+    item.addEventListener('click', () => {
+        mainnav.classList.remove('show');
+        hambutton.classList.remove('show');
+    });
+});
 
 hambutton.addEventListener('click', () => {
     mainnav.classList.toggle('show');
