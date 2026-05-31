@@ -158,6 +158,14 @@
                                 {"textContent": "Hail Hydra" }
                             ]}
                         ]
+                    },
+                    {
+                        "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "class": "anchor", "href": "stalkyard.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-exp3", "class": "preview", "href": "stalkyard.html" , "innerHTML": "<p class='loading-dots'>Loading stalkyard preview</p>"}, 
+                                {"textContent": "Carousel: Half-Life 1 Stalkyard" }
+                            ]}
+                        ]
                     }
                 ] }
             ]}

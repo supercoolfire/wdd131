@@ -1,0 +1,11 @@
+{
+  "branding": { "querySelector": "title", "tag": "title", "insertion": "replace", "textContent": "Stalkyard" },
+  "branding2": { "querySelector": "div",  "tag": "div", "id": "course-title", "insertion": "replace", "textContent": "Stalkyard" },
+  "#navigation": {
+    "tag": "ul", "id": "navigation",
+    "items": [
+      { "tag": "li", "items": [{ "tag": "a", "href": "#", "textContent": "Stalkyard", "title": "Stalkyard", "id": "carouselMen", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "href": "#", "textContent": "Stalkmate", "title": "Stalkmate", "id": "stalkmateMen", "rel": "noopener" }] }
+    ]
+  }
+}

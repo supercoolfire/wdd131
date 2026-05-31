@@ -1,0 +1,146 @@
+[
+  {
+    username: "supercoolfire",
+    name: "Jayser Pilapil",
+    other_links: [
+      { link: "https://supercoolfire.github.io/wdd131/linkedin/index.html", text: "Cali Black linkedin profile" },
+      { link: "https://supercoolfire.github.io/wdd131/sanitationer.html", text: "Reverisble sanitizer" },
+      { link: "https://supercoolfire.github.io/wdd131/week03/image-file-formats.html", text: "Notes: Image file formats" },
+      { link: "https://supercoolfire.github.io/wdd131/week03/javascript-arrays.html", text: "Notes: JavaScript arrays" },
+      { link: "https://supercoolfire.github.io/wdd131/week04/week04-notes.html", text: "Notes: week04" },
+      { link: "https://supercoolfire.github.io/wdd131/seo-test.html", text: "seo-test tool" },
+      { link: "https://supercoolfire.github.io/wdd131/image-crawler-experiment.html", text: "node.js image-crawler-experiment" },
+      { link: "https://supercoolfire.github.io/wdd131/week04/project-draft/index.html", text: "project-draft" },
+    ]
+  },
+  {
+    username: "adesax27",
+    name: "Ademola S. Okunjoyo",
+    other_links: []
+  },
+  {
+    username: "fbarretoz",
+    name: "Felix Jose Barreto Zerpa",
+    other_links: []
+  },
+  {
+    username: "bustiosmaximiliano1",
+    name: "Maximiliano Bustios",
+    other_links: []
+  },
+  {
+    username: "nabendeandrew1955",
+    name: "Nabende Andrew Mafabi",
+    other_links: []
+  },
+  {
+    username: "tsanders25",
+    name: "Tyshanna Michelle Sanders",
+    other_links: []
+  },
+  {
+    username: "ben3box",
+    name: "Benjamin Iriganje",
+    other_links: []
+  },
+  {
+    username: "obeng-owusu",
+    name: "Joshua Obeng",
+    other_links: []
+  },
+  {
+    username: "jolie2000",
+    name: "Uwase Jolie",
+    other_links: []
+  },
+  {
+    username: "alyssa-stringham",
+    name: "Alyssa Stringham",
+    other_links: []
+  },
+  {
+    username: "evander2013",
+    name: "Sebastian Evander",
+    other_links: []
+  },
+  {
+    username: "pluska",
+    name: "Andres Pluska",
+    other_links: []
+  },
+  {
+    username: "itsoe",
+    name: "Itai Matope",
+    other_links: []
+  },
+  {
+    username: "tkrieger-code",
+    name: "Tatiane Krieger",
+    other_links: []
+  },
+  {
+    username: "bryan-singer",
+    name: "Bryan Harrison Singer",
+    other_links: []
+  },
+  {
+    username: "dember-byu",
+    name: "Dember Perez Colquehuanca",
+    other_links: []
+  },
+  {
+    username: "EstherTemidayo",
+    name: "Olukayode Esther Temidayo",
+    other_links: []
+  },
+  {
+    username: "MateoGuayasamin",
+    name: "Giuseppe Mateo Guayasamin Squillo",
+    other_links: []
+  },
+  {
+    username: "believeegwabor",
+    name: "Believe Egwabor",
+    other_links: []
+  },
+  {
+    username: "caden-griffin",
+    name: "Caden Barnett Griffin",
+    other_links: []
+  },
+  {
+    username: "joechu2510",
+    name: "Joe Yui Mahonri Chu Valencia",
+    other_links: []
+  },
+  {
+    username: "DevinUGE1",
+    name: "Devin Gamboa Enciso",
+    other_links: []
+  },
+  {
+    username: "TammyMoya25",
+    name: "Tamara Naomi Moya Rodríguez",
+    other_links: []
+  },
+  {
+    username: "",
+    name: "",
+    other_links: []
+  },
+  {
+    username: "",
+    name: "",
+    other_links: []
+  },
+  {
+    username: "",
+    name: "",
+    other_links: []
+  },
+  {
+    username: "",
+    name: "",
+    other_links: []
+  },
+]

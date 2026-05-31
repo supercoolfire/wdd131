@@ -1,0 +1,299 @@
+
+/*-------------------------------------\
+|        Day <- toggle -> night       */
+:root {
+    --toggle-btn-bg: #2a2a2a;
+    --toggle-text-color: #f0f0f0;
+    --body-bg-color: #12121226;
+    --body-text-color: #1a1a1a;
+    --header-bg-color: #94cbff;
+    --header-color: #000000;
+    --main-bg-color: #ffffff;
+    --main-color: #000000;
+    --footer-bg-color: #94cbff;
+    --footer-color: #000000;
+}
+
+[data-theme="dark"] {
+    --toggle-btn-bg: #f0f0f0;
+    --toggle-text-color: #2a2a2a;
+    --body-bg-color: #121212d9;
+    --body-text-color: #f5f5f5;
+    --header-bg-color: #021629;
+    --header-color: #ebd531;
+    --main-bg-color: #00000050;
+    --main-color: #ffffff;
+    --footer-bg-color: #021629;
+    --footer-color: #ffffff;
+}
+
+/* ==========================================================================
+   Element Swapping Logic
+   ========================================================================== */
+/* Default state: Hide dark elements, show light elements */
+html[data-theme="light"] .dark {
+    display: none;
+}
+html[data-theme="light"] .light {
+    display: block;
+}
+
+/* Dark state: Show dark elements, hide light elements */
+html[data-theme="dark"] .light {
+    display: none;
+}
+html[data-theme="dark"] .dark {
+    display: block;
+}
+
+/*        Day <- toggle -> night        |
+\-------------------------------------*/
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    font-family: "Ubuntu", Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-items: center;
+    min-height: 97vh;
+}
+
+header {
+    position: relative;
+    background-color: var(--header-bg-color);
+    color: var(--header-color);
+    width: 97%;
+    padding: 1rem;
+}
+
+#course-title {
+    text-align: center;
+    margin-right: 95px;
+}
+
+/*-------------------------------------\
+|           Poor man's steak          */
+
+#menu {
+    display: block;
+    position: relative;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: .5rem .75rem;
+    background-color: #eeeeee;
+    color: #000000;
+    border-radius: 50%;
+
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    
+    cursor: pointer;
+	position: absolute;
+    top: 10px;
+    right: 57px;
+}
+
+#menu::before {
+    position: absolute;
+    content: "☰";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.show li {
+    display: block;
+}
+
+#menu.show::before {
+    content: "❌";
+}
+
+
+nav {
+    position: relative;
+    top: 0;
+    padding: 0 1rem; /* Kept horizontal padding consistent */
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-out, padding 0.5s ease-out;
+}
+
+nav.show {
+    grid-template-rows: 1fr;
+    padding: 1rem; /* Animates vertical padding back in */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    /* width: 100%; */
+    overflow: hidden;
+}
+
+nav ul li {
+    /* display: none; */
+    transition: all .5s ease-in-out;
+    border: 1px dashed red;
+}
+
+nav ul li:hover {
+    border: 1px dashed #0ba2d1; 
+}
+
+nav ul li a {    
+    background-color: #d1f7db; 
+    transition: all .5s ease-in-out;
+    display: inline-block;
+    font-size: 1.2rem;
+    width: 100%;
+    color: #5a0959;
+    padding: .75rem;
+    text-decoration: none;
+    text-align: center;  
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    text-decoration-color: #ffff00;
+    color: #412c07;
+    cursor: pointer;
+}
+
+nav ul li a.active {
+    background-color: #003366;
+    color: #ffd484;
+    text-decoration: overline;
+}
+/*           Poor man's steak          |
+\-------------------------------------*/
+
+span#course-title {
+    margin-right: 32px;
+}
+
+
+#stalkmate {
+    display: none;
+}
+#stalkmate.show {
+    display: block;
+}
+#userNavBtn {
+    display: none;
+    position: fixed;
+    background-color: #ffffff;
+    padding: 1rem;
+    top: 4rem;
+    right: 28px;
+    z-index: 100;
+    padding: 5px;
+    opacity: 0.3;
+}
+#userNavBtn.show {
+    display: block;
+}
+#userNavBtn.active {
+    background-color: red;
+    color: #ffffff;
+    opacity: 1;
+}
+
+#userNavList {
+    display: none;
+    background-color: #000000;
+    position: fixed;
+    top: 5rem;
+    right: 13px;
+    max-height: 25rem;
+    z-index: 100;
+    padding: 5px;
+    overflow: scroll;
+}
+
+#userNavList.show {
+    display: block;
+}
+
+#userNavList li {
+    list-style: none;
+    /* padding: 3px; */
+}
+#userNavList li a {
+    display: block;
+    background-color: #000000;
+    font-family: monospace;
+    padding: 5px;
+    text-decoration: none;
+    color: #00ff00;
+}
+#userNavList li a:hover {
+    background-color: #423e7d;
+    color: #ffff00;
+    cursor: pointer;
+}
+
+
+
+
+
+main {
+    flex: 1;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+    padding: 1rem;
+    /* max-width: 1000px; */
+}
+
+footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-color);
+    text-align: center;
+    padding: 2rem 1rem;
+    width: 97%;
+}
+
+
+/*-------------------------------------\
+|          Dots Entertainment         */
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s infinite steps(4);
+}
+
+@keyframes dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: '....'; }
+}
+/*          Dots Entertainment          |
+\-------------------------------------*/
+
+
+/*-------------------------------------\
+|                 cards               */
+    .loading-dots { font-weight: bold; margin: 0; padding: 12px; font-size: 12px; color: #777; }
+    .loading-dots::after { content: ''; animation: dots 1.5s infinite steps(4); }
+    @keyframes dots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } }
+    
+    .preview[id^="preview-"] { width: 200px; aspect-ratio: 3 / 4; overflow: hidden; border: 1px solid #ccc; border-radius: 8px; background: #fdfdfd; position: relative; display: flex; flex-direction: column; font-family: sans-serif; transition: transform 0.2s ease; }
+    .preview[id^="preview-"]:hover { transform: scale(1.02); z-index: 10; cursor: pointer; }
+    
+    .preview-content { width: 100%; height: 100%; display: flex; flex-direction: column; }
+    
+    .preview-fallback { display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; background: #f7f7f7; }
+    .preview-fallback .loading-dots { font-weight: normal; color: #999; }
+
+    .preview[id^="preview-"] iframe { width: 400%; height: 400%; transform: scale(0.25); transform-origin: 0 0; border: none; }
+    
+    .loading-indicator { position: absolute; bottom: 5px; right: 8px; font-size: 10px; color: #999; font-style: italic; }
+    div.card { margin-bottom: 15px; display: inline-block; vertical-align: top; }
+    div.card > a { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .link-label { max-width: 200px; text-align: center; font-size: 12px; padding: 0 4px; }
+/*                 cards               |
+\-------------------------------------*/
