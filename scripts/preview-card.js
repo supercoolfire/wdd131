@@ -68,7 +68,7 @@
     const cache = new Map();
 
     const loadSEO = async (card) => {
-        const url = card.getAttribute('href');
+        const url = card.getAttribute('href') || card.querySelector('a')?.getAttribute('href');
         console.log(`[preview-card] Attempting to load SEO for URL: ${url}`);
         if (!url || card.dataset.seoLoaded === "true") return;
 
@@ -229,6 +229,8 @@
         targets.forEach(target => observer.observe(target));
         console.log(`[preview-card] Observing ${targets.length} preview cards.`);
     };
+
+    window.refreshPreviewCards = initAll;
 
     if (document.readyState === 'loading') {
         window.addEventListener('DOMContentLoaded', () => {
