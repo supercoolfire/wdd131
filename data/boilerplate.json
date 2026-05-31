@@ -1,4 +1,10 @@
 {
   "rickster-egg": { "tag": "title", "insertion": "after", "items": [{ "tag": "script", "src": "scripts/rickster-egg-v2.js", "defer": "true" }] },
-  "theme-toggle-light": { "querySelector": "header", "insertion": "append",  "tag": "button", "class": "theme-toggle", "aria-label": "Toggle dark mode", "defer": "true" , "title": "Switch to dark mode", "textContent": "🌙" }
+    "#navigation": {
+    "tag": "ul", "id": "navigation",
+    "items": [
+      { "tag": "li", "items": [{ "tag": "a", "href": "#", "textContent": "Home", "title": "Home", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "href": "#", "textContent": "House", "title": "House", "rel": "noopener" }] }
+    ]
+  }
 }
