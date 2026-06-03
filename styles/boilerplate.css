@@ -72,6 +72,17 @@ html[data-theme="dark"] .dark {
 
 /*        Day <- toggle -> night        |
 \-------------------------------------*/
+
+a {
+    background-color: var(--link-bg-color);
+    color: var(--link-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--link-color-hover);
+    text-decoration: underline;
+}
+
 body {
     font-family: "Ubuntu", Arial, sans-serif;
     line-height: 1.6;
