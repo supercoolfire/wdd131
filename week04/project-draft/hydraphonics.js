@@ -238,8 +238,12 @@ require(['vs/editor/editor.main'], function () {
     if (el.nodeType !== Node.ELEMENT_NODE) return null;
 
     const obj = { tag: el.tagName.toLowerCase() };
-    if (el.id) obj.id = el.id;
-    if (el.className) obj.class = el.className;
+    
+    // CAPTURE ALL ATTRIBUTES (style, src, alt, etc.)
+    Array.from(el.attributes).forEach(attr => {
+      const name = attr.name === 'class' ? 'class' : attr.name;
+      obj[name] = attr.value;
+    });
     
     if (el.children.length === 0 && el.textContent.trim()) {
       obj.textContent = el.textContent.trim();
@@ -420,15 +424,17 @@ require(['vs/editor/editor.main'], function () {
         }
 
         if (baseMatch) {
-          if (liveEl.textContent.trim() !== baseMatch.textContent.trim() || liveEl.children.length !== baseMatch.children.length) {
+          const attributesChanged = Array.from(liveEl.attributes).some(attr => liveEl.getAttribute(attr.name) !== baseMatch.getAttribute(attr.name)) ||
+                                   Array.from(baseMatch.attributes).some(attr => liveEl.getAttribute(attr.name) !== baseMatch.getAttribute(attr.name));
+
+          if (liveEl.textContent.trim() !== baseMatch.textContent.trim() || 
+              liveEl.children.length !== baseMatch.children.length ||
+              attributesChanged) {
+            
             const key = liveEl.id || liveEl.tagName.toLowerCase();
             
             if (liveEl.children.length === 0) {
-              deltaJson[key] = {
-                tag: liveEl.tagName.toLowerCase(),
-                id: liveEl.id || undefined,
-                textContent: liveEl.textContent.trim()
-              };
+              deltaJson[key] = elementToRawObject(liveEl);
             }
           }
         } else {
