@@ -1,25 +1,17 @@
 /**
  * * Image Downloader Experiment
-* (C) 2026 Jayser Pilapil
+ * (C) 2026 Jayser Pilapil
  *
  * Requirements:
  * 1. Node.js installed on your system (version >= 16.0.0).
  * 2. "type": "module" added to your root package.json file.
  * 
  * Installation:
- * 1. Run the command in your project root: npm install axios cli-progress
+ * 1. project root: npm install axios cli-progress
  * 
  * Usage:
- * 1. Prepare your destination folder (e.g., `images/downloads`) where you want to store the downloaded images.
- * 2. modify the CONFIG block directly below to match your dataset keys and paths.
- * 3. execute the script from your project root: node scripts/image-downloader-experiment.js
+ *  node scripts/image-downloader-experiment.js
  * 
- * * FEATURES:
- * - Reads external configuration JSON/JSOL array dynamically.
- * - Auto-sanitizes target filename strings (converts spaces to dashes, strips illegal symbols).
- * - Self-extracts original extension markers (.jpg, .jpeg, .png) from dynamic assets.
- * - Auto-creates nested path directory systems if they don't exist.
- * - Visualizes live byte-by-byte feedback logs via an interactive CLI terminal progress bar UI.
  */
 
 const fs = require('fs');
@@ -44,7 +36,7 @@ function sanitizeFilename(name) {
         .replace(/[^a-z0-9\-]/g, '');
 }
 
-async function downloadImage(url, destPath, progressBar, fileIndex, totalFiles) {
+async function downloadImage(url, destPath, currentBar, fileIndex, totalFiles) {
     try {
         const response = await axios({
             method: 'GET',
@@ -53,29 +45,31 @@ async function downloadImage(url, destPath, progressBar, fileIndex, totalFiles) 
         });
 
         const totalLength = parseInt(response.headers['content-length'], 10) || 0;
-        progressBar.start(totalLength, 0, { fileIndex, totalFiles, currentFile: path.basename(destPath) });
+        
+        // Reset and start individual progress bar for the incoming file stream
+        currentBar.start(totalLength, 0, { currentFile: path.basename(destPath) });
 
         const writer = fs.createWriteStream(destPath);
         
         response.data.on('data', (chunk) => {
-            progressBar.increment(chunk.length);
+            currentBar.increment(chunk.length);
         });
 
         response.data.pipe(writer);
 
         return new Promise((resolve, reject) => {
             writer.on('finish', () => {
-                progressBar.stop();
+                currentBar.stop();
                 resolve();
             });
             writer.on('error', (err) => {
-                progressBar.stop();
+                currentBar.stop();
                 reject(err);
             });
         });
 
     } catch (error) {
-        progressBar.stop();
+        currentBar.stop();
         console.error(`\n❌ Error downloading URL: ${url} | ${error.message}`);
     }
 }
@@ -94,11 +88,8 @@ async function startBatchDownload() {
         
         // --- COMPATIBILITY FALLBACK HANDLER ---
         try {
-            // 1. Attempt standard strict JSON compilation
             items = JSON.parse(rawData);
         } catch (jsonErr) {
-            // 2. If it fails, compile it safely as a JavaScript Object Literal (JSOL)
-            // Wrapping it in parentheses ensures the runtime treats it as an expression
             try {
                 items = Function(`"use strict"; return (${rawData})`)();
             } catch (jsolErr) {
@@ -117,11 +108,22 @@ async function startBatchDownload() {
 
     console.log(`🚀 Processing data payload pool targeting ${items.length} items...\n`);
 
+    // Create container for multi-bar display
     const multibar = new cliProgress.MultiBar({
         clearOnComplete: false,
         hideCursor: true,
-        format: '[{fileIndex}/{totalFiles}] Downloading {currentFile} | {bar} | {percentage}%'
+        noTTYOutput: false
     }, cliProgress.Presets.shades_classic);
+
+    // 1. Overall Batch Progress Bar (Top)
+    const overallBar = multibar.create(items.length, 0, {}, {
+        format: 'Overall Progress | {bar} | {value}/{total} Files ({percentage}%)'
+    });
+
+    // 2. Individual Stream Progress Bar (Bottom)
+    const currentBar = multibar.create(100, 0, { currentFile: 'Initializing...' }, {
+        format: 'Current Download | {bar} | {percentage}% | {currentFile}'
+    });
 
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
@@ -129,6 +131,7 @@ async function startBatchDownload() {
         const rawName = item[CONFIG.nameKey];
 
         if (!imageUrl || !rawName) {
+            overallBar.increment(); // Step over invalid entry
             continue; 
         }
 
@@ -143,8 +146,18 @@ async function startBatchDownload() {
         const finalFilename = `${cleanName}${ext}`;
         const destinationPath = path.join(CONFIG.destDirectory, finalFilename);
 
-        const singleBar = multibar.create(100, 0); 
-        await downloadImage(imageUrl, destinationPath, singleBar, i + 1, items.length);
+        // Check if file exists and config permits skipping
+        if (CONFIG.skip_existing && fs.existsSync(destinationPath)) {
+            currentBar.update(100, { currentFile: `${finalFilename} (Skipped - Existing)` });
+            overallBar.increment();
+            continue;
+        }
+
+        // Run the dynamic download stream
+        await downloadImage(imageUrl, destinationPath, currentBar, i + 1, items.length);
+        
+        // Update global counter
+        overallBar.increment();
     }
 
     multibar.stop();
