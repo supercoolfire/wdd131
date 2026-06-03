@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('hydrationFinished', () => {
     window.navIsHydrated = true; 
     bindNavEvents();
+    // stalkmateMen.click(); // test temporary
 });
 
 /**
@@ -58,7 +59,7 @@ let isStalkmateLoading = false;
 async function generateStalkmate() {
     const header = document.querySelector('header');
     const stalkmate = document.getElementById('stalkmate');
-    const jsonFile = './data/classmate.jsol';
+    const jsonFile = './data/classmate.json';
     
     if (!stalkmate || isStalkmateLoading) return;
     isStalkmateLoading = true;
@@ -172,9 +173,10 @@ async function generateStalkmate() {
                 { link: `https://${username}.github.io/wdd131/place.html`, text: "W03 Assignment: Country Page" },
                 { link: `https://${username}.github.io/wdd131/week04/lazyload.html`, text: "W04 Learning Activity: Lazyloading Images" },
                 { link: `https://${username}.github.io/wdd131/filtered-temples.html`, text: "W04 Assignment: Picture Album Enhancement" },
+                { link: `https://${username}.github.io/wdd131/week05/Form-start/index.html`, text: "W05 Learning Activity: Building a Web Form" },
+                { link: `https://${username}.github.io/wdd131/project/siteplan.html`, text: "W05 Project: Website Planning Document" },
                 { link: `https://${username}.github.io/wdd131/form.html`, text: "W05 Assignment: Product Review Form" },
                 { link: `https://${username}.github.io/wdd131/review.html`, text: "W05 Assignment: Product Review Form" },
-                { link: `https://${username}.github.io/wdd131/siteplan.html`, text: "W06 Project: Site Plan" },
             ];
 
             if (item.other_links && Array.isArray(item.other_links)) {
