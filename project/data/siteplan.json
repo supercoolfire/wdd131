@@ -1,0 +1,177 @@
+{
+  "rickster-egg": { "tag": "title", "insertion": "after", "items": [{ "tag": "script", "src": "scripts/rickster-egg-v2.js", "defer": "true" }] },
+    "#navigation": {
+    "tag": "ul", "id": "navigation",
+    "items": [
+      { "tag": "li", "items": [{ "tag": "a", "href": "#", "textContent": "Home", "title": "Home", "rel": "noopener" }] },
+      { "tag": "li", "items": [{ "tag": "a", "href": "../week04/project-draft/index.html", "textContent": "Project Draft", "title": "Project Draft", "rel": "noopener" }] }
+    ]
+  },
+  "siteplan": {
+    "querySelector": "main","insertion":"append","tag":"section","id":"siteplan",
+    "items": [
+      {
+        "tag": "ol",
+        "items": [
+          {
+            "tag": "li",
+            "items": [
+              {
+                "tag": "div","class":"content-wrapper",
+                "items": [
+                  {"tag":"h2","textContent":"Site Name:"},
+                  {
+                    "tag": "table",
+                    "items": [
+                      {
+                        "tag": "tbody",
+                        "items": [
+                          {
+                            "tag": "tr",
+                            "items": [
+                              {"tag":"th","textContent":"Site Name:"},
+                              {"tag":"td","textContent":"Hydra"}
+                            ]
+                          },
+                          {
+                            "tag": "tr",
+                            "items": [
+                              {"tag":"th","textContent":"Logo:"},
+                              {"tag":"td","items":[{"tag":"img","src":"images/logo.svg","alt":"Hydra Logo"}]}
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "li",
+            "items": [
+              {
+                "tag":"div","class": "content-wrapper",
+                "items": [
+                  {"tag":"h2","textContent":"Site Purpose:"},
+                  {"tag":"p","textContent":"Hydra is designed to accelerate HTML production and minimize validation errors. It provides a bidirectional text workspace that links structural JSON configuration data with live visual HTML rendering, eliminating common headaches like missing or misplaced tags."}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "li",
+            "items": [
+              {
+                "tag": "div","class":"content-wrapper",
+                "items": [
+                  {"tag":"h2","textContent":"Scenarios:"},
+                  {
+                    "tag": "ul",
+                    "items": [
+                      {"tag":"li","textContent":"A developer wants to quickly generate a complex list of items from a JSON data source without manually writing repetitive HTML tags."},
+                      {"tag":"li","textContent":"A student wants to ensure their HTML structure is valid and consistent across multiple pages of their project."},
+                      {"tag":"li","textContent":"A UI/UX designer wants to experiment with different theme configurations and layout components in a sandbox environment without modifying the core codebase."},
+                      {"tag":"li","textContent":"A small business owner wants to manage their website's product catalog or service list by editing a simple JSON file rather than learning complex HTML/CSS."}
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "li",
+            "items": [
+              {
+                "tag":"div","class": "content-wrapper",
+                "items": [
+                  {"tag":"h2","textContent":"Color Schema:"},
+                  {
+                    "tag": "table","class":"palette",
+                    "items": [
+                      {
+                        "tag": "tbody",
+                        "items": [
+                          {
+                            "tag": "tr",
+                            "items": [
+                              {"tag":"th","textContent":"Primary Background"},
+                              {"tag":"th","textContent":"Secondary Background"},
+                              {"tag":"th","textContent":"Accent (Hydra Red)"},
+                              {"tag":"th","textContent":"Accent Blue"},
+                              {"tag":"th","textContent":"Main Text"}
+                            ]
+                          },
+                          {
+                            "tag": "tr",
+                            "items": [
+                              {"tag":"td","style":"background-color:#0b0f17; color:#fff;","textContent":"#0b0f17"},
+                              {"tag":"td","style":"background-color:#121824; color:#fff;","textContent":"#121824"},
+                              {"tag":"td","style":"background-color:#860e0e; color:#fff;","textContent":"#860e0e"},
+                              {"tag":"td","style":"background-color:#38bdf8; color:#000;","textContent":"#38bdf8"},
+                              {"tag":"td","style":"background-color:#f8fafc; color:#000;","textContent":"#f8fafc"}
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "li",
+            "items": [
+              {
+                "tag": "div","class":"content-wrapper",
+                "items": [
+                  {
+                    "tag": "h2","textContent":"Typography:"
+                  },
+                  {
+                    "tag": "p",
+                    "items": [
+                      {"tag":"strong", "class": "primary-font" ,"textContent":"Primary Font:"},
+                      {"textContent":"Inter, system-ui, sans-serif (Body Copy)"}
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "items": [
+                      {"tag":"strong", "class": "monospace-font" ,"textContent":"Monospace Font:"},
+                      {"textContent":"Roboto Mono, monospace (Code & Data)"}
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "li",
+            "items": [
+              {
+                "tag": "div","class":"content-wrapper",
+                "items": [
+                  {"tag":"h2","textContent":"Wireframes:"},
+                  {
+                    "tag": "div","class":"wireframes",
+                    "items": [
+                      {"tag":"h3","textContent":"Desktop View"},
+                      {"tag":"img","class":"wireframe-desktop-img light","src":"images/wireframe-desktop-light.svg","alt":"Desktop Wireframe","width":"320px"},
+                      {"tag":"img","class":"wireframe-desktop-img dark","src":"images/wireframe-desktop-dark.svg","alt":"Desktop Wireframe","width":"320px"},
+                      {"tag":"h3","textContent":"Mobile View"},
+                      {"tag":"img","class":"wireframe-mobile-img light","src":"images/wireframe-mobile-light.svg","alt":"Mobile Wireframe","width":"320px"},
+                      {"tag":"img","class":"wireframe-mobile-img dark","src":"images/wireframe-mobile-dark.svg","alt":"Mobile Wireframe","width":"320px"}
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
