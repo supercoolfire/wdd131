@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description"
+        content="This page demonstrates general accessibility guidance for forms, including proper use of fieldsets, legends, labels, and ARIA attributes to enhance the user experience for all users. It covers required fields, optional fields, and contextual information to ensure clarity and usability." />
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W05 Learning Activity: HTML Forms | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/html-forms.css">
+    <link rel="stylesheet" href="styles/html-forms-large.css" media="(min-width: 640px)">
+    <!-- <link rel="preload" href="data/html-forms.json" as="fetch" crossorigin> -->
+    <!-- <script src="scripts/hydrate-v5.js" data-file="data/html-forms.json" defer> </script> -->
+    <script src="../scripts/theme-toggle.js" defer></script>
+    <script src="../scripts/getdates.js" defer></script>
+    <script src="../scripts/nav-burger.js" defer></script>
+    <script src="../scripts/modal-click-origin.js" defer></script>
+    <script src="../scripts/rickster-egg-v2.js" defer></script>
+    <!-- <script src="scripts/html-forms.js" defer></script> -->
+</head>
+
+<body>
+    <header>
+        <div id="course-title">WDD 131 – Dynamic Web Fundamentals</div>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li class="loading-dots rickster-egg">Loading navigation</li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+    <main>
+
+        <h1>W05 Learning Activity: HTML Forms</h1>
+
+        <section class="part1">
+        <h2>General Accessibility Guidance for Forms</h2>
+
+        <form class="usa-form usa-form--large" aria-describedby="form-instructions">
+
+            <p class="usa-form__note" id="form-instructions">
+                Fields marked with an asterisk (<abbr class="usa-hint usa-hint--required" title="required">*</abbr>) are
+                required.
+            </p>
+
+            <fieldset class="usa-fieldset">
+                <legend class="usa-legend" id="legend-identity">Identity Profile</legend>
+
+                <div class="usa-form-group">
+                    <label class="usa-label" for="first-name">
+                        First name <abbr class="usa-hint usa-hint--required" title="required">*</abbr>
+                    </label>
+                    <span class="usa-hint" id="first-name-hint">Enter your legal first name as it appears on your
+                        ID.</span>
+
+                    <input class="usa-input" id="first-name" name="first-name" type="text" required aria-required="true"
+                        aria-labelledby="first-name legend-identity first-name-hint">
+                </div>
+
+                <div class="usa-form-group">
+                    <label class="usa-label" for="middle-initial">
+                        Middle initial <span class="usa-hint">(optional)</span>
+                    </label>
+                    <input class="usa-input usa-input--sm" id="middle-initial" name="middle-initial" type="text"
+                        maxlength="1">
+                </div>
+            </fieldset>
+
+            <fieldset class="usa-fieldset">
+                <legend class="usa-legend" id="legend-delivery">Delivery Setup</legend>
+
+                <div class="usa-form-group">
+                    <span class="usa-label" id="label-delivery-method">
+                        Preferred Shipping Route <abbr class="usa-hint usa-hint--required" title="required">*</abbr>
+                    </span>
+
+                    <div class="usa-radio">
+                        <input class="usa-radio__input" id="route-standard" type="radio" name="shipping-route"
+                            value="standard" required aria-labelledby="route-standard-label legend-delivery">
+                        <label class="usa-radio__label" for="route-standard" id="route-standard-label">
+                            Standard Ground Delivery
+                        </label>
+                    </div>
+
+                    <div class="usa-radio">
+                        <input class="usa-radio__input" id="route-expedited" type="radio" name="shipping-route"
+                            value="expedited" aria-labelledby="route-expedited-label legend-delivery">
+                        <label class="usa-radio__label" for="route-expedited" id="route-expedited-label">
+                            Overnight Express Cargo
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="usa-fieldset">
+                <legend class="usa-legend" id="legend-security">Security Authentication</legend>
+
+                <div class="usa-form-group usa-form-group--error">
+                    <label class="usa-label usa-label--error" for="security-pin">
+                        Authorization PIN <abbr class="usa-hint usa-hint--required" title="required">*</abbr>
+                    </label>
+
+                    <span class="usa-error-message" id="pin-error-alert">
+                        <span class="usa-sr-only">Error:</span> PIN entry must match the 4-digit code sent to your
+                        device.
+                    </span>
+
+                    <input class="usa-input usa-input--error" id="security-pin" name="security-pin" type="text" required
+                        aria-required="true" aria-describedby="pin-error-alert"
+                        aria-labelledby="security-pin legend-security pin-error-alert">
+                </div>
+            </fieldset>
+
+            <div class="margin-top-4">
+                <button class="usa-button" type="submit">
+                    Verify and save profile
+                </button>
+                <button class="usa-button usa-button--unstyled" type="button" aria-disabled="true">
+                    Processing archival loop...
+                </button>
+            </div>
+
+        </form>
+        </section>
+
+
+        <section class="part2">
+            <h2>Learning about HTML5 Form Attributes (Part 2)</h2>
+
+            <form action="/api/default-endpoint" method="POST" id="master-form" autocomplete="on">
+                <div class="form-group"><label for="username">Account Username</label><input type="text" id="username"
+                        name="username" value="GuestUser" autofocus><span class="hint">Uses <span
+                            class="code-tag">type</span>, <span class="code-tag">name</span>, and <span
+                            class="code-tag">value</span>. It features <span class="code-tag">autofocus</span>(though
+                        noted in text as an accessibility risk).</span></div>
+                <div class="form-group"><label for="user-bio">User Biography / Comments</label><input type="text"
+                        id="user-bio" name="user-bio" dirname="user-bio.dir" placeholder="Type here..."><span
+                        class="hint">The <span class="code-tag">dirname</span>attribute automatically appends a second
+                        query parameter (<span class="code-tag">user-bio.dir=ltr</span>or <span
+                            class="code-tag">rtl</span>) to the server to inform it of text directionality.</span></div>
+                <div class="form-group"><label for="passcode">Custom Secure Passcode</label><input type="text"
+                        id="passcode" name="passcode" required minlength="4" maxlength="8" pattern="[A-Za-z0-9]+"
+                        title="Must be alphanumeric and between 4 and 8 characters long."><span
+                        class="hint">Demonstrates explicit character controls using <span
+                            class="code-tag">minlength</span>and <span class="code-tag">maxlength</span>combined with
+                        regex constraints via <span class="code-tag">pattern</span>and <span
+                            class="code-tag">title</span>.</span></div>
+                <div class="form-group"><label for="account-balance">Target Deposit Amount</label><input type="text"
+                        id="account-balance" name="account-balance" inputmode="decimal" placeholder="0.00"><span
+                        class="hint"><span class="code-tag">inputmode="decimal"</span>instructs mobile operating systems
+                        to dynamically launch a numeric keypad with a decimal point instead of a standard text
+                        keyboard.</span></div>
+                <div class="form-group"><label for="quantity">Item Quantity (Even numbers only)</label><input
+                        type="number" id="quantity" name="quantity" min="2" max="20" step="2" size="5"><span
+                        class="hint">Demonstrates specific numeric constraints using <span class="code-tag">min</span>,
+                        <span class="code-tag">max</span>, and <span class="code-tag">step</span>increments, alongside
+                        visual <span class="code-tag">size</span>adjustments.</span></div>
+                <div class="form-group"><label>Subscription Tier Selection</label>
+                    <div><input type="radio" id="tier-basic" name="tier" value="basic"><label for="tier-basic">Basic
+                            Plan</label></div>
+                    <div><input type="radio" id="tier-premium" name="tier" value="premium" checked><label
+                            for="tier-premium">Premium Plan (Default Choice)</label></div><span class="hint">The <span
+                            class="code-tag">checked</span>attribute pre-selects the input. Our CSS stylesheet hooks
+                        into this element dynamically via the <span class="code-tag">:checked</span>and <span
+                            class="code-tag">:default</span>pseudo-classes.</span>
+                </div>
+                <div class="form-group"><label>Execution Panel (Overrides)</label>
+                    <div class="actions"><input type="submit" value="Standard POST Submit"
+                            class="submit-btn btn-primary"><input type="submit" value="Alternative GET Export"
+                            formaction="/api/alternate-export" formmethod="GET" formtarget="_blank" class="submit-btn"
+                            style="background: #6c757d; color: white;"><input type="submit"
+                            value="Bypass Validation Multipart Upload" formaction="/api/upload-vault" formmethod="POST"
+                            formenctype="multipart/form-data" formnovalidate class="submit-btn"
+                            style="background: #ffc107; color: black;"></div><span class="hint">These distinct action
+                        buttons leverage <span class="code-tag">formaction</span>, <span
+                            class="code-tag">formmethod</span>, <span class="code-tag">formtarget</span>, <span
+                            class="code-tag">formenctype</span>, and <span class="code-tag">formnovalidate</span>to
+                        dynamically alter how data leaves the browser.</span>
+                </div>
+                <div class="form-group"><label>Alternative Graphical Submission Matrix</label><input type="image"
+                        id="image-submit" name="image-submit-button"
+                        src="https://placehold.co/150x50/0d6efd/ffffff?text=Submit+Form"
+                        alt="Blue graphical submit button" width="150" height="50"><span class="hint">Demonstrates an
+                        image submission input utilizing its specific layout rules: <span class="code-tag">src</span>,
+                        <span class="code-tag">alt</span>, <span class="code-tag">height</span>, and <span
+                            class="code-tag">width</span>. Clicking this natively submits the coordinates of the click
+                        alongside form strings.</span></div>
+            </form>
+
+
+        </section>
+
+
+        <section class="part3">
+
+            <h2>Form Input Pattern Attribute Testing</h2>
+
+            <p>1️⃣ In the HTML panel, enter a vaild, input pattern.<br> The default pattern is 6 to 10 characters
+                inclusive with at least one number,<br> one special character, one upper case and one lower case.</p>
+            <p><code>pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,10}$"</code></p>
+            <p>2️⃣ In the preview panel, enter a test value in the input field.</p>
+            <p>
+                3️⃣ The input text and border will be green if the input meets the requirements of the pattern.
+            </p>
+            <hr>
+            <form>
+                <label for="test">Enter Test Characters: </label>
+                <input type="text" id="test" name="test"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,10}$"
+                    title="6 to 10 characters inclusive with at least on ne number, one special character, one upper case and one lower case letter.">
+            </form>
+
+        </section>
+
+        <section class="instructions">
+            <ol>
+                <li>
+                    <h2>Overview of Web Forms</h2>
+                    <div>
+                        <h3>WebForms Part 1 Overview of Web Forms</h3>
+                        <ul>
+                            <li>Balance between pain and reward</li>
+                            <li>Pain of completing the form is less than the reward offered, customer will complete the form</li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h2>Best Practices for Web Forms</h2>
+                    <div>
+                        <h3>WebForms Part 2 Best Practices for Web Forms</h3>
+                        <ul>
+                            <li><strong>Labeling</strong>
+                                <ul>
+                                    <li>never use the word "submit" on a button, use a verb that answers I want to... e.g.: "Purcahse My Ticket"</li>
+                                    <li>Personalize the message with their name</li>
+                                    <li>Don't ask unnecessary questions that look like data mining, only ask for information that is necessary to complete the transaction.</li>
+
+                                </ul>
+                            </li>
+                            <li><strong>Content</strong>
+                                <ul>
+                                    <li>Remove unnecessary questions</li>
+                                    <li>Clearly identify required fields</li>
+                                </ul>
+                            </li>
+                            <li><strong>Layout</strong>
+                                <ul>
+                                    <li>Place labels above and left aligned</li>
+                                    <li>Never use multiple columns for a form</li>
+                                    <li>Use a single input for a phone number</li>
+                                    <li>Use radio buttons for less than 5 options. Use dropdowns for more than 5 options.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Inputs</strong>
+                                <ul>
+                                    <li>Use a placeholder text to reduce the confusion</li>
+                                    <li>Order choices logically</li>
+                                    <li>Wrap all inputs in labels</li>
+                                </ul>
+                            </li>
+                            <li><strong>Submission</strong>
+                                <ul>
+                                    <li>never add a reset button to your page</li>
+                                    <li>Show a confirmation page</li>
+                                </ul>
+                            </li>
+                            <li><strong>Design</strong>
+                                <ul>
+                                    <li>Beautiful desgin inspires confidence</li>
+                                    <li>Minimum Input height of 44px</li>
+                                    <li>Group relatedf information</li>
+                                    <li>Chunk large forms using fildsets</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h2>Building a Web Form </h2><button><a href="form-start/index.html">Start Files (unzipped)</a></button>
+                    <div>
+
+                    </div>
+                </li>
+                <li>
+                    <h2>Styling a Web Form</h2>
+                    <div>
+                        proram called reflector do display phone scree to computer
+                    </div>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            &copy;<span id="currentyear"></span> | Jayser Pilapil | United State of Calamity
+        </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>

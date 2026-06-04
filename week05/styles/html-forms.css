@@ -1,0 +1,449 @@
+
+/*-------------------------------------\
+|        Day <- toggle -> night       */
+:root {
+    --toggle-btn-bg: #2a2a2a;
+    --toggle-text-color: #f0f0f0;
+    --body-bg-color: #12121226;
+    --body-text-color: #1a1a1a;
+    --header-bg-color: #94cbff;
+    --header-color: #000000;
+    --main-bg-color: #ffffff;
+    --main-color: #000000;
+    --footer-bg-color: #94cbff;
+    --footer-color: #000000;
+
+    /* NOTEBOOK */
+    --line-color: #cbd5e1;
+    --line-height: 1.8rem;
+}
+
+[data-theme="dark"] {
+    --toggle-btn-bg: #f0f0f0;
+    --toggle-text-color: #2a2a2a;
+    --body-bg-color: #121212d9;
+    --body-text-color: #f5f5f5;
+    --header-bg-color: #021629;
+    --header-color: #ebd531;
+    --main-bg-color: #00000050;
+    --main-color: #ffffff;
+    --footer-bg-color: #021629;
+    --footer-color: #ffffff;
+
+    /* NOTEBOOK */
+    --line-color: #334155;
+}
+
+/* ==========================================================================
+   Button Styling
+   ========================================================================== */
+.theme-toggle {
+	position: fixed;
+	top: 20px;
+	right: 15px;
+	z-index: 100;
+
+    padding: 8px 8px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--toggle-btn-bg);
+    color: var(--body-text-color);
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 1s ease;
+}
+.theme-icon, .theme-toggle, .theme-text {
+    color: var(--toggle-text-color);
+}
+/* ==========================================================================
+   Element Swapping Logic
+   ========================================================================== */
+/* Default state: Hide dark elements, show light elements */
+html[data-theme="light"] .dark {
+    display: none;
+}
+html[data-theme="light"] .light {
+    display: block;
+}
+
+/* Dark state: Show dark elements, hide light elements */
+html[data-theme="dark"] .light {
+    display: none;
+}
+html[data-theme="dark"] .dark {
+    display: block;
+}
+
+/*        Day <- toggle -> night        |
+\-------------------------------------*/
+
+a {
+    background-color: var(--link-bg-color);
+    color: var(--link-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--link-color-hover);
+    text-decoration: underline;
+}
+
+body {
+    font-family: "Ubuntu", Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    font-family: "Ubuntu", Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-items: center;
+    min-height: 97vh;
+}
+
+header {
+    position: relative;
+    background-color: var(--header-bg-color);
+    color: var(--header-color);
+    width: 97%;
+    padding: 1rem;
+}
+
+#course-title {
+    text-align: center;
+    margin-right: 95px;
+}
+
+/*-------------------------------------\
+|           Poor man's steak          */
+
+#menu {
+    display: block;
+    position: relative;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: .5rem .75rem;
+    background-color: #eeeeee;
+    color: #000000;
+    border-radius: 50%;
+
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    
+    cursor: pointer;
+	position: absolute;
+    top: 10px;
+    right: 57px;
+}
+
+#menu::before {
+    position: absolute;
+    content: "☰";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.show li {
+    display: block;
+}
+
+#menu.show::before {
+    content: "❌";
+}
+
+
+nav {
+    position: relative;
+    top: 0;
+    padding: 0 1rem; /* Kept horizontal padding consistent */
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-out, padding 0.5s ease-out;
+}
+
+nav.show {
+    grid-template-rows: 1fr;
+    padding: 1rem; /* Animates vertical padding back in */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    /* width: 100%; */
+    overflow: hidden;
+}
+
+nav ul li {
+    /* display: none; */
+    transition: all .5s ease-in-out;
+    border: 1px dashed red;
+}
+
+nav ul li:hover {
+    border: 1px dashed #0ba2d1; 
+}
+
+nav ul li a {    
+    background-color: #d1f7db; 
+    transition: all .5s ease-in-out;
+    display: inline-block;
+    font-size: 1.2rem;
+    width: 100%;
+    color: #5a0959;
+    padding: .75rem;
+    text-decoration: none;
+    text-align: center;  
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    text-decoration-color: #ffff00;
+    color: #412c07;
+    cursor: pointer;
+}
+
+nav ul li a.active {
+    background-color: #003366;
+    color: #ffd484;
+    text-decoration: overline;
+}
+/*           Poor man's steak          |
+\-------------------------------------*/
+
+span#course-title {
+    margin-right: 32px;
+}
+
+main {
+    flex: 1;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+    padding: 1rem;
+    max-width: 1000px;
+
+    /* NOTEBOOK */
+    background-image: linear-gradient(var(--line-color) 1px, transparent 1px);
+    background-size: 100% var(--line-height);
+    line-height: var(--line-height);
+}
+
+/*======================== form part 1==============================*/
+/* Core USWDS Form Layout Baseline */
+.usa-form {
+  max-width: 30rem;
+  font-family: var(--theme-form-font-family, 'Source Sans Pro Web', 'Helvetica Neue', 'Arial', sans-serif);
+}
+.usa-form--large {
+  max-width: 40rem;
+}
+.usa-form-group {
+  margin-top: 2rem;
+}
+.usa-fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 3rem;
+}
+.usa-legend {
+  font-size: 1.33rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.usa-label {
+  display: block;
+  font-weight: 400;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.usa-hint {
+  display: block;
+  font-size: 0.93rem;
+  color: #565c65; /* USWDS Ink Cool Medium */
+  font-weight: 400;
+}
+.usa-hint--required {
+  color: #d54309; /* USWDS Red Vivid 60 */
+  margin-left: 0.25rem;
+  font-weight: 700;
+  display: inline;
+}
+.usa-input, .usa-textarea {
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid #565c65;
+  border-radius: 0;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+.usa-input--sm {
+  width: 3.5rem;
+}
+.usa-form-actions {
+  margin-top: 3rem;
+}
+.usa-button {
+  background-color: #005ea2; /* USWDS Blue Primary */
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.usa-button--unstyled {
+  background: transparent;
+  color: #005ea2;
+  text-decoration: underline;
+  padding: 0;
+  margin-left: 1rem;
+}
+
+/* Programmatic Processing State (aria-disabled fallback styling rule) */
+button[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: #f2f6fa;
+  color: #081620;
+  padding: 0.75rem 1.5rem;
+  cursor:not-allowed;
+}
+
+
+
+
+/* +++++++++++++++++++++++++++++++++ form 2 +++++++++++++++++++++++++++++++++ */
+.part2 form {
+    background: var(--main-bg-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.part2 .form-group {
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.part2 input[type="text"], .part2 input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.part2 .hint {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+.part2 .actions-box {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.part2 input[type="submit"] {
+    padding: 11px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.part2 input[type="submit"]:hover {
+    opacity: 0.9;
+}
+.part2 .btn-primary { background-color: #0066cc; color: #fff; }
+.part2 .btn-secondary { background-color: #e0e0e0; color: #333; }
+.part2 .btn-danger { background-color: #cc3333; color: #fff; }
+.part2 .btn-warn { background-color: #ff9900; color: #fff; }
+
+
+/* ____________________ part 3 ------------------------ */
+.part3 {
+
+form {
+  text-align: center;
+}
+
+input[type=text] {
+  padding: 0.65rem;
+  text-height: 1.1rem;
+  font-weight: 700;
+  border: 1px solid #777;
+  background-color: #eee;
+}
+
+input[type=text]:valid {
+  background-color: lightgreen;
+  color: darkgreen;
+}
+
+input[type=text]:invalid {
+  background-color: pink;
+  color: indianred;
+}
+
+label {
+  margin-right: 1rem;
+}
+
+p {
+  margin-left: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+code {
+  font-size: .7rem;
+}
+
+}
+
+
+
+
+footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-color);
+    text-align: center;
+    padding: 2rem 1rem;
+    width: 97%;
+}
+
+
+/*-------------------------------------\
+|          Dots Entertainment         */
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s infinite steps(4);
+}
+
+@keyframes dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: '....'; }
+}
+/*          Dots Entertainment          |
+\-------------------------------------*/
