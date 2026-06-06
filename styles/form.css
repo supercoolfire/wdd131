@@ -459,7 +459,7 @@ main {
 	margin-top: 1.5rem;
 	-webkit-appearance: none;
 	appearance: none;
-	box-shadow: var(--generic-box-shaddow);
+	box-shadow: var(--generic-box-shadow);
 }
 
 #reviewForm button[type="submit"]:hover {
