@@ -1,0 +1,22 @@
+@media (min-width: 800px) {
+/* :root {
+    --bg-color: #12121226;
+    --text-color: #1a1a1a;
+    --toggle-btn-bg: #2a2a2a;
+    --toggle-text-color: #f0f0f0;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212d9;
+    --text-color: #f5f5f5;
+    --toggle-btn-bg: #f0f0f0;
+    --toggle-text-color: #2a2a2a;
+} */
+
+
+span#course-title {
+    margin-right: 32px;
+}
+
+
+}

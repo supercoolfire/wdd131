@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Jayser Pilapil">
+	<meta name="description"
+		content="Demonsrate the best practices in creating a product review form, user is informed to fill in the form with the required information">
+	<meta name="keywords" content="product review form, user review, product feedback, product rating">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Product Review | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+	<link rel="icon" href="images/favicon.ico">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style"
+		href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+		media="print" onload="this.media='all'">
+	<link rel="stylesheet" href="styles/form.css">
+	<link rel="stylesheet" href="styles/form-large.css" media="(min-width: 640px)">
+	<link rel="preload" href="data/form.json" as="fetch" crossorigin>
+	<script src="scripts/hydrate-v5.js" data-file="data/form.json" defer> </script>
+	<script src="scripts/theme-toggle.js" defer></script>
+	<script src="scripts/getdates.js" defer></script>
+	<script src="scripts/nav-burger.js" defer></script>
+	<script src="scripts/modal-click-origin.js" defer></script>
+	<script src="scripts/rickster-egg-v2.js" defer></script>
+	<script src="scripts/form.js" defer></script>
+</head>
+
+<body>
+	<header>
+		<div id="course-title">WDD 131 – Dynamic Web Fundamentals</div>
+		<button type="button" id="menu" aria-label="Menu"></button>
+		<nav>
+			<ul id="navigation">
+				<li class="loading-dots rickster-egg">Loading navigation</li>
+			</ul>
+		</nav>
+
+
+	</header>
+
+	<main>
+		<h1>Review Submitted!</h1>
+		<div class="review-confirmation">
+			<p>Thank you for your feedback, <span id="reviewerName">Guest</span>!</p>
+			<p>Your review has been successfully recorded.</p>
+			<div class="counter-box">
+				Total Reviews Submitted: <span id="reviewCounter">0</span>
+			</div>
+			<a href="form.html" class="back-btn">Submit Another Review</a>
+		</div>
+
+	</main>
+
+	<footer>
+		<p>
+			&copy;<span id="currentyear"></span> | Jayser Pilapil | <a id="portfolio" href="portfolio.html" target="_blank">Portfolio</a> | United State of Calamity
+		</p>
+		<p id="lastModified"></p>
+	</footer>
+</body>
+
+</html>

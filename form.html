@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Jayser Pilapil">
+	<meta name="description"
+		content="Demonsrate the best practices in creating a product review form, user is informed to fill in the form with the required information">
+	<meta name="keywords" content="product review form, user review, product feedback, product rating">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Product Review Form | WDD 131 – Dynamic Web Fundamentals – Jayser Pilapil</title>
+	<link rel="icon" href="images/favicon.ico">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="style"
+		href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+		media="print" onload="this.media='all'">
+	<link rel="stylesheet" href="styles/form.css">
+	<link rel="stylesheet" href="styles/form-large.css" media="(min-width: 640px)">
+	<link rel="preload" href="data/form.json" as="fetch" crossorigin>
+	<script src="scripts/hydrate-v5.js" data-file="data/form.json" defer> </script>
+	<script src="scripts/theme-toggle.js" defer></script>
+	<script src="scripts/getdates.js" defer></script>
+	<script src="scripts/nav-burger.js" defer></script>
+	<script src="scripts/modal-click-origin.js" defer></script>
+	<script src="scripts/rickster-egg-v2.js" defer></script>
+	<script src="scripts/form.js" defer></script>
+</head>
+
+<body>
+	<header>
+		<div id="course-title">WDD 131 – Dynamic Web Fundamentals</div>
+		<button type="button" id="menu" aria-label="Menu"></button>
+		<nav>
+			<ul id="navigation">
+				<li class="loading-dots rickster-egg">Loading navigation</li>
+			</ul>
+		</nav>
+
+
+	</header>
+
+	<main>
+		<h1>Product Review Form</h1>
+		<div id="status-banner" class="message message-error" role="alert" aria-live="assertive" hidden>
+			<div class="message-icon">❌</div>
+			<div class="message-text">
+				<strong>Attention:</strong> Please correct the highlighted fields below before submitting.
+			</div>
+		</div>
+
+		<form id="reviewForm" action="review.html" method="get" novalidate>
+			<fieldset>
+				<legend>Product Selection</legend>
+
+				<label for="productName">Product Name <span class="required">*</span></label>
+				<select id="productName" name="productName" required>
+					<option value="" disabled selected>Select a Product ...</option>
+				</select>
+			</fieldset>
+
+			<fieldset>
+				<legend>Your Rating</legend>
+				<span id="ratingRequired" class="rating-label">Overall Rating <span class="required">*</span></span>
+
+				<div class="imdb-rating">
+					<label for="star5" title="5 stars">★</label>
+					<input type="radio" id="star5" name="rating" value="5" required>
+
+					<input type="radio" id="star4" name="rating" value="4" required>
+					<label for="star4" title="4 stars">★</label>
+
+					<input type="radio" id="star3" name="rating" value="3" required>
+					<label for="star3" title="3 stars">★</label>
+
+					<input type="radio" id="star2" name="rating" value="2" required>
+					<label for="star2" title="2 stars">★</label>
+
+					<input type="radio" id="star1" name="rating" value="1" required>
+					<label for="star1" title="1 star">★</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Installation Details</legend>
+
+				<label id="dateRequired" for="installationDate">Date of Installation <span class="required">*</span></label>
+				<input type="date" id="installationDate" name="installationDate" required>
+			</fieldset>
+
+			<fieldset>
+				<legend>Features & Feedback</legend>
+
+				<span class="checkbox-legend">Which features did you find useful? (Optional)</span>
+				<div class="checkbox-group">
+					<div class="checkbox-item">
+						<input type="checkbox" id="featureDurability" name="features" value="durability">
+						<label for="featureDurability">Durability</label>
+					</div>
+					<div class="checkbox-item">
+						<input type="checkbox" id="featureEase" name="features" value="easeOfUse">
+						<label for="featureEase">Ease of Use</label>
+					</div>
+					<div class="checkbox-item">
+						<input type="checkbox" id="featurePerformance" name="features" value="performance">
+						<label for="featurePerformance">Performance</label>
+					</div>
+					<div class="checkbox-item">
+						<input type="checkbox" id="featureDesign" name="features" value="design">
+						<label for="featureDesign">Design</label>
+					</div>
+				</div>
+
+				<label for="writtenReview">Written Review (Optional)</label>
+				<textarea id="writtenReview" name="writtenReview" rows="5"
+					placeholder="Share your experience with this product..."></textarea>
+
+				<label for="userName">Your Name (Optional)</label>
+				<input type="text" id="userName" name="userName" placeholder="e.g. John Doe">
+			</fieldset>
+
+			<button type="submit" id="submitReview">Express My Review</button>
+		</form>
+	</main>
+
+	<footer>
+		<p>
+			&copy;<span id="currentyear"></span> | Jayser Pilapil | <a id="portfolio" href="portfolio.html"
+				target="_blank">Portfolio</a> | United State of Calamity
+		</p>
+		<p id="lastModified"></p>
+	</footer>
+</body>
+
+</html>

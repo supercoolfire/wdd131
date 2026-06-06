@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roster Dashboard</title>
+  <style>
+    :root {
+      --bg-color: #1668e3;
+      --card-bg: #ffffff;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --primary: #0066cc;
+      --border-radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+    }
+
+    /* Controls: Search and Filters */
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .search-input, .filter-select {
+      padding: 12px 16px;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input {
+      flex: 2;
+      min-width: 250px;
+    }
+
+    .filter-select {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .search-input:focus, .filter-select:focus {
+      border-color: var(--primary);
+    }
+
+    /* Grid Layout */
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .links {
+     background-color: #fff;
+    list-style: none;
+    padding: 1rem;
+    
+    }
+
+    .links li {
+      margin-bottom: 4px;
+    }
+    .links li a {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    /* User Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      padding: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .avatar-container {
+      width: 110px;
+      height: 110px;
+      flex-shrink: 0;
+      /* border-radius: 50%; */
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .info-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .name {
+      margin: 0;
+      /* font-weight: 600; */
+      /* font-size: 16px; */
+    }
+
+    .username {
+      color: var(--primary);
+      margin: 0;
+      /* font-size: 14px; */
+    }
+
+    .role-badge {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background-color: #e1f5fe;
+      color: #0288d1;
+      width: max-content;
+    }
+    .user-id {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background-color: #f5f5f5;
+      color: #999999;
+      width: max-content;
+    }
+
+    /* Green badge for Teachers/Ta's, blue for students */
+    .role-badge.teacher {
+      background-color: #e8f5e9;
+      color: #388e3c;
+    }
+
+    .section-info {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .profile-link-wrapper {
+      margin-top: 4px;
+    }
+
+    .profile-btn {
+      font-size: 13px;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .profile-btn:hover {
+      text-decoration: underline;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Class Roster Dashboard</h1>
+
+  <div class="controls">
+    <input type="text" id="searchBox" class="search-input" placeholder="Search by name words or username...">
+    
+    <select id="roleFilter" class="filter-select">
+      <option value="all">All Roles</option>
+      <option value="student">Students</option>
+      <option value="teacher">Teachers / Staff</option>
+    </select>
+
+    <select id="usernameFilter" class="filter-select">
+      <option value="all">All Usernames</option>
+      <option value="has-username">Has Username</option>
+      <option value="no-username">Missing Username Only</option>
+    </select>
+  </div>
+
+  <div id="rosterGrid" class="roster-grid">
+    <div class="no-results">Loading data...</div>
+  </div>
+</div>
+
+<script>
+  // Path to your generated output file
+  const DATA_URL = 'classmate.json'; 
+  
+  let rosterData = [];
+
+  // 1. Fetch data from the classmate.json file
+  async function loadRoster() {
+    try {
+      const response = await fetch(DATA_URL);
+      if (!response.ok) throw new Error('Could not fetch classmate.json');
+      rosterData = await response.json();
+      renderCards(rosterData);
+    } catch (error) {
+      console.error(error);
+      document.getElementById('rosterGrid').innerHTML = `
+        <div class="no-results" style="color: #ffcccc;">
+          Error loading data. Make sure you are running a local server and classmate.json exists.
+        </div>`;
+    }
+  }
+
+  // Inject preview cards stylesheet with explicit 180px limitations and flex modifiers
+  function injectPreviewStyles() {
+    if (document.getElementById('preview-card-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'preview-card-styles';
+    style.textContent = `
+        /* Overrides the 2-column grid and forces a tight flex wrapper when showing assignments */
+        .roster-grid.assignment-view {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          justify-content: center !important;
+          gap: 16px !important;
+        }
+
+        .loading-dots { font-weight: bold; margin: 0; padding: 12px; font-size: 12px; color: #777; }
+        .loading-dots::after { content: ''; animation: dots 1.5s infinite steps(4); }
+        @keyframes dots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } }
+        
+        /* Lock preview items exactly at 180px */
+        .preview[id^="preview-"] { width: 180px; aspect-ratio: 3 / 4; overflow: hidden; border: 1px solid #ccc; border-radius: 8px; background: #fdfdfd; position: relative; display: flex; flex-direction: column; font-family: sans-serif; transition: transform 0.2s ease; }
+        .preview[id^="preview-"]:hover { transform: scale(1.02); z-index: 10; cursor: pointer; }
+        
+        .preview-content { width: 100%; height: 100%; display: flex; flex-direction: column; }
+        .preview-seo { padding: 10px; font-size: 12px; color: #333; height: 100%; display: flex; flex-direction: column; gap: 6px; pointer-events: none; box-sizing: border-box; }
+        .preview-seo strong { font-size: 12px; color: #000; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
+        .preview-seo p { margin: 0; font-size: 10px; color: #666; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .preview-fallback { display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; background: #f7f7f7; }
+        .preview-fallback .loading-dots { font-weight: normal; color: #999; }
+
+        .preview-iframe-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .preview[id^="preview-"].active .preview-iframe-container { opacity: 1; }
+        .preview[id^="preview-"] iframe { width: 400%; height: 400%; transform: scale(0.25); transform-origin: 0 0; border: none; }
+        
+        .loading-indicator { position: absolute; bottom: 5px; right: 8px; font-size: 9px; color: #999; font-style: italic; }
+        
+        /* Lock outer card component container exactly to 180px */
+        div.stalkyard-card { background: #fff; border-radius: 12px; padding: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); width: 180px; box-sizing: border-box; }
+        div.stalkyard-card > a { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
+        .link-label { width: 100%; text-align: center; font-size: 11px; padding-top: 4px; color: var(--text-main); font-weight: 500; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Dynamic Metadata Processor Engine (Ported from stalkyard.js)
+  async function fetchAndRenderSEO(cardElement, url) {
+    if (!cardElement) return;
+    const contentWrapper = cardElement.querySelector('.preview-content');
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            contentWrapper.innerHTML = `<div class="preview-fallback"><p class="loading-dots">No assignment yet</p></div>`;
+            return;
+        }
+
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
+
+        const metadataTitle = doc.title || "Untitled Assignment Layout";
+        const metadataDesc = doc.querySelector('meta[name="description"]')?.content || "No document meta description available.";
+
+        contentWrapper.innerHTML = `
+            <div class="preview-seo">
+                <strong>${metadataTitle}</strong>
+                <p>${metadataDesc}</p>
+            </div>
+            <div class="preview-iframe-container"></div>
+            <div class="loading-indicator">Hover to view</div>
+        `;
+        cardElement.dataset.seoLoaded = "true";
+
+        cardElement.addEventListener('mouseenter', () => {
+            if (cardElement.classList.contains('active') || cardElement.dataset.loadingFrame === "true") return;
+            cardElement.dataset.loadingFrame = "true";
+
+            const container = cardElement.querySelector('.preview-iframe-container');
+            if (!container) return;
+
+            const iframe = document.createElement('iframe');
+            const absoluteUrl = new URL(url, document.baseURI).href;
+            const baseTag = `<base href="${absoluteUrl}">`;
+            
+            let finalHtml = htmlText;
+            const headMatch = finalHtml.match(/<head[^>]*>/i);
+            if (headMatch) {
+                finalHtml = finalHtml.replace(headMatch[0], `${headMatch[0]}\n    ${baseTag}`);
+            } else {
+                finalHtml = baseTag + finalHtml;
+            }
+            
+            iframe.srcdoc = finalHtml;
+            container.appendChild(iframe);
+
+            iframe.onload = () => {
+                cardElement.classList.add('active');
+                const indicator = cardElement.querySelector('.loading-indicator');
+                if (indicator) indicator.style.display = 'none';
+                delete cardElement.dataset.loadingFrame;
+            };
+        });
+    } catch (err) {
+        contentWrapper.innerHTML = `<div class="preview-fallback"><p class="loading-dots">No assignment yet</p></div>`;
+    }
+  }
+
+  // 2. Main Render Logic Switchboard
+  function renderCards(data) {
+    const grid = document.getElementById('rosterGrid');
+    grid.innerHTML = '';
+    
+    // Always strip assignment configuration views upon default renders
+    grid.classList.remove('assignment-view');
+
+    // FALLBACK CONDITION: If no regular user matches, check for single username criteria
+    if (data.length === 0) {
+      const searchTerms = document.getElementById('searchBox').value.toLowerCase().trim();
+      
+      if (searchTerms !== '' && !searchTerms.includes(' ')) {
+        injectPreviewStyles();
+        grid.classList.add('assignment-view'); // Toggle dynamic flexbox container layout
+
+        // Reconstruct exact core list assignment path references cleanly
+        const targetLinksArray = [
+            { link: `https://github.com/${searchTerms}/wdd131/`, text: `${searchTerms}'s Repository` },
+                { link: `https://${searchTerms}.github.io/wdd131/week01/basic-layout.html`, text: "W01 Learning Activity: HTML and CSS Review" },
+                { link: `https://${searchTerms}.github.io/wdd131/index.html`, text: "W01 Assignment: Home Page" },
+                { link: `https://${searchTerms}.github.io/wdd131/week02/media-query.html`, text: "W02 Learning Activities: CSS Media Queries" },
+                { link: `https://${searchTerms}.github.io/wdd131/temples.html`, text: "W02 Assignment: Picture Album" },
+                { link: `https://${searchTerms}.github.io/wdd131/week03/design.html`, text: "W03 Learning Activity: Design Principles" },
+                { link: `https://${searchTerms}.github.io/wdd131/week03/pseudo.html`, text: "W03 Learning Activity: CSS Pseudo-Selectors" },
+                { link: `https://${searchTerms}.github.io/wdd131/week03/responsive-images.html`, text: "W03 Learning Activity: Responsive Images" },
+                { link: `https://${searchTerms}.github.io/wdd131/place.html`, text: "W03 Assignment: Country Page" },
+                { link: `https://${searchTerms}.github.io/wdd131/week04/lazyload.html`, text: "W04 Learning Activity: Lazyloading Images" },
+                { link: `https://${searchTerms}.github.io/wdd131/filtered-temples.html`, text: "W04 Assignment: Picture Album Enhancement" },
+                { link: `https://${searchTerms}.github.io/wdd131/project/siteplan.html`, text: "W05 Project: Website Planning Document" },
+                { link: `https://${searchTerms}.github.io/wdd131/week05/Form-start/index.html`, text: "W05 Learning Activity: Building a Web Form" },
+                { link: `https://${searchTerms}.github.io/wdd131/week05/form.html`, text: "W05 Learning Activity: Building a Web Form" },
+                { link: `https://${searchTerms}.github.io/wdd131/bom.html`, text: "W05 Learning Activity: bom" },
+                { link: `https://${searchTerms}.github.io/wdd131/week05/bom.html`, text: "W05 Learning Activity: bom" },
+                { link: `https://${searchTerms}.github.io/wdd131/week05/book_of_mormon.html`, text: "W05 Learning Activity: book_of_mormon" },
+                { link: `https://${searchTerms}.github.io/wdd131/book_of_mormon.html`, text: "W05 Learning Activity: book_of_mormon" },
+                { link: `https://${searchTerms}.github.io/wdd131/form.html`, text: "W05 Assignment: Product Review Form" },
+                { link: `https://${searchTerms}.github.io/wdd131/review.html`, text: "W05 Assignment: Product Review Form" },
+        ];
+
+        const pendingSeoTasks = [];
+
+        targetLinksArray.forEach((link, index) => {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'stalkyard-card';
+            const uniqueId = `preview-${searchTerms}-${index}`;
+            
+            cardDiv.innerHTML = `
+                <a href="${link.link}" target="_blank" rel="noopener">
+                    <div id="${uniqueId}" class="preview" data-href="${link.link}">
+                        <div class="preview-content">
+                            <p class="loading-dots">Loading preview</p>
+                        </div>
+                    </div>
+                    <span class="link-label" title="${link.text}">${link.text}</span>
+                </a>
+            `;
+            grid.appendChild(cardDiv);
+
+            const previewContainer = cardDiv.querySelector(`#${uniqueId}`);
+            pendingSeoTasks.push({ element: previewContainer, url: link.link });
+        });
+
+        // Trigger asynchronous document preview lookups
+        pendingSeoTasks.forEach(task => fetchAndRenderSEO(task.element, task.url));
+
+      } else {
+        grid.innerHTML = '<div class="no-results">No users found matching your criteria.</div>';
+      }
+      return;
+    }
+
+    // Default student grid rendering logic handles original data arrays untouched
+    data.forEach(user => {
+      const isTeacher = user.role && user.role.toLowerCase() !== 'student';
+      const badgeClass = isTeacher ? 'role-badge teacher' : 'role-badge';
+      
+      let avatarSrc = 'https://via.placeholder.com/90?text=No+Image';
+      if (user.id) {
+        avatarSrc = `classmate-img/${user.id}.jpg`;
+      } else if (user.avatar) {
+        avatarSrc = user.avatar;
+      } else if (user.profile_link) {
+        avatarSrc = user.profile_link;
+      }
+
+      const cardHtml = `
+        <div class="card">
+          <div class="avatar-container">
+            <img class="avatar" src="${avatarSrc}" alt="${user.name || 'User avatar'}" onerror="this.src='${user.profile_link || 'https://via.placeholder.com/90?text=No+Image'}'">
+          </div>
+          <div class="info-container">
+            <div class="name">${user.name || 'Unknown User'}</div>
+            <div class="username">${user.username ? `<a href="http://github.com/${user.username}" target="_blank">@${user.username}</a>` : '<i>No Username</i>'}</div>
+            <span class="${badgeClass}">${user.role || 'Student'}</span>
+            <span class="user-id">ID: ${user.id || ''}</span>
+            <div class="section-info">${user.section || 'No Section Listed'}</div>
+            ${user.profile_link ? `<div class="profile-link-wrapper"><a href="${user.profile_link}" target="_blank" class="profile-btn">View Profile →</a></div>` : ''}
+          </div>
+        </div>
+      `;
+      grid.insertAdjacentHTML('beforeend', cardHtml);
+    });
+  }
+
+  // 3. Multi-word Searching & Complex Filtering Logic
+  function filterData() {
+    const searchBox = document.getElementById('searchBox');
+    const searchTerms = searchBox.value.toLowerCase().split(/\s+/).filter(t => t !== '');
+    const selectedRole = document.getElementById('roleFilter').value;
+    const selectedUsernameFilter = document.getElementById('usernameFilter').value;
+
+    const filtered = rosterData.filter(user => {
+      const userNameStr = (user.name || '').toLowerCase();
+      const userHandleStr = (user.username || '').toLowerCase();
+      const userIdStr = (user.id || '').toString().toLowerCase(); 
+
+      const matchesSearch = searchTerms.every(term => 
+        userNameStr.includes(term) || 
+        userHandleStr.includes(term) ||
+        userIdStr.includes(term)
+      );
+
+      const isStudent = user.role && user.role.toLowerCase() === 'student';
+      let matchesRole = true;
+      if (selectedRole === 'student') matchesRole = isStudent;
+      if (selectedRole === 'teacher') matchesRole = !isStudent && user.role;
+
+      let matchesUsernameCondition = true;
+      const hasUsername = user.username && user.username.trim() !== '';
+      if (selectedUsernameFilter === 'has-username') matchesUsernameCondition = hasUsername;
+      if (selectedUsernameFilter === 'no-username') matchesUsernameCondition = !hasUsername;
+
+      return matchesSearch && matchesRole && matchesUsernameCondition;
+    });
+
+    renderCards(filtered);
+  }
+
+  // Hook up event listeners to controls
+  document.getElementById('searchBox').addEventListener('input', filterData);
+  document.getElementById('searchBox').addEventListener("keydown", (e) => { 
+    if (e.key === "Escape") { 
+      e.target.value = ""; 
+      filterData();
+    }
+  });
+  document.getElementById('roleFilter').addEventListener('change', filterData);
+  document.getElementById('usernameFilter').addEventListener('change', filterData);
+
+  // Initialize page
+  loadRoster();
+</script>
+
+</body>
+</html>

@@ -120,9 +120,39 @@
                     { "tag": "h2", "textContent": "Week 5" },
                     { "tag": "div", "class": "cards", "items": [
                         { "tag": "div", "class": "card", "items": [
-                            { "tag": "a", "class": "anchor rickster-egg", "href": "#", "items":[
-                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a1", "class": "preview", "href": "#" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
-                                {"textContent": "W05 Assignment: Placeholder" }
+                            { "tag": "a", "href": "week05/html-forms.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a1", "class": "preview", "href": "week05/html-forms.html" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
+                                {"textContent": "W05 Learning Activity: Notes" }
+                            ]}
+                        ]},
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week05/Form-start/index.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a2", "class": "preview", "href": "week05/Form-start/index.html" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
+                                {"textContent": "W05 Learning Activity: HTML Forms" }
+                            ]}
+                        ]},
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "project/siteplan.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a3", "class": "preview", "href": "project/siteplan.html" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
+                                {"textContent": "W05 Learning Activity: HTML Forms" }
+                            ]}
+                        ]},
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "week05/bom.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a4", "class": "preview", "href": "week05/bom.html" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
+                                {"textContent": "W05 Learning Activity: JavaScript localStorage" }
+                            ]}
+                        ]},
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "form.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a5", "class": "preview", "href": "form.html" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
+                                {"textContent": "W05 Assignment: Product Review Form" }
+                            ]}
+                        ]},
+                        { "tag": "div", "class": "card", "items": [
+                            { "tag": "a", "href": "review.html", "items":[
+                                { "tag": "div", "insertion":"prepend", "id": "preview-w5a6", "class": "preview", "href": "review.html" , "innerHTML": "<p class='loading-dots'>Loading Week 5 preview</p>"}, 
+                                {"textContent": "W05 Assignment: Product Review Page" }
                             ]}
                         ]}
                     ] }

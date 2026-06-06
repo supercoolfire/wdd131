@@ -175,6 +175,11 @@ async function generateStalkmate() {
                 { link: `https://${username}.github.io/wdd131/filtered-temples.html`, text: "W04 Assignment: Picture Album Enhancement" },
                 { link: `https://${username}.github.io/wdd131/project/siteplan.html`, text: "W05 Project: Website Planning Document" },
                 { link: `https://${username}.github.io/wdd131/week05/Form-start/index.html`, text: "W05 Learning Activity: Building a Web Form" },
+                { link: `https://${username}.github.io/wdd131/week05/form.html`, text: "W05 Learning Activity: Building a Web Form" },
+                { link: `https://${username}.github.io/wdd131/bom.html`, text: "W05 Learning Activity: bom" },
+                { link: `https://${username}.github.io/wdd131/week05/bom.html`, text: "W05 Learning Activity: bom" },
+                { link: `https://${username}.github.io/wdd131/week05/book_of_mormon.html`, text: "W05 Learning Activity: book_of_mormon" },
+                { link: `https://${username}.github.io/wdd131/book_of_mormon.html`, text: "W05 Learning Activity: book_of_mormon" },
                 { link: `https://${username}.github.io/wdd131/form.html`, text: "W05 Assignment: Product Review Form" },
                 { link: `https://${username}.github.io/wdd131/review.html`, text: "W05 Assignment: Product Review Form" },
             ];
