@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					// You can adjust '150' to whatever pixel value gives you the perfect look
 					const elementRect = firstInvalidInput.getBoundingClientRect().top;
 					const absoluteElementTop = elementRect + window.scrollY;
-					const offsetPosition = absoluteElementTop - 10; 
+					const offsetPosition = absoluteElementTop - 10; // scroll up more to show the current element
 
 					window.scrollTo({
 						top: offsetPosition,
