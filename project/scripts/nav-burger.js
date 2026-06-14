@@ -92,4 +92,14 @@ const setActiveNavLink = () => {
     });
 };
 
-document.addEventListener('hydrationFinished', setActiveNavLink);
+// Try multiple ways to ensure active nav link is set
+const trySetActiveNavLink = () => {
+    setActiveNavLink();
+};
+
+document.addEventListener('hydrationFinished', trySetActiveNavLink);
+document.addEventListener('DOMContentLoaded', trySetActiveNavLink);
+
+// Also try a short delay in case both events fire too early
+setTimeout(trySetActiveNavLink, 100);
+setTimeout(trySetActiveNavLink, 500);
