@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="Hydra Pricing — flexible plans for individual developers and enterprise teams.">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | Hydra by Machine Empire</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/hydra.css">
+    <link rel="stylesheet" href="styles/hydra-large.css" media="(min-width: 640px)">
+    <link rel="preload" href="data/pricing.json" as="fetch" crossorigin>
+    <script src="scripts/hydrate-v5.js" data-file="data/pricing.json" defer> </script>
+    <script src="scripts/theme-toggle.js" defer></script>
+    <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/nav-burger.js" defer></script>
+    <script src="scripts/modal-click-origin.js" defer></script>
+    <script src="scripts/rickster-egg-v2.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="brand-link">
+            <img src="images/logo.svg" alt="Hydra logo" class="brand-logo" width="36" height="36">
+            <span class="brand-name">Hydra</span>
+        </a>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li class="loading-dots rickster-egg">Loading navigation</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="pricing-main">
+        <section class="pricing-intro">
+            <span class="badge">Plans for Every Team</span>
+            <h1>Flexible Workspace Plans</h1>
+            <p>Choose the plan that fits your development workflow.</p>
+        </section>
+
+        <table class="pricing-table" aria-label="Hydra pricing tiers">
+            <caption>Hydra Pricing Tiers</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Engine Features</th>
+                    <th scope="col">Community <span class="price-tag">$0 / permanent</span></th>
+                    <th scope="col">Professional <span class="price-tag">$19 / mo</span></th>
+                    <th scope="col">Enterprise <span class="price-tag">Custom</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Bidirectional Sync Engine</th>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <th scope="row">Monaco Sandbox Workspace</th>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <th scope="row">Emmet Extension Bridge</th>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <th scope="row">HTML Error Validation</th>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <th scope="row">Support Tier</th>
+                    <td>Community</td>
+                    <td>Priority</td>
+                    <td>24/7 Dedicated</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">All subscriptions include core updates to the local runtime framework layers.</td>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy;<span id="currentyear"></span> Machine Empire. All rights reserved.</p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>

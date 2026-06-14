@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="Register for Hydra — join the Machine Empire ecosystem.">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | Hydra by Machine Empire</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/hydra.css">
+    <link rel="stylesheet" href="styles/hydra-large.css" media="(min-width: 640px)">
+    <link rel="preload" href="data/registration.json" as="fetch" crossorigin>
+    <script src="scripts/hydrate-v5.js" data-file="data/registration.json" defer> </script>
+    <script src="scripts/theme-toggle.js" defer></script>
+    <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/nav-burger.js" defer></script>
+    <script src="scripts/modal-click-origin.js" defer></script>
+    <script src="scripts/rickster-egg-v2.js" defer></script>
+    <script src="scripts/registration.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="brand-link">
+            <img src="images/logo.svg" alt="Hydra logo" class="brand-logo" width="36" height="36">
+            <span class="brand-name">Hydra</span>
+        </a>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li class="loading-dots rickster-egg">Loading navigation</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="registration-main">
+        <h1>Register for Hydra</h1>
+        <p>Join the Machine Empire ecosystem. Select your deployment tier below.</p>
+
+        <div id="status-banner" class="message message-error" role="alert" aria-live="assertive" hidden>
+            <div class="message-icon">❌</div>
+            <div class="message-text">
+                <strong>Attention:</strong> Please correct the highlighted fields below.
+            </div>
+        </div>
+
+        <form id="registrationForm" action="registration-confirmation.html" method="get" novalidate>
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <label for="userName">Full Name <span class="required">*</span></label>
+                <input type="text" id="userName" name="userName" required placeholder="John Doe" autocomplete="name">
+
+                <label for="userEmail">Email <span class="required">*</span></label>
+                <input type="email" id="userEmail" name="userEmail" required placeholder="john@example.com" autocomplete="email">
+
+                <label for="registrationDate">Registration Date <span class="required">*</span></label>
+                <input type="date" id="registrationDate" name="registrationDate" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Deployment Tier</legend>
+
+                <label for="tier">Select Tier <span class="required">*</span></label>
+                <select id="tier" name="tier" required>
+                    <option value="">Choose a tier...</option>
+                    <option value="community">Community</option>
+                    <option value="professional">Professional</option>
+                    <option value="enterprise">Enterprise</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Feature Interests <span class="optional">(optional)</span></legend>
+
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="featureSync" name="interests" value="bidirectional-sync">
+                        <label for="featureSync">Bidirectional Sync</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="featureMonaco" name="interests" value="monaco-workspace">
+                        <label for="featureMonaco">Monaco Workspace</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="featureEmmet" name="interests" value="emmet-bridge">
+                        <label for="featureEmmet">Emmet Bridge</label>
+                    </div>
+                </div>
+
+                <label for="userMessage">Additional Message <span class="optional">(optional)</span></label>
+                <textarea id="userMessage" name="userMessage" rows="4" placeholder="Tell us about your use case..."></textarea>
+            </fieldset>
+
+            <button type="submit">Register Now</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy;<span id="currentyear"></span> Machine Empire. All rights reserved.</p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>

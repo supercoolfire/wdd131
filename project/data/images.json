@@ -1,0 +1,134 @@
+ [
+  {
+    "id": "keyboard-setup",
+    "src": "images/keyboard-setup-medium.webp",
+    "srcset": "images/keyboard-setup-small.webp 500w, images/keyboard-setup-medium.webp 1000w, images/keyboard-setup-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Mechanical keyboard on a developer's desk",
+    "caption": "Reza's setup before Hydra — three config files open, coffee going cold, the JSON and HTML perpetually out of sync.",
+    "category": "workspace"
+  },
+  {
+    "id": "first-ship",
+    "src": "images/first-ship-medium.webp",
+    "srcset": "images/first-ship-small.webp 500w, images/first-ship-medium.webp 1000w, images/first-ship-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Code on a monitor in a dark room",
+    "caption": "The moment Machine Empire shipped Hydra v1 — a single screen, a single JSON file, and a live preview that actually updated.",
+    "category": "workspace"
+  },
+  {
+    "id": "coding-in-the-wild",
+    "src": "images/coding-in-the-wild-medium.webp",
+    "srcset": "images/coding-in-the-wild-small.webp 500w, images/coding-in-the-wild-medium.webp 1000w, images/coding-in-the-wild-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Developer working on a laptop outdoors",
+    "caption": "Hydra runs anywhere. Our lead engineer shipped the v2 parser from a park bench with spotty LTE and zero complaints.",
+    "category": "workspace"
+  },
+  {
+    "id": "standing-desk",
+    "src": "images/standing-desk-medium.webp",
+    "srcset": "images/standing-desk-small.webp 500w, images/standing-desk-medium.webp 1000w, images/standing-desk-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Developer at a standing desk with multiple screens",
+    "caption": "The Hydra Pro workspace: standing desk optional, bidirectional sync mandatory.",
+    "category": "workspace"
+  },
+  {
+    "id": "dark-mode-monitor",
+    "src": "images/dark-mode-monitor-medium.webp",
+    "srcset": "images/dark-mode-monitor-small.webp 500w, images/dark-mode-monitor-medium.webp 1000w, images/dark-mode-monitor-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Dark-mode UI on a widescreen monitor",
+    "caption": "Dark mode wasn't a feature request — it was a founding principle. The first Hydra prototype only had a dark theme.",
+    "category": "interface"
+  },
+  {
+    "id": "enterprise-desk",
+    "src": "images/enterprise-desk-medium.webp",
+    "srcset": "images/enterprise-desk-small.webp 500w, images/enterprise-desk-medium.webp 1000w, images/enterprise-desk-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Clean developer workspace with dual monitors",
+    "caption": "The Enterprise workspace: two monitors, one truth. Left pane owns the JSON. Right pane owns the rendered output.",
+    "category": "interface"
+  },
+  {
+    "id": "ui-components",
+    "src": "images/ui-components-medium.webp",
+    "srcset": "images/ui-components-small.webp 500w, images/ui-components-medium.webp 1000w, images/ui-components-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "UI components and design system elements",
+    "caption": "Every component in Hydra's interface was stress-tested at 320px wide before it was considered done.",
+    "category": "interface"
+  },
+  {
+    "id": "cleaner-code",
+    "src": "images/cleaner-code-medium.webp",
+    "srcset": "images/cleaner-code-small.webp 500w, images/cleaner-code-medium.webp 1000w, images/cleaner-code-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Clean, well-structured code in an editor",
+    "caption": "Before Hydra: 400-line HTML files nobody wanted to touch. After Hydra: 40-line shells and a JSON file that tells the whole story.",
+    "category": "interface"
+  },
+  {
+    "id": "hydrator-log",
+    "src": "images/hydrator-log-medium.webp",
+    "srcset": "images/hydrator-log-small.webp 500w, images/hydrator-log-medium.webp 1000w, images/hydrator-log-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Terminal output with green text on black",
+    "caption": "The Hydrator's event log on a successful hydration run: 14 nodes injected, 0 errors, 11ms. It's almost boring.",
+    "category": "hydrator-log"
+  },
+  {
+    "id": "data-viz",
+    "src": "images/data-viz-medium.webp",
+    "srcset": "images/data-viz-small.webp 500w, images/data-viz-medium.webp 1000w, images/data-viz-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Abstract data visualization with glowing nodes",
+    "caption": "What Hydra sees when it maps a JSON schema to a DOM tree — 47 nodes, 3 depths, one declarative config.",
+    "category": "hydrator-log"
+  },
+  {
+    "id": "json-schema",
+    "src": "images/json-schema-medium.webp",
+    "srcset": "images/json-schema-small.webp 500w, images/json-schema-medium.webp 1000w, images/json-schema-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Code schema and data structure diagram",
+    "caption": "Hydra's JSON schema v5 — the result of 11 iterations, two rewrites, and one very long argument about whether innerHTML should be allowed.",
+    "category": "hydrator-log"
+  },
+  {
+    "id": "storage-keys",
+    "src": "images/storage-keys-medium.webp",
+    "srcset": "images/storage-keys-small.webp 500w, images/storage-keys-medium.webp 1000w, images/storage-keys-large.webp 1500w",
+    "sizes": "(max-width: 640px) 100vw, 33vw",
+    "width": 1000,
+    "height": 667,
+    "alt": "Database diagram and query output",
+    "caption": "localStorage, sessionStorage, IndexedDB — Hydra doesn't care where your state lives. It just wants the key.",
+    "category": "hydrator-log"
+  }
+]

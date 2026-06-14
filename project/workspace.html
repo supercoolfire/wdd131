@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="Hydra interactive sandbox environment. Practice JSON configurations and see live HTML renders instantly with EMMET support.">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace | Hydra by Machine Empire</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/hydra.css">
+    <link rel="stylesheet" href="styles/hydra-large.css" media="(min-width: 640px)">
+    <link rel="preload" href="data/workspace.json" as="fetch" crossorigin>
+    <script src="scripts/hydrate-v5.js" data-file="data/workspace.json" defer></script>
+    <script src="scripts/theme-toggle.js" defer></script>
+    <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/nav-burger.js" defer></script>
+    <script src="scripts/modal-click-origin.js" defer></script>
+    <script src="scripts/rickster-egg-v2.js" defer></script>
+    <script src="scripts/lazyload.js" defer></script>
+    <script src="scripts/require.min.js"></script>
+    <script src="scripts/emmet-monaco.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="brand-link">
+            <img src="images/logo.svg" alt="Hydra logo" class="brand-logo" width="36" height="36">
+            <span class="brand-name">Hydra</span>
+        </a>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li class="loading-dots rickster-egg">Loading navigation</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="workspace-main">
+        <div class="container">
+            <section class="page-section">
+                <div class="demo-header">
+                    <h1>Interactive Sandbox Environment</h1>
+                    <p>An interactive environment like VSC where users can practice writing the JSON configurations and see the live HTML render instantly with EMMET support.</p>
+                </div>
+
+                <div class="split-editor-container">
+                    <div class="editor-pane">
+                        <div class="pane-header">
+                            <span>Workspace: static-monaco</span>
+                            <span class="pane-badge hardcoded">HARDCODED SCHEMA</span>
+                        </div>
+                        <div class="pane-body">
+                            <div id="static-monaco" class="monaco-target-instance"></div>
+                        </div>
+                    </div>
+
+                    <div class="editor-pane">
+                        <div class="pane-header">
+                            <span>Workspace: json-monaco</span>
+                            <span class="pane-badge data">JSON CONFIGURATION</span>
+                        </div>
+                        <div class="pane-body">
+                            <div id="json-monaco" class="monaco-target-instance"></div>
+                        </div>
+                    </div>
+
+                    <div class="editor-pane">
+                        <div class="pane-header">
+                            <span>Workspace: html-monaco</span>
+                            <span class="pane-badge dom">LIVE HTML RENDER</span>
+                        </div>
+                        <div class="pane-body">
+                            <div id="html-monaco" class="monaco-target-instance"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+    
+        <section class="page-section documentation-container">
+            <h2>Asset Integration</h2>
+            <p>
+                You can fetch and initialize the hydration pipeline locally. Download the core library script module from the production registry link below:
+            </p>
+            <p>
+                <a href="scripts/hydrate-v5.js" class="cta-btn" download>
+                    📥 Download hydrate-v5.js Source
+                </a>
+            </p>
+
+            <h3>HTML Implementation Framework</h3>
+            <p>
+                Review the implementation layout syntax below. Real-time workspace linting is active:
+            </p>
+
+            <div class="editor-pane">
+                <div class="pane-header">
+                    <span>Implementation Preview: index.html</span>
+                    <span class="pane-badge read-only">READ ONLY SPEC</span>
+                </div>
+                <div class="pane-body">
+                    <div id="usage-monaco" class="usage-monaco"></div>
+                </div>
+            </div>
+        </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy;<span id="currentyear"></span> Machine Empire. All rights reserved.</p>
+        <p id="lastModified"></p>
+    </footer>
+    <script src="scripts/hydraphonics.js"></script>
+    <script src="scripts/workspace-usage.js"></script>
+</body>
+</html>

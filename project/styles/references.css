@@ -1,0 +1,288 @@
+
+/*-------------------------------------\
+|        Day <- toggle -> night       */
+:root {
+    --toggle-btn-bg: #2a2a2a;
+    --toggle-text-color: #f0f0f0;
+    --body-bg-color: #12121226;
+    --body-text-color: #1a1a1a;
+    --header-bg-color: #94cbff;
+    --header-color: #000000;
+    --main-bg-color: #ffffff;
+    --main-color: #000000;
+    --footer-bg-color: #94cbff;
+    --footer-color: #000000;
+    --accent-red: #860e0e;
+    --accent-blue: #38bdf8;
+    --card-bg: #f4f8ff;
+    --card-border: #c8dff7;
+    --table-header-bg: #021629;
+    --table-border: #2d2d30;
+    --generic-box-shaddow: 0 10px 15px -3px #0000008d;
+}
+
+[data-theme="dark"] {
+    --toggle-btn-bg: #f0f0f0;
+    --toggle-text-color: #2a2a2a;
+    --body-bg-color: #121212d9;
+    --body-text-color: #f5f5f5;
+    --header-bg-color: #021629;
+    --header-color: #ebd531;
+    --main-bg-color: #00000050;
+    --main-color: #ffffff;
+    --footer-bg-color: #021629;
+    --footer-color: #ffffff;
+    --card-bg: #121824;
+    --card-border: #2a3a50;
+    --table-header-bg: #1e1e1e;
+    --table-border: #2d2d30;
+    --generic-box-shaddow: 0 10px 15px -3px #ffffff4d;
+}
+
+/* ==========================================================================
+   Button Styling
+   ========================================================================== */
+.theme-toggle {
+	position: fixed;
+	top: 20px;
+	right: 15px;
+	z-index: 100;
+
+    padding: 8px 8px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--toggle-btn-bg);
+    color: var(--body-text-color);
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 1s ease;
+}
+.theme-icon, .theme-toggle, .theme-text {
+    color: var(--toggle-text-color);
+}
+/* ==========================================================================
+   Element Swapping Logic
+   ========================================================================== */
+/* Default state: Hide dark elements, show light elements */
+html[data-theme="light"] .dark {
+    display: none;
+}
+html[data-theme="light"] .light {
+    display: block;
+}
+
+/* Dark state: Show dark elements, hide light elements */
+html[data-theme="dark"] .light {
+    display: none;
+}
+html[data-theme="dark"] .dark {
+    display: block;
+}
+
+/*        Day <- toggle -> night        |
+\-------------------------------------*/
+
+a {
+    background-color: var(--link-bg-color);
+    color: var(--link-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--link-color-hover);
+    text-decoration: underline;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    font-family: "Ubuntu", Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-items: center;
+    min-height: 97vh;
+}
+
+header {
+    position: relative;
+    background-color: var(--header-bg-color);
+    color: var(--header-color);
+    width: 97%;
+    padding: 1rem;
+}
+
+#course-title {
+    text-align: center;
+    margin-right: 95px;
+}
+
+/*-------------------------------------\
+|           Poor man's steak          */
+
+#menu {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: .5rem .75rem;
+    background-color: #eeeeee;
+    color: #000000;
+    border-radius: 50%;
+
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    
+    cursor: pointer;
+	position: absolute;
+    top: 10px;
+    right: 57px;
+}
+
+#menu::before {
+    position: absolute;
+    content: "☰";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.show li {
+    display: block;
+}
+
+#menu.show::before {
+    content: "❌";
+}
+
+
+nav {
+    position: relative;
+    top: 0;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-out, padding 0.5s ease-out;
+}
+
+nav.show {
+    grid-template-rows: 1fr;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    transition: all .5s ease-in-out;
+    border: 1px dashed red;
+}
+
+nav ul li:hover {
+    border: 1px dashed #0ba2d1; 
+}
+
+nav ul li a {    
+    background-color: #d1f7db; 
+    transition: all .5s ease-in-out;
+    display: inline-block;
+    font-size: 1.2rem;
+    width: 100%;
+    color: #5a0959;
+    padding: .75rem;
+    text-decoration: none;
+    text-align: center;  
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    text-decoration-color: #ffff00;
+    color: #412c07;
+    cursor: pointer;
+}
+
+nav ul li a.active {
+    background-color: #003366;
+    color: #ffd484;
+    text-decoration: overline;
+}
+/*           Poor man's steak          |
+\-------------------------------------*/
+
+span#course-title {
+    margin-right: 32px;
+}
+
+main {
+    flex: 1;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+    padding: 1rem;
+    max-width: 1000px;
+}
+
+footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-color);
+    text-align: center;
+    padding: 2rem 1rem;
+    width: 97%;
+}
+
+
+/*-------------------------------------\
+|          Dots Entertainment         */
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s infinite steps(4);
+}
+
+@keyframes dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: '....'; }
+}
+/*          Dots Entertainment          |
+\-------------------------------------*/
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Brand link (replaces #course-title in project pages)
+   ========================================================================== */
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    text-decoration: none;
+    color: inherit;
+    margin-right: 95px;
+}
+
+.brand-logo {
+    width: 36px;
+    height: 36px;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: .03em;
+}
+
+
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: References list
+   ========================================================================== */
+main ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    line-height: 1.8;
+}

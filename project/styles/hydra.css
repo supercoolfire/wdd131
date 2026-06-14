@@ -1,0 +1,1095 @@
+/*-------------------------------------\
+|        Day &lt;- toggle -&gt; night       */
+:root {
+    --toggle-btn-bg: #2a2a2a;
+    --toggle-text-color: #f0f0f0;
+    --body-bg-color: #12121226;
+    --body-text-color: #1a1a1a;
+    --header-bg-color: #94cbff;
+    --header-color: #000000;
+    --main-bg-color: #ffffff;
+    --main-color: #000000;
+    --footer-bg-color: #94cbff;
+    --footer-color: #000000;
+    --accent-red: #860e0e;
+    --accent-blue: #19536d;
+    --accent-success: #08573d;
+    --accent-yellow-bg: #ffc93f;
+    --accent-yellow: #3a2b08;
+    --badge-data-bg: #38bdf826;
+    --badge-dom-bg: rgba(16, 189, 129, 0.15);
+    --badge-hardcoded-bg: rgba(251, 191, 36, 0.15);
+    --badge-readonly-bg: rgba(56, 189, 248, 0.15);
+    --price-tag-bg: #38bdf826;
+    --price-tag-color: #1f5065;
+    --card-bg: #f4f8ff;
+    --card-border: #c8dff7;
+    --table-header-bg: #38bdf826;
+    --table-header-text: #3a3899;
+    --table-border: #2d2d30;
+    --border-color: #cbd5e0;
+    --required-color: #b50000;
+    --checkbox-color: #000000;
+    --checkbox-bg-color: #f7e893;
+    --generic-box-shadow: 0 10px 15px -3px #0000008d;
+    --option-bg-color: #ffffff;
+    --text-muted: #000000;
+    --font-sans: "Ubuntu", Arial, sans-serif;
+    --font-mono: "Fira Code", monospace;
+}
+
+[data-theme="dark"] {
+    --toggle-btn-bg: #f0f0f0;
+    --toggle-text-color: #2a2a2a;
+    --body-bg-color: #121212d9;
+    --body-text-color: #f5f5f5;
+    --header-bg-color: #021629;
+    --header-color: #ebd531;
+    --main-bg-color: #00000050;
+    --main-color: #ffffff;
+    --footer-bg-color: #021629;
+    --footer-color: #ffffff;
+    --accent-red: #860e0e;
+    --accent-blue: #4ec9ff;
+    --accent-success: #12d393;
+    --accent-yellow-bg: #fbbf24d6;
+    --accent-yellow: #f1b623;
+    --badge-data-bg: #38bdf826;
+    --badge-dom-bg: rgba(16, 189, 129, 0.15);
+    --badge-hardcoded-bg: rgba(251, 191, 36, 0.15);
+    --badge-readonly-bg: rgba(56, 189, 248, 0.15);
+    --price-tag-bg: rgba(56, 189, 248, 0.15);
+    --price-tag-color: #c4edff;
+    --card-bg: #121824;
+    --card-border: #2a3a50;
+    --table-header-bg: #38bdf826;
+    --table-header-text: #c5c4ff;
+    --table-border: #2d2d30;
+    --border-color: #f0f0f0;
+    --required-color: #ff7d7d;
+    --checkbox-color: #ffffff;
+    --checkbox-bg-color: #3f3600;
+    --search-input-border-color: #0066cc;
+    --generic-box-shadow: 0 10px 15px -3px #ffffff4d;
+    --option-bg-color: #874308;
+    --text-muted: #ffffff;
+}
+
+/* ==========================================================================
+   Button Styling
+   ========================================================================== */
+.theme-toggle {
+	position: fixed;
+	top: 20px;
+	right: 15px;
+	z-index: 100;
+
+    padding: 8px 8px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--toggle-btn-bg);
+    color: var(--body-text-color);
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 1s ease;
+}
+.theme-icon, .theme-toggle, .theme-text {
+    color: var(--toggle-text-color);
+}
+/* ==========================================================================
+   Element Swapping Logic
+   ========================================================================== */
+/* Default state: Hide dark elements, show light elements */
+html[data-theme="light"] .dark {
+    display: none;
+}
+html[data-theme="light"] .light {
+    display: block;
+}
+
+/* Dark state: Show dark elements, hide light elements */
+html[data-theme="dark"] .light {
+    display: none;
+}
+html[data-theme="dark"] .dark {
+    display: block;
+}
+
+html[data-theme="dark"] #registrationForm input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/*        Day &lt;- toggle -&gt; night        |
+\-------------------------------------*/
+
+a {
+    background-color: var(--link-bg-color);
+    color: var(--link-color);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--link-color-hover);
+    text-decoration: underline;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--body-bg-color);
+    color: var(--body-text-color);
+    font-family: var(--font-sans);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-items: center;
+    min-height: 97vh;
+}
+
+header {
+    position: relative;
+    background-color: var(--header-bg-color);
+    color: var(--header-color);
+    width: 97%;
+    padding: 1rem;
+}
+
+#course-title {
+    text-align: center;
+    margin-right: 95px;
+}
+
+/*-------------------------------------\
+|           Poor man's steak          */
+
+#menu {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: .5rem .75rem;
+    background-color: #eeeeee;
+    color: #000000;
+    border-radius: 50%;
+
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    
+    cursor: pointer;
+	position: absolute;
+    top: 10px;
+    right: 57px;
+}
+
+#menu::before {
+    position: absolute;
+    content: "☰";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.show li {
+    display: block;
+}
+
+#menu.show::before {
+    content: "❌";
+}
+
+
+nav {
+    position: relative;
+    top: 0;
+    padding: 0 1rem; /* Kept horizontal padding consistent */
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-out, padding 0.5s ease-out;        
+}
+
+nav.show {
+    grid-template-rows: 1fr;
+    padding: 1rem; /* Animates vertical padding back in */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    transition: all .5s ease-in-out;
+    border: 1px dashed red;
+}
+
+nav ul li:hover {
+    border: 1px dashed #0ba2d1;
+}
+
+nav ul li a {    
+    background-color: #d1f7db; 
+    transition: all .5s ease-in-out;
+    display: inline-block;
+    font-size: 1.2rem;
+    width: 100%;
+    color: #5a0959;
+    padding: .75rem;
+    text-decoration: none;
+    text-align: center;  
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    text-decoration-color: #ffff00;
+    color: #412c07;
+    cursor: pointer;
+}
+
+nav ul li a.active {
+    background-color: #003366;
+    color: #ffd484;
+    text-decoration: overline;
+}
+/*           Poor man's steak          |
+\-------------------------------------*/
+
+span#course-title {
+    margin-right: 32px;
+}
+
+main {
+    flex: 1;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+    padding: 1rem;
+    max-width: 1000px;
+    width: 100%;
+}
+
+footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-color);
+    text-align: center;
+    padding: 2rem 1rem;
+    width: 97%;
+}
+
+
+/*-------------------------------------\
+|          Dots Entertainment         */
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s infinite steps(4);
+}
+
+@keyframes dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: '....'; }
+}
+/*          Dots Entertainment          |
+\-------------------------------------*/
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Brand link (replaces #course-title in project pages)
+   ========================================================================== */
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    text-decoration: none;
+    color: inherit;
+    margin-right: 95px;
+}
+
+.brand-logo {
+    width: 36px;
+    height: 36px;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: .03em;
+}
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Hero section
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    width: 100%;
+}
+
+.hero-section picture img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Theme-aware hero: show only the matching variant */
+html[data-theme="dark"]  .hero-section picture.light { display: none; }
+html[data-theme="dark"]  .hero-section picture.dark  { display: block; }
+html[data-theme="light"] .hero-section picture.dark  { display: none; }
+html[data-theme="light"] .hero-section picture.light { display: block; }
+.hero-section picture.dark { display: none; }
+
+.hero-content {
+    padding: 1.5rem 1rem;
+}
+
+.badge {
+    display: inline-block;
+    background-color: var(--accent-red);
+    color: #fff;
+    padding: .25rem .75rem;
+    border-radius: 4px;
+    font-size: .85rem;
+    font-weight: 600;
+    margin-bottom: .75rem;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin: .75rem 0;
+    color: var(--main-color);
+}
+
+.hero-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.cta-btn {
+    display: inline-block;
+    background-color: var(--accent-red);
+    color: #fff;
+    padding: .75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.cta-btn:hover {
+    opacity: 0.85;
+}
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Features section
+   ========================================================================== */
+.features-section {
+    padding: 2rem 1rem;
+}
+
+.features-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: var(--main-color);
+}
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Card grid
+   ========================================================================== */
+.card-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--generic-box-shadow);
+}
+
+.card figure {
+    margin: 0;
+}
+
+.card figure img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.card figure img.loaded {
+    opacity: 1;
+}
+
+figcaption {
+    padding: .5rem 1rem;
+    font-size: .8rem;
+    color: var(--body-text-color);
+    font-style: italic;
+    border-top: 1px solid var(--card-border);
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-body h3 {
+    font-size: 1.1rem;
+    margin: 0 0 .5rem;
+    color: var(--main-color);
+}
+
+.card-body p {
+    font-size: .95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: About page layout
+   ========================================================================== */
+.about-intro {
+    padding: 1rem 0;
+}
+
+.about-intro h1 {
+    font-size: 1.8rem;
+    margin: .75rem 0;
+    color: var(--main-color);
+}
+
+.about-tagline {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.about-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.specs-sidebar {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: var(--generic-box-shadow);
+}
+
+.audit-terminal {
+    box-shadow: var(--generic-box-shadow);
+}
+
+.meta-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.meta-list li {
+    padding: .5rem 0;
+}
+
+.specs-main h2 {
+    font-size: 1.5rem;
+    color: var(--main-color);
+    margin-top: 0;
+}
+
+.specs-main h3 {
+    font-size: 1.2rem;
+    color: var(--main-color);
+}
+
+.specs-main p {
+    line-height: 1.6;
+}
+
+.audit-terminal {
+    background-color: #0d1117;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    font-family: monospace;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .75rem 1rem;
+    background-color: #1c1c1e;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-dot.red {
+    background-color: #ff5f56;
+}
+
+.terminal-dot.yellow {
+    background-color: #ffbd2e;
+}
+
+.terminal-dot.green {
+    background-color: #27c93f;
+}
+
+.terminal-title {
+    color: #fff;
+    margin-left: .5rem;
+}
+
+.terminal-body {
+    padding: 1rem;
+}
+
+.log-entry {
+    margin: .25rem 0;
+}
+
+.log-entry.info {
+    color: #4fc1ff;
+}
+
+.log-entry.warning {
+    color: #febc2e;
+}
+
+.log-entry.success {
+    color: #28c840;
+}
+
+.log-entry.text-green {
+    color: #28c840;
+}
+
+.about-image {
+    margin: 1.5rem 0;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.about-image img.loaded {
+    opacity: 1;
+}
+
+.about-image figcaption {
+    padding: .5rem 0;
+    font-size: .9rem;
+    font-style: italic;
+    color: var(--body-text-color);
+}
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Gallery grid
+   ========================================================================== */
+.gallery-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    margin: 0;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--generic-box-shadow);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item img.loaded {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Pricing intro and table
+   ========================================================================== */
+.pricing-intro {
+    padding: 1rem 0;
+}
+
+.pricing-intro h1 {
+    font-size: 1.8rem;
+    margin: .75rem 0;
+    color: var(--main-color);
+}
+
+.pricing-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    box-shadow: var(--generic-box-shadow);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pricing-table th, .pricing-table td {
+    padding: 1rem;
+    border: 1px solid var(--table-border);
+    text-align: left;
+}
+
+.pricing-table thead th {
+    background-color: var(--table-header-bg);
+    color: var(--table-header-text);
+}
+
+.pricing-table th[scope="row"] {
+    background-color: var(--card-bg);
+}
+
+.price-tag {
+    font-family: monospace;
+    background-color: var(--price-tag-bg);
+    color: var(--price-tag-color);
+}
+
+.pricing-table tbody tr:hover {
+    background-color: var(--card-bg);
+}
+
+.pricing-table tfoot td {
+    font-size: .9rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Registration form
+   ========================================================================== */
+main p {
+    line-height: 1.6;
+}
+
+/* 1. Base Structure &amp; Global Layout Sizing Reset */
+#registrationForm {
+    background-color: transparent;
+    color: inherit;
+}
+
+#registrationForm,
+#registrationForm *,
+#registrationForm *::before,
+#registrationForm *::after {
+    box-sizing: border-box;
+}
+
+/* 2. Fieldsets &amp; Legends */
+#registrationForm fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.02);
+    box-shadow: var(--generic-box-shadow);
+}
+
+#registrationForm fieldset legend {
+    border: 1px solid var(--border-color);
+    font-weight: bold;
+    padding: 0 0.5rem;
+    color: inherit;
+    border-radius: 8px;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+/* Child Highlight: Targets legend when any specific form layout item inside the fieldset changes state */
+#registrationForm fieldset:has(input:hover, select:hover, textarea:hover, label:hover, input:focus, select:focus, textarea:focus) legend {
+    background-color: var(--checkbox-bg-color);
+    color: var(--checkbox-color);
+    border-color: var(--checkbox-color);
+}
+
+/* 3. Global Structural Labels &amp; Required Indicators */
+#registrationForm label,
+#registrationForm .checkbox-legend {
+    display: block;
+    margin-top: 0.85rem;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+#registrationForm .required {
+    background-color: var(--main-bg-color);
+    color: var(--required-color);
+    font-weight: bold;
+}
+
+#registrationForm .optional {
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+/* 4. Cross-Browser Input / Sizing Declarations */
+#registrationForm select,
+#registrationForm input[type="text"],
+#registrationForm input[type="email"],
+#registrationForm input[type="date"],
+#registrationForm textarea {
+	
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#registrationForm select:focus,
+#registrationForm input[type="text"]:focus,
+#registrationForm input[type="email"]:focus,
+#registrationForm input[type="date"]:focus,
+#registrationForm textarea:focus {
+    outline: 2px solid var(--toggle-btn-bg);
+    outline-offset: 1px;
+}
+
+/* 5. Custom Date Elements Icon Modifications */
+#registrationForm input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px;
+    filter: invert(0.3) sepia(0.1) saturate(1) hue-rotate(200deg);
+}
+
+#registrationForm input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(180deg);
+}
+
+/* 6. Select Background Vector Configuration Dropdowns */
+#registrationForm select {
+    background-image: url("data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%231a1a1a'&gt;&lt;path d='M0 3h12L6 10z'/&gt;&lt;/svg&gt;");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+#registrationForm select option {
+    background-color: var(--option-bg-color);
+    color: var(--main-color);
+}
+
+/* 7. Checkbox Group Container &amp; Alignment Chains */
+#registrationForm .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#registrationForm .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#registrationForm .checkbox-item:hover {
+    background-color: var(--checkbox-bg-color);
+    color: var(--checkbox-color);
+}
+
+#registrationForm .checkbox-item label {
+    font-weight: 400;
+    cursor: pointer;
+    margin: 0;
+    padding-top: 0;
+    display: inline-block;
+}
+
+#registrationForm .checkbox-item input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+/* 9. Action Buttons Styles */
+#registrationForm button[type="submit"] {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    background-color: var(--header-bg-color);
+    color: var(--header-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: opacity 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 1.5rem;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: var(--generic-box-shadow);
+}
+
+#registrationForm button[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+/* Dark mode theme override for the select dropdown arrow graphic */
+html[data-theme="dark"] #registrationForm select {
+    background-image: url("data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23f5f5f5'&gt;&lt;path d='M0 3h12L6 10z'/&gt;&lt;/svg&gt;");
+}
+
+/* &&&&&&&&&&&&&&& status banner &&&&&&&&&&&&&&&&&&&&&& */
+#status-banner {
+    cursor: pointer;
+}
+.message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 12px 20px 12px 15px;
+    
+    /* Sticky fixed layout attributes */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    z-index: 9999; /* Higher than your header layer stack to stay visible */
+    
+    border-radius: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-sizing: border-box;
+}
+
+/* Magento Error State Schema */
+.message-error {
+    background-color: #faebee;
+    color: #e53e3e;
+    border-bottom: 4px solid #e53e3e; /* Bottom underline bar looks cleaner for top banners */
+}
+
+/* Light/Dark mode token adaptation safeguards */
+html[data-theme="dark"] .message-error {
+    background-color: #2c1619;
+    color: #ff8c8c;
+    border-bottom-color: #ff4d4d;
+}
+
+.message-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    user-select: none;
+    transition: transform 0.1s ease;
+}
+
+.message-icon:hover {
+    transform: scale(1.1); /* Subtle hover feedback */
+}
+
+.message-text strong {
+    font-weight: 700;
+}
+
+/* Helper utility to handle JavaScript toggling smoothly */
+[hidden] {
+    display: none !important;
+}
+
+/* &&&&&&&&&&&&&&& highlight required fields &&&&&&&&&&&&&&&&&&&&&& */
+#registrationForm input:required,
+#registrationForm select:required {
+    border-bottom: 2px solid var(--required-color);
+}
+
+/* ==========================================================================
+   PROJECT-SPECIFIC: Confirmation card
+   ========================================================================== */
+.confirmation-card {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    margin-top: 2rem;
+    box-shadow: var(--generic-box-shadow);
+}
+
+.confirmation-card h1 {
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.confirmation-card p {
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   PRODUCT.CSS STYLES (Workspace)
+   ========================================================================== */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.page-section {
+    padding: 2rem 0;
+}
+
+.demo-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.demo-header h2 {
+    color: var(--main-color);
+    font-size: 1.75rem;
+}
+.demo-header p {
+    color: var(--text-muted);
+}
+
+.split-editor-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    background-color: #080c12;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    height: 1200px;
+    box-shadow: var(--generic-box-shadow);
+}
+
+.static-template-locked-bg {
+    background-color: rgba(30, 41, 59, 0.4) !important;
+    border-left: 3px solid #64748b;
+    opacity: 0.85;
+}
+
+.static-lock-glyph {
+    background: url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2"&gt;&lt;rect x="3" y="11" width="18" height="11" rx="2" ry="2"&gt;&lt;/rect&gt;&lt;path d="M7 11V7a5 5 0 0 1 10 0v4"&gt;&lt;/path&gt;&lt;/svg&gt;') no-repeat center;
+}
+
+.editor-pane {
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.pane-header {
+    background-color: var(--card-bg);
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.pane-badge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+.pane-badge.data { background-color: var(--badge-data-bg); color: var(--accent-blue); }
+.pane-badge.dom { background-color: var(--badge-dom-bg); color: var(--accent-success); }
+.pane-badge.hardcoded { background-color: var(--badge-hardcoded-bg); color: var(--accent-yellow); }
+
+.pane-body {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.monaco-target-instance {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.documentation-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.documentation-container h2 {
+    margin-bottom: 0.5rem;
+}
+
+.documentation-container h3 {
+    margin-bottom: 0.5rem;
+}
+
+.documentation-container p {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+.usage-monaco {
+    height: 320px;
+    font-family: var(--font-mono);
+}
+
+.pane-badge.read-only {
+    float: right;
+    background-color: var(--badge-readonly-bg);
+    color: var(--accent-blue);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+}

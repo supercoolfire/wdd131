@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jayser Pilapil">
+    <meta name="description" content="Hydra — a dynamic web productivity workspace. Explore features, pricing, and registration for the WDD 131 final project site.">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Hydra by Machine Empire</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/hydra.css">
+    <link rel="stylesheet" href="styles/hydra-large.css" media="(min-width: 640px)">
+    <link rel="preload" href="data/index.json" as="fetch" crossorigin>
+    <script src="scripts/hydrate-v5.js" data-file="data/index.json" defer> </script>
+    <script src="scripts/theme-toggle.js" defer></script>
+    <script src="scripts/getdates.js" defer></script>
+    <script src="scripts/nav-burger.js" defer></script>
+    <script src="scripts/modal-click-origin.js" defer></script>
+    <script src="scripts/rickster-egg-v2.js" defer></script>
+    <script src="scripts/lazyload.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="brand-link">
+            <img src="images/logo.svg" alt="Hydra logo" class="brand-logo" width="36" height="36">
+            <span class="brand-name">Hydra</span>
+        </a>
+        <button type="button" id="menu" aria-label="Menu"></button>
+        <nav>
+            <ul id="navigation">
+                <li class="loading-dots rickster-egg">Loading navigation</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="home-main">
+        <section class="hero-section">
+            <picture class="light">
+                <source media="(min-width: 1000px)" srcset="images/hero-large.webp" width="1500" height="843">
+                <source media="(min-width: 500px)" srcset="images/hero-medium.webp" width="1000" height="562">
+                <img src="images/hero-small.webp"
+                     alt="Hydra bidirectional workspace hero"
+                     width="500" height="281"
+                     fetchpriority="high">
+            </picture>
+            <picture class="dark">
+                <source media="(min-width: 1000px)" srcset="images/hero-dark-large.webp" width="1500" height="843">
+                <source media="(min-width: 500px)" srcset="images/hero-dark-medium.webp" width="1000" height="562">
+                <img src="images/hero-dark-small.webp"
+                     alt="Hydra bidirectional workspace hero"
+                     width="500" height="281"
+                     fetchpriority="high">
+            </picture>
+            <div class="hero-content">
+                <span class="badge">Product Showcase</span>
+                <h1>Build HTML with JSON</h1>
+                <p>Hydra is a bidirectional JSON-to-HTML workspace that lets you design, prototype, and ship web layouts at machine speed.</p>
+                <a href="workspace.html" class="cta-btn">Open Workspace</a>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <h2>Why Developers Choose Hydra</h2>
+            <div class="card-grid">
+                <section class="card">
+                    <figure>
+                        <img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20667%22%3E%3C%2Fsvg%3E"
+                            data-src="images/keyboard-setup-medium.webp"
+                            data-srcset="images/keyboard-setup-small.webp 500w, images/keyboard-setup-medium.webp 1000w, images/keyboard-setup-large.webp 1500w"
+                            data-sizes="(max-width: 640px) 100vw, 33vw"
+                            width="1000" height="667"
+                            loading="lazy"
+                            alt="Mechanical keyboard on a developer's desk" class="light">
+                        <img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20667%22%3E%3C%2Fsvg%3E"
+                            data-src="images/all-hail-lord-squidward-v0-8f0a10jo6s811-medium.webp"
+                            data-srcset="images/all-hail-lord-squidward-v0-8f0a10jo6s811-small.webp 500w, images/all-hail-lord-squidward-v0-8f0a10jo6s811-medium.webp 1000w, images/all-hail-lord-squidward-v0-8f0a10jo6s811-large.webp 1500w"
+                            data-sizes="(max-width: 640px) 100vw, 33vw"
+                            width="1000" height="667"
+                            loading="lazy"
+                            alt="Mechanical keyboard on a developer's desk" class="dark">
+                        <figcaption>Reza's setup before Hydra — three config files open, coffee going cold, the JSON and HTML perpetually out of sync.</figcaption>
+                    </figure>
+                    <div class="card-body">
+                        <h3>Structural JSON Syntax</h3>
+                        <p>Build your layouts cleanly using reliable, dense data structures.</p>
+                    </div>
+                </section>
+                <section class="card">
+                    <figure>
+                        <img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20667%22%3E%3C%2Fsvg%3E"
+                            data-src="images/first-ship-medium.webp"
+                            data-srcset="images/first-ship-small.webp 500w, images/first-ship-medium.webp 1000w, images/first-ship-large.webp 1500w"
+                            data-sizes="(max-width: 640px) 100vw, 33vw"
+                            width="1000" height="667"
+                            loading="lazy"
+                            alt="Code on a monitor in a dark room" class="light">
+                        <img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20667%22%3E%3C%2Fsvg%3E"
+                            data-src="images/200-medium.webp"
+                            data-srcset="images/200-small.webp 500w, images/200-medium.webp 1000w, images/200-large.webp 1500w"
+                            data-sizes="(max-width: 640px) 100vw, 33vw"
+                            width="1000" height="667"
+                            loading="lazy"
+                            alt="Code on a monitor in a dark room" class="dark">
+                        <figcaption>The moment Machine Empire shipped Hydra v1 — a single screen, a single JSON file, and a live preview that actually updated.</figcaption>
+                    </figure>
+                    <div class="card-body">
+                        <h3>Zero Errors First Try</h3>
+                        <p>Ship validated, production-ready HTML on the first attempt.</p>
+                    </div>
+                </section>
+                <section class="card">
+                    <figure>
+                        <img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20667%22%3E%3C%2Fsvg%3E"
+                            data-src="images/coding-in-the-wild-medium.webp"
+                            data-srcset="images/coding-in-the-wild-small.webp 500w, images/coding-in-the-wild-medium.webp 1000w, images/coding-in-the-wild-large.webp 1500w"
+                            data-sizes="(max-width: 640px) 100vw, 33vw"
+                            width="1000" height="667"
+                            loading="lazy"
+                            alt="Developer working on a laptop outdoors" class="light">
+                        <img
+                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20667%22%3E%3C%2Fsvg%3E"
+                            data-src="images/Captain-America-Hail-Hydra-medium.webp"
+                            data-srcset="images/Captain-America-Hail-Hydra-small.webp 500w, images/Captain-America-Hail-Hydra-medium.webp 1000w, images/Captain-America-Hail-Hydra-large.webp 1500w"
+                            data-sizes="(max-width: 640px) 100vw, 33vw"
+                            width="1000" height="667"
+                            loading="lazy"
+                            alt="Developer working on a laptop outdoors" class="dark">
+                        <figcaption>Hydra runs anywhere. Our lead engineer shipped the v2 parser from a park bench with spotty LTE and zero complaints.</figcaption>
+                    </figure>
+                    <div class="card-body">
+                        <h3>Work Anywhere</h3>
+                        <p>Lightweight and dependency-free — run Hydra in any environment.</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy;<span id="currentyear"></span> Machine Empire. All rights reserved.</p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>
