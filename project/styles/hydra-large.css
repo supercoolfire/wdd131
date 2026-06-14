@@ -83,10 +83,6 @@
         flex: 1;
     }
 
-    /* Gallery page desktop */
-    .gallery-grid {
-        /* Gallery grid now uses auto-fill minmax, no override needed */
-    }
 
     /* Pricing page desktop */
     .pricing-intro h1 {
