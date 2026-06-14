@@ -3,12 +3,111 @@
     "tag": "ul",
     "id": "navigation",
     "items": [
-      { "tag": "li", "items": [{ "tag": "a", "href": "index.html", "textContent": "Home" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "workspace.html", "textContent": "Workspace" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "pricing.html", "textContent": "Pricing" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "about.html", "textContent": "About" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "registration.html", "textContent": "Registration" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "gallery.html", "textContent": "Gallery" }] }
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "index.html", "textContent": "Home"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "workspace.html", "textContent": "Workspace"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "pricing.html", "textContent": "Pricing"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "about.html", "textContent": "About"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "registration.html", "textContent": "Registration"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "gallery.html", "textContent": "Gallery"}
+      ]}
+    ]
+  },
+  "pricing-main": {
+    "querySelector": "main",
+    "insertion": "replace",
+    "tag": "main",
+    "id": "pricing-main",
+    "items": [
+      {"tag": "section", "class": "pricing-intro", "items": [
+        {"tag": "span", "class": "badge", "textContent": "Plans for Every Team"},
+        {"tag": "h1", "textContent": "Flexible Workspace Plans"},
+        {"tag": "p", "textContent": "Choose the plan that fits your development workflow."}
+      ]},
+      {
+        "tag": "table",
+        "class": "pricing-table",
+        "aria-label": "Hydra pricing tiers",
+        "items": [
+          {"tag": "caption", "textContent": "Hydra Pricing Tiers"},
+          {
+            "tag": "thead",
+            "items": [
+              {
+                "tag": "tr",
+                "items": [
+                  {"tag": "th", "scope": "col", "textContent": "Engine Features"},
+                  {"tag": "th", "scope": "col", "items": [
+                    "Community",
+                    {"tag": "span", "class": "price-tag", "textContent": "$0 / permanent"}
+                  ]},
+                  {"tag": "th", "scope": "col", "items": [
+                    "Professional",
+                    {"tag": "span", "class": "price-tag", "textContent": "$19 / mo"}
+                  ]},
+                  {"tag": "th", "scope": "col", "items": [
+                    "Enterprise",
+                    {"tag": "span", "class": "price-tag", "textContent": "Custom"}
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "tbody",
+            "items": [
+              {"tag": "tr", "items": [
+                {"tag": "th", "scope": "row", "textContent": "Bidirectional Sync Engine"},
+                {"tag": "td", "textContent": "\u2713"},
+                {"tag": "td", "textContent": "\u2713"},
+                {"tag": "td", "textContent": "\u2713"}
+              ]},
+              {"tag": "tr", "items": [
+                {"tag": "th", "scope": "row", "textContent": "Monaco Sandbox Workspace"},
+                {"tag": "td", "textContent": "\u2713"},
+                {"tag": "td", "textContent": "\u2713"},
+                {"tag": "td", "textContent": "\u2713"}
+              ]},
+              {"tag": "tr", "items": [
+                {"tag": "th", "scope": "row", "textContent": "Emmet Extension Bridge"},
+                {"tag": "td", "textContent": "\u2014"},
+                {"tag": "td", "textContent": "\u2713"},
+                {"tag": "td", "textContent": "\u2713"}
+              ]},
+              {"tag": "tr", "items": [
+                {"tag": "th", "scope": "row", "textContent": "HTML Error Validation"},
+                {"tag": "td", "textContent": "\u2014"},
+                {"tag": "td", "textContent": "\u2713"},
+                {"tag": "td", "textContent": "\u2713"}
+              ]},
+              {"tag": "tr", "items": [
+                {"tag": "th", "scope": "row", "textContent": "Support Tier"},
+                {"tag": "td", "textContent": "Community"},
+                {"tag": "td", "textContent": "Priority"},
+                {"tag": "td", "textContent": "24/7 Dedicated"}
+              ]}
+            ]
+          },
+          {
+            "tag": "tfoot",
+            "items": [
+              {"tag": "tr", "items": [
+                {"tag": "td", "colspan": "4", "textContent": "All subscriptions include core updates to the local runtime framework layers."}
+              ]}
+            ]
+          }
+        ]
+      }
     ]
   }
 }

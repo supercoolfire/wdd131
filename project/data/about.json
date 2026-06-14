@@ -3,12 +3,102 @@
     "tag": "ul",
     "id": "navigation",
     "items": [
-      { "tag": "li", "items": [{ "tag": "a", "href": "index.html", "textContent": "Home" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "workspace.html", "textContent": "Workspace" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "pricing.html", "textContent": "Pricing" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "about.html", "textContent": "About" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "registration.html", "textContent": "Registration" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "gallery.html", "textContent": "Gallery" }] }
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "index.html", "textContent": "Home"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "workspace.html", "textContent": "Workspace"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "pricing.html", "textContent": "Pricing"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "about.html", "textContent": "About"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "registration.html", "textContent": "Registration"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "gallery.html", "textContent": "Gallery"}
+      ]}
+    ]
+  },
+  "about-main": {
+    "querySelector": "main",
+    "insertion": "replace",
+    "tag": "main",
+    "id": "about-main",
+    "items": [
+      {"tag": "section", "class": "about-intro", "items": [
+        {"tag": "h1", "textContent": "About Us: Our Core Philosophy"},
+        {"tag": "p", "class": "about-tagline", "textContent": "We build tools for developers who care about correctness and speed."}
+      ]},
+      {
+        "tag": "div",
+        "class": "about-layout",
+        "items": [
+          {
+            "tag": "aside",
+            "class": "specs-sidebar",
+            "items": [
+              {
+                "tag": "ul",
+                "class": "meta-list",
+                "items": [
+                  {"tag": "li", "items": [
+                    {"tag": "strong", "textContent": "Founded:"},
+                    "2023"
+                  ]},
+                  {"tag": "li", "items": [
+                    {"tag": "strong", "textContent": "HQ:"},
+                    "Remote-first"
+                  ]},
+                  {"tag": "li", "items": [
+                    {"tag": "strong", "textContent": "Team:"},
+                    "12 engineers"
+                  ]},
+                  {"tag": "li", "items": [
+                    {"tag": "strong", "textContent": "Open Source:"},
+                    "Yes"
+                  ]}
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "class": "specs-main",
+            "items": [
+              {"tag": "h2", "textContent": "The Machine Empire Vision"},
+              {"tag": "h3", "textContent": "The Backstory & Evolution"},
+              {"tag": "p", "textContent": "Machine Empire started as a small team of developers frustrated with the state of web prototyping tools. We wanted something that combined the reliability of JSON with the flexibility of HTML \u2014 and Hydra was born."},
+              {"tag": "p", "textContent": "Our mission is to empower developers to ship faster without sacrificing quality. Every feature in Hydra is built with correctness and developer experience in mind."},
+              {
+                "tag": "div",
+                "class": "audit-terminal",
+                "items": [
+                  {"tag": "div", "class": "terminal-header", "items": [
+                    {"tag": "span", "class": "terminal-dot red"},
+                    {"tag": "span", "class": "terminal-dot yellow"},
+                    {"tag": "span", "class": "terminal-dot green"},
+                    {"tag": "span", "class": "terminal-title", "textContent": "hydra-audit.log"}
+                  ]},
+                  {"tag": "div", "class": "terminal-body", "items": [
+                    {"tag": "p", "class": "log-entry info", "textContent": "[INFO] Initializing Hydra runtime..."},
+                    {"tag": "p", "class": "log-entry warning", "textContent": "[WARN] Legacy config detected \u2014 migrating..."},
+                    {"tag": "p", "class": "log-entry success", "textContent": "[SUCCESS] Migration complete!"},
+                    {"tag": "p", "class": "log-entry text-green", "textContent": "[SUCCESS] All systems operational"}
+                  ]}
+                ]
+              },
+              {"tag": "figure", "class": "about-image", "items": [
+                {"tag": "img", "src": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20667%22%3E%3C%2Fsvg%3E", "data-src": "images/hydrator-log-medium.webp", "data-srcset": "images/hydrator-log-small.webp 500w, images/hydrator-log-medium.webp 1000w, images/hydrator-log-large.webp 1500w", "data-sizes": "(max-width: 640px) 100vw, 50vw", "width": "1000", "height": "667", "loading": "lazy", "alt": "Hydrator log interface"},
+                {"tag": "figcaption", "textContent": "The Hydrator in action \u2014 parsing JSON and producing valid HTML."}
+              ]}
+            ]
+          }
+        ]
+      }
     ]
   }
 }

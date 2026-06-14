@@ -3,12 +3,79 @@
     "tag": "ul",
     "id": "navigation",
     "items": [
-      { "tag": "li", "items": [{ "tag": "a", "href": "index.html", "textContent": "Home" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "workspace.html", "textContent": "Workspace" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "pricing.html", "textContent": "Pricing" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "about.html", "textContent": "About" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "registration.html", "textContent": "Registration" }] },
-      { "tag": "li", "items": [{ "tag": "a", "href": "gallery.html", "textContent": "Gallery" }] }
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "index.html", "textContent": "Home"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "workspace.html", "textContent": "Workspace"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "pricing.html", "textContent": "Pricing"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "about.html", "textContent": "About"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "registration.html", "textContent": "Registration"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "a", "href": "gallery.html", "textContent": "Gallery"}
+      ]}
+    ]
+  },
+  "ul-equrx": {
+    "querySelector": "main",
+    "insertion": "replace",
+    "tag": "ul",
+    "items": [
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "keyboard-setup.webp:"},
+        {"textContent": "Photo by Reza from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "first-ship.webp:"},
+        {"textContent": "Photo by NASA from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "coding-in-the-wild.webp:"},
+        {"textContent": "Photo by CoWomen from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "standing-desk.webp:"},
+        {"textContent": "Photo by Scott Graham from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "dark-mode-monitor.webp:"},
+        {"textContent": "Photo by Markus Spiske from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "enterprise-desk.webp:"},
+        {"textContent": "Photo by Marvin Meyer from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "ui-components.webp:"},
+        {"textContent": "Photo by Hal Gatewood from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "cleaner-code.webp:"},
+        {"textContent": "Photo by Farzad Nazifi from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "hydrator-log.webp:"},
+        {"textContent": "Photo by Fatos Bytyqi from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "data-viz.webp:"},
+        {"textContent": "Photo by Carlos Muza from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "json-schema.webp:"},
+        {"textContent": "Photo by David Travis from Unsplash"}
+      ]},
+      {"tag": "li", "items": [
+        {"tag": "strong", "textContent": "storage-keys.webp:"},
+        {"textContent": "Photo by Mika Baumeister from Unsplash"}
+      ]}
     ]
   }
 }
