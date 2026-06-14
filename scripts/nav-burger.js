@@ -80,4 +80,26 @@ hambutton.addEventListener('click', () => {
     hambutton.classList.toggle('show');
 });
 
- 
+// Set active class on the nav link that matches the current page.
+// Must run after hydration since nav links are injected by hydrate-v5.js.
+const setActiveNavLink = () => {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        }
+    });
+};
+
+// Try multiple ways to ensure active nav link is set
+const trySetActiveNavLink = () => {
+    setActiveNavLink();
+};
+
+document.addEventListener('hydrationFinished', trySetActiveNavLink);
+document.addEventListener('DOMContentLoaded', trySetActiveNavLink);
+
+// Also try a short delay in case both events fire too early
+setTimeout(trySetActiveNavLink, 100);
+setTimeout(trySetActiveNavLink, 500);
