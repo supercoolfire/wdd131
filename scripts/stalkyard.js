@@ -182,6 +182,7 @@ async function generateStalkmate() {
                 { link: `https://${username}.github.io/wdd131/book_of_mormon.html`, text: "W05 Learning Activity: book_of_mormon" },
                 { link: `https://${username}.github.io/wdd131/form.html`, text: "W05 Assignment: Product Review Form" },
                 { link: `https://${username}.github.io/wdd131/review.html`, text: "W05 Assignment: Product Review Form" },
+                { link: `https://${username}.github.io/wdd131/project/index.html`, text: "Final Project" },
             ];
 
             if (item.other_links && Array.isArray(item.other_links)) {
