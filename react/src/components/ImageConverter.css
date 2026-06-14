@@ -1,0 +1,305 @@
+.image-converter {
+  max-width: 100%;
+  padding: 20px;
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  color: #1a202c;
+}
+
+.page-header p {
+  margin: 0;
+  color: #718096;
+  font-size: 1rem;
+}
+
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.upload-zone {
+  width: 100%;
+  position: relative;
+}
+
+.file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px;
+  border: 2px dashed #cbd5e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #f7fafc;
+}
+
+.upload-label:hover {
+  border-color: #4299e1;
+  background: #ebf8ff;
+}
+
+.upload-icon {
+  font-size: 3rem;
+}
+
+.url-upload {
+  display: flex;
+  gap: 12px;
+}
+
+.url-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.url-input:focus {
+  border-color: #4299e1;
+}
+
+.table-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.preset-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.preset-table th,
+.preset-table td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.preset-table th {
+  background: #f7fafc;
+  font-weight: 600;
+  color: #4a5568;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.preset-column {
+  min-width: 120px;
+}
+
+.select-all-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.file-row:hover {
+  background: #f7fafc;
+}
+
+.image-cell {
+  text-align: left;
+}
+
+.image-preview {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.image-preview:hover {
+  background: #e2e8f0;
+}
+
+.image-preview img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.file-name {
+  font-size: 0.9rem;
+  color: #2d3748;
+  word-break: break-word;
+  max-width: 200px;
+}
+
+.crop-indicator {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 1.2rem;
+  background: white;
+  border-radius: 4px;
+  padding: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-cell input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.actions-cell {
+  min-width: 80px;
+}
+
+.btn-remove {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.btn-remove:hover {
+  background: #fed7d7;
+}
+
+.action-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4299e1, #3182ce);
+  transition: width 0.3s;
+}
+
+.success-message {
+  margin: 0;
+  color: #38a169;
+  font-weight: 600;
+}
+
+.complete-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 12px;
+}
+
+.output-path {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+
+.output-path code {
+  background: #f7fafc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #4299e1;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+.btn-secondary:hover {
+  background: #cbd5e0;
+}
+
+@media (max-width: 768px) {
+  .image-converter {
+    padding: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .file-name {
+    max-width: 100px;
+    font-size: 0.8rem;
+  }
+
+  .image-preview img {
+    width: 40px;
+    height: 40px;
+  }
+}

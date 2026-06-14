@@ -32,7 +32,7 @@ const __dirname = path.dirname(__filename);
 const CONFIG = {
     // Comma-separated paths to source folders or individual explicit files
     // Example: './raw-assets/temples, ./backups/old-photo.jpg'
-    sources: ['./images/stalkyard'],
+    sources: ['./project/images/raw/hero-dark.jpg'],
     
     // Base maximum quality ceiling (used as the highest bound for dynamicQuality scaling)
     // When dynamicQualityScaling is true, this value is the maximum quality for the largest crops
@@ -51,19 +51,29 @@ const CONFIG = {
     // Example landscape: 16:9, 1:1, 4:3, 3:4
     // Example portrait: 9:16, 3:4, 4:3, 1:1
     // Default is 16:9
-    aspectRatio: 16/9,
 
+    // hero
+    aspectRatio: 16/9,
     crop: [
         {fileSuffix: "-small", width: 500},
         {fileSuffix: "-medium", width: 1000},
         {fileSuffix: "-large", width: 1500}
     ],
+
+    // not hero
+    // aspectRatio: 4/3,
+    // crop: [
+    //     {fileSuffix: "-small", width: 250},
+    //     {fileSuffix: "-medium", width: 500},
+    //     {fileSuffix: "-large", width: 750}
+    // ],
+
     // If 'true', the folders with suffix will created in the output folder
     // Example: './images/place' -> './images/place-[fileSuffix].jpg'
     // If 'false', the files with suffix will created in the output folder
     // Example: './images/place/hero.jpg' -> './images/place/hero-webp-[fileSuffix].jpg'
     folderSuffix: 'false',
-    outputFolder: './images/test'
+    outputFolder: './project/images'
 };
 // ==========================================
 
