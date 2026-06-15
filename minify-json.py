@@ -6,7 +6,6 @@ def minify_node(node):
     if isinstance(node, dict):
         processed = {k: minify_node(v) for k, v in node.items()}
         
-        # Always minify if it's a simple object with no nested items arrays
         has_nested_items = False
         for v in processed.values():
             if isinstance(v, (dict, list)):
@@ -54,7 +53,11 @@ class CustomEncoder(json.JSONEncoder):
                 parts = []
                 for k, v in items:
                     if isinstance(v, (dict, list)):
-                        val_str = self._format(v, indent_level)  # Don't increase indent for minified children
+                        is_single_item_items = (k == "items" and isinstance(v, list) and len(v) == 1)
+                        if is_single_item_items:
+                            val_str = self._format_single_item_array(v, indent_level)
+                        else:
+                            val_str = self._format(v, indent_level)
                     else:
                         val_str = json.dumps(v)
                     parts.append(f'"{k}": {val_str}')
@@ -63,7 +66,11 @@ class CustomEncoder(json.JSONEncoder):
                 parts = []
                 for k, v in items:
                     if isinstance(v, (dict, list)):
-                        val_str = self._format(v, indent_level + 1)
+                        is_single_item_items = (k == "items" and isinstance(v, list) and len(v) == 1)
+                        if is_single_item_items:
+                            val_str = self._format_single_item_array(v, indent_level + 1)
+                        else:
+                            val_str = self._format(v, indent_level + 1)
                     else:
                         val_str = json.dumps(v)
                     parts.append(f'{next_indent}"{k}": {val_str}')
@@ -84,6 +91,16 @@ class CustomEncoder(json.JSONEncoder):
         
         else:
             return json.dumps(obj)
+    
+    def _format_single_item_array(self, arr, indent_level):
+        item = arr[0]
+        
+        if isinstance(item, (dict, list)):
+            item_str = self._format(item, indent_level)
+        else:
+            item_str = json.dumps(item)
+        
+        return f"[{item_str}]"
 
 def process_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -102,7 +119,6 @@ def process_directory(directory):
             process_file(file_path)
 
 if __name__ == "__main__":
-    # Automatically find all JSON files in the project/data directory
     data_dir = os.path.join(os.path.dirname(__file__), 'project', 'data')
     process_directory(data_dir)
     print("Done!")

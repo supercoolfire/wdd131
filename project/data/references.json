@@ -3,24 +3,12 @@
     "tag": "ul",
     "id": "navigation",
     "items": [
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "index.html", "textContent": "Home"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "workspace.html", "textContent": "Workspace"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "pricing.html", "textContent": "Pricing"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "about.html", "textContent": "About"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "registration.html", "textContent": "Registration"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "gallery.html", "textContent": "Gallery"}
-      ]}
+      {"tag": "li", "items": [{"tag": "a", "href": "index.html", "textContent": "Home"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "workspace.html", "textContent": "Workspace"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "pricing.html", "textContent": "Pricing"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "about.html", "textContent": "About"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "registration.html", "textContent": "Registration"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "gallery.html", "textContent": "Gallery"}]}
     ]
   },
   "ul-equrx": {

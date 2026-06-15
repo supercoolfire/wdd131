@@ -3,24 +3,12 @@
     "tag": "ul",
     "id": "navigation",
     "items": [
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "index.html", "textContent": "Home"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "workspace.html", "textContent": "Workspace"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "pricing.html", "textContent": "Pricing"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "about.html", "textContent": "About"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "registration.html", "textContent": "Registration"}
-      ]},
-      {"tag": "li", "items": [
-        {"tag": "a", "href": "gallery.html", "textContent": "Gallery"}
-      ]}
+      {"tag": "li", "items": [{"tag": "a", "href": "index.html", "textContent": "Home"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "workspace.html", "textContent": "Workspace"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "pricing.html", "textContent": "Pricing"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "about.html", "textContent": "About"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "registration.html", "textContent": "Registration"}]},
+      {"tag": "li", "items": [{"tag": "a", "href": "gallery.html", "textContent": "Gallery"}]}
     ]
   },
   "pricing-main": {
@@ -42,26 +30,24 @@
           {"tag": "caption", "textContent": "Hydra Pricing Tiers"},
           {
             "tag": "thead",
-            "items": [
-              {
-                "tag": "tr",
-                "items": [
-                  {"tag": "th", "scope": "col", "textContent": "Engine Features"},
-                  {"tag": "th", "scope": "col", "items": [
-                    "Community",
-                    {"tag": "span", "class": "price-tag", "textContent": "$0 / permanent"}
-                  ]},
-                  {"tag": "th", "scope": "col", "items": [
-                    "Professional",
-                    {"tag": "span", "class": "price-tag", "textContent": "$19 / mo"}
-                  ]},
-                  {"tag": "th", "scope": "col", "items": [
-                    "Enterprise",
-                    {"tag": "span", "class": "price-tag", "textContent": "Custom"}
-                  ]}
-                ]
-              }
-            ]
+            "items": [{
+              "tag": "tr",
+              "items": [
+                {"tag": "th", "scope": "col", "textContent": "Engine Features"},
+                {"tag": "th", "scope": "col", "items": [
+                  "Community",
+                  {"tag": "span", "class": "price-tag", "textContent": "$0 / permanent"}
+                ]},
+                {"tag": "th", "scope": "col", "items": [
+                  "Professional",
+                  {"tag": "span", "class": "price-tag", "textContent": "$19 / mo"}
+                ]},
+                {"tag": "th", "scope": "col", "items": [
+                  "Enterprise",
+                  {"tag": "span", "class": "price-tag", "textContent": "Custom"}
+                ]}
+              ]
+            }]
           },
           {
             "tag": "tbody",
@@ -100,11 +86,7 @@
           },
           {
             "tag": "tfoot",
-            "items": [
-              {"tag": "tr", "items": [
-                {"tag": "td", "colspan": "4", "textContent": "All subscriptions include core updates to the local runtime framework layers."}
-              ]}
-            ]
+            "items": [{"tag": "tr", "items": [{"tag": "td", "colspan": "4", "textContent": "All subscriptions include core updates to the local runtime framework layers."}]}]
           }
         ]
       }
