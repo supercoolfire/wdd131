@@ -7,11 +7,160 @@
  * 1. Real time bidirectional JSON to HTML conversion
  * 2. Context-aware auto-completion
  * 3. Strict JSON schema validation
+ * 4. Custom JSON formatting (same as minify-json.py)
  */
 
 require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
 
 require(['vs/editor/editor.main'], function () {
+  // --- CUSTOM JSON MINIFICATION LOGIC (PORTED FROM minify-json.py) ---
+
+  function minifyNode(node) {
+    if (node && typeof node === 'object' && !Array.isArray(node)) {
+      const processed = {};
+      for (const [k, v] of Object.entries(node)) {
+        processed[k] = minifyNode(v);
+      }
+      let hasNestedItems = false;
+      for (const v of Object.values(processed)) {
+        if (v && typeof v === 'object') {
+          if (hasItemsRecursive(v)) {
+            hasNestedItems = true;
+            break;
+          }
+        }
+      }
+      if (!hasNestedItems) {
+        processed._minify_me = true;
+      }
+      return processed;
+    } else if (Array.isArray(node)) {
+      return node.map(item => minifyNode(item));
+    } else {
+      return node;
+    }
+  }
+
+  function hasItemsRecursive(node) {
+    if (node && typeof node === 'object' && !Array.isArray(node)) {
+      if ('items' in node) return true;
+      for (const v of Object.values(node)) {
+        if (hasItemsRecursive(v)) return true;
+      }
+    } else if (Array.isArray(node)) {
+      for (const item of node) {
+        if (hasItemsRecursive(item)) return true;
+      }
+    }
+    return false;
+  }
+
+  function customJsonEncode(obj) {
+    return format(obj, 0);
+  }
+
+  function format(obj, indentLevel) {
+    const indent = '  '.repeat(indentLevel);
+    const nextIndent = '  '.repeat(indentLevel + 1);
+
+    if (obj && typeof obj === 'object' && !Array.isArray(obj)) {
+      const minifyMe = obj._minify_me;
+      delete obj._minify_me;
+      const items = Object.entries(obj);
+
+      // Check if this is an img tag
+      const isImgTag = obj.tag === 'img';
+
+      if (isImgTag) {
+        const parts = [];
+        for (let i = 0; i < items.length; i++) {
+          const [k, v] = items[i];
+          let valStr;
+          if (v && typeof v === 'object') {
+            valStr = format(v, indentLevel);
+          } else {
+            valStr = JSON.stringify(v);
+          }
+          if (i === 0) {
+            parts.push(`"${k}": ${valStr}`);
+          } else {
+            parts.push(`${nextIndent}"${k}": ${valStr}`);
+          }
+        }
+        return `{${parts.join(',\n')}}`;
+      } else if (minifyMe) {
+        const parts = [];
+        for (const [k, v] of items) {
+          let valStr;
+          if (v && typeof v === 'object') {
+            const isSingleItemItems = k === 'items' && Array.isArray(v) && v.length === 1;
+            if (isSingleItemItems) {
+              valStr = formatSingleItemArray(v, indentLevel);
+            } else {
+              valStr = format(v, indentLevel);
+            }
+          } else {
+            valStr = JSON.stringify(v);
+          }
+          parts.push(`"${k}": ${valStr}`);
+        }
+        return `{${parts.join(', ')}}`;
+      } else {
+        const parts = [];
+        for (const [k, v] of items) {
+          let valStr;
+          if (v && typeof v === 'object') {
+            const isSingleItemItems = k === 'items' && Array.isArray(v) && v.length === 1;
+            if (isSingleItemItems) {
+              valStr = formatSingleItemArray(v, indentLevel + 1);
+            } else {
+              valStr = format(v, indentLevel + 1);
+            }
+          } else {
+            valStr = JSON.stringify(v);
+          }
+          parts.push(`${nextIndent}"${k}": ${valStr}`);
+        }
+        return `{\n${parts.join(',\n')}\n${indent}}`;
+      }
+    } else if (Array.isArray(obj)) {
+      if (!obj.length) return '[]';
+      const parts = [];
+      for (const item of obj) {
+        if (item && typeof item === 'object') {
+          parts.push(format(item, indentLevel + 1));
+        } else {
+          parts.push(JSON.stringify(item));
+        }
+      }
+      return `[\n${parts.map(p => `${nextIndent}${p}`).join(',\n')}\n${indent}]`;
+    } else {
+      return JSON.stringify(obj);
+    }
+  }
+
+  function formatSingleItemArray(arr, indentLevel) {
+    const item = arr[0];
+    let itemStr;
+    if (item && typeof item === 'object') {
+      itemStr = format(item, indentLevel);
+    } else {
+      itemStr = JSON.stringify(item);
+    }
+    return `[${itemStr}]`;
+  }
+
+  function minifyAndFormatJson(jsonStr) {
+    try {
+      const data = JSON.parse(jsonStr);
+      const minifiedData = minifyNode(JSON.parse(JSON.stringify(data))); // deep copy
+      return customJsonEncode(minifiedData);
+    } catch (e) {
+      return jsonStr; // return original if invalid JSON
+    }
+  }
+
+  // --- END CUSTOM JSON LOGIC ---
   const staticContainer = document.getElementById('static-monaco');
   const jsonContainer = document.getElementById('json-monaco');
   const htmlContainer = document.getElementById('html-monaco');
@@ -487,11 +636,28 @@ require(['vs/editor/editor.main'], function () {
       }
 
       buildDeltas(liveRoot);
-      jsonEditor.setValue(JSON.stringify(deltaJson, null, 2));
+      jsonEditor.setValue(minifyAndFormatJson(JSON.stringify(deltaJson, null, 2)));
     } catch (e) {
       // Absorb editing phase variations safely
     }
     isUpdating = false;
+  }
+
+  // --- DEBOUNCED AUTO-FORMAT FOR JSON EDITOR ---
+  let formatDebounceTimer = null;
+  function debouncedFormatJson() {
+    if (formatDebounceTimer) clearTimeout(formatDebounceTimer);
+    formatDebounceTimer = setTimeout(() => {
+      if (!isUpdating) {
+        isUpdating = true;
+        const currentValue = jsonEditor.getValue();
+        const formatted = minifyAndFormatJson(currentValue);
+        if (formatted !== currentValue) {
+          jsonEditor.setValue(formatted);
+        }
+        isUpdating = false;
+      }
+    }, 1000);
   }
 
   // --- LINE EMBELLISHMENT & RESTRICTION FRAMEWORK ---
@@ -542,7 +708,10 @@ require(['vs/editor/editor.main'], function () {
 
   // --- BOUND MODEL CONTROLLER WATCHERS ---
   staticEditor.onDidChangeModelContent(() => syncJsonToHtml());
-  jsonEditor.onDidChangeModelContent(() => syncJsonToHtml());
+  jsonEditor.onDidChangeModelContent(() => {
+    syncJsonToHtml();
+    debouncedFormatJson();
+  });
   htmlEditor.onDidChangeModelContent(() => syncHtmlToJson());
 
   // Set default initial state values matching template layout benchmarks
@@ -572,6 +741,6 @@ require(['vs/editor/editor.main'], function () {
     }
   };
 
-  jsonEditor.setValue(JSON.stringify(initialJson, null, 2));
+  jsonEditor.setValue(minifyAndFormatJson(JSON.stringify(initialJson, null, 2)));
   syncJsonToHtml();
 });
