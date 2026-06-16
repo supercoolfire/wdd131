@@ -232,6 +232,14 @@ require(['vs/editor/editor.main'], function () {
     return el;
   }
 
+  // Inline tags that should use innerHTML instead of items array for better readability
+  const inlineTags = new Set([
+    'span', 'strong', 'em', 'i', 'b', 'u', 's', 'mark', 'sub', 'sup', 'small',
+    'big', 'ins', 'del', 'code', 'kbd', 'samp', 'var', 'cite', 'dfn', 'abbr',
+    'acronym', 'q', 'bdo', 'bdi', 'wbr', 'a', 'br', 'img', 'input', 'button',
+    'select', 'textarea', 'label', 'output', 'progress', 'meter'
+  ]);
+
   function elementToRawObject(el) {
     if (el.nodeType === Node.TEXT_NODE) {
       return el.textContent.trim() ? { textContent: el.textContent.trim() } : null;
@@ -239,6 +247,7 @@ require(['vs/editor/editor.main'], function () {
     if (el.nodeType !== Node.ELEMENT_NODE) return null;
 
     const obj = { tag: el.tagName.toLowerCase() };
+    const tagName = el.tagName.toLowerCase();
     
     // CAPTURE ALL ATTRIBUTES (style, src, alt, etc.)
     Array.from(el.attributes).forEach(attr => {
@@ -246,9 +255,27 @@ require(['vs/editor/editor.main'], function () {
       obj[name] = attr.value;
     });
     
+    // Check if any direct child is an inline tag to decide on innerHTML vs items
+    let hasInlineChild = false;
+    let hasBlockChild = false;
+    el.childNodes.forEach(child => {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        const childTag = child.tagName.toLowerCase();
+        if (inlineTags.has(childTag)) {
+          hasInlineChild = true;
+        } else {
+          hasBlockChild = true;
+        }
+      }
+    });
+
     if (el.children.length === 0 && el.textContent.trim()) {
       obj.textContent = el.textContent.trim();
+    } else if (hasInlineChild && !hasBlockChild) {
+      // If only inline children, use innerHTML instead of items array
+      obj.innerHTML = el.innerHTML.trim().replace(/\s+/g, ' ');
     } else if (el.childNodes.length > 0) {
+      // If there are block children, use items array as before
       const items = [];
       el.childNodes.forEach(child => {
         const childObj = elementToRawObject(child);
