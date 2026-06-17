@@ -341,7 +341,8 @@ require(['vs/editor/editor.main'], function () {
     minimap: { enabled: false },
     quickSuggestions: { other: true, comments: false, strings: true },
     suggestOnTriggerCharacters: true,
-    wordBasedSuggestions: "allDocuments"
+    wordBasedSuggestions: "allDocuments",
+    fixedOverflowWidgets: true
   });
 
   const htmlEditor = monaco.editor.create(htmlContainer, {
@@ -727,11 +728,18 @@ require(['vs/editor/editor.main'], function () {
     }
   });
 
+  function isSuggestionWidgetVisible(editor) {
+    const suggestController = editor.getContribution('editor.contrib.suggestController');
+    return suggestController && suggestController.widget.value.isVisible();
+  }
+
   // --- BOUND MODEL CONTROLLER WATCHERS ---
   staticEditor.onDidChangeModelContent(() => syncJsonToHtml());
   jsonEditor.onDidChangeModelContent(() => {
-    syncJsonToHtml();
-    debouncedFormatJson();
+    if (!isSuggestionWidgetVisible(jsonEditor)) {
+      syncJsonToHtml();
+      debouncedFormatJson();
+    }
   });
   htmlEditor.onDidChangeModelContent(() => syncHtmlToJson());
 
