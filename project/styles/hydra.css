@@ -17,9 +17,9 @@
     --accent-yellow-bg: #ffc93f;
     --accent-yellow: #3a2b08;
     --badge-data-bg: #38bdf826;
-    --badge-dom-bg: rgba(16, 189, 129, 0.15);
-    --badge-hardcoded-bg: rgba(251, 191, 36, 0.15);
-    --badge-readonly-bg: rgba(56, 189, 248, 0.15);
+    --badge-dom-bg: #10bd8126;
+    --badge-hardcoded-bg: #fbbf2426;
+    --badge-readonly-bg: #38bdf826;
     --price-tag-bg: #38bdf826;
     --price-tag-color: #1f5065;
     --card-bg: #f4f8ff;
@@ -55,10 +55,10 @@
     --accent-yellow-bg: #fbbf24d6;
     --accent-yellow: #f1b623;
     --badge-data-bg: #38bdf826;
-    --badge-dom-bg: rgba(16, 189, 129, 0.15);
-    --badge-hardcoded-bg: rgba(251, 191, 36, 0.15);
-    --badge-readonly-bg: rgba(56, 189, 248, 0.15);
-    --price-tag-bg: rgba(56, 189, 248, 0.15);
+    --badge-dom-bg: #10bd8126;
+    --badge-hardcoded-bg: #fbbf2426;
+    --badge-readonly-bg: #38bdf826;
+    --price-tag-bg: #38bdf826;
     --price-tag-color: #c4edff;
     --card-bg: #121824;
     --card-border: #2a3a50;
@@ -88,7 +88,7 @@
     border: none;
     border-radius: 30px;
     background-color: var(--toggle-btn-bg);
-    color: var(--body-text-color);
+    /* color: var(--body-text-color); */
     cursor: pointer;
     font-weight: 600;
     display: flex;
@@ -126,12 +126,12 @@ html[data-theme="dark"] #registrationForm input[type="date"]::-webkit-calendar-p
 \-------------------------------------*/
 
 a {
-    background-color: var(--link-bg-color);
-    color: var(--link-color);
+    /* background-color: var(--link-bg-color);
+    color: var(--link-color); */
     text-decoration: none;
 }
 a:hover {
-    color: var(--link-color-hover);
+    /* color: var(--link-color-hover); */
     text-decoration: underline;
 }
 
@@ -221,7 +221,7 @@ nav ul {
 
 nav ul li {
     transition: all .5s ease-in-out;
-    border: 1px dashed red;
+    border: 1px dashed #ff0000;
 }
 
 nav ul li:hover {
@@ -254,10 +254,6 @@ nav ul li a.active {
 }
 /*           Poor man's steak          |
 \-------------------------------------*/
-
-span#course-title {
-    margin-right: 32px;
-}
 
 main {
     flex: 1;
@@ -422,8 +418,6 @@ h1 {
     aspect-ratio: 3 / 2;
     object-fit: contain;
     display: block;
-    opacity: 0;
-    transition: opacity 0.4s ease;
 }
 
 .card figure img.loaded {
@@ -585,11 +579,9 @@ figcaption {
 .about-image img {
     width: 100%;
     height: auto;
-    aspect-ratio: 3/2;
+    aspect-ratio: 500/375;
     object-fit: cover;
     border-radius: 8px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
 }
 
 .about-image img.loaded {
@@ -985,6 +977,14 @@ html[data-theme="dark"] .message-error {
     padding: 2rem 0;
 }
 
+.download-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+}
+
 .demo-header {
     text-align: center;
     margin-bottom: 2rem;
@@ -1130,8 +1130,8 @@ html[data-theme="dark"] .message-error {
 
 /* This is what forces the image to 85% of screen when active */
 #img-modal.active #modal-content {
-    top: 2.5vh !important;   /* (100 - 85) / 2 */
-    left: 2.5vw !important;  /* (100 - 85) / 2 */
+    top: 2.5vh !important;   /* (100 - 85) / 2  is default */
+    left: 2.5vw !important;  /* (100 - 85) / 2  is default */
     width: 95vw !important;
     height: 95vh !important;
 }
