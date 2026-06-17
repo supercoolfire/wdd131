@@ -584,6 +584,23 @@ require(['vs/editor/editor.main'], function () {
 
       const deltaJson = {};
 
+      function getElementInnerHTMLWithoutWhitespace(el) {
+        if (!el) return '';
+        // Clone and strip whitespace to compare inner content
+        const clone = el.cloneNode(true);
+        // Remove text nodes that are just whitespace
+        const walker = document.createTreeWalker(clone, NodeFilter.SHOW_TEXT);
+        let textNode;
+        while (textNode = walker.nextNode()) {
+          if (!textNode.textContent.trim()) {
+            textNode.parentNode.removeChild(textNode);
+          } else {
+            textNode.textContent = textNode.textContent.trim();
+          }
+        }
+        return clone.innerHTML;
+      }
+
       function buildDeltas(liveEl) {
         if (!liveEl || liveEl.nodeType !== Node.ELEMENT_NODE) return;
         if (liveEl.tagName.toLowerCase() === 'html') {
@@ -592,6 +609,7 @@ require(['vs/editor/editor.main'], function () {
         }
 
         const selector = liveEl.id ? `#${liveEl.id}` : liveEl.tagName.toLowerCase();
+        const key = liveEl.id || liveEl.tagName.toLowerCase();
         
         let baseMatch = null;
         if (liveEl === liveRoot) {
@@ -603,16 +621,21 @@ require(['vs/editor/editor.main'], function () {
         if (baseMatch) {
           const attributesChanged = Array.from(liveEl.attributes).some(attr => liveEl.getAttribute(attr.name) !== baseMatch.getAttribute(attr.name)) ||
                                    Array.from(baseMatch.attributes).some(attr => liveEl.getAttribute(attr.name) !== baseMatch.getAttribute(attr.name));
-
-          if (liveEl.textContent.trim() !== baseMatch.textContent.trim() || 
-              liveEl.children.length !== baseMatch.children.length ||
-              attributesChanged) {
-            
-            const key = liveEl.id || liveEl.tagName.toLowerCase();
-            
-            if (liveEl.children.length === 0) {
-              deltaJson[key] = elementToRawObject(liveEl);
-            }
+          
+          const liveInner = getElementInnerHTMLWithoutWhitespace(liveEl);
+          const baseInner = getElementInnerHTMLWithoutWhitespace(baseMatch);
+          
+          const contentChanged = liveInner !== baseInner;
+          // Check for total replacement: content is completely different
+          if (attributesChanged || contentChanged) {
+            deltaJson[key] = {
+              querySelector: selector,
+              insertion: "replace",
+              ...elementToRawObject(liveEl)
+            };
+          } else {
+            // Recurse children if not replacing whole element
+            Array.from(liveEl.children).forEach(child => buildDeltas(child));
           }
         } else {
           const parentEl = liveEl.parentElement;
@@ -622,23 +645,21 @@ require(['vs/editor/editor.main'], function () {
                                  (parentEl && parentEl.tagName.toLowerCase() === 'body' ? 'body' :
                                  (parentEl && parentEl.id ? `#${parentEl.id}` : (parentEl ? parentEl.tagName.toLowerCase() : 'body'))));
           const randomSuffix = Math.random().toString(36).substr(2, 5);
-          const key = liveEl.id || `${liveEl.tagName.toLowerCase()}-${randomSuffix}`;
+          const newKey = liveEl.id || `${liveEl.tagName.toLowerCase()}-${randomSuffix}`;
           
-          deltaJson[key] = {
+          deltaJson[newKey] = {
             querySelector: parentSelector,
             insertion: "append",
             ...elementToRawObject(liveEl)
           };
           return;
         }
-
-        Array.from(liveEl.children).forEach(child => buildDeltas(child));
       }
 
       buildDeltas(liveRoot);
       jsonEditor.setValue(minifyAndFormatJson(JSON.stringify(deltaJson, null, 2)));
     } catch (e) {
-      // Absorb editing phase variations safely
+      console.error('syncHtmlToJson error:', e);
     }
     isUpdating = false;
   }
