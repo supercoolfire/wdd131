@@ -1,56 +1,50 @@
-// lazyload.js
+// 1. Centralized Configuration
+const options = {
+    root: null,
+    rootMargin: "0px 0px 200px 0px",
+    threshold: 0
+};
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Target all images with data-src attributes
+// 2. Helper to reveal the image
+function swapDataAttributes(img) {
+    if (img.dataset.src) img.src = img.dataset.src;
+    if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+    if (img.dataset.sizes) img.sizes = img.dataset.sizes;
+    
+    img.removeAttribute("data-src");
+    img.removeAttribute("data-srcset");
+    img.removeAttribute("data-sizes");
+    img.classList.add("loaded");
+}
+
+// 3. Callback for the observer
+const loadImage = (entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            swapDataAttributes(entry.target);
+            observer.unobserve(entry.target);
+        }
+    });
+};
+
+// 4. Initialization function
+function initLazyLoading() {
     const lazyImages = document.querySelectorAll("img[data-src]");
-
-    // 2. Configuration options for the IntersectionObserver
-    const options = {
-        root: null,         // Use the browser viewport as the container
-        rootMargin: "0px 0px 200px 0px", // Trigger loading 200px before the image enters the viewport
-        threshold: 0        // Trigger as soon as even one pixel is visible
-    };
-
-    // Helper function to swap data attributes to real ones
-    function swapDataAttributes(img) {
-        if (img.dataset.src) {
-            img.src = img.dataset.src;
-            img.removeAttribute("data-src");
-        }
-        if (img.dataset.srcset) {
-            img.srcset = img.dataset.srcset;
-            img.removeAttribute("data-srcset");
-        }
-        if (img.dataset.sizes) {
-            img.sizes = img.dataset.sizes;
-            img.removeAttribute("data-sizes");
-        }
-        img.classList.add("loaded");
-    }
-
-    // 3. Callback function when intersection happens
-    const loadImage = (entries, observer) => {
-        entries.forEach(entry => {
-            // Check if the element is intersecting the viewport area
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                swapDataAttributes(img);
-                // Stop observing this specific image since it is now loaded
-                observer.unobserve(img);
-            }
-        });
-    };
-
-    // 4. Initialize the IntersectionObserver
+    
     if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver(loadImage, options);
-        
-        // Start observing each lazy image
-        lazyImages.forEach(img => observer.observe(img));
-    } else {
-        // Fallback for older browsers that do not support IntersectionObserver
         lazyImages.forEach(img => {
-            swapDataAttributes(img);
+            // Only observe if not already processed
+            if (img.dataset.src) {
+                observer.observe(img);
+            }
         });
+    } else {
+        // Fallback for older browsers
+        lazyImages.forEach(swapDataAttributes);
     }
-});
+}
+
+// 5. Listeners
+document.addEventListener("DOMContentLoaded", initLazyLoading);
+document.addEventListener("hydrationFinished", initLazyLoading);
