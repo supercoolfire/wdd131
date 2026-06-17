@@ -217,7 +217,7 @@ require(['vs/editor/editor.main'], function () {
 
   // --- CONTEXT-AWARE INSTANT AUTOCOMPLETE PROVIDER ---
   monaco.languages.registerCompletionItemProvider('json', {
-    triggerCharacters: ['{', '[', ',', ' ', '\n', '\t'],
+    triggerCharacters: ['{', '[', ',', ' ', '\t'],
     
     provideCompletionItems: (model, position) => {
       const word = model.getWordUntilPosition(position);
